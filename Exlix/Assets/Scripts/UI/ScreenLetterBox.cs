@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//화면의 레터박스영역을 지정, 검은색으로 칠함
 public class ScreenLetterBox : MonoBehaviour {
 	void Awake() {
 		Camera camera = GetComponent<Camera>();
