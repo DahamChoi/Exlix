@@ -32,15 +32,3 @@ public class CSVCardParser : CSVParser<CardDataTemplate> {
         }        
     }
 }
-
-
-/*
-
-CardEffect::DefaultRoutine(CardDataTemplate& template, Player& player, vector<Target>& target){
-    player.getArmor(template.armor);
-    for(auto it : target){
-        it.TakeDamage(template.attack);
-    }
-}
-
- */
