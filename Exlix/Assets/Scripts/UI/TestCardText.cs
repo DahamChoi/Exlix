@@ -4,23 +4,23 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class TestCardText : MonoBehaviour {
-	CardDataTemplate cardData;
-	[SerializeField] int cardNum;
 
 	[SerializeField] Text property;
 	[SerializeField] Text cost;
 	[SerializeField] Text name;
 	[SerializeField] Text explain;
 
-	// Start is called before the first frame update
-	void Start() {
-		cardData = GameObject.Find("GameManager").GetComponent<GameManager>().CardParser.DataList[cardNum];
+	public void ReadText(CardDataTemplate cardData) {
+
 		property.text = cardData.Property;
 		cost.text = cardData.Cost.ToString();
 		name.text = cardData.Name;
-		cardData.Explanation.Replace("다음", "asd");
 		explain.text = cardData.Explanation;
-		
+	}
+
+	// Start is called before the first frame update
+	void Start() {
+
 	}
 
 	// Update is called once per frame
