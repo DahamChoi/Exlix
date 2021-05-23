@@ -11,11 +11,10 @@ public class TestCardText : MonoBehaviour {
 	[SerializeField] Text explain;
 
 	public void ReadText(CardDataTemplate cardData) {
-
 		property.text = cardData.Property;
 		cost.text = cardData.Cost.ToString();
 		name.text = cardData.Name;
-		explain.text = cardData.Explanation;
+		explain.text = cardData.Explanation.Replace("<br>", "\n");
 	}
 
 	// Start is called before the first frame update
