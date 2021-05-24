@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BattleViewModel {
     private IBattleInterface Observer;
+    private BattlePlayer Player;
 
     public BattleViewModel() {
 
@@ -14,7 +15,7 @@ public class BattleViewModel {
     }
 
     public void PlayCard(CardDataTemplate cardData, List<BattleEnemy> enemies) {
-
+        
     }
 
     public void EndPlayerTurn() {
