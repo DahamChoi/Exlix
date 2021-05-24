@@ -3,17 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BattleViewModel {
-    IBattleInterface Observer;
+    private IBattleInterface Observer;
 
-    BattleViewModel() {
+    public BattleViewModel() {
 
     }
 
-    void AddObserver(IBattleInterface battleInterface) {
+    public void AddObserver(IBattleInterface battleInterface) {
         Observer = battleInterface;
     }
 
-    void PlayCard(CardDataTemplate cardData, List<BattleEnemy> enemies) {
+    public void PlayCard(CardDataTemplate cardData, List<BattleEnemy> enemies) {
+
+    }
+
+    public void EndPlayerTurn() {
 
     }
 }

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-interface IBattleInterface {
-	void PlayCard();
-	void EndTurn();
+public interface IBattleInterface {
+	void OnPlayCard();
+	void OnEndEnemyTurn();
 	void OnEnemyAttack();
 	void OnEnemyDebuff();
 	void OnEnemyBuff();
