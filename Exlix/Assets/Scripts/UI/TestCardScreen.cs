@@ -9,9 +9,8 @@ public class TestCardScreen : MonoBehaviour {
 	void Start() {
 		GameObject gameManager = GameObject.Find("GameManager");
 		foreach (var cardData in gameManager.GetComponent<GameManager>().CardParser.DataList) {
-			GameObject tempCard = Instantiate(ExampleCard, transform.position, transform.rotation);
+			GameObject tempCard = Instantiate(ExampleCard, transform.position, transform.rotation, Pannel.transform);
 			tempCard.GetComponent<TestCardText>().ReadText(cardData);
-			tempCard.transform.SetParent(Pannel.transform);
 		}
 	}
 
