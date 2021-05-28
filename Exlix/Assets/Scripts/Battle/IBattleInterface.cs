@@ -11,6 +11,7 @@ public interface IBattleInterface {
 	void OnDrawCard();
 	void OnRestoreMana();
 	void OnHeal();
+	void OnDamaged(float dmg);
 	void OnPlayerBuff();
 	void OnUseMana();
 	void OnShieldUp();
