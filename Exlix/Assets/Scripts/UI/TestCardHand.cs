@@ -6,7 +6,7 @@ public class TestCardHand : MonoBehaviour
 {
 	public List<GameObject> testCards = new List<GameObject>();
 	public GameObject ExampleCard;
-	public Transform CardPosition;
+
 	public int maxCard = 10;
 
 

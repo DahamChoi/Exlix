@@ -10,34 +10,25 @@ public class CardHand : MonoBehaviour
     public float cardBigScale = 0.9f;
     public float scaleSpeed = 10000.0f;
     public float moveSpeed = 10000.0f;
-    public float offsetAngleDelta = 1.8f;
     public float cardNormalScale = 0.8f;
-    public float slowScaleSpeed = 1.0f;
-    public float mouseOnInterval = 0.5f;
-    public float nonInteractDelay = 0.5f;
-    public float leftPushAngle = 2.0f;
-    public float rightPushAngle = 2.0f;
     public float sendCardMoveSpeed = 20.0f;
     public float sendCardScaleSpeed = 10.0f;
     public Vector3 centerPoint = new Vector3(0.0f, -50.0f, 0.0f);
-
     public List<int> handData = new List<int>();
-    public List<Card> myHands = new List<Card>();
+
     public Transform HandPosition;
     public Transform DeckPosition;
     public Transform GravePosition;
-
     public float centerRadius = 46.0f;//centerPoint로부터 카드의 postition까지의 반지름
-    public float popUpOffsetY = 1.0f;
-    public float popUpOffsetZ = -5.0f;
 
     public GameObject HandPrefab;
     public GameObject cardPrefab;
     
     public Button drawBtn;
 
-    private Queue<Card> myDeck = new Queue<Card>();
-    private Queue<Card> myGraveYard = new Queue<Card>();
+    public List<CardTransformData> myHands = new List<CardTransformData>();
+    private Queue<CardTransformData> myDeck = new Queue<CardTransformData>();
+    private Queue<CardTransformData> myGraveYard = new Queue<CardTransformData>();
 
     private const int HAND_LIMIT = 10;
     public void InitDeckCards() {
@@ -55,7 +46,7 @@ public class CardHand : MonoBehaviour
     }
 
     private void AddCardToDeck() {//덱에 카드를 추가하는 함수
-        Card card = new Card();
+        CardTransformData card = new CardTransformData();
         //card info 넣어주는 부분 추가 필요.
         card.Instance = (GameObject)Instantiate(cardPrefab);
         card.Instance.SetActive(false);
@@ -71,7 +62,7 @@ public class CardHand : MonoBehaviour
             //return;
         }
 
-        Card card = DrawCardFromDeck();
+        CardTransformData card = DrawCardFromDeck();
         card.MoveSpeed = sendCardMoveSpeed;
         card.TargetScale = cardNormalScale;
         card.ScaleSpeed = sendCardScaleSpeed;
@@ -84,18 +75,18 @@ public class CardHand : MonoBehaviour
         CalCardsTransform();
     }
 
-    private Card DrawCardFromDeck() {
+    private CardTransformData DrawCardFromDeck() {
         var card = myDeck.Dequeue();
         card.Instance.SetActive(true);
         return card;
     }
 
     void CalCardsTransform() {
-            Card card = null;
+            CardTransformData card = null;
             for (int i = 0; i < myHands.Count; i++) {     
                 card = myHands[i];
                 card.TargetAngle = OriginalAngle(i);
-                card.TargetPosition = FallDownPosition(i);
+                card.TargetPosition = GetHandPosition(i);
                 card.Instance.transform.position = new Vector3(card.Instance.transform.position.x, card.Instance.transform.position.y, 0.0f);
         }
     }
@@ -103,13 +94,13 @@ public class CardHand : MonoBehaviour
         float leftAngle = (myHands.Count - 1) * rotateAngle / 2;
         return leftAngle - idx * rotateAngle;
     }
-    private Vector3 FallDownPosition(int idx) {
+    private Vector3 GetHandPosition(int idx) {
         float angle = OriginalAngle(idx) + myHands[idx].OffsetAngle;
         return new Vector3(centerPoint.x - centerRadius * Mathf.Sin(ConvertAngleToArc(angle)), centerPoint.y + centerRadius * Mathf.Cos(ConvertAngleToArc(angle)), 0.0f);
     }
 
     private void UpdateCardRotate() {
-        foreach (Card card in myHands) {
+        foreach (CardTransformData card in myHands) {
             Transform transform = card.Instance.transform;
             if (Mathf.Abs(card.CurAngle - card.TargetAngle) <= Time.fixedDeltaTime * rotateSpeed) {
                 card.CurAngle = card.TargetAngle;
@@ -130,53 +121,12 @@ public class CardHand : MonoBehaviour
             Transform transform = card.Instance.transform;
             Debug.Log(card.TargetPosition);
             transform.position = new Vector3(transform.position.x, transform.position.y, card.TargetPosition.z);
-            if ((transform.position - card.TargetPosition).magnitude <= Time.fixedDeltaTime * card.MoveSpeed) {
-                transform.position = card.TargetPosition;
-                card.MoveSpeed = slowMoveSpeed;
-            }
-            else {
-                transform.position = Vector3.MoveTowards(transform.position, card.TargetPosition, Time.fixedDeltaTime * card.MoveSpeed);
-            }
+            transform.position = Vector3.Lerp(transform.position, card.TargetPosition, Time.fixedDeltaTime * card.MoveSpeed);
         }
     }
 
     public static float ConvertAngleToArc(float angle) {
         return angle * Mathf.PI / 180;
-    }
-
-    public static float GetAngleByVector(float len_x, float len_y) {
-        if (len_y == 0) {
-            if (len_x < 0) {
-                return 270;
-            }
-            else if (len_x > 0) {
-                return 90;
-            }
-            return 0;
-        }
-        if (len_x == 0) {
-            if (len_y >= 0) {
-                return 0;
-            }
-            else if (len_y < 0) {
-                return 180;
-            }
-        }
-
-        float angle = 0;
-        if (len_y > 0 && len_x > 0) {
-            angle = 270 + Mathf.Atan2(Mathf.Abs(len_y), Mathf.Abs(len_x)) * 180 / Mathf.PI;
-        }
-        else if (len_y > 0 && len_x < 0) {
-            angle = 90 - Mathf.Atan2(Mathf.Abs(len_y), Mathf.Abs(len_x)) * 180 / Mathf.PI;
-        }
-        else if (len_y < 0 && len_x > 0) {
-            angle = 270 - Mathf.Atan2(Mathf.Abs(len_y), Mathf.Abs(len_x)) * 180 / Mathf.PI;
-        }
-        else if (len_y < 0 && len_x < 0) {
-            angle = Mathf.Atan2(Mathf.Abs(len_y), Mathf.Abs(len_x)) * 180 / Mathf.PI + 90;
-        }
-        return angle;
     }
 
     private void AddButtonListener() {

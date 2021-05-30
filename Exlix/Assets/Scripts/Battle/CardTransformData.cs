@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Card {
+public class CardTransformData {
     public string UUID { get; set; }
     public GameObject Instance { get; set; }
     public float ScaleSpeed { get; set; }
@@ -24,7 +24,7 @@ public class Card {
 
     //public CardInfo Info { get; set; }
 
-    public Card() {
+    public CardTransformData() {
         this.ScaleSpeed = 1.0f;
         this.TargetAngle = 0.0f;
         this.TargetPosition = Vector3.zero;
