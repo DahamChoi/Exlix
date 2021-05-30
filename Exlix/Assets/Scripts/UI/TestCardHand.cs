@@ -5,8 +5,8 @@ using UnityEngine;
 public class TestCardHand : MonoBehaviour
 {
 	public List<GameObject> testCards = new List<GameObject>();
-	public GameObject ExampleCard;
-
+	public GameObject exampleCard;
+	public GameObject handCanvas;
 	public int maxCard = 10;
 
 

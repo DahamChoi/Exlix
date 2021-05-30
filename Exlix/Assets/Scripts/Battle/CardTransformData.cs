@@ -1,10 +1,9 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
-public class CardTransformData {
+public class CardTransformData : MonoBehaviour {
     public string UUID { get; set; }
-    public GameObject Instance { get; set; }
     public float ScaleSpeed { get; set; }
     public float TargetAngle { get; set; }
     public Vector3 TargetPosition { get; set; }
@@ -21,6 +20,7 @@ public class CardTransformData {
     public bool IsDropping { get; set; }
     public float DropDisplayTime { get; set; }
     public GameObject TargetPlayer { get; set; }
+    public int TempCardIndex { get; set; }
 
     //public CardInfo Info { get; set; }
 
@@ -39,5 +39,6 @@ public class CardTransformData {
         this.OriginHighY = 0.0f;
         this.IsPlaying = false;
         this.IsDropping = false;
+        this.TempCardIndex = 0;
     }
 }
