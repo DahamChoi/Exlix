@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class TestCardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
+public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
 	RectTransform rectT;
 	Vector3 tempV;
 	float screenAdaptiveSize;

@@ -19,43 +19,43 @@ public class CardTransformChanger : MonoBehaviour {
 	public Transform GravePosition;
 	float centerRadius = 46.0f;//centerPoint로부터 카드의 postition까지의 반지름
 
-	TestCardHand myHand;
+	
+	CardHand cardHand;
 
-	public void AddCardToHand(GameObject instanceCard) {
+	public void AddCardToHand(ref GameObject instanceCard) {
 		CardTransformData card = instanceCard.GetComponent<CardTransformData>();
 		card.MoveSpeed = sendCardMoveSpeed;
 		card.TargetScale = cardNormalScale;
 		card.ScaleSpeed = sendCardScaleSpeed;
-		//instanceCard.transform.position = new Vector3(DeckPosition.position.x, DeckPosition.position.y, -0.1f);//카드를 뽑았을때 덱 위에서 생성
 
 		CalCardsTransform();
 	}
 
 	public void CalCardsTransform() {
+		if (!cardHand) cardHand = GameObject.Find("HandCanvas").GetComponent<CardHand>();
 		int i = 0;
-		foreach (var card in myHand.testCards) {
+		foreach (var card in cardHand.CardObjects) {
 			CardTransformData cardTransformData = card.GetComponent<CardTransformData>();
 			cardTransformData.TargetAngle = OriginalAngle(i);
 			cardTransformData.TargetPosition = GetHandPosition(i);
 			cardTransformData.TempCardIndex = i;
 			card.transform.position = new Vector3(card.transform.position.x, card.transform.position.y, 0.0f);
-			card.GetComponent<SpriteRenderer>().sortingOrder = i;
-			++i;
+			card.GetComponent<SpriteRenderer>().sortingOrder = i++;
 		}
 	}
 
 	float OriginalAngle(int idx) {
-		float leftAngle = (myHand.testCards.Count - 1) * rotateAngle / 2;
+		float leftAngle = (cardHand.CardObjects.Count - 1) * rotateAngle / 2;
 		return leftAngle - idx * rotateAngle;
 	}
 
 	Vector3 GetHandPosition(int idx) {
-		float angle = OriginalAngle(idx) + myHand.testCards[idx].GetComponent<CardTransformData>().OffsetAngle;
+		float angle = OriginalAngle(idx) + cardHand.CardObjects[idx].GetComponent<CardTransformData>().OffsetAngle;
 		return new Vector3(centerPoint.x - centerRadius * Mathf.Sin(ConvertAngleToArc(angle)), centerPoint.y + centerRadius * Mathf.Cos(ConvertAngleToArc(angle)), 0.0f);
 	}
 
 	void UpdateCardRotate() {
-		foreach (var card in myHand.testCards) {
+		foreach (var card in cardHand.CardObjects) {
 			CardTransformData cardTransformData = card.GetComponent<CardTransformData>();
 			if (Mathf.Abs(cardTransformData.CurAngle - cardTransformData.TargetAngle) <= Time.fixedDeltaTime * rotateSpeed) {
 				cardTransformData.CurAngle = cardTransformData.TargetAngle;
@@ -73,7 +73,7 @@ public class CardTransformChanger : MonoBehaviour {
 	}
 
 	void UpdateCardPosition() {
-		foreach (var card in myHand.testCards) {
+		foreach (var card in cardHand.CardObjects) {
 			CardTransformData cardTransformData = card.GetComponent<CardTransformData>();
 			card.transform.position = new Vector3(card.transform.position.x, card.transform.position.y, 0.0f);
 			card.transform.position = Vector3.Lerp(card.transform.position, cardTransformData.TargetPosition, Time.fixedDeltaTime * cardTransformData.MoveSpeed);
@@ -85,14 +85,14 @@ public class CardTransformChanger : MonoBehaviour {
 	}
 
 	public void SpreadCardPosition(int idx) {
-		foreach (var card in myHand.testCards) {
+		foreach (var card in cardHand.CardObjects) {
 			CardTransformData cardTransformData = card.GetComponent<CardTransformData>();
 			cardTransformData.TargetPosition += new Vector3((float)2 / (cardTransformData.TempCardIndex - idx) / 2, 0, 0);
 		}
 	}
 
 	void Start() {
-		myHand = GetComponent<TestCardHand>();
+		cardHand = GameObject.Find("HandCanvas").GetComponent<CardHand>();
 	}
 
 	void Update() {

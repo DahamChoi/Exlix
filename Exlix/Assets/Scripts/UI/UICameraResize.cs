@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestScreenLB : MonoBehaviour
+public class UICameraResize : MonoBehaviour
 {
 	void Awake() {
 		Camera camera = GetComponent<Camera>();

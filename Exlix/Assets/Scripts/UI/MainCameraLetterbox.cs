@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScreenLetterBox : MonoBehaviour {
+public class MainCameraLetterbox : MonoBehaviour {
 	void Awake() {
 		Camera camera = GetComponent<Camera>();
 		Rect rect = camera.rect;
