@@ -26,7 +26,7 @@ public class CardTransformChanger : MonoBehaviour {
 		card.MoveSpeed = sendCardMoveSpeed;
 		card.TargetScale = cardNormalScale;
 		card.ScaleSpeed = sendCardScaleSpeed;
-		instanceCard.transform.position = new Vector3(DeckPosition.position.x, DeckPosition.position.y, -0.1f);//카드를 뽑았을때 덱 위에서 생성
+		//instanceCard.transform.position = new Vector3(DeckPosition.position.x, DeckPosition.position.y, -0.1f);//카드를 뽑았을때 덱 위에서 생성
 
 		CalCardsTransform();
 	}

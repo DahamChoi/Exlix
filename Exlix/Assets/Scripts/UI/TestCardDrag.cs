@@ -17,7 +17,7 @@ public class TestCardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
 	public void OnDrag(PointerEventData eventData) {
 		Debug.Log("드래그 중");
-		rectT.anchoredPosition = eventData.position * screenAdaptiveSize;
+		rectT.anchoredPosition = ((eventData.position - new Vector2((float)Screen.width / 2, (float)Screen.height / 2)) * screenAdaptiveSize);
 		this.GetComponent<CardTransformData>().TargetPosition = rectT.position;
 		this.GetComponent<CardTransformData>().TargetAngle = 0f;
 		this.GetComponent<SpriteRenderer>().sortingOrder = 11;
