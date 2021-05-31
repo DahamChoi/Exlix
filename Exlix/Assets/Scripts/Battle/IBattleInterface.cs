@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface IBattleInterface {
-	void OnPlayCard();
+    void OnMonsterReady(List<BattleMonster> monster);
+	void OnPlayCard(List<BattleMonster> monster, BattlePlayer player);
 	void OnEndEnemyTurn();
 	void OnEnemyAttack();
 	void OnEnemyDebuff();

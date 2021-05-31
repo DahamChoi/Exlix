@@ -15,7 +15,7 @@ public class BattleEventManager : MonoBehaviour, IBattleInterface {
 		throw new System.NotImplementedException();
 	}
 
-	public void OnDrawCard() {
+	public void OnDrawCard(BattlePlayer player) {
 		//덱의 가장 위의 카드
 		CardDataTemplate tCard = GameObject.Find("GameManager").GetComponent<GameManager>().CardParser.DataList[0];
 		//손에 있는 카드 리스트
@@ -66,10 +66,6 @@ public class BattleEventManager : MonoBehaviour, IBattleInterface {
 		pHPBar.Dmg();
 	}
 
-	public void OnPlayCard() {
-		throw new System.NotImplementedException();
-	}
-
 	public void OnPlayerBuff() {
 		throw new System.NotImplementedException();
 	}
@@ -93,4 +89,18 @@ public class BattleEventManager : MonoBehaviour, IBattleInterface {
 	public void StartTurn() {
 		throw new System.NotImplementedException();
 	}
+
+    public void OnMonsterReady(List<BattleMonster> monster) {
+        throw new System.NotImplementedException();
+    }
+
+    public void OnPlayCard(List<BattleMonster> monster, BattlePlayer player)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void OnDrawCard()
+    {
+        throw new System.NotImplementedException();
+    }
 }
