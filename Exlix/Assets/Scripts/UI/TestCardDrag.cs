@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 public class TestCardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
 	RectTransform rectT;
 	Vector3 tempV;
+	float screenAdaptiveSize;
 	//앵커드 포지션을 써라 지훈아
 
 	public void OnBeginDrag(PointerEventData eventData) {
@@ -16,7 +17,7 @@ public class TestCardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
 	public void OnDrag(PointerEventData eventData) {
 		Debug.Log("드래그 중");
-		rectT.anchoredPosition = eventData.position;
+		rectT.anchoredPosition = eventData.position * screenAdaptiveSize;
 		this.GetComponent<CardTransformData>().TargetPosition = rectT.position;
 		this.GetComponent<CardTransformData>().TargetAngle = 0f;
 		this.GetComponent<SpriteRenderer>().sortingOrder = 11;
@@ -31,6 +32,8 @@ public class TestCardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
 	// Start is called before the first frame update
 	void Start() {
+		if ((float)Screen.width / Screen.height < 16 / 9) screenAdaptiveSize = (float)1920 / Screen.width;
+		else screenAdaptiveSize = (float)1080 / Screen.height;
 		rectT = this.GetComponent<RectTransform>();
 	}
 
