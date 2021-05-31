@@ -52,6 +52,12 @@ public class BattlePlayer {
         }
     }
 
+    public void DropCard() {
+        Hand.Clear();
+        Deck = Original_Deck;
+        SuffleCard();
+    }
+
     private void SuffleCard() {
         // To Do...
     }

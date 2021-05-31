@@ -7,8 +7,9 @@ public class CardRoutine {
     List<BattleEnemy> Target;
     BattlePlayer Player;
 
-    public CardRoutine(BattlePlayer player) {
+    public CardRoutine(BattlePlayer player, List<BattleEnemy> target) {
         Player = player;
+        Target = target;
     }
 
     public void AddItem(ItemDataTemplate itemData) {

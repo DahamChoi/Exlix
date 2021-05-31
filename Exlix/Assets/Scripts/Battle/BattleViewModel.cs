@@ -32,10 +32,21 @@ public class BattleViewModel {
 
     public void PlayCard(CardDataTemplate cardData, List<BattleEnemy> enemies) {
         Player.PlayCard(cardData);
+
+        CardRoutine routine = new CardRoutine(Player, enemies);
+        routine.SetCard(cardData);
+        routine.Run();
+        
         Observer.OnPlayCard(Monsters, Player);
     }
 
     public void EndPlayerTurn() {
+        Player.DropCard();
+        foreach(var it in Monsters) {
+            it.ExecutePattern(Player);
+            it.StartMonsterTurn();
+        }
 
+        GameStart();
     }
 }

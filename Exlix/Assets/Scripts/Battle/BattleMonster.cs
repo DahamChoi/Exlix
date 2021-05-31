@@ -22,6 +22,18 @@ public class BattleMonster {
         Next_Pattern = (1 << Random.Range((1 << 0), (1 << 5) + 1));
     }
 
+    public void TakeDamage(int amount) {
+        HP -= amount;
+    }
+
+    public bool IsDead() {
+        return (HP <= 0);
+    }
+
+    public void ExecutePattern(BattlePlayer player) {
+        player.TakeDamage(-Attack);
+    }
+
     public List<int> GetNextPattern() {
         List<int> result = new List<int>();
 
