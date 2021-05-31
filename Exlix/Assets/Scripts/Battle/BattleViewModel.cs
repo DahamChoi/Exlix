@@ -5,13 +5,13 @@ using UnityEngine;
 public class BattleViewModel {
     private IBattleInterface Observer;
     private BattlePlayer Player;
-    private List<BattleMonster> Monsters;
+    private List<BattleMonster> Monsters = new List<BattleMonster>();
 
-    public BattleViewModel() {
+    public BattleViewModel(List<CardDataTemplate> deckInfo) {
         for(int i = 0; i < 3; i++) {
             Monsters.Add(new BattleMonster(10, 1));
         }
-        Player = new BattlePlayer(new List<CardDataTemplate>());
+        Player = new BattlePlayer(deckInfo);
     }
 
     public void AddObserver(IBattleInterface battleInterface) {
@@ -31,7 +31,8 @@ public class BattleViewModel {
     }
 
     public void PlayCard(CardDataTemplate cardData, List<BattleEnemy> enemies) {
-        
+        Player.PlayCard(cardData);
+        Observer.OnPlayCard(Monsters, Player);
     }
 
     public void EndPlayerTurn() {
