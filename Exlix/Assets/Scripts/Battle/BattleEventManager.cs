@@ -20,12 +20,13 @@ public class BattleEventManager : MonoBehaviour, IBattleInterface {
 		//손에 있는 카드 오브젝트 리스트
 		CardHand cardHand = GameObject.Find("HandCanvas").GetComponent<CardHand>();
 		CardTransformChanger transformChanger = GameObject.Find("GameManager").GetComponent<CardTransformChanger>();
-		//카드 프리펩을 특정위치에 생성후 패 리스트에 추가
+		//카드 프리펩을 특정위치에 HandCanvas의 하위객체로 생성
 		GameObject tempCard = Instantiate(cardHand.exampleCard, transformChanger.DeckPosition.position, transformChanger.DeckPosition.rotation, cardHand.handCanvas.transform);
+		//프리펩에 텍스트 데이터 추가
 		tempCard.GetComponent<TestCardText>().ReadText(player.Hand[player.Hand.Count-1]);
+		//오브젝트 리스트에 추가
 		cardHand.CardObjects.Add(tempCard);
-
-		tempCard.name = "Card:" + (cardHand.CardObjects.Count).ToString();
+		//tempCard.name = "Card:" + (cardHand.CardObjects.Count).ToString();
 		//카드가 패로 들어올때 애니메이션 필요하다면 추가 예정
 		transformChanger.AddCardToHand(ref tempCard);
 	}
