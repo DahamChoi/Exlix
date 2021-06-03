@@ -23,7 +23,7 @@ public class BattleEventManager : MonoBehaviour, IBattleInterface {
 		//카드 프리펩을 특정위치에 HandCanvas의 하위객체로 생성
 		GameObject tempCard = Instantiate(cardHand.exampleCard, transformChanger.DeckPosition.position, transformChanger.DeckPosition.rotation, cardHand.handCanvas.transform);
 		//프리펩에 텍스트 데이터 추가
-		tempCard.GetComponent<TestCardText>().ReadText(player.Hand[player.Hand.Count-1]);
+		tempCard.GetComponent<CardDataContainer>().ReadData(player.Hand[player.Hand.Count-1]);
 		//오브젝트 리스트에 추가
 		cardHand.CardObjects.Add(tempCard);
 		//tempCard.name = "Card:" + (cardHand.CardObjects.Count).ToString();

@@ -25,6 +25,7 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 	}
 
 	public void OnEndDrag(PointerEventData eventData) {
+		if (eventData.position.y > 300) 
 		GameObject.Find("GameManager").GetComponent<CardTransformChanger>().CalCardsTransform();
 		this.transform.localScale = tempV;
 		//throw new System.NotImplementedException();
