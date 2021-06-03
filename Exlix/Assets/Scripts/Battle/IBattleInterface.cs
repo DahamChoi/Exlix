@@ -9,7 +9,7 @@ public interface IBattleInterface {
 	void OnEnemyAttack();
 	void OnEnemyDebuff();
 	void OnEnemyBuff();
-	void OnDrawCard();
+	void OnDrawCard(BattlePlayer player);
 	void OnRestoreMana();
 	void OnHeal();
 	void OnDamaged(float dmg);

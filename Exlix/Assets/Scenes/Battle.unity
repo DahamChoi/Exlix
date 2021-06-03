@@ -1499,6 +1499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BattleEventManagerObject: {fileID: 1340824784}
+  GameManagerObject: {fileID: 1665310606}
 --- !u!4 &1398550804
 Transform:
   m_ObjectHideFlags: 0

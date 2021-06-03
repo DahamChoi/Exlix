@@ -21,12 +21,12 @@ public class BattleViewModel {
     public void GameStart() {
         foreach(var it in Monsters) {
             it.StartMonsterTurn();
-            Observer.OnMonsterReady(Monsters);
         }
+        Observer.OnMonsterReady(Monsters);
 
-        for(int i = 0; i < 5; i++) {
+        for (int i = 0; i < 5; i++) {
             Player.DrawCard();
-            Observer.OnDrawCard();
+            Observer.OnDrawCard(Player);
         }
     }
 

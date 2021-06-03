@@ -98,9 +98,4 @@ public class BattleEventManager : MonoBehaviour, IBattleInterface {
     {
         throw new System.NotImplementedException();
     }
-
-    public void OnDrawCard()
-    {
-        throw new System.NotImplementedException();
-    }
 }
