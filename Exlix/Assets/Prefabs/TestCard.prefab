@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 7233759736094746383}
   - component: {fileID: 8171953850326412629}
   - component: {fileID: 2187202416274753241}
-  - component: {fileID: 26443510808258537}
+  - component: {fileID: 4636044861357979015}
   m_Layer: 5
   m_Name: TestCard
   m_TagString: Untagged
@@ -207,7 +207,7 @@ RectTransform:
   m_GameObject: {fileID: 7561138672659933605}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 65, y: 65, z: 1}
+  m_LocalScale: {x: 85, y: 85, z: 1}
   m_Children:
   - {fileID: 9149844903144209884}
   m_Father: {fileID: 0}
@@ -332,7 +332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1be458b3d1564f4c920a8d9b7083235, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &26443510808258537
+--- !u!114 &4636044861357979015
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

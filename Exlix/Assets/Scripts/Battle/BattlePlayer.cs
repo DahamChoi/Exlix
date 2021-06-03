@@ -50,6 +50,7 @@ public class BattlePlayer {
         if(Deck.Count == 0) {
             RestoreDeck();
         }
+
     }
 
     public void DropCard() {

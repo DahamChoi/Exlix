@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class TestCardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
+public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
 	RectTransform rectT;
 	Vector3 tempV;
 	float screenAdaptiveSize;
@@ -21,7 +21,7 @@ public class TestCardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 		this.GetComponent<CardTransformData>().TargetPosition = rectT.position;
 		this.GetComponent<CardTransformData>().TargetAngle = 0f;
 		this.GetComponent<SpriteRenderer>().sortingOrder = 11;
-		this.transform.localScale = new Vector3(80, 80, 1);
+		this.transform.localScale = new Vector3(100, 100, 1);
 	}
 
 	public void OnEndDrag(PointerEventData eventData) {
@@ -32,8 +32,8 @@ public class TestCardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
 	// Start is called before the first frame update
 	void Start() {
-		if ((float)Screen.width / Screen.height < 16 / 9) screenAdaptiveSize = (float)1920 / Screen.width;
-		else screenAdaptiveSize = (float)1080 / Screen.height;
+		if ((float)Screen.width / Screen.height < 18 / 9) screenAdaptiveSize = (float)2880 / Screen.width;
+		else screenAdaptiveSize = (float)1440 / Screen.height;
 		rectT = this.GetComponent<RectTransform>();
 	}
 
