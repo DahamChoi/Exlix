@@ -20,7 +20,6 @@ public class CardTransformData : MonoBehaviour {
     public bool IsDropping { get; set; }
     public float DropDisplayTime { get; set; }
     public GameObject TargetPlayer { get; set; }
-    public int TempCardIndex { get; set; }
 
     //public CardInfo Info { get; set; }
 
@@ -39,6 +38,5 @@ public class CardTransformData : MonoBehaviour {
         this.OriginHighY = 0.0f;
         this.IsPlaying = false;
         this.IsDropping = false;
-        this.TempCardIndex = 0;
     }
 }
