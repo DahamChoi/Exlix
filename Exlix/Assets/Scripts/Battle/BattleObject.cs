@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class BattleObject {
     public int Hp, Shiled;
-    protected List<int> Condition = new List<int>(7);
+    protected List<int> Condition = new List<int>()
+    {
+        0,0,0,0,0,0,0
+    };
 
     public static int E_CONDITION_STUN = 0;
     public static int E_CONDITION_BLEEDING = 1;

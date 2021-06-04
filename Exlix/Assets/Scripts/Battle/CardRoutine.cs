@@ -39,6 +39,7 @@ public class CardRoutine {
     }
 
     public void Run() {
+        List<CardTask> removeTasks = new List<CardTask>();
         foreach (var it in Tasks) {
             Player.TakeMana(-int.Parse(it.DataTemplate.GetCardData("Cost")));
             foreach (var it_2 in it.Target) {
@@ -63,7 +64,7 @@ public class CardRoutine {
                     int.Parse(it.DataTemplate.GetCardData("Weak")));
                 it_2.SetCondition(
                     BattleObject.E_CONDITION_POISON,
-                    int.Parse(it.DataTemplate.GetCardData("Poision")));
+                    int.Parse(it.DataTemplate.GetCardData("Poison")));
                 it_2.SetCondition(
                     BattleObject.E_CONDITION_CORROSION,
                     int.Parse(it.DataTemplate.GetCardData("Corrosion")));
@@ -90,8 +91,12 @@ public class CardRoutine {
             }
 
             if (--it.Continous <= 0) {
-                Tasks.Remove(it);
+                removeTasks.Add(it);
             }
+        }
+
+        foreach(var it in removeTasks) {
+            Tasks.Remove(it);
         }
     }
 
