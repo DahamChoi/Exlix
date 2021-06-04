@@ -5,13 +5,12 @@ using UnityEngine;
 public class BattleManager : MonoBehaviour {
 
     private BattleViewModel ViewModel;
-    public GameObject BattleEventManagerObject, GameManagerObject;
 
     void Start() {
-        CSVCardParser cardParser = GameManagerObject.GetComponent<GameManager>().CardParser;
+        CSVCardParser cardParser = this.gameObject.GetComponent<GameManager>().CardParser;
         ViewModel = new BattleViewModel(cardParser.DataList);
 
-        BattleEventManager eventManager = BattleEventManagerObject.GetComponent<BattleEventManager>();
+        BattleEventManager eventManager = this.gameObject.GetComponent<BattleEventManager>();
         ViewModel.AddObserver(eventManager);
 
         ViewModel.GameStart();

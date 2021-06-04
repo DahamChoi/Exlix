@@ -31,7 +31,7 @@ public class CardTransformChanger : MonoBehaviour {
 	}
 
 	public void CalCardsTransform() {
-		if (!cardHand) cardHand = GameObject.Find("HandCanvas").GetComponent<CardHand>();
+		if (!cardHand) cardHand = this.gameObject.GetComponent<CardHand>();
 		int i = 0;
 		foreach (var card in cardHand.CardObjects) {
 			CardTransformData cardTransformData = card.GetComponent<CardTransformData>();
@@ -91,7 +91,7 @@ public class CardTransformChanger : MonoBehaviour {
 	}
 
 	void Start() {
-		cardHand = GameObject.Find("HandCanvas").GetComponent<CardHand>();
+		cardHand = this.gameObject.GetComponent<CardHand>();
 	}
 
 	void Update() {

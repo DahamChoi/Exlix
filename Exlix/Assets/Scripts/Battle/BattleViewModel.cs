@@ -30,7 +30,7 @@ public class BattleViewModel {
     public void PlayCard(GameObject card, List<BattleObject> targets) {
         Player.PlayCard(card.GetComponent<CardDataContainer>().cardData);
 
-        Routine.SetCard(card.GetComponent<CardDataContainer>().cardData, targets);
+        Routine.SetCard(card.GetComponent<CardDataContainer>().cardData, targets == null ? new List<BattleObject>{ Player } : targets);
         Routine.Run();
 
         Observer.OnPlayCard(card);

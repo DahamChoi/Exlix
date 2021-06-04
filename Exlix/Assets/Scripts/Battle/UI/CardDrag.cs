@@ -12,7 +12,7 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
 	public void OnBeginDrag(PointerEventData eventData) {
 		tempV = this.transform.localScale;
-		GameObject.Find("GameManager").GetComponent<CardTransformChanger>().SpreadCardPosition(this.GetComponent<CardDataContainer>().cardIndexNum);
+		GameObject.Find("BattleManager").GetComponent<CardTransformChanger>().SpreadCardPosition(this.GetComponent<CardDataContainer>().cardIndexNum);
 	}
 
 	public void OnDrag(PointerEventData eventData) {
@@ -26,8 +26,12 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
 	public void OnEndDrag(PointerEventData eventData) {
 		this.transform.localScale = tempV;
-		if (eventData.position.y < 600) GameObject.Find("GameManager").GetComponent<CardTransformChanger>().CalCardsTransform();
-		else GameObject.Find("BattleManager").GetComponent<BattleManager>().PlayCard(gameObject, null);
+		GameObject.Find("BattleManager").GetComponent<CardTransformChanger>().CalCardsTransform();
+		this.gameObject.GetComponent<CardDataContainer>().PlayCard();
+
+		//this.gameObject.GetComponent<CardDataContainer>().isTargeting
+		//if (eventData.position.y < 600) 
+		//else GameObject.Find("BattleManager").GetComponent<BattleManager>().PlayCard(gameObject, null);
 	}
 
 	// Start is called before the first frame update

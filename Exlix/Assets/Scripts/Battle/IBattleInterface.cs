@@ -12,7 +12,7 @@ public interface IBattleInterface {
 	void OnDrawCard(BattlePlayer player);
 	void OnRestoreMana();
 	void OnHeal();
-	void OnDamaged(float dmg);
+	void OnDamaged(BattlePlayer player);
 	void OnPlayerBuff();
 	void OnUseMana();
 	void OnShieldUp();
