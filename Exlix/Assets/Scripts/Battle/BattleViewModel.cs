@@ -29,7 +29,7 @@ public class BattleViewModel {
         }
     }
 
-    public void PlayCard(CardDataTemplate cardData, List<BattleEnemy> enemies) {
+    public void PlayCard(CardDataTemplate cardData, List<BattleEnemy> enemies = null) {
         Player.PlayCard(cardData);
 
         CardRoutine routine = new CardRoutine(Player, enemies);
