@@ -18,7 +18,7 @@ public class CSVCardParser : CSVParser<CardDataTemplate> {
             int index = 0;
             CardDataTemplate dataTemplate = new CardDataTemplate();
             foreach(var it in parts){
-                dataTemplate.Data.Add(CoulumName[index++], it);
+                dataTemplate.Data.Add(CoulumName[index++], it == "" ? "0" : it);
             }
             DataList.Add(dataTemplate);
         }        
