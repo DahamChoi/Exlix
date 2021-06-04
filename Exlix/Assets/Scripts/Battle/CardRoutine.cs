@@ -33,7 +33,7 @@ public class CardRoutine {
     public void SetCard(CardDataTemplate cardData, List<BattleObject> target) {
         Tasks.Add(new CardTask(
             cardData,
-            int.Parse(cardData.GetCardData("ContinousTrun")),
+            int.Parse(cardData.GetCardData("ContinuousTurn")),
             target
         ));
     }
