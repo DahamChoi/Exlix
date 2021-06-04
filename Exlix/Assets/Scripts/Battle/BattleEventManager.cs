@@ -18,8 +18,8 @@ public class BattleEventManager : MonoBehaviour, IBattleInterface {
 
 	public void OnDrawCard(BattlePlayer player) {
 		//손에 있는 카드 오브젝트 리스트
-		CardHand cardHand = GameObject.Find("HandCanvas").GetComponent<CardHand>();
-		CardTransformChanger transformChanger = GameObject.Find("GameManager").GetComponent<CardTransformChanger>();
+		CardHand cardHand = this.gameObject.GetComponent<CardHand>();
+		CardTransformChanger transformChanger = this.gameObject.GetComponent<CardTransformChanger>();
 		//카드 프리펩을 특정위치에 HandCanvas의 하위객체로 생성
 		GameObject tempCard = Instantiate(cardHand.exampleCard, transformChanger.DeckPosition.position, transformChanger.DeckPosition.rotation, cardHand.handCanvas.transform);
 		//프리펩에 텍스트 데이터 추가
@@ -55,11 +55,8 @@ public class BattleEventManager : MonoBehaviour, IBattleInterface {
 		throw new System.NotImplementedException();
 	}
 
-	public void OnDamaged(float dmg) {
-		TestBattlePlayer Player = GameObject.Find("Player").GetComponent<TestBattlePlayer>();
-		TestBattlePlayerHp pHPBar = GameObject.Find("Player").GetComponent<TestBattlePlayerHp>();
-
-		Player.PlayerCurrentHP -= dmg;
+	public void OnDamaged(BattlePlayer player) {
+		BattlePlayerHPbar pHPBar = GameObject.Find("PlayerHPbar").GetComponent<BattlePlayerHPbar>();
 		pHPBar.Dmg();
 	}
 
@@ -91,8 +88,7 @@ public class BattleEventManager : MonoBehaviour, IBattleInterface {
         //throw new System.NotImplementedException();
     }
 
-    public void OnPlayCard(List<BattleMonster> monster, BattlePlayer player)
-    {
-        throw new System.NotImplementedException();
-    }
+    public void OnPlayCard(GameObject card) {
+		this.gameObject.GetComponent<CardTransformChanger>().CalCardsTransform();
+	}
 }

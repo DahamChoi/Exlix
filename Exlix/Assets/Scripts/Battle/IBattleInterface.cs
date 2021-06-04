@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IBattleInterface {
     void OnMonsterReady(List<BattleMonster> monster);
-	void OnPlayCard(List<BattleMonster> monster, BattlePlayer player);
+	void OnPlayCard(GameObject card);
 	void OnEndEnemyTurn();
 	void OnEnemyAttack();
 	void OnEnemyDebuff();
@@ -12,7 +12,7 @@ public interface IBattleInterface {
 	void OnDrawCard(BattlePlayer player);
 	void OnRestoreMana();
 	void OnHeal();
-	void OnDamaged(float dmg);
+	void OnDamaged(BattlePlayer player);
 	void OnPlayerBuff();
 	void OnUseMana();
 	void OnShieldUp();

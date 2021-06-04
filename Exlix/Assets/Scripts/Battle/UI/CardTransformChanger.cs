@@ -19,7 +19,6 @@ public class CardTransformChanger : MonoBehaviour {
 	public Transform GravePosition;
 	float centerRadius = 46.0f;//centerPoint로부터 카드의 postition까지의 반지름
 
-	
 	CardHand cardHand;
 
 	public void AddCardToHand(ref GameObject instanceCard) {
@@ -32,13 +31,13 @@ public class CardTransformChanger : MonoBehaviour {
 	}
 
 	public void CalCardsTransform() {
-		if (!cardHand) cardHand = GameObject.Find("HandCanvas").GetComponent<CardHand>();
+		if (!cardHand) cardHand = this.gameObject.GetComponent<CardHand>();
 		int i = 0;
 		foreach (var card in cardHand.CardObjects) {
 			CardTransformData cardTransformData = card.GetComponent<CardTransformData>();
 			cardTransformData.TargetAngle = OriginalAngle(i);
 			cardTransformData.TargetPosition = GetHandPosition(i);
-			cardTransformData.TempCardIndex = i;
+			card.GetComponent<CardDataContainer>().cardIndexNum = i;
 			card.transform.position = new Vector3(card.transform.position.x, card.transform.position.y, 0.0f);
 			card.GetComponent<SpriteRenderer>().sortingOrder = i++;
 		}
@@ -87,12 +86,12 @@ public class CardTransformChanger : MonoBehaviour {
 	public void SpreadCardPosition(int idx) {
 		foreach (var card in cardHand.CardObjects) {
 			CardTransformData cardTransformData = card.GetComponent<CardTransformData>();
-			cardTransformData.TargetPosition += new Vector3((float)2 / (cardTransformData.TempCardIndex - idx) / 2, 0, 0);
+			cardTransformData.TargetPosition += new Vector3((float)2 / (card.GetComponent<CardDataContainer>().cardIndexNum - idx) / 2, 0, 0);
 		}
 	}
 
 	void Start() {
-		cardHand = GameObject.Find("HandCanvas").GetComponent<CardHand>();
+		cardHand = this.gameObject.GetComponent<CardHand>();
 	}
 
 	void Update() {
