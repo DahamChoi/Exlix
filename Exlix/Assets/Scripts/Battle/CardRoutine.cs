@@ -25,9 +25,11 @@ public class CardRoutine {
     }
 
     public void Run() {
-        Player.TakeMana((int)CardData.Cost);
-        foreach(BattleEnemy enemy in Target) {
-            enemy.TakeDamage((int)CardData.Attack);
+		Player.TakeMana((int)CardData.Cost);
+        if (Target != null) {
+            foreach (BattleEnemy enemy in Target) {
+                enemy.TakeDamage((int)CardData.Attack);
+            }
         }
 
         Player.TakeShiled((int)CardData.Shiled);

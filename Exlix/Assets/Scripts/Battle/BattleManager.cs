@@ -25,8 +25,8 @@ public class BattleManager : MonoBehaviour {
 
     }
 
-    public void PlayCard(CardDataTemplate cardData, List<BattleEnemy> enemyies) {
-        ViewModel.PlayCard(cardData, enemyies);
+    public void PlayCard(GameObject card, List<BattleEnemy> enemyies) {
+        ViewModel.PlayCard(card, enemyies);
 	}
 
     public void EndPlayerTurn() {

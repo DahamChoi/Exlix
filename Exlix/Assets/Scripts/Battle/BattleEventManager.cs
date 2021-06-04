@@ -91,8 +91,9 @@ public class BattleEventManager : MonoBehaviour, IBattleInterface {
         //throw new System.NotImplementedException();
     }
 
-    public void OnPlayCard(List<BattleMonster> monster, BattlePlayer player)
-    {
-        throw new System.NotImplementedException();
-    }
+    public void OnPlayCard(GameObject card) {
+		GameObject.Find("HandCanvas").GetComponent<CardHand>().CardObjects.Remove(card);
+		Destroy(card);
+		GameObject.Find("GameManager").GetComponent<CardTransformChanger>().CalCardsTransform();
+	}
 }

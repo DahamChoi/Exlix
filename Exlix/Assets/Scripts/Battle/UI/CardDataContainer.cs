@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CardDataContainer : MonoBehaviour
 {
-    CardDataTemplate cardData;
+    public CardDataTemplate cardData;
+    public int cardIndexNum;
 
     public void ReadData(CardDataTemplate cardData) {
         this.cardData = cardData;

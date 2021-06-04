@@ -29,14 +29,14 @@ public class BattleViewModel {
         }
     }
 
-    public void PlayCard(CardDataTemplate cardData, List<BattleEnemy> enemies) {
-        Player.PlayCard(cardData);
+    public void PlayCard(GameObject card, List<BattleEnemy> enemies) {
+        Player.PlayCard(card.GetComponent<CardDataContainer>().cardData);
 
         CardRoutine routine = new CardRoutine(Player, enemies);
-        routine.SetCard(cardData);
+        routine.SetCard(card.GetComponent<CardDataContainer>().cardData);
         routine.Run();
         
-        Observer.OnPlayCard(Monsters, Player);
+        Observer.OnPlayCard(card);
     }
 
     public void EndPlayerTurn() {

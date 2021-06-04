@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IBattleInterface {
     void OnMonsterReady(List<BattleMonster> monster);
-	void OnPlayCard(List<BattleMonster> monster, BattlePlayer player);
+	void OnPlayCard(GameObject card);
 	void OnEndEnemyTurn();
 	void OnEnemyAttack();
 	void OnEnemyDebuff();
