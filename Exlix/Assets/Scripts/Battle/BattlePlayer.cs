@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattlePlayer {
-    public int Hp, Mana, Shiled;
+public class BattlePlayer : BattleObject {
+    public int Mana;
     private static readonly int MaxMana = 3;
 
     /* List */
@@ -14,16 +14,12 @@ public class BattlePlayer {
     /* List */
     private List<CardDataTemplate> Cemetry = new List<CardDataTemplate>();
 
-    public BattlePlayer(List<CardDataTemplate> deckInfo) {
+    public BattlePlayer(List<CardDataTemplate> deckInfo) : base(10) {
         foreach(var it in deckInfo) {
             Deck.Push(it);
         }
 
         Original_Deck = Deck;
-    }
-
-    public void TakeDamage(int amount) {
-        Hp += amount;
     }
 
     public void RestoreMana() {
@@ -32,10 +28,6 @@ public class BattlePlayer {
 
     public void TakeMana(int amount) {
         Mana += amount;
-    }
-
-    public void TakeShiled(int amount) {
-        Shiled += amount;
     }
 
     public void PlayCard(CardDataTemplate CardData) {
@@ -50,7 +42,6 @@ public class BattlePlayer {
         if(Deck.Count == 0) {
             RestoreDeck();
         }
-
     }
 
     public void DropCard() {

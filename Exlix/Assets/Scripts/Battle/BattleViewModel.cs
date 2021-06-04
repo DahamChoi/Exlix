@@ -6,12 +6,14 @@ public class BattleViewModel {
     private IBattleInterface Observer;
     private BattlePlayer Player;
     private List<BattleMonster> Monsters = new List<BattleMonster>();
+    private CardRoutine Routine;
 
     public BattleViewModel(List<CardDataTemplate> deckInfo) {
         for(int i = 0; i < 3; i++) {
             Monsters.Add(new BattleMonster(10, 1));
         }
         Player = new BattlePlayer(deckInfo);
+        Routine = new CardRoutine(Player);
     }
 
     public void AddObserver(IBattleInterface battleInterface) {
@@ -19,9 +21,7 @@ public class BattleViewModel {
     }
 
     public void GameStart() {
-        foreach(var it in Monsters) {
-            it.StartMonsterTurn();
-        }
+        Player.ExecuteTurn();
 
         for(int i = 0; i < 5; i++) {
             Player.DrawCard();
@@ -29,18 +29,12 @@ public class BattleViewModel {
         }
     }
 
-<<<<<<< HEAD
-    public void PlayCard(CardDataTemplate cardData, List<BattleEnemy> enemies = null) {
-        Player.PlayCard(cardData);
-=======
-    public void PlayCard(GameObject card, List<BattleEnemy> enemies) {
+    public void PlayCard(GameObject card, List<BattleObject> targets) {
         Player.PlayCard(card.GetComponent<CardDataContainer>().cardData);
->>>>>>> 379b48bb7a97b06005c1e75f0bed4ff420fe40b9
 
-        CardRoutine routine = new CardRoutine(Player, enemies);
-        routine.SetCard(card.GetComponent<CardDataContainer>().cardData);
-        routine.Run();
-        
+        Routine.SetCard(card.GetComponent<CardDataContainer>().cardData, targets);
+        Routine.Run();
+
         Observer.OnPlayCard(card);
     }
 
