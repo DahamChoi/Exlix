@@ -30,10 +30,6 @@ public class BattleObject {
         return (Hp <= 0);
     }
 
-    public void ExecuteTurn() {
-
-    }
-
     public void SetCondition(int condition_type, int value) {
         Condition[condition_type] += value;
     }

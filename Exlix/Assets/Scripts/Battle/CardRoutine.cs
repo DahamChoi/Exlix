@@ -15,8 +15,8 @@ public class CardRoutine {
         }
     };
 
-    BattlePlayer Player;
-    List<CardTask> Tasks;
+    private BattlePlayer Player;
+    private List<CardTask> Tasks = new List<CardTask>();
 
     public CardRoutine(BattlePlayer player) {
         Player = player;

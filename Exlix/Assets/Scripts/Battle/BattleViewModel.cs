@@ -21,8 +21,6 @@ public class BattleViewModel {
     }
 
     public void GameStart() {
-        Player.ExecuteTurn();
-
         for(int i = 0; i < 5; i++) {
             Player.DrawCard();
             Observer.OnDrawCard(Player);
@@ -40,6 +38,7 @@ public class BattleViewModel {
 
     public void EndPlayerTurn() {
         Player.DropCard();
+
         foreach(var it in Monsters) {
             it.ExecutePattern(Player);
             it.StartMonsterTurn();

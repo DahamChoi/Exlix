@@ -22,7 +22,6 @@ public class BattleMonster : BattleObject {
     }
 
     public void ExecutePattern(BattlePlayer player) {
-        base.ExecuteTurn();
         player.TakeDamage(-Attack);
     }
 
