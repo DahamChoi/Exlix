@@ -4,35 +4,46 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class MoveScene : MonoBehaviour
 {
-    const int MainScreen = 0;
-    const int CreateCharacter = 1;
-    const int SelectDeck = 2;
-    Scene previousScene;
+    Stack<int> PreviousScenes = new Stack<int>();
+    //캐릭터 처음 생성시 정비씬으로 안가고 인게임씬으로 바로 감. else 정비씬으로 감.
     public void MoveToPreviousScene() {
-        SceneManager.LoadScene(previousScene.buildIndex);
+        SceneManager.LoadScene(PreviousScenes.Pop());
     }
-    public void MoveToCreateCharacter() {
-        SceneManager.LoadScene(CreateCharacter);
+    public void MoveToCreateCharacterScene() {
+        PreviousScenes.Push(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("CreateCharacter");
     }
-    
-    public void MoveToMainScene() {
-        SceneManager.LoadScene(MainScreen);
+    public void MoveToMainScreenScene() {
+        PreviousScenes.Push(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("MainScreen");
+    }
+    public void MoveToSelectDeckScene() {
+        PreviousScenes.Push(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("SelectDeck");
+    }
+    public void MoveToSelectStageScene() {
+        PreviousScenes.Push(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("SelectStage");
+    }
+    public void MoveToMaintenanceScene() {
+        PreviousScenes.Push(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("Maintenance");
+    }
+    public void MoveToInGameScene() {
+        PreviousScenes.Push(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("InGame");
     }
 
-    public void MoveToDeckSelectScene() {
-        SceneManager.LoadScene(SelectDeck);
-    }
+
 
 
     // Start is called before the first frame update
     void Start()
     {
-        previousScene = SceneManager.GetActiveScene();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 }
