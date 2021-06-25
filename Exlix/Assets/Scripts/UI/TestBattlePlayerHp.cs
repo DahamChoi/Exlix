@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using System;
 
-public class TestBattlePlayerHp : MonoBehaviour
+public class TestBattlePlayerHp : MonoBehaviour, IObserver<PlayerStateInfo>
 {
     //표시되는 HP바
     public Slider hpSlider;
@@ -13,10 +14,11 @@ public class TestBattlePlayerHp : MonoBehaviour
     public bool backHpHit = false;
 
     [SerializeField] GameObject Player;
+    [SerializeField] PlayerState _PlayerState;
 
     // Start is called before the first frame update
     void Start() {
-        
+        _PlayerState.SubscriblePlayerStateInfo(this);
     }
 
     // Update is called once per frame
@@ -39,5 +41,21 @@ public class TestBattlePlayerHp : MonoBehaviour
 
     void BackHpFun() {
         backHpHit = true;
+    }
+
+    public void OnCompleted()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void OnError(Exception error)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void OnNext(PlayerStateInfo value)
+    {
+        int somethingToDo = value.Hp;
+        // Hp Update
     }
 }
