@@ -6,21 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/LegacyAssets/Scenes/MainScreen.unity
-    guid: b36ae1cb7b648424b99960c9d7312832
-  - enabled: 1
-    path: Assets/LegacyAssets/Scenes/CreateCharacter.unity
-    guid: 7e6bd2eacfae2f74bb4b570c9435b76c
-  - enabled: 1
-    path: Assets/LegacyAssets/Scenes/SelectDeck.unity
-    guid: b742731af3a7fca4982b5790e30b616b
-  - enabled: 1
-    path: Assets/LegacyAssets/Scenes/SelectStage.unity
-    guid: c1945addd3971714eb34237063de8cf2
-  - enabled: 1
-    path: Assets/LegacyAssets/Scenes/Maintenance.unity
-    guid: 0f092d2b876908f4aabea8c5f1686847
-  - enabled: 1
-    path: Assets/LegacyAssets/Scenes/InGame.unity
-    guid: 59de8b07414e8a445b20021bebb561bd
+    path: Assets/Scenes/MainMenu.unity
+    guid: 5eb34edc3376e6a4b9b0005cdabac111
   m_configObjects: {}
