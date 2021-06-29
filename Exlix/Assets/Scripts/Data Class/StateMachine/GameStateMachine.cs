@@ -18,7 +18,7 @@ public class GameStateMachine
         CHARACTER_MAINTENANCE_CARD,
         CHARACTER_MAINTENANCE_MAIN,
         CHARACTER_MAINTENANCE_SKILL,
-        CHARACTER_MAINTENANCE_EQUIPMENT
+        CHARACTER_MAINTENANCE_EQUIPMENT,
     };
 
     public enum TRIGGER
@@ -26,6 +26,7 @@ public class GameStateMachine
         GAME_START,
         NEW_GAME,
         LOAD_GAME,
+        OPTION,//추가됨
         INFO_TO_PORTRAIT,
         INFO_TO_MAIN_MENU,
         PORTRAIT_TO_INFO,
@@ -69,6 +70,8 @@ public class GameStateMachine
             new KeyValuePair<TRIGGER, STATE>(TRIGGER.NEW_GAME, STATE.CHARACTER_GENERATE_CHARACTER_INFO));
         Rules[STATE.MAIN_MENU].Add(
             new KeyValuePair<TRIGGER, STATE>(TRIGGER.LOAD_GAME, STATE.SELECT_AREA));
+        Rules[STATE.MAIN_MENU].Add(
+          new KeyValuePair<TRIGGER, STATE>(TRIGGER.OPTION, STATE.MAIN_MENU));
 
         Rules[STATE.CHARACTER_GENERATE_CHARACTER_INFO] = new List<KeyValuePair<TRIGGER, STATE>>();
         Rules[STATE.CHARACTER_GENERATE_CHARACTER_INFO].Add(
