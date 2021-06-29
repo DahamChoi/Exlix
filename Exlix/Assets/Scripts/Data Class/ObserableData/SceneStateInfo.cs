@@ -2,17 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SceneStateInfo
-{
+public class SceneStateInfo {
     private GameStateMachine _GameStateMachine = new GameStateMachine();
 
-    public void ProcessEvent(GameStateMachine.TRIGGER trigger)
-    {
+    public void ProcessEvent(GameStateMachine.TRIGGER trigger) {
         _GameStateMachine.ProcessEvent(trigger);
     }
 
-    public GameStateMachine.STATE GetCurrentState()
-    {
+    public GameStateMachine.STATE GetCurrentState() {
         return _GameStateMachine.CurrentState;
     }
 }
