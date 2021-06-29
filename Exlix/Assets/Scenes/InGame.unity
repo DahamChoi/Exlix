@@ -225,6 +225,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pSkill: {fileID: 2093696887}
+  lineImage: {fileID: 1601841593063693261, guid: 526da5169e1e2a74da32f7ab5ddff891,
+    type: 3}
   nodeImage: {fileID: 2095942333}
   skillPopup: {fileID: 2140802787}
   isActivated: 1
@@ -590,6 +592,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pSkill: {fileID: 1475171109}
+  lineImage: {fileID: 1601841593063693261, guid: 526da5169e1e2a74da32f7ab5ddff891,
+    type: 3}
   nodeImage: {fileID: 1835097011}
   skillPopup: {fileID: 2140802787}
   isActivated: 1
@@ -805,6 +809,7 @@ GameObject:
   - component: {fileID: 473596819}
   - component: {fileID: 473596821}
   - component: {fileID: 473596820}
+  - component: {fileID: 473596822}
   m_Layer: 5
   m_Name: BackgroundImage
   m_TagString: Untagged
@@ -868,6 +873,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 473596818}
   m_CullTransparentMesh: 0
+--- !u!114 &473596822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 473596818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08141bf316f94174c9f6d3ffbed7e1c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rectTransform: {fileID: 0}
 --- !u!1 &508148056
 GameObject:
   m_ObjectHideFlags: 0
@@ -919,6 +937,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pSkill: {fileID: 47366509}
+  lineImage: {fileID: 1601841593063693261, guid: 526da5169e1e2a74da32f7ab5ddff891,
+    type: 3}
   nodeImage: {fileID: 148352167}
   skillPopup: {fileID: 2140802787}
   isActivated: 1
@@ -2153,6 +2173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pSkill: {fileID: 0}
+  lineImage: {fileID: 0}
   nodeImage: {fileID: 1462250538}
   skillPopup: {fileID: 2140802787}
   isActivated: 1
@@ -2535,6 +2556,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pSkill: {fileID: 2093696887}
+  lineImage: {fileID: 1601841593063693261, guid: 526da5169e1e2a74da32f7ab5ddff891,
+    type: 3}
   nodeImage: {fileID: 849377790}
   skillPopup: {fileID: 2140802787}
   isActivated: 1
@@ -3280,6 +3303,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pSkill: {fileID: 1266192454}
+  lineImage: {fileID: 1601841593063693261, guid: 526da5169e1e2a74da32f7ab5ddff891,
+    type: 3}
   nodeImage: {fileID: 820009425}
   skillPopup: {fileID: 2140802787}
   isActivated: 1
@@ -3428,6 +3453,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pSkill: {fileID: 1475171109}
+  lineImage: {fileID: 1601841593063693261, guid: 526da5169e1e2a74da32f7ab5ddff891,
+    type: 3}
   nodeImage: {fileID: 337113659}
   skillPopup: {fileID: 2140802787}
   isActivated: 1

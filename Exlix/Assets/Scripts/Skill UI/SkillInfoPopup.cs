@@ -19,6 +19,7 @@ public class SkillInfoPopup : MonoBehaviour
 
     }
 
+    // 스킬 정보 팝업 활성화
     public void PopupActive(SkillNode data) {
         skillNode = data;
         Name.text = "Test Skill";
@@ -26,11 +27,13 @@ public class SkillInfoPopup : MonoBehaviour
         gameObject.SetActive(true);
     }
 
+    // 스킬 활성화
     public void SkillActive() {
         skillNode.isActivated = true;
         gameObject.SetActive(false);
     }
 
+    // 스킬 정보 팝업 비활성화
     public void PopupDeactive() {
         gameObject.SetActive(false);
     }
