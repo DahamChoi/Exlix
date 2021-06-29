@@ -5,15 +5,13 @@ using UnityEngine.UI;
 
 public class SkillInfoPopup : MonoBehaviour
 {
-    [SerializeField] GameObject skillInfoWindow;
     [SerializeField] Text Name;
     [SerializeField] Text Explain;
-
-    NodeData nodeData;
+    SkillNode skillNode;
 
     // Start is called before the first frame update
     void Start() {
-        nodeData = gameObject.GetComponent<NodeData>();
+
     }
 
     // Update is called once per frame
@@ -21,9 +19,19 @@ public class SkillInfoPopup : MonoBehaviour
 
     }
 
-    public void PopupSkillInfo() {
-        skillInfoWindow.SetActive(true);
+    public void PopupActive(SkillNode data) {
+        skillNode = data;
         Name.text = "Test Skill";
         Explain.text = "Test Skill Explain";
+        gameObject.SetActive(true);
+    }
+
+    public void SkillActive() {
+        skillNode.isActivated = true;
+        gameObject.SetActive(false);
+    }
+
+    public void PopupDeactive() {
+        gameObject.SetActive(false);
     }
 }
