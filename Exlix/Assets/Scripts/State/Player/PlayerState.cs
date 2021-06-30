@@ -12,8 +12,4 @@ public class PlayerState : MonoBehaviour
         _PlayerStateInfoHandler.Subscribe(observer);
     }
 
-    public void SetHp(int hp)
-    {
-        _PlayerStateInfoHandler.SetHp(hp);
-    }
 }
