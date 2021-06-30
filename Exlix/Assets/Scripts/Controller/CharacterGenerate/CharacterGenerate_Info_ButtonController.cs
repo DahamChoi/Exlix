@@ -7,6 +7,7 @@ public class CharacterGenerate_Info_ButtonController : MonoBehaviour
 {
     [SerializeField] Button BackButton;
     [SerializeField] Button NextButton;
+
     [SerializeField] SceneState _SceneState;
 
     void Start()
@@ -16,8 +17,7 @@ public class CharacterGenerate_Info_ButtonController : MonoBehaviour
             _SceneState._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.INFO_TO_MAIN_MENU);
         });
 
-        NextButton.onClick.AddListener(() =>
-        {
+        NextButton.onClick.AddListener(() => {
             _SceneState._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.INFO_TO_PORTRAIT);
         });
     }

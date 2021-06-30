@@ -26,7 +26,7 @@ public class GameStateMachine
         GAME_START,
         NEW_GAME,
         LOAD_GAME,
-        OPTION,//추가됨
+        NEWBUTTON,
         INFO_TO_PORTRAIT,
         INFO_TO_MAIN_MENU,
         PORTRAIT_TO_INFO,
@@ -67,11 +67,10 @@ public class GameStateMachine
 
         Rules[STATE.MAIN_MENU] = new List<KeyValuePair<TRIGGER, STATE>>();
         Rules[STATE.MAIN_MENU].Add(
-            new KeyValuePair<TRIGGER, STATE>(TRIGGER.NEW_GAME, STATE.CHARACTER_GENERATE_CHARACTER_INFO));
+            new KeyValuePair<TRIGGER, STATE>(TRIGGER.NEW_GAME, STATE.CHARACTER_GENERATE_PORTRAIT));
         Rules[STATE.MAIN_MENU].Add(
             new KeyValuePair<TRIGGER, STATE>(TRIGGER.LOAD_GAME, STATE.SELECT_AREA));
-        Rules[STATE.MAIN_MENU].Add(
-          new KeyValuePair<TRIGGER, STATE>(TRIGGER.OPTION, STATE.MAIN_MENU));
+
 
         Rules[STATE.CHARACTER_GENERATE_CHARACTER_INFO] = new List<KeyValuePair<TRIGGER, STATE>>();
         Rules[STATE.CHARACTER_GENERATE_CHARACTER_INFO].Add(
