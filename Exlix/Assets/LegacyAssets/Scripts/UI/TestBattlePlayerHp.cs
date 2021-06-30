@@ -53,8 +53,9 @@ public class TestBattlePlayerHp : MonoBehaviour, IObserver<PlayerStateInfo>
         throw new NotImplementedException();
     }
 
-	public void OnNext(PlayerStateInfo value) {
-		//int somethingToDo = value.Hp;
-		// Hp Update
-	}
+    public void OnNext(PlayerStateInfo value)
+    {
+        int somethingToDo = value.Hp;
+        // Hp Update
+    }
 }

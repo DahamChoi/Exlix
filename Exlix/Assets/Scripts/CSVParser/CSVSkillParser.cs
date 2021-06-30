@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text;
 
-public class CSVSkillParser : CSVParser<SkillDataTemplate> {
+public class CSVSkillParser : CSVParser<CardDataTemplate> {
     static public List<string> CoulumName = new List<string>{
         "Number", "CoolTime", "Title", "Explanation",
         "ContinuousTurn", "AttackTarget", "Attack", "ShiledTarget", "Shiled",
@@ -16,7 +16,7 @@ public class CSVSkillParser : CSVParser<SkillDataTemplate> {
         foreach (var line in File.ReadAllLines(Path, Encoding.GetEncoding(65001))) {
             var parts = line.Split(',');
             int index = 0;
-            SkillDataTemplate dataTemplate = new SkillDataTemplate();
+            CardDataTemplate dataTemplate = new CardDataTemplate();
             foreach (var it in parts) {
                 dataTemplate.Data.Add(CoulumName[index++], it == "" ? "0" : it);
             }
