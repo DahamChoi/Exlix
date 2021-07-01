@@ -15,10 +15,11 @@ public class GameStateMachine
         SELECT_AREA,
         INSIDE_AREA,
         BATTLE,
-        CHARACTER_MAINTENANCE_CARD,
+        ACHEIVE_CARD,
         CHARACTER_MAINTENANCE_MAIN,
         CHARACTER_MAINTENANCE_SKILL,
-        CHARACTER_MAINTENANCE_EQUIPMENT,
+        CHARACTER_MAINTENANCE_EQUIPMENT, 
+        CHARACTER_MAINTENANCE_CARD
     };
 
     public enum TRIGGER
@@ -41,12 +42,15 @@ public class GameStateMachine
         ENTER_AREA,
         ENTER_BATTLE,
         END_BATTLE,
+        END_AREA_EVENT, 
         END_MAINTENANCE,
-        END_MAINTENANCE_CARD,
+        END_ACHEIVE_CARD,
         MAIN_TO_SKILL,
         SKILLT_TO_MAIN,
         MAIN_TO_EQUIPMENT,
-        EQUIPMENT_TO_MAIN
+        EQUIPMENT_TO_MAIN, 
+        MAIN_TO_CARD, 
+        CARD_TO_MAIN
     };
 
     private Dictionary<STATE, List<KeyValuePair<TRIGGER, STATE>>> Rules =
@@ -65,19 +69,21 @@ public class GameStateMachine
             new KeyValuePair<TRIGGER, STATE>(TRIGGER.GAME_START, STATE.MAIN_MENU)
         );
 
+        // 메인메뉴
         Rules[STATE.MAIN_MENU] = new List<KeyValuePair<TRIGGER, STATE>>();
         Rules[STATE.MAIN_MENU].Add(
             new KeyValuePair<TRIGGER, STATE>(TRIGGER.NEW_GAME, STATE.CHARACTER_GENERATE_PORTRAIT));
         Rules[STATE.MAIN_MENU].Add(
             new KeyValuePair<TRIGGER, STATE>(TRIGGER.LOAD_GAME, STATE.SELECT_AREA));
 
-
+        // 캐릭터 생성화면 캐릭터 정보
         Rules[STATE.CHARACTER_GENERATE_CHARACTER_INFO] = new List<KeyValuePair<TRIGGER, STATE>>();
         Rules[STATE.CHARACTER_GENERATE_CHARACTER_INFO].Add(
             new KeyValuePair<TRIGGER, STATE>(TRIGGER.INFO_TO_MAIN_MENU, STATE.MAIN_MENU));
         Rules[STATE.CHARACTER_GENERATE_CHARACTER_INFO].Add(
             new KeyValuePair<TRIGGER, STATE>(TRIGGER.INFO_TO_PORTRAIT, STATE.CHARACTER_GENERATE_PORTRAIT));
 
+        // 캐릭터 생성화면 초상화 선택
         Rules[STATE.CHARACTER_GENERATE_PORTRAIT] = new List<KeyValuePair<TRIGGER, STATE>>();
         Rules[STATE.CHARACTER_GENERATE_PORTRAIT].Add(
             new KeyValuePair<TRIGGER, STATE>(TRIGGER.PORTRAIT_TO_MAIN_MENU, STATE.MAIN_MENU));
@@ -86,6 +92,7 @@ public class GameStateMachine
         Rules[STATE.CHARACTER_GENERATE_PORTRAIT].Add(
             new KeyValuePair<TRIGGER, STATE>(TRIGGER.PORTRAIT_TO_DECK, STATE.CHARACTER_GENERATE_DECK));
 
+        // 캐릭터 덱 선택
         Rules[STATE.CHARACTER_GENERATE_DECK] = new List<KeyValuePair<TRIGGER, STATE>>();
         Rules[STATE.CHARACTER_GENERATE_DECK].Add(
             new KeyValuePair<TRIGGER, STATE>(TRIGGER.DECK_TO_GAME, STATE.SELECT_AREA));
@@ -96,43 +103,60 @@ public class GameStateMachine
         Rules[STATE.CHARACTER_GENERATE_DECK].Add(
             new KeyValuePair<TRIGGER, STATE>(TRIGGER.DECK_TO_MAIN_MENU, STATE.MAIN_MENU));
 
+        // 캐릭터 생성 덱 보기
         Rules[STATE.CHARACTER_GENERATE_DECK_INFO] = new List<KeyValuePair<TRIGGER, STATE>>();
         Rules[STATE.CHARACTER_GENERATE_DECK_INFO].Add(
             new KeyValuePair<TRIGGER, STATE>(TRIGGER.DECK_INFO_TO_DECK, STATE.CHARACTER_GENERATE_DECK));
         Rules[STATE.CHARACTER_GENERATE_DECK_INFO].Add(
             new KeyValuePair<TRIGGER, STATE>(TRIGGER.DECK_INFO_TO_MAIN_MENU, STATE.MAIN_MENU));
 
+        // 구역 선택
         Rules[STATE.SELECT_AREA] = new List<KeyValuePair<TRIGGER, STATE>>();
         Rules[STATE.SELECT_AREA].Add(
             new KeyValuePair<TRIGGER, STATE>(TRIGGER.ENTER_AREA, STATE.INSIDE_AREA));
 
+        // 구역 내부
         Rules[STATE.INSIDE_AREA] = new List<KeyValuePair<TRIGGER, STATE>>();
         Rules[STATE.INSIDE_AREA].Add(
             new KeyValuePair<TRIGGER, STATE>(TRIGGER.ENTER_BATTLE, STATE.BATTLE));
+        Rules[STATE.INSIDE_AREA].Add(
+            new KeyValuePair<TRIGGER, STATE>(TRIGGER.END_AREA_EVENT, STATE.ACHEIVE_CARD));
 
+        // BATTLE
         Rules[STATE.BATTLE] = new List<KeyValuePair<TRIGGER, STATE>>();
         Rules[STATE.BATTLE].Add(
-            new KeyValuePair<TRIGGER, STATE>(TRIGGER.END_BATTLE, STATE.CHARACTER_MAINTENANCE_CARD));
+            new KeyValuePair<TRIGGER, STATE>(TRIGGER.END_BATTLE, STATE.INSIDE_AREA));
 
-        Rules[STATE.CHARACTER_MAINTENANCE_CARD] = new List<KeyValuePair<TRIGGER, STATE>>();
-        Rules[STATE.CHARACTER_MAINTENANCE_CARD].Add(
-            new KeyValuePair<TRIGGER, STATE>(TRIGGER.END_MAINTENANCE_CARD, STATE.CHARACTER_MAINTENANCE_MAIN));
+        // 캐릭터 덱 정비
+        Rules[STATE.ACHEIVE_CARD] = new List<KeyValuePair<TRIGGER, STATE>>();
+        Rules[STATE.ACHEIVE_CARD].Add(
+            new KeyValuePair<TRIGGER, STATE>(TRIGGER.END_ACHEIVE_CARD, STATE.CHARACTER_MAINTENANCE_MAIN));
 
+        // 캐릭터 정비
         Rules[STATE.CHARACTER_MAINTENANCE_MAIN] = new List<KeyValuePair<TRIGGER, STATE>>();
         Rules[STATE.CHARACTER_MAINTENANCE_MAIN].Add(
             new KeyValuePair<TRIGGER, STATE>(TRIGGER.MAIN_TO_SKILL, STATE.CHARACTER_MAINTENANCE_SKILL));
         Rules[STATE.CHARACTER_MAINTENANCE_MAIN].Add(
             new KeyValuePair<TRIGGER, STATE>(TRIGGER.MAIN_TO_EQUIPMENT, STATE.CHARACTER_MAINTENANCE_EQUIPMENT));
         Rules[STATE.CHARACTER_MAINTENANCE_MAIN].Add(
+            new KeyValuePair<TRIGGER, STATE>(TRIGGER.MAIN_TO_CARD, STATE.CHARACTER_MAINTENANCE_CARD));
+        Rules[STATE.CHARACTER_MAINTENANCE_MAIN].Add(
             new KeyValuePair<TRIGGER, STATE>(TRIGGER.END_MAINTENANCE, STATE.INSIDE_AREA));
 
+        // 캐릭터 스킬 정비
         Rules[STATE.CHARACTER_MAINTENANCE_SKILL] = new List<KeyValuePair<TRIGGER, STATE>>();
         Rules[STATE.CHARACTER_MAINTENANCE_SKILL].Add(
             new KeyValuePair<TRIGGER, STATE>(TRIGGER.SKILLT_TO_MAIN, STATE.CHARACTER_MAINTENANCE_MAIN));
 
+        // 캐릭터 장비 정비
         Rules[STATE.CHARACTER_MAINTENANCE_EQUIPMENT] = new List<KeyValuePair<TRIGGER, STATE>>();
         Rules[STATE.CHARACTER_MAINTENANCE_EQUIPMENT].Add(
             new KeyValuePair<TRIGGER, STATE>(TRIGGER.EQUIPMENT_TO_MAIN, STATE.CHARACTER_MAINTENANCE_MAIN));
+
+        // 캐릭터 덱 정비
+        Rules[STATE.CHARACTER_MAINTENANCE_CARD] = new List<KeyValuePair<TRIGGER, STATE>>();
+        Rules[STATE.CHARACTER_MAINTENANCE_CARD].Add(
+            new KeyValuePair<TRIGGER, STATE>(TRIGGER.CARD_TO_MAIN, STATE.CHARACTER_MAINTENANCE_MAIN));
     }
 
     public void ProcessEvent(TRIGGER trigger)
