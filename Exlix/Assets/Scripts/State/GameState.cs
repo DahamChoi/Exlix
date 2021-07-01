@@ -5,10 +5,6 @@ using System;
 
 public class GameState : MonoBehaviour
 {
-    private GameStateInfoHandler _GameStateInfoHandler;
+    public GameStateInfoHandler _GameStateInfoHandler;
 
-    public void SubscribleGameStateInfo(IObserver<GameStateInfo> observer)
-    {
-        _GameStateInfoHandler.Subscribe(observer);
-    }
 }

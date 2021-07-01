@@ -9,24 +9,22 @@ public class GameStateInfoHandler : ObserableHandler<GameStateInfo>
         Information = new GameStateInfo();
     }
 
-    public void SetSkillDataTamplate(SkillDataTemplate skillDataTemplate)
+    public void SetSkillDataTamplateList(List<SkillDataTemplate> skillDataTemplateList)
     {
-        Information.skillDataTemplate = skillDataTemplate;
+        Information.skillDataTemplateList = skillDataTemplateList;
         base.NotifyObservers();
     }
-    public void SetCardDataTamplate(SkillDataTemplate skillDataTemplate)
+    public void SetCardDataTamplateList(List<CardDataTemplate> cardDataTemplateList)
     {
-        Information.skillDataTemplate = skillDataTemplate;
-        base.NotifyObservers();
-    }
-    public void SetItemDataTamplate(SkillDataTemplate skillDataTemplate)
-    {
-        Information.skillDataTemplate = skillDataTemplate;
+        Information.cardDataTemplateList = cardDataTemplateList;
         base.NotifyObservers();
     }
 
-    public SkillDataTemplate GetSkillDataTamplate()
+    public SkillDataTemplate GetSkillDataTamplate(string Number)
     {
-        return Information.skillDataTemplate;
+        foreach (var template in Information.skillDataTemplateList) {
+            if (template.Data["Number"] == Number) return template;
+        }
+        return null;
     }
 }

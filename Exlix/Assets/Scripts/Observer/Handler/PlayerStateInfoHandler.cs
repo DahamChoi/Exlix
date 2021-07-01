@@ -10,24 +10,27 @@ public class PlayerStateInfoHandler : ObserableHandler<PlayerStateInfo>
         Information = new PlayerStateInfo();
     }
 
-    public void SetSkill(SkillDataTemplate skillData)
+    public void SetCurrentSkill(SkillDataTemplate skillData)
     {
         Information.equipedSkill = skillData;
         base.NotifyObservers();
     }
 
-    public SkillDataTemplate GetSkill() {
+    public SkillDataTemplate GetCurrentSkill() {
         return Information.equipedSkill;
-    }
-
-    public void UseSkillPoint(int usedSkillPoint) {
-        Information.skillPoint -= usedSkillPoint;
-        base.NotifyObservers();
     }
 
     public int GetSkillPoint() {
         return Information.skillPoint;
     }
 
+    public bool GetCurrentSkillUnlocked(int key) {
+        return Information.unlockedSkill[key];
+    }
 
+    public void UnlockSkill(int key, int skillPoint) {
+        Information.unlockedSkill[key] = true;
+        Information.skillPoint -= skillPoint;
+        base.NotifyObservers();
+    }
 }

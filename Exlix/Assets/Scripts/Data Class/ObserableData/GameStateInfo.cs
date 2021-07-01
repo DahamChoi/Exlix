@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GameStateInfo
 {
-    public SkillDataTemplate skillDataTemplate;
-    public CardDataTemplate cardDataTemplate;
-    public ItemDataTemplate itemDataTemplate;
+    public List<SkillDataTemplate> skillDataTemplateList;
+    public List<CardDataTemplate> cardDataTemplateList;
 }

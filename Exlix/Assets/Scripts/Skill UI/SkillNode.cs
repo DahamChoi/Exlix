@@ -4,18 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-public class SkillNode : MonoBehaviour {
-    [SerializeField] SkillNode pSkill; //선행 스킬
-    [SerializeField] GameObject lineImage;
+public class SkillNode : MonoBehaviour, IObserver<PlayerStateInfo> {
+    [SerializeField] public SkillNode pSkill; //선행 스킬
     [SerializeField] Image nodeImage;
     [SerializeField] SkillInfoPopup skillPopup; //스킬정보 팝업
+    [SerializeField] PlayerState _PlayerState;
 
+    public int skillId;
     public bool isActivated; //스킬 활성화 여부
 
     // Start is called before the first frame update
     void Start() {
-        if (pSkill == null) return;
-        isActivated = false;
+        isActivated = _PlayerState._PlayerStateInfoHandler.GetCurrentSkillUnlocked(skillId);
     }
 
     // Update is called once per frame
@@ -26,19 +26,25 @@ public class SkillNode : MonoBehaviour {
         else {
             nodeImage.color = new Color(1, 1, 1, 1);
         }
-        CheckPNode();
-    }
-
-    //부모노드가 비활성화되면 자신도 비활성화
-    void CheckPNode() {
-        if (pSkill == null) return;
-        if (!pSkill.isActivated) isActivated = false;
     }
 
     //스킬 정보팝업 활성화
     public void PopupActive() {
-        if (!pSkill.isActivated) return;
-        if (!isActivated) skillPopup.PopupActive(this);
+        skillPopup.PopupActive(this);
     }
 
+    public void OnCompleted()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void OnError(Exception error)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void OnNext(PlayerStateInfo value)
+    {
+        isActivated = value.unlockedSkill[skillId];
+    }
 }
