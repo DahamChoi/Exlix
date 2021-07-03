@@ -12,6 +12,8 @@ public class BattleLayer : MonoBehaviour, IObserver<InsideBattleInfo> {
     [SerializeField] UIController _UIController;
     [SerializeField] EnemyController _EnemyController;
 
+    [SerializeField] FactoryManager _FactoryManager;
+
     private List<string> MonsterNameList;
 
     public void OnEnable() {
@@ -21,6 +23,10 @@ public class BattleLayer : MonoBehaviour, IObserver<InsideBattleInfo> {
     private void Init() {
         // Using MonsterNameList
         // Make Monster Using GameState(CSV DATA)
+        _FactoryManager.CreateCardObject(1, transform);
+        _FactoryManager.CreateCardObject(2, transform);
+        _FactoryManager.CreateCardObject(3, transform);
+        _FactoryManager.CreateCardObject(4, transform);
     }
 
     public void OnCompleted() {
