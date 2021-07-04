@@ -8,7 +8,7 @@ public class FactoryManager : MonoBehaviour {
 
    public CardObject CreateCardObject(int cardId, Transform parent) {
         CardObject cardObject = Instantiate<CardObject>(CardObjectPrefab, parent);
-        CardDTO cardData = CardDao.selectCard(_SQLiteManager, cardId);
+        CardDTO cardData = CardDAO.selectCard(_SQLiteManager, cardId);
         cardObject.init(cardData);
         return cardObject;
     }

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardDao : MonoBehaviour {
+public class CardDAO : MonoBehaviour {
     public static CardDTO selectCard(SQLiteManager sqliteManager, int cardId) {
         CardDTO cardData = new CardDTO();
         SqliteDataReader it = sqliteManager.selectQuery(

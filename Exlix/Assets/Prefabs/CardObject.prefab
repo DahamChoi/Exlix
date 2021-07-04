@@ -285,7 +285,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d74d91f2c349b445a3396c38231d0a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UICanvas: {fileID: 8197759337465226605}
   ExplainText: {fileID: 9017894643637124310}
   CostText: {fileID: 1612711684036803453}
 --- !u!1 &8663084635039501040
