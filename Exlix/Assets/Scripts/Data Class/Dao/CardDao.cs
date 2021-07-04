@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CardDao : MonoBehaviour {
-    public static Card selectCard(SQLiteManager sqliteManager, int cardId) {
-        Card cardData = new Card();
+    public static CardDTO selectCard(SQLiteManager sqliteManager, int cardId) {
+        CardDTO cardData = new CardDTO();
         SqliteDataReader it = sqliteManager.selectQuery(
             "SELECT * FROM card WHERE number = " + cardId + ";");
         

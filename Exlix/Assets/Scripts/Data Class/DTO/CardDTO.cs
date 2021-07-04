@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Card {
+public class CardDTO {
     public int Number;
     public string Property;
     public string Type;
