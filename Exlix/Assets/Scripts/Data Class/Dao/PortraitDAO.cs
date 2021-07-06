@@ -1,18 +1,24 @@
-﻿using System.Collections;
+﻿using Mono.Data.Sqlite;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PortraitDAO : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public static PortraitDTO selectPortrait(SQLiteManager sqliteManager, int portraitId) {
+        PortraitDTO portraitData = new PortraitDTO();
+        SqliteDataReader it = sqliteManager.selectQuery(
+            "SELECT * FROM portrait WHERE number = " + portraitId + ";");
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+        it.Read();
+
+        portraitData.Number = it.GetInt32(0);
+        portraitData.ImagePath = it.GetString(1);
+        portraitData.Name = it.GetString(2);
+
+        Debug.Log(portraitData.Number);
+        Debug.Log(portraitData.ImagePath);
+        Debug.Log(portraitData.Name);
+        return portraitData;
+    } 
 }

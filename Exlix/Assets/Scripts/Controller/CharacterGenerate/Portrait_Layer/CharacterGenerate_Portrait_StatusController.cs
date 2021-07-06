@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UISwitchCanvas : MonoBehaviour
+public class CharacterGenerate_Portrait_StatusController : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
