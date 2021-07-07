@@ -7,7 +7,7 @@ public class PortraitDAO : MonoBehaviour
 {
     public static PortraitDTO selectPortrait(SQLiteManager sqliteManager, int portraitId) {
         PortraitDTO portraitData = new PortraitDTO();
-        SqliteDataReader it = sqliteManager.selectQuery(
+        SqliteDataReader it = sqliteManager.SelectQuery(
             "SELECT * FROM portrait WHERE number = " + portraitId + ";");
 
         it.Read();

@@ -20,12 +20,17 @@ public class CharacterGenerate_Deck_ButtonController : MonoBehaviour
 
         CharacterGenerateButton.onClick.AddListener(() =>
         {
-            _SceneState._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.DECK_TO_GAME);
+            CharacterGenerate();
         });
 
         DeckInfoButton.onClick.AddListener(() =>
         {
             _SceneState._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.DECK_TO_DECK_INFO);
         });
+    }
+
+    private void CharacterGenerate()
+    {
+        _SceneState._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.DECK_TO_GAME);
     }
 }

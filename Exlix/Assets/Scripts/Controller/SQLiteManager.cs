@@ -7,17 +7,28 @@ public class SQLiteManager : MonoBehaviour {
     private SqliteConnection connection;
     private bool IsOpen = false;
 
-    public SqliteDataReader selectQuery(string query) {
+    public SqliteDataReader SelectQuery(string query) {
+        ConnectionOpen();
+
+        var cmd = new SqliteCommand(query, connection);
+        var result = cmd.ExecuteReader();
+        return result;
+    }
+
+    public void InsertQuery(string query) {
+        ConnectionOpen();
+
+        SqliteCommand command = new SqliteCommand(query, connection);
+        command.ExecuteNonQuery();
+    }
+
+    public void ConnectionOpen() {
         if (false == IsOpen) {
             string conn = "Data Source=" + Application.dataPath + "/db/sqlite.db;";
             connection = new SqliteConnection(conn);
             connection.Open();
             IsOpen = true;
         }
-
-        var cmd = new SqliteCommand(query, connection);
-        var result = cmd.ExecuteReader();
-        return result;
     }
 
     public void OnDestroy() {
