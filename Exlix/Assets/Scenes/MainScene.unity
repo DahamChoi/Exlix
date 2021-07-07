@@ -10321,6 +10321,49 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &509318744
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 509318746}
+  - component: {fileID: 509318745}
+  m_Layer: 0
+  m_Name: PlayerState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &509318745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 509318744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9746e4d33fc22ac4185054ce778844ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &509318746
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 509318744}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.5996769, y: 1.483897, z: 561.78375}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &510635910
 GameObject:
   m_ObjectHideFlags: 0
@@ -27459,6 +27502,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b2b003f13bf1dd40b838edcb9ffbc8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _SceneState: {fileID: 0}
+  _PlayerState: {fileID: 0}
   _FactoryManager: {fileID: 1936850999}
   _UIController: {fileID: 1707291343}
   popup: {fileID: 602259012}
@@ -29205,7 +29250,7 @@ Transform:
   - {fileID: 1936850998}
   - {fileID: 42650922}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1319401211
 GameObject:
@@ -36460,6 +36505,20 @@ MonoBehaviour:
   PortraitPopupButton: {fileID: 7576544927489849244}
   PortraitPopupCloseButton: {fileID: 1790744148}
   PortraitPopupCommitButton: {fileID: 2144585067}
+  HpAddButton: {fileID: 7576544928162318744}
+  HpSubButton: {fileID: 7576544928727535176}
+  StrAddButton: {fileID: 7576544927000857798}
+  StrSubButton: {fileID: 7576544927823827999}
+  DexAddButton: {fileID: 7576544927867535745}
+  DexSubButton: {fileID: 7576544927650366531}
+  IntAddButton: {fileID: 7576544928136455026}
+  IntSubButton: {fileID: 7576544926910373801}
+  HP: {fileID: 7576544928418120418}
+  DEX: {fileID: 7576544927860316548}
+  STR: {fileID: 7576544928751506506}
+  INT: {fileID: 7576544928545411512}
+  StatusPoint: {fileID: 7576544927859531193}
+  _PlayerState: {fileID: 509318745}
   _SceneState: {fileID: 553959035}
 --- !u!1 &1708186896
 GameObject:
