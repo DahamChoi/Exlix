@@ -13,12 +13,18 @@ public class FactoryManager : MonoBehaviour {
         return cardObject;
     }
 
-    public PortraitObject CreatePortraitObject(int portraitId, Transform parent) {
-        PortraitObject portraitObject = Instantiate<PortraitObject>(PortraitObjectPrefab, parent);
-        PortraitDTO portraitData = PortraitDAO.selectPortrait(_SQLiteManager, portraitId);
-        portraitObject.transform.parent = parent;
-        portraitObject.init(portraitData);
-        return portraitObject;
+    public List<PortraitObject> CreatePortraitObject(Transform parent) {
+        List<PortraitObject> portraitObjectList = new List<PortraitObject>();
+        List<PortraitDTO> portraitData = PortraitDAO.selectPortrait(_SQLiteManager);
+
+        for (int i = 0; i < portraitData.Count; i++) {
+            PortraitObject portraitObject = Instantiate<PortraitObject>(PortraitObjectPrefab, parent);
+            portraitObject.transform.parent = parent;
+            portraitObject.init(portraitData[i]);
+            portraitObjectList.Add(portraitObject);
+        }
+
+        return portraitObjectList;
     }
 
     public List<StartPackDTO> LoadStartPackData() {
