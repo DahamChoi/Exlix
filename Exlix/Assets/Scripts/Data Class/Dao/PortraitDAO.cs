@@ -3,18 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PortraitDAO : MonoBehaviour
-{
-    public static List<PortraitDTO> selectPortrait(SQLiteManager sqliteManager) {
-        List<PortraitDTO> portraitDataList = new List<PortraitDTO>();
-        SqliteDataReader it = sqliteManager.SelectQuery(
-           "SELECT * FROM portrait");
+public class PortraitDAO {
+    private static readonly string PortraitTableName = "portrait";
 
-        while (it.Read()) {
+    public static List<PortraitDTO> SelectPortrait(SQLiteManager sqliteManager) {
+        List<PortraitDTO> portraitDataList = new List<PortraitDTO>();
+        string query = $"SELECT * FROM {PortraitTableName};";
+        ExdioDataReader it = sqliteManager.SelectQuery(query);
+
+        while (true == it.Read()) {
             PortraitDTO portraitData = new PortraitDTO();
-            portraitData.Number = it.GetInt32(0);
-            portraitData.ImagePath = it.GetString(1);
-            portraitData.Name = it.GetString(2);
+            portraitData.Number = it.GetSafeValue<int>(0);
+            portraitData.ImagePath = it.GetSafeValue<string>(1);
+            portraitData.Name = it.GetSafeValue<string>(2);
 
             portraitDataList.Add(portraitData);
         }

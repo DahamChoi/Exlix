@@ -3,24 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StartPackDAO : MonoBehaviour {
+public class StartPackDAO {
+    private static readonly string StartPackTableName = "start_pack";
     public static List<StartPackDTO> totalStartPack(SQLiteManager sqliteManager) {
         List<StartPackDTO> startPackDataList = new List<StartPackDTO>();
-        SqliteDataReader it = sqliteManager.SelectQuery(
-            //"SELECT * FROM start_pack WHERE number = " + startPackId + ";");
-            "SELECT * FROM start_pack;");
-        while (it.Read()) {
+        string query = $"SELECT * FROM {StartPackTableName};";
+        ExdioDataReader it = sqliteManager.SelectQuery(query);
+
+        while (true == it.Read()) {
             StartPackDTO startPackData = new StartPackDTO();
-            startPackData.Number = it.GetInt32(0);
-            string[] cardListString = it.GetString(1).Split(',');
+            startPackData.Number = it.GetSafeValue<int>(0);
+            string[] cardListString = it.GetSafeValue<string>(1).Split(',');
             List<CardDTO> cardList = new List<CardDTO>();
             foreach (var number in cardListString) {
                 var card = CardDAO.SelectCard(sqliteManager, int.Parse(number));
                 cardList.Add(card);
             }
             startPackData.CardList = cardList;
-            startPackData.Name = it.GetString(2);
-            startPackData.Explain = it.GetString(3);
+            startPackData.Name = it.GetSafeValue<string>(2);
+            startPackData.Explain = it.GetSafeValue<string>(3);
             startPackDataList.Add(startPackData);
         }
 
