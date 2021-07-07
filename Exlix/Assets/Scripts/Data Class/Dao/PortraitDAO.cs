@@ -5,17 +5,19 @@ using UnityEngine;
 
 public class PortraitDAO : MonoBehaviour
 {
-    public static PortraitDTO selectPortrait(SQLiteManager sqliteManager, int portraitId) {
-        PortraitDTO portraitData = new PortraitDTO();
+    public static List<PortraitDTO> selectPortrait(SQLiteManager sqliteManager) {
+        List<PortraitDTO> portraitDataList = new List<PortraitDTO>();
         SqliteDataReader it = sqliteManager.SelectQuery(
-            "SELECT * FROM portrait WHERE number = " + portraitId + ";");
+           "SELECT * FROM portrait");
 
-        it.Read();
+        while (it.Read()) {
+            PortraitDTO portraitData = new PortraitDTO();
+            portraitData.Number = it.GetInt32(0);
+            portraitData.ImagePath = it.GetString(1);
+            portraitData.Name = it.GetString(2);
+            Debug.Log(portraitData.Number);
+        }
 
-        portraitData.Number = it.GetInt32(0);
-        portraitData.ImagePath = it.GetString(1);
-        portraitData.Name = it.GetString(2);
-
-        return portraitData;
-    } 
+        return portraitDataList;
+    }
 }
