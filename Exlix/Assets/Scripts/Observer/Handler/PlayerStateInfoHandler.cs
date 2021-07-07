@@ -10,6 +10,58 @@ public class PlayerStateInfoHandler : ObserableHandler<PlayerStateInfo>
         Information = new PlayerStateInfo();
     }
 
+    public void AddStatus(string status) {
+        switch (status) {
+            case "HP"://HP
+                Information.hpPoint++;
+                break;
+            case "STR"://STR
+                Information.strPoint++;
+                break;
+            case "INT"://INT
+                Information.intPoint++;
+                break;
+            case "DEX"://DEX
+                Information.dexPoint++;
+                break;
+            default:
+                break;
+        }
+    }
+    public void SubtractStatus(string status) {
+        switch (status) {
+            case "HP"://HP
+                Information.hpPoint--;
+                break;
+            case "STR"://STR
+                Information.strPoint--;
+                break;
+            case "INT"://INT
+                Information.intPoint--;
+                break;
+            case "DEX"://DEX
+                Information.dexPoint--;
+                break;
+            default:
+                break;
+        }
+    }
+
+    public int GetStatus(string status) {
+        switch (status) {
+            case "HP"://HP
+                return Information.hpPoint;
+            case "STR"://STR
+                return Information.strPoint;
+            case "INT"://INT
+                return Information.intPoint;
+            case "DEX"://DEX
+                return Information.dexPoint;
+            default:
+                return -1;
+        }
+    }
+
     public void SetCurrentSkill(SkillDataTemplate skillData)
     {
         Information.equipedSkill = skillData;

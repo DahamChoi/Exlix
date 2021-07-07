@@ -19,6 +19,21 @@ public class CharacterGenerate_Portrait_UIController : MonoBehaviour
     [SerializeField] Button PortraitPopupCloseButton;
     [SerializeField] Button PortraitPopupCommitButton;
 
+    [SerializeField] Button HpAddButton;
+    [SerializeField] Button HpSubButton;
+    [SerializeField] Button StrAddButton;
+    [SerializeField] Button StrSubButton;
+    [SerializeField] Button DexAddButton;
+    [SerializeField] Button DexSubButton;
+    [SerializeField] Button IntAddButton;
+    [SerializeField] Button IntSubButton;
+
+    [SerializeField] Text HP;
+    [SerializeField] Text DEX;
+    [SerializeField] Text STR;
+    [SerializeField] Text INT;
+
+    [SerializeField] PlayerState _PlayerState;
     [SerializeField] SceneState _SceneState;
 
     void Start() {
@@ -52,6 +67,46 @@ public class CharacterGenerate_Portrait_UIController : MonoBehaviour
 
         PortraitPopupCommitButton.onClick.AddListener(() => {
             ConfirmPortrait();
+        });
+
+        HpAddButton.onClick.AddListener(() => {
+           _PlayerState._PlayerStateInfoHandler.AddStatus("HP");
+           HP.text = _PlayerState._PlayerStateInfoHandler.GetStatus("HP").ToString();
+        });
+
+        HpSubButton.onClick.AddListener(() => {
+            _PlayerState._PlayerStateInfoHandler.SubtractStatus("HP");
+            HP.text = _PlayerState._PlayerStateInfoHandler.GetStatus("HP").ToString();
+        });
+
+        StrAddButton.onClick.AddListener(() => {
+            _PlayerState._PlayerStateInfoHandler.AddStatus("STR");
+            STR.text = _PlayerState._PlayerStateInfoHandler.GetStatus("STR").ToString();
+        });
+
+        StrSubButton.onClick.AddListener(() => {
+            _PlayerState._PlayerStateInfoHandler.SubtractStatus("STR");
+            STR.text = _PlayerState._PlayerStateInfoHandler.GetStatus("STR").ToString();
+        });
+
+        DexAddButton.onClick.AddListener(() => {
+            _PlayerState._PlayerStateInfoHandler.AddStatus("DEX");
+            DEX.text = _PlayerState._PlayerStateInfoHandler.GetStatus("DEX").ToString();
+        });
+
+        DexSubButton.onClick.AddListener(() => {
+            _PlayerState._PlayerStateInfoHandler.SubtractStatus("DEX");
+            DEX.text = _PlayerState._PlayerStateInfoHandler.GetStatus("DEX").ToString();
+        });
+
+        IntAddButton.onClick.AddListener(() => {
+            _PlayerState._PlayerStateInfoHandler.AddStatus("INT");
+            INT.text = _PlayerState._PlayerStateInfoHandler.GetStatus("INT").ToString();
+        });
+
+        IntSubButton.onClick.AddListener(() => {
+            _PlayerState._PlayerStateInfoHandler.SubtractStatus("INT");
+            INT.text = _PlayerState._PlayerStateInfoHandler.GetStatus("INT").ToString();
         });
     }
     public void OpenOptionScreen() {

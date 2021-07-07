@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerState : MonoBehaviour
 {
-    public PlayerStateInfoHandler _PlayerStateInfoHandler;
+    public PlayerStateInfoHandler _PlayerStateInfoHandler = new PlayerStateInfoHandler();
 
     public void SubscriblePlayerStateInfo(IObserver<PlayerStateInfo> observer)
     {

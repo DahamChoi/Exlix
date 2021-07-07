@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class CharacterGenerate_Portrait_Layer : MonoBehaviour
 {
+    [SerializeField] SceneState _SceneState;
+    [SerializeField] PlayerState _PlayerState;
     [SerializeField] FactoryManager _FactoryManager;
     [SerializeField] CharacterGenerate_Portrait_UIController _UIController;
 
