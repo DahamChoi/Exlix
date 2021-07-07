@@ -27835,8 +27835,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b2b003f13bf1dd40b838edcb9ffbc8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _SceneState: {fileID: 0}
-  _PlayerState: {fileID: 0}
+  _SceneState: {fileID: 553959035}
+  _PlayerState: {fileID: 509318745}
   _FactoryManager: {fileID: 1936850999}
   _UIController: {fileID: 1707291343}
   popup: {fileID: 602259012}

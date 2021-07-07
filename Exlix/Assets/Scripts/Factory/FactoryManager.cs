@@ -22,6 +22,7 @@ public class FactoryManager : MonoBehaviour {
             PortraitObject portraitObject = Instantiate<PortraitObject>(PortraitObjectPrefab, parent);
             portraitObject.transform.parent = parent;
             portraitObject.init(portraitData[i]);
+
             portraitObjectList.Add(portraitObject);
         }
         return portraitObjectList;
