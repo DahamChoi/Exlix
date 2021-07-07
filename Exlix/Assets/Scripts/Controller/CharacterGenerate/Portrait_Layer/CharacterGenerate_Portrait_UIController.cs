@@ -32,6 +32,7 @@ public class CharacterGenerate_Portrait_UIController : MonoBehaviour
     [SerializeField] Text DEX;
     [SerializeField] Text STR;
     [SerializeField] Text INT;
+    [SerializeField] Text StatusPoint;
 
     [SerializeField] PlayerState _PlayerState;
     [SerializeField] SceneState _SceneState;
@@ -70,43 +71,67 @@ public class CharacterGenerate_Portrait_UIController : MonoBehaviour
         });
 
         HpAddButton.onClick.AddListener(() => {
-           _PlayerState._PlayerStateInfoHandler.AddStatus("HP");
-           HP.text = _PlayerState._PlayerStateInfoHandler.GetStatus("HP").ToString();
+            if(_PlayerState._PlayerStateInfoHandler.GetStatusExtraPoint()>0) {
+                _PlayerState._PlayerStateInfoHandler.AddStatus("HP");
+                HP.text = (_PlayerState._PlayerStateInfoHandler.GetStatus("HP") + _PlayerState._PlayerStateInfoHandler.GetExtraStatus("HP")).ToString();
+                StatusPoint.text ="잔여 포인트 : " +(_PlayerState._PlayerStateInfoHandler.GetStatusExtraPoint()).ToString();
+            }
         });
 
         HpSubButton.onClick.AddListener(() => {
-            _PlayerState._PlayerStateInfoHandler.SubtractStatus("HP");
-            HP.text = _PlayerState._PlayerStateInfoHandler.GetStatus("HP").ToString();
+            if (_PlayerState._PlayerStateInfoHandler.GetExtraStatus("HP")>0) { 
+                _PlayerState._PlayerStateInfoHandler.SubtractStatus("HP");
+                HP.text = (_PlayerState._PlayerStateInfoHandler.GetStatus("HP") + _PlayerState._PlayerStateInfoHandler.GetExtraStatus("HP")).ToString();
+                StatusPoint.text = "잔여 포인트 : " + _PlayerState._PlayerStateInfoHandler.GetStatusExtraPoint().ToString();
+        }
         });
 
         StrAddButton.onClick.AddListener(() => {
-            _PlayerState._PlayerStateInfoHandler.AddStatus("STR");
-            STR.text = _PlayerState._PlayerStateInfoHandler.GetStatus("STR").ToString();
+            if (_PlayerState._PlayerStateInfoHandler.GetStatusExtraPoint()>0) {
+                _PlayerState._PlayerStateInfoHandler.AddStatus("STR");
+                STR.text = (_PlayerState._PlayerStateInfoHandler.GetStatus("STR") + _PlayerState._PlayerStateInfoHandler.GetExtraStatus("STR")).ToString();
+                StatusPoint.text = "잔여 포인트 : " + _PlayerState._PlayerStateInfoHandler.GetStatusExtraPoint().ToString();
+            }
         });
 
         StrSubButton.onClick.AddListener(() => {
-            _PlayerState._PlayerStateInfoHandler.SubtractStatus("STR");
-            STR.text = _PlayerState._PlayerStateInfoHandler.GetStatus("STR").ToString();
+            if (_PlayerState._PlayerStateInfoHandler.GetExtraStatus("STR") > 0) {
+                _PlayerState._PlayerStateInfoHandler.SubtractStatus("STR");
+                STR.text = (_PlayerState._PlayerStateInfoHandler.GetStatus("STR") + _PlayerState._PlayerStateInfoHandler.GetExtraStatus("STR")).ToString();
+                StatusPoint.text = "잔여 포인트 : " + _PlayerState._PlayerStateInfoHandler.GetStatusExtraPoint().ToString();
+            }
         });
 
         DexAddButton.onClick.AddListener(() => {
-            _PlayerState._PlayerStateInfoHandler.AddStatus("DEX");
-            DEX.text = _PlayerState._PlayerStateInfoHandler.GetStatus("DEX").ToString();
+            if (_PlayerState._PlayerStateInfoHandler.GetStatusExtraPoint() > 0) {
+                _PlayerState._PlayerStateInfoHandler.AddStatus("DEX");
+                DEX.text = (_PlayerState._PlayerStateInfoHandler.GetStatus("DEX") + _PlayerState._PlayerStateInfoHandler.GetExtraStatus("DEX")).ToString();
+                StatusPoint.text = "잔여 포인트 : " + _PlayerState._PlayerStateInfoHandler.GetStatusExtraPoint().ToString();
+            }
         });
 
         DexSubButton.onClick.AddListener(() => {
-            _PlayerState._PlayerStateInfoHandler.SubtractStatus("DEX");
-            DEX.text = _PlayerState._PlayerStateInfoHandler.GetStatus("DEX").ToString();
+            if (_PlayerState._PlayerStateInfoHandler.GetExtraStatus("DEX") > 0) {
+                _PlayerState._PlayerStateInfoHandler.SubtractStatus("DEX");
+                DEX.text = (_PlayerState._PlayerStateInfoHandler.GetStatus("DEX") + _PlayerState._PlayerStateInfoHandler.GetExtraStatus("DEX")).ToString();
+                StatusPoint.text = "잔여 포인트 : " + _PlayerState._PlayerStateInfoHandler.GetStatusExtraPoint().ToString();
+            }
         });
 
         IntAddButton.onClick.AddListener(() => {
-            _PlayerState._PlayerStateInfoHandler.AddStatus("INT");
-            INT.text = _PlayerState._PlayerStateInfoHandler.GetStatus("INT").ToString();
+            if (_PlayerState._PlayerStateInfoHandler.GetStatusExtraPoint() > 0) {
+                _PlayerState._PlayerStateInfoHandler.AddStatus("INT");
+                INT.text = (_PlayerState._PlayerStateInfoHandler.GetStatus("INT") + _PlayerState._PlayerStateInfoHandler.GetExtraStatus("INT")).ToString();
+                StatusPoint.text = "잔여 포인트 : " + _PlayerState._PlayerStateInfoHandler.GetStatusExtraPoint().ToString();
+            }
         });
 
         IntSubButton.onClick.AddListener(() => {
-            _PlayerState._PlayerStateInfoHandler.SubtractStatus("INT");
-            INT.text = _PlayerState._PlayerStateInfoHandler.GetStatus("INT").ToString();
+            if (_PlayerState._PlayerStateInfoHandler.GetExtraStatus("INT") > 0) {
+                _PlayerState._PlayerStateInfoHandler.SubtractStatus("INT");
+                INT.text = (_PlayerState._PlayerStateInfoHandler.GetStatus("INT") + _PlayerState._PlayerStateInfoHandler.GetExtraStatus("INT")).ToString();
+                StatusPoint.text = "잔여 포인트 : " +_PlayerState._PlayerStateInfoHandler.GetStatusExtraPoint().ToString();
+            }
         });
     }
     public void OpenOptionScreen() {

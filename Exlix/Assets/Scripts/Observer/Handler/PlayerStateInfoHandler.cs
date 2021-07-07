@@ -13,16 +13,20 @@ public class PlayerStateInfoHandler : ObserableHandler<PlayerStateInfo>
     public void AddStatus(string status) {
         switch (status) {
             case "HP"://HP
-                Information.hpPoint++;
+                Information.extraHp++;
+                Information.statusExtraPoint--;
                 break;
             case "STR"://STR
-                Information.strPoint++;
+                Information.extraStr++;
+                Information.statusExtraPoint--;
                 break;
             case "INT"://INT
-                Information.intPoint++;
+                Information.extraInt++;
+                Information.statusExtraPoint--;
                 break;
             case "DEX"://DEX
-                Information.dexPoint++;
+                Information.extraDex++;
+                Information.statusExtraPoint--;
                 break;
             default:
                 break;
@@ -31,22 +35,25 @@ public class PlayerStateInfoHandler : ObserableHandler<PlayerStateInfo>
     public void SubtractStatus(string status) {
         switch (status) {
             case "HP"://HP
-                Information.hpPoint--;
+                Information.extraHp--;
+                Information.statusExtraPoint++;
                 break;
             case "STR"://STR
-                Information.strPoint--;
+                Information.extraStr--;
+                Information.statusExtraPoint++;
                 break;
             case "INT"://INT
-                Information.intPoint--;
+                Information.extraInt--;
+                Information.statusExtraPoint++;
                 break;
             case "DEX"://DEX
-                Information.dexPoint--;
+                Information.extraDex--;
+                Information.statusExtraPoint++;          
                 break;
             default:
                 break;
         }
     }
-
     public int GetStatus(string status) {
         switch (status) {
             case "HP"://HP
@@ -61,7 +68,25 @@ public class PlayerStateInfoHandler : ObserableHandler<PlayerStateInfo>
                 return -1;
         }
     }
+    public int GetExtraStatus(string status) {
+        switch (status) {
+            case "HP"://HP
+                return Information.extraHp;
+            case "STR"://STR
+                return Information.extraStr;
+            case "INT"://INT
+                return Information.extraInt;
+            case "DEX"://DEX
+                return Information.extraDex;
+            default:
+                return -1;
+        }
+    }
 
+
+    public int GetStatusExtraPoint() {
+        return Information.statusExtraPoint;
+    }
     public void SetCurrentSkill(SkillDataTemplate skillData)
     {
         Information.equipedSkill = skillData;
