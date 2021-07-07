@@ -18,12 +18,12 @@ public class FactoryManager : MonoBehaviour {
         List<PortraitDTO> portraitData = PortraitDAO.selectPortrait(_SQLiteManager);
 
         for (int i = 0; i < portraitData.Count; i++) {
+            Debug.Log(portraitData[i].Number);
             PortraitObject portraitObject = Instantiate<PortraitObject>(PortraitObjectPrefab, parent);
             portraitObject.transform.parent = parent;
             portraitObject.init(portraitData[i]);
             portraitObjectList.Add(portraitObject);
         }
-
         return portraitObjectList;
     }
 

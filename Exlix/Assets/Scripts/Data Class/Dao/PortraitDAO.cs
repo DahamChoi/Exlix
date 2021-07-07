@@ -15,7 +15,8 @@ public class PortraitDAO : MonoBehaviour
             portraitData.Number = it.GetInt32(0);
             portraitData.ImagePath = it.GetString(1);
             portraitData.Name = it.GetString(2);
-            Debug.Log(portraitData.Number);
+
+            portraitDataList.Add(portraitData);
         }
 
         return portraitDataList;

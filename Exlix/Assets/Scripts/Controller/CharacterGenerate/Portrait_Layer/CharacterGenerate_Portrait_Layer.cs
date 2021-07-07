@@ -15,7 +15,6 @@ public class CharacterGenerate_Portrait_Layer : MonoBehaviour
         Init();
     }
     private void Init() {
-
         _FactoryManager.CreatePortraitObject(popup.transform);
     }
 }
