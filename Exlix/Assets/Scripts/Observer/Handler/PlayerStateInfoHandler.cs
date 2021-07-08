@@ -3,10 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStateInfoHandler : ObserableHandler<PlayerStateInfo>
-{
-    public PlayerStateInfoHandler()
-    {
+public class PlayerStateInfoHandler : ObserableHandler<PlayerStateInfo> {
+    public PlayerStateInfoHandler() {
         Information = new PlayerStateInfo();
     }
 
@@ -48,7 +46,7 @@ public class PlayerStateInfoHandler : ObserableHandler<PlayerStateInfo>
                 break;
             case "DEX"://DEX
                 Information.extraDex--;
-                Information.statusExtraPoint++;          
+                Information.statusExtraPoint++;
                 break;
             default:
                 break;
@@ -83,12 +81,16 @@ public class PlayerStateInfoHandler : ObserableHandler<PlayerStateInfo>
         }
     }
 
-
+    public void SetCurrentPortrait(PortraitDTO portrait) {
+        Information.CurrentPortrait = portrait;
+    }
+    public PortraitDTO GetCurrentPortrait() {
+        return Information.CurrentPortrait;
+    }
     public int GetStatusExtraPoint() {
         return Information.statusExtraPoint;
     }
-    public void SetCurrentSkill(SkillDataTemplate skillData)
-    {
+    public void SetCurrentSkill(SkillDataTemplate skillData) {
         Information.equipedSkill = skillData;
         base.NotifyObservers();
     }
@@ -111,3 +113,5 @@ public class PlayerStateInfoHandler : ObserableHandler<PlayerStateInfo>
         base.NotifyObservers();
     }
 }
+
+

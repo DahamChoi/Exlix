@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class CharacterGenerate_Portrait_UIController : MonoBehaviour
-{
+public class CharacterGenerate_Portrait_UIController : MonoBehaviour {
     [SerializeField] GameObject OptionPopupScreen;
     [SerializeField] GameObject OptionPopupCloser;
 
@@ -36,6 +35,10 @@ public class CharacterGenerate_Portrait_UIController : MonoBehaviour
 
     [SerializeField] PlayerState _PlayerState;
     [SerializeField] SceneState _SceneState;
+
+    [SerializeField] Image PortraitImg;
+
+    PortraitDTO portrait;
 
     void Start() {
         BackButton.onClick.AddListener(() => {
@@ -71,35 +74,35 @@ public class CharacterGenerate_Portrait_UIController : MonoBehaviour
         });
 
         HpAddButton.onClick.AddListener(() => {
-            AddStat("HP",HP);
+            AddStat("HP", HP);
         });
 
         HpSubButton.onClick.AddListener(() => {
-            SubStat("HP",HP);
+            SubStat("HP", HP);
         });
 
         StrAddButton.onClick.AddListener(() => {
-            AddStat("STR",STR);
+            AddStat("STR", STR);
         });
 
         StrSubButton.onClick.AddListener(() => {
-            SubStat("STR",STR);
+            SubStat("STR", STR);
         });
 
         DexAddButton.onClick.AddListener(() => {
-            AddStat("DEX",DEX);
+            AddStat("DEX", DEX);
         });
 
         DexSubButton.onClick.AddListener(() => {
-            SubStat("DEX",DEX);
+            SubStat("DEX", DEX);
         });
 
         IntAddButton.onClick.AddListener(() => {
-            AddStat("INT",INT);
+            AddStat("INT", INT);
         });
 
         IntSubButton.onClick.AddListener(() => {
-            SubStat("INT",INT);
+            SubStat("INT", INT);
         });
     }
     public void AddStat(string statType, Text statText) {
@@ -145,10 +148,13 @@ public class CharacterGenerate_Portrait_UIController : MonoBehaviour
         PortraitPopupCloser.SetActive(false);
     }
     public void ConfirmPortrait() {
+        portrait = _PlayerState._PlayerStateInfoHandler.GetCurrentPortrait();
         PortraitPopup.SetActive(false);
         PortraitPopupCloser.SetActive(false);
+        PortraitImg.sprite = Resources.Load(portrait.ImagePath, typeof(Sprite)) as Sprite;
     }
     public void SelectPortrait() {
 
     }
 }
+

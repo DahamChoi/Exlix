@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStateInfo
-{
+public class PlayerStateInfo {
     public int skillPoint { get; set; } //스킬 포인트
     public int statusExtraPoint { get; set; }
     public int hpPoint { get; set; }
@@ -14,10 +13,10 @@ public class PlayerStateInfo
     public int extraInt { get; set; }
     public int extraDex { get; set; }
     public int extraStr { get; set; }
-    public int PortraitNumber { get; set; }
+    public PortraitDTO CurrentPortrait { get; set; }
     public string PlayerName { get; set; }
     public SkillDataTemplate equipedSkill { get; set; } //장착중인 스킬
-    public Dictionary<int , bool> unlockedSkill { get; set; } //해금한 스킬
+    public Dictionary<int, bool> unlockedSkill { get; set; } //해금한 스킬
 
     public PlayerStateInfo() {//테스트용임
         this.statusExtraPoint = 5;
@@ -27,9 +26,8 @@ public class PlayerStateInfo
         this.strPoint = 10;
         this.extraHp = 0;
         this.extraInt = 0;
-        this.extraStr =0;
+        this.extraStr = 0;
         this.extraDex = 0;
-        this.PortraitNumber = 1;
         this.PlayerName = "";
     }
 }
