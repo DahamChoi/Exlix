@@ -3,17 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 public class CharacterGenerate_Portrait_UIController : MonoBehaviour {
-    [SerializeField] GameObject OptionPopupScreen;
-    [SerializeField] GameObject OptionPopupCloser;
-
     [SerializeField] GameObject PortraitPopup;
     [SerializeField] GameObject PortraitPopupCloser;
 
-    [SerializeField] Button BackButton;
     [SerializeField] Button NextButton;
-    [SerializeField] Button MainMenuButton;
-    [SerializeField] Button OptionButton;
-    [SerializeField] Button OptionCloseButton;
     [SerializeField] Button PortraitPopupButton;
     [SerializeField] Button PortraitPopupCloseButton;
     [SerializeField] Button PortraitPopupCommitButton;
@@ -38,27 +31,11 @@ public class CharacterGenerate_Portrait_UIController : MonoBehaviour {
 
     [SerializeField] Image PortraitImg;
 
-    PortraitDTO portrait;
+    private PortraitDTO portrait;
 
     void Start() {
-        BackButton.onClick.AddListener(() => {
-            _SceneState._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.PORTRAIT_TO_INFO);
-        });
-
         NextButton.onClick.AddListener(() => {
             _SceneState._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.PORTRAIT_TO_DECK);
-        });
-
-        MainMenuButton.onClick.AddListener(() => {
-            _SceneState._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.PORTRAIT_TO_MAIN_MENU);
-        });
-
-        OptionButton.onClick.AddListener(() => {
-            OpenOptionScreen();
-        });
-
-        OptionCloseButton.onClick.AddListener(() => {
-            CloseSettingScreen();
         });
 
         PortraitPopupButton.onClick.AddListener(() => {
@@ -105,6 +82,7 @@ public class CharacterGenerate_Portrait_UIController : MonoBehaviour {
             SubStat("INT", INT);
         });
     }
+
     public void AddStat(string statType, Text statText) {
         if (_PlayerState._PlayerStateInfoHandler.GetStatusExtraPoint() > 0) {
             _PlayerState._PlayerStateInfoHandler.AddStatus(statType);
@@ -112,6 +90,7 @@ public class CharacterGenerate_Portrait_UIController : MonoBehaviour {
             StatusPoint.text = "잔여 포인트 : " + _PlayerState._PlayerStateInfoHandler.GetStatusExtraPoint().ToString();
         }
     }
+
     public void SubStat(string statType, Text statText) {
         if (_PlayerState._PlayerStateInfoHandler.GetExtraStatus(statType) > 0) {
             _PlayerState._PlayerStateInfoHandler.SubtractStatus(statType);
@@ -119,20 +98,7 @@ public class CharacterGenerate_Portrait_UIController : MonoBehaviour {
             StatusPoint.text = "잔여 포인트 : " + _PlayerState._PlayerStateInfoHandler.GetStatusExtraPoint().ToString();
         }
     }
-    public void OpenOptionScreen() {
-        if (OptionPopupScreen.activeSelf == true) {
-            OptionPopupScreen.SetActive(false);
-            OptionPopupCloser.SetActive(false);
-        }
-        else {
-            OptionPopupScreen.SetActive(true);
-            OptionPopupCloser.SetActive(true);
-        }
-    }
-    public void CloseSettingScreen() {
-        OptionPopupScreen.SetActive(false);
-        OptionPopupCloser.SetActive(false);
-    }
+
     public void OpenPortraitScreen() {
         if (PortraitPopup.activeSelf == true) {
             PortraitPopup.SetActive(false);
@@ -143,16 +109,19 @@ public class CharacterGenerate_Portrait_UIController : MonoBehaviour {
             PortraitPopupCloser.SetActive(true);
         }
     }
+
     public void ClosePortraitScreen() {
         PortraitPopup.SetActive(false);
         PortraitPopupCloser.SetActive(false);
     }
+
     public void ConfirmPortrait() {
         portrait = _PlayerState._PlayerStateInfoHandler.GetCurrentPortrait();
         PortraitPopup.SetActive(false);
         PortraitPopupCloser.SetActive(false);
         PortraitImg.sprite = Resources.Load(portrait.ImagePath, typeof(Sprite)) as Sprite;
     }
+
     public void SelectPortrait() {
 
     }

@@ -50,7 +50,8 @@ public class GameStateMachine
         MAIN_TO_EQUIPMENT,
         EQUIPMENT_TO_MAIN, 
         MAIN_TO_CARD, 
-        CARD_TO_MAIN
+        CARD_TO_MAIN,
+        BACK
     };
 
     private Dictionary<STATE, List<KeyValuePair<TRIGGER, STATE>>> Rules =
@@ -159,12 +160,27 @@ public class GameStateMachine
             new KeyValuePair<TRIGGER, STATE>(TRIGGER.CARD_TO_MAIN, STATE.CHARACTER_MAINTENANCE_MAIN));
     }
 
-    public void ProcessEvent(TRIGGER trigger)
-    {
-        foreach (var it in Rules[CurrentState])
-        {
-            if (it.Key == trigger)
-            {
+    public void ProcessEvent(TRIGGER trigger) {
+        if(TRIGGER.BACK == trigger) {
+            if(STATE.CHARACTER_GENERATE_CHARACTER_INFO == CurrentState ||
+                STATE.CHARACTER_GENERATE_PORTRAIT == CurrentState ||
+                STATE.CHARACTER_GENERATE_DECK == CurrentState) {
+                CurrentState = STATE.MAIN_MENU;
+            }
+            else if(STATE.CHARACTER_GENERATE_DECK_INFO == CurrentState) {
+                CurrentState = STATE.CHARACTER_GENERATE_DECK;
+            }
+            else if (STATE.CHARACTER_MAINTENANCE_SKILL == CurrentState ||
+                STATE.CHARACTER_MAINTENANCE_EQUIPMENT == CurrentState ||
+                STATE.CHARACTER_MAINTENANCE_CARD == CurrentState) {
+                CurrentState = STATE.CHARACTER_MAINTENANCE_MAIN;
+            }
+
+            return;
+        }
+
+        foreach (var it in Rules[CurrentState]) {
+            if (it.Key == trigger) {
                 CurrentState = it.Value;
                 return;
             }
