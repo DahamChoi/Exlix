@@ -31,7 +31,11 @@ public class UIBarInfoController : MonoBehaviour {
         PlayerLevelText.text = $"{CommonDefine.LevelString} {characterInfo.Level}";
         PlayerHpText.text = $"{CommonDefine.HpString} {characterInfo.Hp}";
         PlayerMpText.text = $"{CommonDefine.MpString} {characterInfo.Mp}";
-        StageNameText.text = characterInfo.CurrentArea;
+
+        AreaDTO area = AreaDAO.SelectArea(_SQLiteManager, characterInfo.CurrentArea);
+        if (null != area) {
+            StageNameText.text = area.Name;
+        }
 
         PortraitDTO portrait = PortraitDAO.SelectPortrait(_SQLiteManager, characterInfo.Portrait);
         PlayerIconImage.sprite = Resources.Load(portrait.ImagePath, typeof(Sprite)) as Sprite;

@@ -13,12 +13,13 @@ public class SelectAreaPopup : MonoBehaviour {
 
     [SerializeField] SceneState _SceneState;
 
-    public static GameObject Create(GameObject selectAreaPopupObject, Transform parent, AreaDTO areaDTO) {
+    public static GameObject Create(GameObject selectAreaPopupObject, Transform parent, SceneState sceneState, AreaDTO areaDTO) {
         GameObject selectAreaPopup = Instantiate<GameObject>(selectAreaPopupObject, parent);
         SelectAreaPopup popupScript = selectAreaPopup.GetComponent<SelectAreaPopup>();
         popupScript.StageDescrible.text = areaDTO.Explain;
         popupScript.StageName.text = areaDTO.Name;
         popupScript.AreaImage.sprite = Resources.Load(areaDTO.ImagePath, typeof(Sprite)) as Sprite;
+        popupScript._SceneState = sceneState;
 
         return selectAreaPopup;
     }
@@ -29,8 +30,9 @@ public class SelectAreaPopup : MonoBehaviour {
             // To Do Send Data
         });
 
+        GameObject self = this.gameObject;
         ClosePopupButton.onClick.AddListener(() => {
-            Destroy(this);
+            Destroy(self);
         });
     }
 }

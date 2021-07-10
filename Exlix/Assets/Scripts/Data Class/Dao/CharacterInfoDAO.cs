@@ -34,18 +34,20 @@ public class CharacterInfoDAO {
         characterInfo.StatDex = it.GetSafeValue<int>(8);
         characterInfo.Gold = it.GetSafeValue<int>(9);
         characterInfo.UnLockedSkill = it.GetTextValueToList(10);
-        characterInfo.CurrentEquipmentHead = it.GetSafeValue<int>(11);
-        characterInfo.CurrentEquipmentUpperBody = it.GetSafeValue<int>(12);
-        characterInfo.CurrentEquipmentUnderBody = it.GetSafeValue<int>(13);
-        characterInfo.CurrentEquipmentWeapon = it.GetSafeValue<int>(14);
-        characterInfo.CurrentEquipmentAccessories = it.GetSafeValue<int>(15);
-        characterInfo.CurrentEquipmentAccessories = it.GetSafeValue<int>(16);
-        characterInfo.Level = it.GetSafeValue<int>(17);
-        characterInfo.Hp = it.GetSafeValue<int>(18);
-        characterInfo.Mp = it.GetSafeValue<int>(19);
-        characterInfo.CurrentArea = it.GetSafeValue<int>(20);
-        characterInfo.SkillPoint = it.GetSafeValue<int>(21);
-        characterInfo.UnLockedAreaList = it.GetTextValueToList(22);
+        characterInfo.CurrentSkill = it.GetSafeValue<int>(11);
+        characterInfo.HaveEquipmentList = it.GetTextValueToList(12);
+        characterInfo.CurrentEquipmentHead = it.GetSafeValue<int>(13);
+        characterInfo.CurrentEquipmentUpperBody = it.GetSafeValue<int>(14);
+        characterInfo.CurrentEquipmentUnderBody = it.GetSafeValue<int>(15);
+        characterInfo.CurrentEquipmentWeapon = it.GetSafeValue<int>(16);
+        characterInfo.CurrentEquipmentAccessories = it.GetSafeValue<int>(17);
+        characterInfo.CurrentEquipmentAccessories = it.GetSafeValue<int>(18);
+        characterInfo.Level = it.GetSafeValue<int>(19);
+        characterInfo.Hp = it.GetSafeValue<int>(20);
+        characterInfo.Mp = it.GetSafeValue<int>(21);
+        characterInfo.CurrentArea = it.GetSafeValue<int>(22);
+        characterInfo.SkillPoint = it.GetSafeValue<int>(23);
+        characterInfo.UnLockedAreaList = it.GetTextValueToList(24);
 
         return characterInfo;
     }

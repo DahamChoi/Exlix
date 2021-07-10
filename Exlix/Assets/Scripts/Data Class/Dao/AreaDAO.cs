@@ -22,11 +22,12 @@ public class AreaDAO
         area.Level = it.GetSafeValue<int>(3);
         area.Region = it.GetSafeValue<string>(4);
         area.MainPercentage = it.GetSafeValue<int>(5);
-        area.SubPercentage = it.GetSafeValue<int>(6);
-        area.GeneralPercentage = it.GetSafeValue<int>(7);
-        area.MustEventList = it.GetTextValueToList(8);
-        area.Name = it.GetSafeValue<string>(9);
-        area.ParentList = it.GetTextValueToList(10);
+        area.AreaPercentage = it.GetSafeValue<int>(6);
+        area.SubPercentage = it.GetSafeValue<int>(7);
+        area.GeneralPercentage = it.GetSafeValue<int>(8);
+        area.MustEventList = it.GetTextValueToList(9);
+        area.Name = it.GetSafeValue<string>(10);
+        area.ParentList = it.GetTextValueToList(11);
 
         return area;
     }

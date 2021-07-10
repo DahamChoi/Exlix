@@ -1097,9 +1097,10 @@ MonoBehaviour:
   PlayerHpText: {fileID: 7074085121843008228}
   PlayerMpText: {fileID: 2605054215798844324}
   StageNameText: {fileID: 737644588487932816}
-  PlayerIconImage: {fileID: 3141544265060919689}
+  PlayerIconImage: {fileID: 7627061554978382482}
   ContainSkillPointText: {fileID: 3455544706292041969}
   CoinText: {fileID: 2188094056467145211}
+  _SQLiteManager: {fileID: 0}
 --- !u!1 &4468674690647801257
 GameObject:
   m_ObjectHideFlags: 0

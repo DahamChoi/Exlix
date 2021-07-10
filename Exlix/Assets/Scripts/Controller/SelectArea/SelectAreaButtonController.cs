@@ -16,6 +16,9 @@ public class SelectAreaButtonController : MonoBehaviour {
     [SerializeField] int AreaNumber;
 
     [SerializeField] SQLiteManager _SQLiteManager;
+    [SerializeField] SceneState _SceneState;
+
+    private bool isActive = false;
 
     private void Start() {
         Init();
@@ -32,7 +35,7 @@ public class SelectAreaButtonController : MonoBehaviour {
             bool isContain = false;
             foreach(var it in area.ParentList) {
                 if (characterInfo.UnLockedAreaList.Contains(it)) {
-                    isContain = true;
+                    isActive = isContain = true;
                     break;
                 }
             }
@@ -41,8 +44,10 @@ public class SelectAreaButtonController : MonoBehaviour {
         }
 
         SelectAreaButton.onClick.AddListener(() => {
-            GameObject popup = SelectAreaPopup.Create(SelectAreaPopupObject, Parent, area);
-            // ...
+            if (isActive) {
+                GameObject popup = SelectAreaPopup.Create(SelectAreaPopupObject, Parent, _SceneState, area);
+                // ...
+            }
         });
     }
 }
