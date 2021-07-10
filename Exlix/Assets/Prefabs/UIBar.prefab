@@ -1039,6 +1039,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8717538507003624993}
   - component: {fileID: 3795179176963162762}
+  - component: {fileID: 3957283316155364699}
   m_Layer: 0
   m_Name: UIBar
   m_TagString: Untagged
@@ -1079,6 +1080,26 @@ MonoBehaviour:
   OptionCloseButton: {fileID: 8761307850882389221}
   BackButton: {fileID: 8902024573066319702}
   _SceneState: {fileID: 0}
+--- !u!114 &3957283316155364699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4457363608581174776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79abf39443b9ad64994b5aa2284114d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerNameText: {fileID: 6905809867459153801}
+  PlayerLevelText: {fileID: 841271981448540281}
+  PlayerHpText: {fileID: 7074085121843008228}
+  PlayerMpText: {fileID: 2605054215798844324}
+  StageNameText: {fileID: 737644588487932816}
+  PlayerIconImage: {fileID: 3141544265060919689}
+  ContainSkillPointText: {fileID: 3455544706292041969}
+  CoinText: {fileID: 2188094056467145211}
 --- !u!1 &4468674690647801257
 GameObject:
   m_ObjectHideFlags: 0

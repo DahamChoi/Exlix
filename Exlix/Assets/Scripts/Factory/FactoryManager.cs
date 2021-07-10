@@ -15,7 +15,7 @@ public class FactoryManager : MonoBehaviour {
 
     public List<PortraitObject> CreatePortraitObject(Transform parent) {
         List<PortraitObject> portraitObjectList = new List<PortraitObject>();
-        List<PortraitDTO> portraitData = PortraitDAO.SelectPortrait(_SQLiteManager);
+        List<PortraitDTO> portraitData = PortraitDAO.SelectAllPortrait(_SQLiteManager);
 
         for (int i = 0; i < portraitData.Count; i++) {
             Debug.Log(portraitData[i].Number);

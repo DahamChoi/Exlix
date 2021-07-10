@@ -33,6 +33,21 @@ public class ExdioDataReader {
         return default;
     }
 
+    public List<int> GetTextValueToList(int colIndex) {
+        string theValue = this.GetSafeValue<string>(colIndex);
+        if(null == theValue) {
+            return default;
+        }
+
+        List<int> ValueList = new List<int>();
+        string[] ValueStrList = theValue.Split(',');
+        foreach(var value in ValueStrList) {
+            ValueList.Add(int.Parse(value));
+        }
+
+        return ValueList;
+    }
+
     private static bool IsNullableType(Type theValueType) {
         bool result = (theValueType.IsGenericType && theValueType.GetGenericTypeDefinition().Equals(typeof(Nullable<>)));
         return result;

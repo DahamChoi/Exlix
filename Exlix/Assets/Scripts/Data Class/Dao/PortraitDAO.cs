@@ -6,7 +6,7 @@ using UnityEngine;
 public class PortraitDAO {
     private static readonly string PortraitTableName = "portrait";
 
-    public static List<PortraitDTO> SelectPortrait(SQLiteManager sqliteManager) {
+    public static List<PortraitDTO> SelectAllPortrait(SQLiteManager sqliteManager) {
         List<PortraitDTO> portraitDataList = new List<PortraitDTO>();
         string query = $"SELECT * FROM {PortraitTableName};";
         ExdioDataReader it = sqliteManager.SelectQuery(query);
@@ -21,5 +21,21 @@ public class PortraitDAO {
         }
 
         return portraitDataList;
+    }
+
+    public static PortraitDTO SelectPortrait(SQLiteManager sqliteManager, int number) {
+        string query = $"SELECT * FROM {PortraitTableName} WHERE number =  {number};";
+        ExdioDataReader it = sqliteManager.SelectQuery(query);
+
+        if (false == it.Read()) {
+            return default;
+        }
+
+        PortraitDTO portrait = new PortraitDTO();
+        portrait.Number = it.GetSafeValue<int>(0);
+        portrait.ImagePath = it.GetSafeValue<string>(1);
+        portrait.Name = it.GetSafeValue<string>(2);
+
+        return portrait;
     }
 }

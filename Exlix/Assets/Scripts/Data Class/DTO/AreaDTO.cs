@@ -12,5 +12,7 @@ public class AreaDTO {
     public int AreaPercentage;
     public int SubPercentage;
     public int GeneralPercentage;
-    public List<EventDTO> MustEventList;
+    public List<int> MustEventList;
+    public string Name;
+    public List<int> ParentList;
 }
