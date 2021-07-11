@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SQLiteManager : MonoBehaviour {
+public class SQLiteManager : Singleton<SQLiteManager> {
     private SqliteConnection connection;
     private bool IsOpen = false;
 

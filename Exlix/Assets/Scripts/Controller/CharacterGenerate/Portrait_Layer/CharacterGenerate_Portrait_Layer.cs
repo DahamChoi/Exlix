@@ -3,11 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterGenerate_Portrait_Layer : MonoBehaviour
-{
-    [SerializeField] SceneState _SceneState;
+public class CharacterGenerate_Portrait_Layer : MonoBehaviour {
     [SerializeField] PlayerState _PlayerState;
-    [SerializeField] FactoryManager _FactoryManager;
     [SerializeField] CharacterGenerate_Portrait_UIController _UIController;
 
     [SerializeField] GameObject popup;
@@ -15,6 +12,6 @@ public class CharacterGenerate_Portrait_Layer : MonoBehaviour
         Init();
     }
     private void Init() {
-        _FactoryManager.CreatePortraitObject(popup.transform);
+        FactoryManager.GetInstance().CreatePortraitObject(popup.transform);
     }
 }

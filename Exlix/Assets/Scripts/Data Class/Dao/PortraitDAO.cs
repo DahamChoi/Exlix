@@ -6,10 +6,10 @@ using UnityEngine;
 public class PortraitDAO {
     private static readonly string PortraitTableName = "portrait";
 
-    public static List<PortraitDTO> SelectAllPortrait(SQLiteManager sqliteManager) {
+    public static List<PortraitDTO> SelectAllPortrait() {
         List<PortraitDTO> portraitDataList = new List<PortraitDTO>();
         string query = $"SELECT * FROM {PortraitTableName};";
-        ExdioDataReader it = sqliteManager.SelectQuery(query);
+        ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
 
         while (true == it.Read()) {
             PortraitDTO portraitData = new PortraitDTO();
@@ -23,9 +23,9 @@ public class PortraitDAO {
         return portraitDataList;
     }
 
-    public static PortraitDTO SelectPortrait(SQLiteManager sqliteManager, int number) {
+    public static PortraitDTO SelectPortrait(int number) {
         string query = $"SELECT * FROM {PortraitTableName} WHERE number =  {number};";
-        ExdioDataReader it = sqliteManager.SelectQuery(query);
+        ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
 
         if (false == it.Read()) {
             return default;

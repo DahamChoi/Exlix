@@ -6,10 +6,10 @@ public class AreaDAO
 {
     private static readonly string AreaTableName = "Area";
 
-    public static AreaDTO SelectArea(SQLiteManager sqliteManager, int number) {
+    public static AreaDTO SelectArea(int number) {
         string query =
             $"SELECT * FROM {AreaTableName} WHERE number = {number};";
-        ExdioDataReader it = sqliteManager.SelectQuery(query);
+        ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
 
         if (false == it.Read()) {
             return default;

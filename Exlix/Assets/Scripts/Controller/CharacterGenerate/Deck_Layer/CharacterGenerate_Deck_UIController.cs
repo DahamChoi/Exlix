@@ -11,7 +11,6 @@ public class CharacterGenerate_Deck_UIController : MonoBehaviour {
     [SerializeField] Button PreviousDeckButton;
     [SerializeField] Text deckName;
     [SerializeField] Text deckExplain;
-    [SerializeField] SceneState _SceneState;
     CharacterGenerate_Deck_PackDataController packDataController;
     StartPackDTO packData;
 
@@ -22,15 +21,15 @@ public class CharacterGenerate_Deck_UIController : MonoBehaviour {
         UpdateText();
 
         MainMenuButton.onClick.AddListener(() => {
-            _SceneState._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.DECK_TO_MAIN_MENU);
+            SceneState.GetInstance()._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.DECK_TO_MAIN_MENU);
         });
 
         CharacterGenerateButton.onClick.AddListener(() => {
-            _SceneState._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.DECK_TO_GAME);
+            SceneState.GetInstance()._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.DECK_TO_GAME);
         });
 
         DeckInfoButton.onClick.AddListener(() => {
-            _SceneState._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.DECK_TO_DECK_INFO);
+            SceneState.GetInstance()._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.DECK_TO_DECK_INFO);
         });
 
         NextDeckButton.onClick.AddListener(() => {

@@ -9,23 +9,21 @@ public class CharacterGenerate_Portrait_ButtonController : MonoBehaviour
     [SerializeField] Button NextButton;
     [SerializeField] Button MainMenuButton;
 
-    [SerializeField] SceneState _SceneState;
-
     void Start()
     {
         BackButton.onClick.AddListener(() =>
         {
-            _SceneState._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.PORTRAIT_TO_INFO);
+            SceneState.GetInstance()._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.PORTRAIT_TO_INFO);
         });
 
         NextButton.onClick.AddListener(() =>
         {
-            _SceneState._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.PORTRAIT_TO_DECK);
+            SceneState.GetInstance()._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.PORTRAIT_TO_DECK);
         });
 
         MainMenuButton.onClick.AddListener(() =>
         {
-            _SceneState._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.PORTRAIT_TO_MAIN_MENU);
+            SceneState.GetInstance()._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.PORTRAIT_TO_MAIN_MENU);
         });
     }
 }

@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class CardDAO {
     private static readonly string CardTableName = "card";
-    public static CardDTO SelectCard(SQLiteManager sqliteManager, int cardId) {
+    public static CardDTO SelectCard(int cardId) {
         string query = $"SELECT * FROM {CardTableName} WHERE number = {cardId};";
-        ExdioDataReader it = sqliteManager.SelectQuery(query);
+        ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
 
         CardDTO cardData = new CardDTO();
         if (false == it.Read())

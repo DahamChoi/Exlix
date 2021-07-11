@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SceneState : MonoBehaviour {
+public class SceneState : Singleton<SceneState> {
     public SceneStateHandler _SceneStateHandler = new SceneStateHandler();
     public InsideBattleHandler _InsideBattleHandler = new InsideBattleHandler();
 }

@@ -2,17 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattleFiledDAO : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+public class BattleFiledDAO {
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

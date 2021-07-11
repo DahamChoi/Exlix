@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class StartPackDAO {
     private static readonly string StartPackTableName = "start_pack";
-    public static List<StartPackDTO> totalStartPack(SQLiteManager sqliteManager) {
+    public static List<StartPackDTO> totalStartPack() {
         List<StartPackDTO> startPackDataList = new List<StartPackDTO>();
         string query = $"SELECT * FROM {StartPackTableName};";
-        ExdioDataReader it = sqliteManager.SelectQuery(query);
+        ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
 
         while (true == it.Read()) {
             StartPackDTO startPackData = new StartPackDTO();
@@ -16,7 +16,7 @@ public class StartPackDAO {
             string[] cardListString = it.GetSafeValue<string>(1).Split(',');
             List<CardDTO> cardList = new List<CardDTO>();
             foreach (var number in cardListString) {
-                var card = CardDAO.SelectCard(sqliteManager, int.Parse(number));
+                var card = CardDAO.SelectCard(int.Parse(number));
                 cardList.Add(card);
             }
             startPackData.CardList = cardList;

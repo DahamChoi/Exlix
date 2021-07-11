@@ -18,8 +18,6 @@ public class SceneManager : MonoBehaviour, IObserver<SceneStateInfo>
     [SerializeField] GameObject CharacterMaintenance_Skill_Layer;
     [SerializeField] GameObject CharacterMaintenance_Equipment_Layer;
 
-    [SerializeField] SceneState _SceneState;
-
     public void OnCompleted()
     {
         throw new NotImplementedException();
@@ -76,8 +74,8 @@ public class SceneManager : MonoBehaviour, IObserver<SceneStateInfo>
 
     private void Start()
     {
-        _SceneState._SceneStateHandler.Subscribe(this);
-        _SceneState._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.GAME_START);
+        SceneState.GetInstance()._SceneStateHandler.Subscribe(this);
+        SceneState.GetInstance()._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.GAME_START);
     }
 
     private void TurnOffLayer()

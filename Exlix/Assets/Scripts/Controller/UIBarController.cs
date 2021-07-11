@@ -11,8 +11,6 @@ public class UIBarController : MonoBehaviour {
     [SerializeField] Button OptionCloseButton;
     [SerializeField] Button BackButton;
 
-    [SerializeField] SceneState _SceneState;
-
     void Start() {
         OptionButton.onClick.AddListener(() => {
             bool active = !OptionPopupScreen.activeSelf;
@@ -26,7 +24,7 @@ public class UIBarController : MonoBehaviour {
         });
 
         BackButton.onClick.AddListener(() => {
-            _SceneState._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.BACK);
+            SceneState.GetInstance()._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.BACK);
         });
     }
 }

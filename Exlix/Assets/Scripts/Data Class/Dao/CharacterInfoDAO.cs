@@ -6,17 +6,17 @@ using Mono.Data.Sqlite;
 public class CharacterInfoDAO {
     private static readonly string CharacterInfoTableName = "character_info";
 
-    public static void UpsertPlayerStat(SQLiteManager sqliteManager, int hp, int str, int Intellect, int dex) {
+    public static void UpsertPlayerStat(int hp, int str, int Intellect, int dex) {
         string query = 
             $"INSERT OR REPLACE INTO {CharacterInfoTableName}(number, stat_hp, stat_str, stat_int, stat_dex)" +
             $"VALUES({hp}, {str}, {Intellect}, {dex});";
-        sqliteManager.InsertQuery(query);
+        SQLiteManager.GetInstance().InsertQuery(query);
     }
 
-    public static CharacterInfoDTO GetCharacterInfo(SQLiteManager sqliteManager) {
+    public static CharacterInfoDTO GetCharacterInfo() {
         string query =
             $"SELECT * FROM {CharacterInfoTableName} WHERE number = 1;";
-        ExdioDataReader it = sqliteManager.SelectQuery(query);
+        ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
 
         if (false == it.Read()) {
             return default;

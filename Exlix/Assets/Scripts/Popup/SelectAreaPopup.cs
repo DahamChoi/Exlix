@@ -11,22 +11,15 @@ public class SelectAreaPopup : MonoBehaviour {
     [SerializeField] Button EnterStageButton;
     [SerializeField] Button ClosePopupButton;
 
-    [SerializeField] SceneState _SceneState;
-
-    public static GameObject Create(GameObject selectAreaPopupObject, Transform parent, SceneState sceneState, AreaDTO areaDTO) {
-        GameObject selectAreaPopup = Instantiate<GameObject>(selectAreaPopupObject, parent);
-        SelectAreaPopup popupScript = selectAreaPopup.GetComponent<SelectAreaPopup>();
-        popupScript.StageDescrible.text = areaDTO.Explain;
-        popupScript.StageName.text = areaDTO.Name;
-        popupScript.AreaImage.sprite = Resources.Load(areaDTO.ImagePath, typeof(Sprite)) as Sprite;
-        popupScript._SceneState = sceneState;
-
-        return selectAreaPopup;
+    public void Init(AreaDTO areaDTO) {
+        StageDescrible.text = areaDTO.Explain;
+        StageName.text = areaDTO.Name;
+        AreaImage.sprite = Resources.Load(areaDTO.ImagePath, typeof(Sprite)) as Sprite;
     }
 
     private void Start() {
         EnterStageButton.onClick.AddListener(() => {
-            _SceneState._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.ENTER_AREA);
+            SceneState.GetInstance()._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.ENTER_AREA);
             // To Do Send Data
         });
 

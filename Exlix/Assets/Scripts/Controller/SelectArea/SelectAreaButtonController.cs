@@ -15,9 +15,6 @@ public class SelectAreaButtonController : MonoBehaviour {
     
     [SerializeField] int AreaNumber;
 
-    [SerializeField] SQLiteManager _SQLiteManager;
-    [SerializeField] SceneState _SceneState;
-
     private bool isActive = false;
 
     private void Start() {
@@ -25,8 +22,8 @@ public class SelectAreaButtonController : MonoBehaviour {
     }
 
     public void Init() {
-        CharacterInfoDTO characterInfo = CharacterInfoDAO.GetCharacterInfo(_SQLiteManager);
-        AreaDTO area = AreaDAO.SelectArea(_SQLiteManager, AreaNumber);
+        CharacterInfoDTO characterInfo = CharacterInfoDAO.GetCharacterInfo();
+        AreaDTO area = AreaDAO.SelectArea(AreaNumber);
 
         if (characterInfo.UnLockedAreaList.Contains(AreaNumber)) {
             SelectAreaButton.image.sprite = ClearAreaSprite;
@@ -45,7 +42,7 @@ public class SelectAreaButtonController : MonoBehaviour {
 
         SelectAreaButton.onClick.AddListener(() => {
             if (isActive) {
-                GameObject popup = SelectAreaPopup.Create(SelectAreaPopupObject, Parent, _SceneState, area);
+                GameObject popup = FactoryManager.GetInstance().CreateSelectAreaPopup(area, Parent);
                 // ...
             }
         });

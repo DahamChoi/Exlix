@@ -27,7 +27,6 @@ public class CharacterGenerate_Portrait_UIController : MonoBehaviour {
     [SerializeField] Text StatusPoint;
 
     [SerializeField] PlayerState _PlayerState;
-    [SerializeField] SceneState _SceneState;
 
     [SerializeField] Image PortraitImg;
 
@@ -35,7 +34,7 @@ public class CharacterGenerate_Portrait_UIController : MonoBehaviour {
 
     void Start() {
         NextButton.onClick.AddListener(() => {
-            _SceneState._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.PORTRAIT_TO_DECK);
+            SceneState.GetInstance()._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.PORTRAIT_TO_DECK);
         });
 
         PortraitPopupButton.onClick.AddListener(() => {

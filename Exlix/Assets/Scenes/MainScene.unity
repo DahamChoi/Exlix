@@ -6921,11 +6921,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BattleEnemy: {fileID: 2758129549216157721, guid: 7de7f9dca1b560e47bd07762b14d6b31,
     type: 3}
-  _SceneState: {fileID: 553959035}
   _CardController: {fileID: 2068044955}
   _UIController: {fileID: 715301351}
   _EnemyController: {fileID: 15341419}
-  _FactoryManager: {fileID: 1936850999}
 --- !u!1 &386004104
 GameObject:
   m_ObjectHideFlags: 0
@@ -13004,7 +13002,6 @@ MonoBehaviour:
   PreviousDeckButton: {fileID: 222545398}
   deckName: {fileID: 37160770}
   deckExplain: {fileID: 1709062844}
-  _SceneState: {fileID: 553959035}
 --- !u!114 &648076570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13031,7 +13028,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c9d4a00425fd074fa4149fd562e0969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _SQLiteManager: {fileID: 42650923}
 --- !u!1 &649608814
 GameObject:
   m_ObjectHideFlags: 0
@@ -14192,7 +14188,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BackButton: {fileID: 1498943622}
   NextButton: {fileID: 345299086}
-  _SceneState: {fileID: 553959035}
 --- !u!1 &705777276
 GameObject:
   m_ObjectHideFlags: 0
@@ -25929,7 +25924,6 @@ MonoBehaviour:
   INT: {fileID: 7576544928545411512}
   StatusPoint: {fileID: 7576544927859531193}
   _PlayerState: {fileID: 509318745}
-  _SceneState: {fileID: 553959035}
   PortraitImg: {fileID: 7576544927576949989}
 --- !u!114 &1219226465
 MonoBehaviour:
@@ -25970,9 +25964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b2b003f13bf1dd40b838edcb9ffbc8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _SceneState: {fileID: 553959035}
   _PlayerState: {fileID: 509318745}
-  _FactoryManager: {fileID: 1936850999}
   _UIController: {fileID: 0}
   popup: {fileID: 602259012}
 --- !u!1 &1222931096
@@ -27643,7 +27635,6 @@ MonoBehaviour:
   CharacterMaintenance_Main_Layer: {fileID: 2006291487}
   CharacterMaintenance_Skill_Layer: {fileID: 386004104}
   CharacterMaintenance_Equipment_Layer: {fileID: 1537287528}
-  _SceneState: {fileID: 553959035}
 --- !u!4 &1321288842
 Transform:
   m_ObjectHideFlags: 0
@@ -28333,7 +28324,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LoadGameButton: {fileID: 1632026714172024377}
   NewGameButton: {fileID: 1632026714812243646}
-  _SceneState: {fileID: 553959035}
 --- !u!114 &1366833471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34493,7 +34483,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BackButton: {fileID: 1928558104}
   MainMenuButton: {fileID: 771879010}
-  _SceneState: {fileID: 553959035}
 --- !u!114 &1708186899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39529,10 +39518,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efb83e3900d9b9444a459181eeeeeada, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _SQLiteManager: {fileID: 42650923}
   CardObjectPrefab: {fileID: 2002823998885338333, guid: 5dfc6f183eff985409c180cfcd3d2a3e,
     type: 3}
   PortraitObjectPrefab: {fileID: 5828277235686708457, guid: 1da17dfb1279d7c4e979e1f70a1d1655,
+    type: 3}
+  SelectAreaPopupPrefab: {fileID: 1581419239778954065, guid: 86c350b415ea11149a952a5dbe7717b1,
     type: 3}
 --- !u!1 &1944829400
 GameObject:
@@ -41013,7 +41003,6 @@ MonoBehaviour:
   NowSkill: {fileID: 941643627}
   DeckButton: {fileID: 0}
   StartButton: {fileID: 0}
-  _SceneState: {fileID: 553959035}
 --- !u!1 &2014330223
 GameObject:
   m_ObjectHideFlags: 0

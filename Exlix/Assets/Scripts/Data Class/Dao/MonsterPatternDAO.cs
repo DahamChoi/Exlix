@@ -2,17 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterPatternDAO : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+public class MonsterPatternDAO {
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

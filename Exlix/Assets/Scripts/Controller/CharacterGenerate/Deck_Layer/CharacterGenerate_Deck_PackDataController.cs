@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterGenerate_Deck_PackDataController : MonoBehaviour {
-    [SerializeField] SQLiteManager _SQLiteManager;
     List<StartPackDTO> packList;
     StartPackDTO currentPack;
     int currentPackNumber = 0;
@@ -20,7 +19,7 @@ public class CharacterGenerate_Deck_PackDataController : MonoBehaviour {
     }
 
     void LoadStartPackData() {
-        packList = StartPackDAO.totalStartPack(_SQLiteManager);
+        packList = StartPackDAO.totalStartPack();
         packLength = packList.Count - 1;
     }
 

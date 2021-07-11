@@ -2,17 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EventDAO : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+public class EventDAO {
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
