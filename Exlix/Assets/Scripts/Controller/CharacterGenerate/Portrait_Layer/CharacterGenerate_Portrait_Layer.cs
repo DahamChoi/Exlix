@@ -5,13 +5,12 @@ using UnityEngine;
 
 public class CharacterGenerate_Portrait_Layer : MonoBehaviour {
     [SerializeField] PlayerState _PlayerState;
-    [SerializeField] CharacterGenerate_Portrait_UIController _UIController;
-
+ //   [SerializeField] FactoryManager _FactoryManager;
     [SerializeField] GameObject popup;
     public void Start() {
         Init();
     }
     private void Init() {
-        FactoryManager.GetInstance().CreatePortraitObject(popup.transform);
+       FactoryManager.GetInstance().CreatePortraitObject(popup.transform);
     }
 }

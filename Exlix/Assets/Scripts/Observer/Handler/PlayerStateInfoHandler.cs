@@ -80,7 +80,12 @@ public class PlayerStateInfoHandler : ObserableHandler<PlayerStateInfo> {
                 return -1;
         }
     }
-
+    public void UpdatePlayerName(string newName) {
+        Information.PlayerName = newName;
+    }
+    public string GetPlayerName() {
+        return Information.PlayerName;
+    }
     public void SetCurrentPortrait(PortraitDTO portrait) {
         Information.CurrentPortrait = portrait;
     }

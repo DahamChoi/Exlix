@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 public class CharacterGenerate_Portrait_UIController : MonoBehaviour {
+
+    [SerializeField] GameObject InputNameScreen;
+    [SerializeField] GameObject InputNameCloser;
     [SerializeField] GameObject PortraitPopup;
     [SerializeField] GameObject PortraitPopupCloser;
 
+    [SerializeField] Button NameInputPopupButton;
+    [SerializeField] Button DiceButton;
+    [SerializeField] Button NameComfirmButton;
     [SerializeField] Button NextButton;
     [SerializeField] Button PortraitPopupButton;
     [SerializeField] Button PortraitPopupCloseButton;
     [SerializeField] Button PortraitPopupCommitButton;
-
     [SerializeField] Button HpAddButton;
     [SerializeField] Button HpSubButton;
     [SerializeField] Button StrAddButton;
@@ -25,10 +30,13 @@ public class CharacterGenerate_Portrait_UIController : MonoBehaviour {
     [SerializeField] Text STR;
     [SerializeField] Text INT;
     [SerializeField] Text StatusPoint;
+    [SerializeField] Text InputNameText;
+    [SerializeField] Text OutputNameText;
 
     [SerializeField] PlayerState _PlayerState;
 
     [SerializeField] Image PortraitImg;
+    [SerializeField] List<string> RandomNames;
 
     private PortraitDTO portrait;
 
@@ -80,6 +88,21 @@ public class CharacterGenerate_Portrait_UIController : MonoBehaviour {
         IntSubButton.onClick.AddListener(() => {
             SubStat("INT", INT);
         });
+
+        NameInputPopupButton.onClick.AddListener(() => {
+            OpenInputNameScreen();
+        });
+        
+        InputNameCloser.GetComponent<Button>().onClick.AddListener(() => {
+            CloseInputNameScreen();
+        });
+        DiceButton.onClick.AddListener(() => {
+            InputRandomName();
+        });
+        NameComfirmButton.onClick.AddListener(() => {
+            ConfirmName();
+            CloseInputNameScreen();
+        });
     }
 
     public void AddStat(string statType, Text statText) {
@@ -123,6 +146,33 @@ public class CharacterGenerate_Portrait_UIController : MonoBehaviour {
 
     public void SelectPortrait() {
 
+    }
+
+    public void OpenInputNameScreen() {
+        if (InputNameScreen.activeSelf == true) {
+            InputNameScreen.SetActive(false);
+            InputNameCloser.SetActive(false);
+        }
+        else {
+            InputNameScreen.SetActive(true);
+            InputNameCloser.SetActive(true);
+        }
+    }
+    public void CloseInputNameScreen() {
+        InputNameScreen.SetActive(false);
+        InputNameCloser.SetActive(false);
+    }
+
+    public void ConfirmName() {
+        _PlayerState._PlayerStateInfoHandler.UpdatePlayerName(InputNameText.text);
+        OutputNameText.text = InputNameText.text;
+    }
+
+    public void InputRandomName() {
+        int nameNum = Random.Range(0, RandomNames.Count);
+        string randomName = RandomNames[nameNum];
+        _PlayerState._PlayerStateInfoHandler.UpdatePlayerName(randomName);
+        OutputNameText.text = randomName;
     }
 }
 

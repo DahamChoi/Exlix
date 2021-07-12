@@ -2,12 +2,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 public class PortraitObject : MonoBehaviour {
-    private PortraitDTO PortraitData;
+    public PortraitDTO PortraitData;
     [SerializeField] Image Portrait;
     [SerializeField] Button PortraitButton;
-    PlayerState _PlayerState;
-    //[SerializeField] Text Name;
+
     string ImagePath;
+    PlayerState _PlayerState;
 
     private void Start() {
         _PlayerState = GameObject.Find("PlayerState").GetComponent<PlayerState>();

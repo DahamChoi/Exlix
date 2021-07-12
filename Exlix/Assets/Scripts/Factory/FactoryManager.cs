@@ -17,13 +17,15 @@ public class FactoryManager : Singleton<FactoryManager> {
         List<PortraitObject> portraitObjectList = new List<PortraitObject>();
         List<PortraitDTO> portraitData = PortraitDAO.SelectAllPortrait();
 
+        GameObject portraitPrefab = Resources.Load("Prefabs/Portrait") as GameObject;
+
         for (int i = 0; i < portraitData.Count; i++) {
             Debug.Log(portraitData[i].Number);
-            PortraitObject portraitObject = Instantiate<PortraitObject>(PortraitObjectPrefab, parent);
-            portraitObject.transform.parent = parent;
-            portraitObject.init(portraitData[i]);
-
-            portraitObjectList.Add(portraitObject);
+           GameObject portraitObject = Instantiate<GameObject>(portraitPrefab, parent);
+           portraitObject.transform.parent = parent;
+           portraitObject.GetComponent<PortraitObject>().init(portraitData[i]);
+         
+           //portraitObjectList.Add(portraitObject);
         }
         return portraitObjectList;
     }

@@ -38,7 +38,6 @@ public class UIInputName : MonoBehaviour
         OutpuNameText.text = name;
     }
 
-
     public void InputRandomName()
     {
         int nameNum = Random.Range(0, RandomNames.Count);
