@@ -35,4 +35,20 @@ public class FactoryManager : Singleton<FactoryManager> {
         selectAreaPopup.GetComponent<SelectAreaPopup>().Init(areaDTO);
         return selectAreaPopup;
     }
+
+     public GameObject CreateSentenceObject(int sentenceId, Transform parent) {
+        GameObject sentenceObjectPrefab = Resources.Load("Prefabs/Sentence") as GameObject;
+        GameObject sentenceObject = Instantiate<GameObject>(sentenceObjectPrefab, parent);
+        SentenceDTO sentenceData = SentenceDAO.SelectSentence(sentenceId);
+        sentenceObjectPrefab.GetComponent<SentenceObject>().init(sentenceData);
+        return sentenceObject;
+    }
+
+    public GameObject CreateSelectionObject(int selectionId, Transform parent) {
+        GameObject selectionObjectPrefab = Resources.Load("Prefabs/Selection") as GameObject;
+        GameObject selectionObject = Instantiate<GameObject>(selectionObjectPrefab, parent);
+        SelectionDTO selectionData = SelectionDAO.SelectSelection(selectionId);
+        selectionObjectPrefab.GetComponent<SelectionObject>().init(selectionData);
+        return selectionObject;
+    }
 }

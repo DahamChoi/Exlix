@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SelectionDAO {
     private static readonly string SelectionTableName = "selection";
-     public static SelectionDTO SelectSelection(int selectionId) {
+    public static SelectionDTO SelectSelection(int selectionId) {
         string query = $"SELECT * FROM {SelectionTableName} WHERE number = {selectionId};";
         ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
 
