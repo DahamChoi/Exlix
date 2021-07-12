@@ -1,17 +1,24 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InsideAreaLayerController : MonoBehaviour {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+public class InsideAreaLayerController : MonoBehaviour, IObserver<Information> {
+
+    private void Start() {
+        SceneState.GetInstance()._InformationHandler.Subscribe(this);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void OnCompleted() {
+        throw new NotImplementedException();
+    }
+
+    public void OnError(Exception error) {
+        throw new NotImplementedException();
+    }
+
+    public void OnNext(Information value) {
+        int currentArea = value.GetData<int>("InsideAreaNumber");
+        CharacterInfoDAO.UpsertCurrentArea(currentArea);
     }
 }
