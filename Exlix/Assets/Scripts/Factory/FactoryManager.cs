@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FactoryManager : Singleton<FactoryManager> {
-    [SerializeField] PortraitObject PortraitObjectPrefab;
 
     public GameObject CreateCardObject(int cardId, Transform parent) {
-        GameObject cardObjectPrefab = Resources.Load("Prefabs/CardObject") as GameObject;
+        GameObject cardObjectPrefab = Resources.Load("Prefabs/CardPrefab") as GameObject;
         GameObject cardObject = Instantiate<GameObject>(cardObjectPrefab, parent);
         CardDTO cardData = CardDAO.SelectCard(cardId);
         cardObject.GetComponent<CardObject>().init(cardData);

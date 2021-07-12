@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class CardObject : MonoBehaviour {
-    private CardDTO CardData;
+    public CardDTO CardData;
 
     [SerializeField] Text ExplainText;
     [SerializeField] Text CostText;
