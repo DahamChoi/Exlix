@@ -13,8 +13,8 @@ public class CardDTO {
     public int ContinousTurn;
     public string AttackTarget;
     public int Attack;
-    public string ShiledTarget;
-    public int Shiled;
+    public string ShieldTarget;
+    public int Shield;
     public string HealTarget;
     public int Heal;
     public int Mana;
@@ -29,8 +29,8 @@ public class CardDTO {
     public int Demureness;
     public string WeakTarget;
     public int Weak;
-    public string PoisionTarget;
-    public int Poision;
+    public string PoisonTarget;
+    public int Poison;
     public string CorrosionTarget;
     public int Corrosion;
 }

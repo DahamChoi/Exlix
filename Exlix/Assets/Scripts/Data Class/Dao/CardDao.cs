@@ -23,8 +23,8 @@ public class CardDAO {
         cardData.ContinousTurn  = it.GetSafeValue<int>(7);
         cardData.AttackTarget   = it.GetSafeValue<string>(8);
         cardData.Attack         = it.GetSafeValue<int>(9);
-        cardData.ShiledTarget   = it.GetSafeValue<string>(10);
-        cardData.Shiled         = it.GetSafeValue<int>(11);
+        cardData.ShieldTarget   = it.GetSafeValue<string>(10);
+        cardData.Shield         = it.GetSafeValue<int>(11);
         cardData.HealTarget     = it.GetSafeValue<string>(12);
         cardData.Heal           = it.GetSafeValue<int>(13);
         cardData.Mana           = it.GetSafeValue<int>(14);
@@ -39,8 +39,8 @@ public class CardDAO {
         cardData.Demureness     = it.GetSafeValue<int>(23);
         cardData.WeakTarget     = it.GetSafeValue<string>(24);
         cardData.Weak           = it.GetSafeValue<int>(25);
-        cardData.PoisionTarget  = it.GetSafeValue<string>(26);
-        cardData.Poision        = it.GetSafeValue<int>(27);
+        cardData.PoisonTarget  = it.GetSafeValue<string>(26);
+        cardData.Poison        = it.GetSafeValue<int>(27);
         cardData.CorrosionTarget = it.GetSafeValue<string>(28);
         cardData.Corrosion      = it.GetSafeValue<int>(29);
 
