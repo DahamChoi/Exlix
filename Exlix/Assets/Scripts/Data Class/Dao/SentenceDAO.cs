@@ -3,5 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SentenceDAO {
+    private static readonly string SentenceTableName = "sentence";
 
+    public static SentenceDTO SelectSentence(int number) {
+        string query =
+            $"SELECT * FROM {SentenceTableName} WHERE number = {number};";
+        ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
+
+        if (false == it.Read()) {
+            return default;
+        }
+
+        SentenceDTO sentence = new SentenceDTO();
+        sentence.Number = it.GetSafeValue<int>(0);
+        sentence.IsHavePicture = it.GetSafeValue<int>(1);
+        sentence.ImagePath = it.GetSafeValue<string>(2);
+        sentence.Text = it.GetSafeValue<string>(3);
+        for (int i = 4; i < 7; i++) {
+            SelectionDTO _selection = SelectionDAO.SelectSelection(it.GetSafeValue<int>(i));
+            if (_selection != null) sentence.SelectionList.Add(_selection);
+        }
+        return sentence;
+    }
 }

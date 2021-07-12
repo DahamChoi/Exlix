@@ -34,7 +34,7 @@ public class CharacterGenerate_Deck_InfoController : MonoBehaviour {
     }
 
     void LoadStartDeckData() {
-        deckList = StartDeckDAO.totalStartDeck();
+        deckList = StartDeckDAO.SelectAllStartDeck();
         deckLength = deckList.Count - 1;
     }
 

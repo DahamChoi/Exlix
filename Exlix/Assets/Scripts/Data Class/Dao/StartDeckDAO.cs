@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class StartDeckDAO {
     private static readonly string StartDeckTableName = "start_pack";
-    public static List<StartDeckDTO> totalStartDeck() {
+    public static List<StartDeckDTO> SelectAllStartDeck() {
         List<StartDeckDTO> startDeckDataList = new List<StartDeckDTO>();
         string query = $"SELECT * FROM {StartDeckTableName};";
         ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
