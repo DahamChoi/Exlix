@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CharacterGenerate_Deck_UIController : MonoBehaviour {
+public class CharacterGenerate_Deck_Controller : MonoBehaviour {
     [SerializeField] Button MainMenuButton;
     [SerializeField] Button CharacterGenerateButton;
     [SerializeField] Button DeckInfoButton;
     [SerializeField] Button NextDeckButton;
     [SerializeField] Button PreviousDeckButton;
-    CharacterGenerate_Deck_PackDataController packDataController;
+    CharacterGenerate_Deck_InfoController deckInfoController;
 
     // Start is called before the first frame update
     void Start() {
-        packDataController = GetComponent<CharacterGenerate_Deck_PackDataController>();
+        deckInfoController = GetComponent<CharacterGenerate_Deck_InfoController>();
         MainMenuButton.onClick.AddListener(() => {
             SceneState.GetInstance()._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.DECK_TO_MAIN_MENU);
         });
@@ -27,11 +27,11 @@ public class CharacterGenerate_Deck_UIController : MonoBehaviour {
         });
 
         NextDeckButton.onClick.AddListener(() => {
-            packDataController.NextPack();
+            deckInfoController.NextDeck();
         });
 
         PreviousDeckButton.onClick.AddListener(() => {
-            packDataController.PreviousPack();
+            deckInfoController.PreviousDeck();
         });
 
     }

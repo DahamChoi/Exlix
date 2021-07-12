@@ -2357,6 +2357,93 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 104320423}
   m_CullTransparentMesh: 0
+--- !u!1 &104418863
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 104418864}
+  - component: {fileID: 104418866}
+  - component: {fileID: 104418865}
+  - component: {fileID: 104418867}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &104418864
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104418863}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 945797136}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.002533, y: -0.0025024}
+  m_SizeDelta: {x: 1736.1, y: 1086.1}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &104418865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104418863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &104418866
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104418863}
+  m_CullTransparentMesh: 0
+--- !u!114 &104418867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104418863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fb17e66390b2b4da1b97f48904c962, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deckInfoController: {fileID: 648076571}
 --- !u!1 &105900039
 GameObject:
   m_ObjectHideFlags: 0
@@ -2593,7 +2680,7 @@ GameObject:
   - component: {fileID: 110971547}
   - component: {fileID: 110971546}
   m_Layer: 5
-  m_Name: card4
+  m_Name: NextDeckImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12854,7 +12941,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &648076568
 Transform:
   m_ObjectHideFlags: 0
@@ -12919,6 +13006,12 @@ MonoBehaviour:
   title: {fileID: 1781546510}
   deckName: {fileID: 37160770}
   deckExplain: {fileID: 1709062844}
+  deckIndex: {fileID: 487602602}
+  currentDeckImage: {fileID: 730671623}
+  nextDeckImage: {fileID: 110971546}
+  afterNextDeckImage: {fileID: 1844268412}
+  previousDeckImage: {fileID: 1087905101}
+  beforePreviousDeckImage: {fileID: 1362397345}
 --- !u!1 &649608814
 GameObject:
   m_ObjectHideFlags: 0
@@ -14858,7 +14951,7 @@ GameObject:
   - component: {fileID: 730671624}
   - component: {fileID: 730671623}
   m_Layer: 5
-  m_Name: card5
+  m_Name: currentDeckImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19900,6 +19993,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 724279287}
+  - {fileID: 104418864}
   m_Father: {fileID: 781413162}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -22544,7 +22638,7 @@ GameObject:
   - component: {fileID: 1087905102}
   - component: {fileID: 1087905101}
   m_Layer: 5
-  m_Name: card3
+  m_Name: PreviousDeckImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25765,7 +25859,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1219226461
 Transform:
   m_ObjectHideFlags: 0
@@ -25795,8 +25889,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aebcea53a25af1409722c1d55d3857c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InputNameScreen: {fileID: 0}
+  InputNameCloser: {fileID: 0}
   PortraitPopup: {fileID: 673939004}
   PortraitPopupCloser: {fileID: 1790744146}
+  NameInputPopupButton: {fileID: 0}
+  DiceButton: {fileID: 0}
+  NameComfirmButton: {fileID: 0}
   NextButton: {fileID: 7576544927045415867}
   PortraitPopupButton: {fileID: 7576544927489849244}
   PortraitPopupCloseButton: {fileID: 1790744148}
@@ -25814,8 +25913,11 @@ MonoBehaviour:
   STR: {fileID: 7576544928751506506}
   INT: {fileID: 7576544928545411512}
   StatusPoint: {fileID: 7576544927859531193}
+  InputNameText: {fileID: 0}
+  OutputNameText: {fileID: 0}
   _PlayerState: {fileID: 509318745}
   PortraitImg: {fileID: 7576544927576949989}
+  RandomNames: []
 --- !u!114 &1219226465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28104,7 +28206,7 @@ GameObject:
   - component: {fileID: 1362397346}
   - component: {fileID: 1362397345}
   m_Layer: 5
-  m_Name: card2
+  m_Name: beforePreviousDeckImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32517,7 +32619,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -250.99976, y: 0}
+  m_AnchoredPosition: {x: -251, y: 0}
   m_SizeDelta: {x: -2400, y: -720}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1592196937
@@ -37220,7 +37322,7 @@ GameObject:
   - component: {fileID: 1844268413}
   - component: {fileID: 1844268412}
   m_Layer: 5
-  m_Name: card1
+  m_Name: afterNextDeckImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
