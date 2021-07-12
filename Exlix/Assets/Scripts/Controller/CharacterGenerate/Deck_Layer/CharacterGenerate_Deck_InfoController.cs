@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class CharacterGenerate_Deck_InfoController : MonoBehaviour {
-
+    [SerializeField] PlayerState _PlayerState;
     [SerializeField] Text title;
     [SerializeField] Text deckName;
     [SerializeField] Text deckExplain;
@@ -21,8 +21,7 @@ public class CharacterGenerate_Deck_InfoController : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         LoadStartDeckData();
-        UpdateText();
-        UpdateImage();
+        UpdateInfo();
     }
 
     // Update is called once per frame
@@ -37,14 +36,12 @@ public class CharacterGenerate_Deck_InfoController : MonoBehaviour {
 
     public void NextDeck() {
         if (++currentDeckNumber > deckLength) currentDeckNumber = 0;
-        UpdateText();
-        UpdateImage();
+        UpdateInfo();
     }
 
     public void PreviousDeck() {
         if (--currentDeckNumber < 0) currentDeckNumber = deckLength;
-        UpdateText();
-        UpdateImage();
+        UpdateInfo();
     }
 
     void UpdateText() {
@@ -66,5 +63,11 @@ public class CharacterGenerate_Deck_InfoController : MonoBehaviour {
         previousDeckImage.sprite = Resources.Load(deckList[previousDeckNumber].ImagePath, typeof(Sprite)) as Sprite;
         if (--previousDeckNumber < 0) previousDeckNumber = deckLength;
         beforePreviousDeckImage.sprite = Resources.Load(deckList[previousDeckNumber].ImagePath, typeof(Sprite)) as Sprite;
+    }
+
+    void UpdateInfo() {
+        _PlayerState._PlayerStateInfoHandler.SetCurrentStartDeck(deckList[currentDeckNumber]);
+        UpdateText();
+        UpdateImage();
     }
 }

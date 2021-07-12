@@ -87,19 +87,24 @@ public class PlayerStateInfoHandler : ObserableHandler<PlayerStateInfo> {
         return Information.PlayerName;
     }
     public void SetCurrentPortrait(PortraitDTO portrait) {
-        Information.CurrentPortrait = portrait;
+        Information.currentPortrait = portrait;
     }
     public PortraitDTO GetCurrentPortrait() {
-        return Information.CurrentPortrait;
+        return Information.currentPortrait;
     }
     public int GetStatusExtraPoint() {
         return Information.statusExtraPoint;
+    }
+    public void SetCurrentStartDeck(StartDeckDTO startDeck) {
+        Information.currentStartDeck = startDeck;
+    }
+    public StartDeckDTO GetCurrentStartDeck() {
+        return Information.currentStartDeck;
     }
     public void SetCurrentSkill(SkillDataTemplate skillData) {
         Information.equipedSkill = skillData;
         base.NotifyObservers();
     }
-
     public SkillDataTemplate GetCurrentSkill() {
         return Information.equipedSkill;
     }

@@ -13,7 +13,8 @@ public class PlayerStateInfo {
     public int extraInt { get; set; }
     public int extraDex { get; set; }
     public int extraStr { get; set; }
-    public PortraitDTO CurrentPortrait { get; set; }
+    public PortraitDTO currentPortrait { get; set; }
+    public StartDeckDTO currentStartDeck {get; set;}
     public string PlayerName { get; set; }
     public SkillDataTemplate equipedSkill { get; set; } //장착중인 스킬
     public Dictionary<int, bool> unlockedSkill { get; set; } //해금한 스킬
