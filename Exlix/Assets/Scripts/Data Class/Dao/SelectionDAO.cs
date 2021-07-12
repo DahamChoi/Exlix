@@ -20,6 +20,7 @@ public class SelectionDAO {
         selection.Exp = it.GetSafeValue<int>(4);
         //selection.CardRewardList 5
         //selection.EquipmentRewardList 6
+        selection.Text = it.GetSafeValue<string>(7);
         return selectionData;
     }
 }

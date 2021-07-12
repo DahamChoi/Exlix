@@ -10,4 +10,5 @@ public class SelectionDTO {
     public int Exp;
     public List<CardRewardDTO> CardRewardList;
     public List<EquipmentRewardDTO> EquipmentRewardList;
+    public string Text;
 }
