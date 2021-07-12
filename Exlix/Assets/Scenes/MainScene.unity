@@ -12686,7 +12686,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &648076568
 Transform:
   m_ObjectHideFlags: 0
@@ -12752,6 +12752,8 @@ MonoBehaviour:
   deckName: {fileID: 37160770}
   deckExplain: {fileID: 1709062844}
   deckIndex: {fileID: 487602602}
+  deckInfoButtonText: {fileID: 1265685977}
+  characterGenerateButtonText: {fileID: 2126711629}
   currentDeckImage: {fileID: 730671623}
   nextDeckImage: {fileID: 110971546}
   afterNextDeckImage: {fileID: 1844268412}

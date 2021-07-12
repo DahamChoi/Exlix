@@ -9,6 +9,8 @@ public class CharacterGenerate_Deck_InfoController : MonoBehaviour {
     [SerializeField] Text deckName;
     [SerializeField] Text deckExplain;
     [SerializeField] Text deckIndex;
+    [SerializeField] Text deckInfoButtonText;
+    [SerializeField] Text characterGenerateButtonText;
     [SerializeField] Image currentDeckImage;
     [SerializeField] Image nextDeckImage;
     [SerializeField] Image afterNextDeckImage;
@@ -21,6 +23,8 @@ public class CharacterGenerate_Deck_InfoController : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         LoadStartDeckData();
+        deckInfoButtonText.text = $"{CommonDefine.deckInfo}";
+        characterGenerateButtonText.text = $"{CommonDefine.characterGenerate}";
         UpdateInfo();
     }
 
