@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattleLayer : MonoBehaviour, IObserver<Information> {
+public class BattleLayer : MonoBehaviour, IObserver<InsideBattleInfo> {
 
     [SerializeField] BattleEnemyManagement BattleEnemy;
    
@@ -34,7 +34,7 @@ public class BattleLayer : MonoBehaviour, IObserver<Information> {
         throw new NotImplementedException();
     }
 
-    public void OnNext(Information value) {
-        MonsterNameList = value.GetData<List<string>>("MonsterNameList");
+    public void OnNext(InsideBattleInfo value) {
+        MonsterNameList = value.EnemyNames;
     }
 }

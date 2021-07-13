@@ -6,13 +6,6 @@ using Mono.Data.Sqlite;
 public class CharacterInfoDAO {
     private static readonly string CharacterInfoTableName = "character_info";
 
-    public static void UpsertCurrentArea(int areaNumber) {
-        string query =
-            $"INSERT OR REPLACE INTO {CharacterInfoTableName}(current_area)" +
-            $"VALUES({areaNumber});";
-        SQLiteManager.GetInstance().InsertQuery(query);
-    }
-
     public static void UpsertPlayerStat(int hp, int str, int Intellect, int dex) {
         string query = 
             $"INSERT OR REPLACE INTO {CharacterInfoTableName}(number, stat_hp, stat_str, stat_int, stat_dex)" +

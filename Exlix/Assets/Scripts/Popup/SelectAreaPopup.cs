@@ -11,10 +11,7 @@ public class SelectAreaPopup : MonoBehaviour {
     [SerializeField] Button EnterStageButton;
     [SerializeField] Button ClosePopupButton;
 
-    private int AreaNumber;
-
     public void Init(AreaDTO areaDTO) {
-        AreaNumber = areaDTO.Number;
         StageDescrible.text = areaDTO.Explain;
         StageName.text = areaDTO.Name;
         AreaImage.sprite = Resources.Load(areaDTO.ImagePath, typeof(Sprite)) as Sprite;
@@ -22,8 +19,8 @@ public class SelectAreaPopup : MonoBehaviour {
 
     private void Start() {
         EnterStageButton.onClick.AddListener(() => {
-            SceneState.GetInstance()._InformationHandler.InsertData<int>("InsideAreaNumber", AreaNumber);
             SceneState.GetInstance()._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.ENTER_AREA);
+            // To Do Send Data
         });
 
         GameObject self = this.gameObject;
