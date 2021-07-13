@@ -5,14 +5,24 @@ using UnityEngine.UI;
 
 public class SentenceObject : MonoBehaviour {
 
+    [SerializeField] Transform selectionContainor;
     [SerializeField] Text sentenceText;
-    SentenceDTO SentenceData;
+    SentenceDTO sentenceData;
 
-    public void init(SentenceDTO sentenceData) {
-        SentenceData = sentenceData;
+    public void Init(SentenceDTO _sentenceData, Transform _selectionContainer) {
+        sentenceData = _sentenceData;
+        selectionContainor = _selectionContainer;
         sentenceText.text = sentenceData.Text;
+
         GameObject sentenceImage = new GameObject();
-        if(sentenceData.IsHavePicture == 1) sentenceImage = FactoryManager.GetInstance().CreateSentenceImageObject(sentenceData.ImagePath, transform.parent);
+        if(_sentenceData.IsHavePicture == 1) sentenceImage = FactoryManager.GetInstance().CreateSentenceImageObject(_sentenceData.ImagePath, transform.parent);
         sentenceImage.transform.SetSiblingIndex(transform.GetSiblingIndex());
+
+        if (sentenceData.SelectionList != null) {
+            foreach (var selection in sentenceData.SelectionList){
+                FactoryManager.GetInstance().CreateSelectionObject(selection, transform.parent, selectionContainor);
+            }
+        }
+
     }
 }

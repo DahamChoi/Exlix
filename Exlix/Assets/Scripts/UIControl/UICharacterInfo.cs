@@ -12,7 +12,8 @@ public class UICharacterInfo : MonoBehaviour
 
     private void Start()
     {
-        IsOpened = false;
+        IsOpened = true;
+        OpenCloseCharacterInfo();
     }
 
     public void OpenCloseCharacterInfo()

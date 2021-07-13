@@ -7,5 +7,5 @@ public class SentenceDTO {
     public int IsHavePicture;
     public string ImagePath;
     public string Text;
-    public List<SelectionDTO> SelectionList;
+    public List<int> SelectionList;
 }

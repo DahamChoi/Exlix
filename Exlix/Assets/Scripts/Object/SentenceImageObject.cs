@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SentenceImageObject : MonoBehaviour {
     [SerializeField] Image sentenceImage;
-    public void init(string imagePath) {
+    public void Init(string imagePath) {
         sentenceImage.sprite = Resources.Load(imagePath, typeof(Sprite)) as Sprite;
     }
 }

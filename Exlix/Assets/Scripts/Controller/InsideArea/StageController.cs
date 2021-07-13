@@ -5,14 +5,13 @@ using UnityEngine.UI;
 
 public class StageController : MonoBehaviour
 {
+    [SerializeField] Transform selectionContainer;
     [SerializeField] Transform sentencePannel;
     [SerializeField] ScrollRect pannelScroll;
-    [SerializeField] VerticalLayoutGroup verticalLayoutGroup;
+    
     // Start is called before the first frame update
     void Start()
     {
-        FactoryManager.GetInstance().CreateSentenceObject(1, sentencePannel);
-        FactoryManager.GetInstance().CreateSentenceObject(2, sentencePannel);
         CreateSentence(1);
     }
 
@@ -23,8 +22,8 @@ public class StageController : MonoBehaviour
     }
 
     public void CreateSentence(int sentenceId) {
-        FactoryManager.GetInstance().CreateSentenceObject(sentenceId, sentencePannel);
+        FactoryManager.GetInstance().CreateSentenceObject(sentenceId, selectionContainer, sentencePannel);
+        LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)sentencePannel);
         pannelScroll.verticalNormalizedPosition = 0;
-        //verticalLayoutGroup. ForceRebuildLayoutImmediate(RectTransform layoutRoot);
     }
 }

@@ -36,26 +36,33 @@ public class FactoryManager : Singleton<FactoryManager> {
         return selectAreaPopup;
     }
 
-    public GameObject CreateSentenceObject(int sentenceId, Transform parent) {
+    public GameObject CreateSentenceObject(int sentenceId, Transform selectionContainer, Transform parent) {
         GameObject sentenceObjectPrefab = Resources.Load("Prefabs/SentenceText") as GameObject;
         GameObject sentenceObject = Instantiate<GameObject>(sentenceObjectPrefab, parent);
         SentenceDTO sentenceData = SentenceDAO.SelectSentence(sentenceId);
-        sentenceObject.GetComponent<SentenceObject>().init(sentenceData);
+        sentenceObject.GetComponent<SentenceObject>().Init(sentenceData, selectionContainer);
         return sentenceObject;
     }
 
     public GameObject CreateSentenceImageObject(string imagePath, Transform parent) {
         GameObject sentenceImageObjectPrefab = Resources.Load("Prefabs/SentenceImage") as GameObject;
         GameObject sentenceImageObject = Instantiate<GameObject>(sentenceImageObjectPrefab, parent);
-        sentenceImageObjectPrefab.GetComponent<SentenceImageObject>().init(imagePath);
+        sentenceImageObject.GetComponent<SentenceImageObject>().Init(imagePath);
         return sentenceImageObject;
     }
 
-    public GameObject CreateSelectionObject(int selectionId, Transform parent) {
-        GameObject selectionObjectPrefab = Resources.Load("Prefabs/Selection") as GameObject;
+    public GameObject CreateSelectionObject(int selectionId, Transform sentencePannel, Transform parent) {
+        GameObject selectionObjectPrefab = Resources.Load("Prefabs/SelectionButton") as GameObject;
         GameObject selectionObject = Instantiate<GameObject>(selectionObjectPrefab, parent);
         SelectionDTO selectionData = SelectionDAO.SelectSelection(selectionId);
-        selectionObjectPrefab.GetComponent<SelectionObject>().init(selectionData);
+        selectionObject.GetComponent<SelectionObject>().Init(selectionData, sentencePannel);
         return selectionObject;
+    }
+
+        public GameObject CreateSelectionTextObject(string selectionText, Transform parent) {
+        GameObject selectionTextObjectPrefab = Resources.Load("Prefabs/SelectionText") as GameObject;
+        GameObject selectionTextObject = Instantiate<GameObject>(selectionTextObjectPrefab, parent);
+        selectionTextObject.GetComponent<SelectionTextObject>().Init(selectionText);
+        return selectionTextObject;
     }
 }
