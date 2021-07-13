@@ -19,10 +19,12 @@ public class SentenceDAO {
         sentence.IsHavePicture = it.GetSafeValue<int>(1);
         sentence.ImagePath = it.GetSafeValue<string>(2);
         sentence.Text = it.GetSafeValue<string>(3);
+        List<SelectionDTO> _selectionList = new List<SelectionDTO>();
         for (int i = 4; i < 7; i++) {
             SelectionDTO _selection = SelectionDAO.SelectSelection(it.GetSafeValue<int>(i));
-            if (_selection != null) sentence.SelectionList.Add(_selection);
+            if (_selection != null) _selectionList.Add(_selection);
         }
+        sentence.SelectionList = _selectionList;
         return sentence;
     }
 }

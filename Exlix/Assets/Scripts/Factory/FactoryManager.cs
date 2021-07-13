@@ -20,11 +20,11 @@ public class FactoryManager : Singleton<FactoryManager> {
 
         for (int i = 0; i < portraitData.Count; i++) {
             Debug.Log(portraitData[i].Number);
-           GameObject portraitObject = Instantiate<GameObject>(portraitPrefab, parent);
-           portraitObject.transform.parent = parent;
-           portraitObject.GetComponent<PortraitObject>().init(portraitData[i]);
-         
-           //portraitObjectList.Add(portraitObject);
+            GameObject portraitObject = Instantiate<GameObject>(portraitPrefab, parent);
+            portraitObject.transform.parent = parent;
+            portraitObject.GetComponent<PortraitObject>().init(portraitData[i]);
+
+            //portraitObjectList.Add(portraitObject);
         }
         return portraitObjectList;
     }
@@ -36,12 +36,19 @@ public class FactoryManager : Singleton<FactoryManager> {
         return selectAreaPopup;
     }
 
-     public GameObject CreateSentenceObject(int sentenceId, Transform parent) {
-        GameObject sentenceObjectPrefab = Resources.Load("Prefabs/Sentence") as GameObject;
+    public GameObject CreateSentenceObject(int sentenceId, Transform parent) {
+        GameObject sentenceObjectPrefab = Resources.Load("Prefabs/SentenceText") as GameObject;
         GameObject sentenceObject = Instantiate<GameObject>(sentenceObjectPrefab, parent);
         SentenceDTO sentenceData = SentenceDAO.SelectSentence(sentenceId);
-        sentenceObjectPrefab.GetComponent<SentenceObject>().init(sentenceData);
+        sentenceObject.GetComponent<SentenceObject>().init(sentenceData);
         return sentenceObject;
+    }
+
+    public GameObject CreateSentenceImageObject(string imagePath, Transform parent) {
+        GameObject sentenceImageObjectPrefab = Resources.Load("Prefabs/SentenceImage") as GameObject;
+        GameObject sentenceImageObject = Instantiate<GameObject>(sentenceImageObjectPrefab, parent);
+        sentenceImageObjectPrefab.GetComponent<SentenceImageObject>().init(imagePath);
+        return sentenceImageObject;
     }
 
     public GameObject CreateSelectionObject(int selectionId, Transform parent) {
