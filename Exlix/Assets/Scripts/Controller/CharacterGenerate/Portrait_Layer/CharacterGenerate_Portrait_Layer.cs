@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class CharacterGenerate_Portrait_Layer : MonoBehaviour {
     [SerializeField] PlayerState _PlayerState;
- //   [SerializeField] FactoryManager _FactoryManager;
     [SerializeField] GameObject popup;
     public void Start() {
         Init();
