@@ -8,9 +8,10 @@ public class SelectionObject : MonoBehaviour, IObserver<AreaStateInfo> {
     SelectionDTO selectionData;
     [SerializeField] Text selectionText;
     [SerializeField] Button selectionButton;
-    [SerializeField] AreaState areaState;
+    AreaState areaState;
 
     void Start() {
+        areaState = GameObject.Find("AreaState").GetComponent<AreaState>();
         areaState._AreaStateInfoHandler.Subscribe(this);
         areaState._AreaStateInfoHandler.CreateSelection();
 
