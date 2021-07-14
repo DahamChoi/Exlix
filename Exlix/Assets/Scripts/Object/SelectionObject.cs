@@ -7,20 +7,21 @@ public class SelectionObject : MonoBehaviour {
     SelectionDTO selectionData;
     [SerializeField] Text selectionText;
     [SerializeField] Button selectionButton;
-    [SerializeField] Transform sentencePannel;
+    StageController stageController;
 
     void Start() {
         selectionButton.onClick.AddListener(() => {
-            FactoryManager.GetInstance().CreateSelectionTextObject(selectionData.Text, sentencePannel);
-            if (selectionData.Action != 0) FactoryManager.GetInstance().CreateSentenceObject(selectionData.Action, transform.parent, sentencePannel);
-            LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)sentencePannel);
+            FactoryManager.GetInstance().CreateSelectionTextObject(selectionData.Text, stageController.sentencePannel);
+            if (selectionData.Action != 0) FactoryManager.GetInstance().CreateSentenceObject(selectionData.Action, stageController, stageController.sentencePannel);
+            LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)stageController.sentencePannel);
+            stageController.pannelScroll.verticalNormalizedPosition = 0;
             //Data
         });
     }
 
-    public void Init(SelectionDTO _selectionData, Transform _sentencePannel) {
+    public void Init(SelectionDTO _selectionData, StageController _stageController) {
         selectionData = _selectionData;
-        sentencePannel = _sentencePannel;
-        selectionText.text = _selectionData.Text;
+        stageController = _stageController;
+        selectionText.text = selectionData.Text;
     }
 }

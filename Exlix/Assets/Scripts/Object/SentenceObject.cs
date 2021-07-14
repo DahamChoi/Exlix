@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class SentenceObject : MonoBehaviour {
 
-    [SerializeField] Transform selectionContainor;
     [SerializeField] Text sentenceText;
+    StageController stageController;
     SentenceDTO sentenceData;
 
-    public void Init(SentenceDTO _sentenceData, Transform _selectionContainer) {
+    public void Init(SentenceDTO _sentenceData, StageController _stageController) {
         sentenceData = _sentenceData;
-        selectionContainor = _selectionContainer;
+        stageController = _stageController;
         sentenceText.text = sentenceData.Text;
 
         GameObject sentenceImage = new GameObject();
@@ -20,7 +20,7 @@ public class SentenceObject : MonoBehaviour {
 
         if (sentenceData.SelectionList != null) {
             foreach (var selection in sentenceData.SelectionList){
-                FactoryManager.GetInstance().CreateSelectionObject(selection, transform.parent, selectionContainor);
+                FactoryManager.GetInstance().CreateSelectionObject(selection, stageController, stageController.selectionContainer);
             }
         }
 

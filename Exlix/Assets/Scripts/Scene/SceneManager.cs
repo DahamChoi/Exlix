@@ -74,8 +74,8 @@ public class SceneManager : MonoBehaviour, IObserver<SceneStateInfo>
 
     private void Start()
     {
-        //SceneState.GetInstance()._SceneStateHandler.Subscribe(this);
-        //SceneState.GetInstance()._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.GAME_START);
+        SceneState.GetInstance()._SceneStateHandler.Subscribe(this);
+        SceneState.GetInstance()._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.GAME_START);
     }
 
     private void TurnOffLayer()

@@ -36,11 +36,11 @@ public class FactoryManager : Singleton<FactoryManager> {
         return selectAreaPopup;
     }
 
-    public GameObject CreateSentenceObject(int sentenceId, Transform selectionContainer, Transform parent) {
+    public GameObject CreateSentenceObject(int sentenceId, StageController stageController, Transform parent) {
         GameObject sentenceObjectPrefab = Resources.Load("Prefabs/SentenceText") as GameObject;
         GameObject sentenceObject = Instantiate<GameObject>(sentenceObjectPrefab, parent);
         SentenceDTO sentenceData = SentenceDAO.SelectSentence(sentenceId);
-        sentenceObject.GetComponent<SentenceObject>().Init(sentenceData, selectionContainer);
+        sentenceObject.GetComponent<SentenceObject>().Init(sentenceData, stageController);
         return sentenceObject;
     }
 
@@ -51,11 +51,11 @@ public class FactoryManager : Singleton<FactoryManager> {
         return sentenceImageObject;
     }
 
-    public GameObject CreateSelectionObject(int selectionId, Transform sentencePannel, Transform parent) {
+    public GameObject CreateSelectionObject(int selectionId, StageController stageController, Transform parent) {
         GameObject selectionObjectPrefab = Resources.Load("Prefabs/SelectionButton") as GameObject;
         GameObject selectionObject = Instantiate<GameObject>(selectionObjectPrefab, parent);
         SelectionDTO selectionData = SelectionDAO.SelectSelection(selectionId);
-        selectionObject.GetComponent<SelectionObject>().Init(selectionData, sentencePannel);
+        selectionObject.GetComponent<SelectionObject>().Init(selectionData, stageController);
         return selectionObject;
     }
 

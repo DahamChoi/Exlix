@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class StageController : MonoBehaviour
 {
-    [SerializeField] Transform selectionContainer;
-    [SerializeField] Transform sentencePannel;
-    [SerializeField] ScrollRect pannelScroll;
+    [SerializeField] public Transform selectionContainer;
+    [SerializeField] public Transform sentencePannel;
+    [SerializeField] public ScrollRect pannelScroll;
     
     // Start is called before the first frame update
     void Start()
@@ -22,7 +22,7 @@ public class StageController : MonoBehaviour
     }
 
     public void CreateSentence(int sentenceId) {
-        FactoryManager.GetInstance().CreateSentenceObject(sentenceId, selectionContainer, sentencePannel);
+        FactoryManager.GetInstance().CreateSentenceObject(sentenceId, this, sentencePannel);
         LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)sentencePannel);
         pannelScroll.verticalNormalizedPosition = 0;
     }
