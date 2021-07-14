@@ -12,6 +12,7 @@ public class UIStateHandler : ObserableHandler<UIStateInfo>
         Information.UpdateSelectedCard(cardData);
         base.NotifyObservers();
     }
+        
     public CardDTO GetSelectedCard() {
         return Information.GetSelectedCard();
     }

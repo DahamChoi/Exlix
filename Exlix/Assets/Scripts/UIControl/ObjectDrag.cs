@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class ObjectDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
-	[SerializeField]Camera targetCamera;//프리팹화했을때 카메라에 접근방법 생각해보기
+	[SerializeField]Camera targetCamera = null;//프리팹화했을때 카메라에 접근방법 생각해보기
 	//덱 정렬기준에따라 재배치해야함.
 	//카드 버리기 영역에 드랍할경우 리스트에서 해당 카드 삭제. 들고있는카드는 UIState에 등록해 들고있다가 그대로 갖다 버리면 될듯
 	

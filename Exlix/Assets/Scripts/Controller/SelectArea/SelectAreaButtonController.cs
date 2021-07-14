@@ -4,16 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class SelectAreaButtonController : MonoBehaviour {
-    [SerializeField] Sprite ActiveAreaSprite;
-    [SerializeField] Sprite UnActiveAreaSprite;
-    [SerializeField] Sprite ClearAreaSprite;
+    [SerializeField] Sprite ActiveAreaSprite = null;
+    [SerializeField] Sprite UnActiveAreaSprite = null;
+    [SerializeField] Sprite ClearAreaSprite = null;
 
-    [SerializeField] GameObject SelectAreaPopupObject;
-    [SerializeField] Transform Parent;
+    [SerializeField] GameObject SelectAreaPopupObject = null;
+    [SerializeField] Transform Parent = null;
 
-    [SerializeField] Button SelectAreaButton;
+    [SerializeField] Button SelectAreaButton = null;
     
-    [SerializeField] int AreaNumber;
+    [SerializeField] int AreaNumber = 0;
 
     private bool isActive = false;
 

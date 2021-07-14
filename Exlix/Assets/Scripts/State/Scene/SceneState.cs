@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class SceneState : Singleton<SceneState> {
     public SceneStateHandler _SceneStateHandler = new SceneStateHandler();
-    public InsideBattleHandler _InsideBattleHandler = new InsideBattleHandler();
+    public InformationHandler _InformationHandler = new InformationHandler();
 }

@@ -11,7 +11,7 @@ public class UIInputName : MonoBehaviour
     public Text OutpuNameText;
     public List<string> RandomNames;
 
-    string name;
+    string Title;
 
     public void OpenInputNameScreen()
     {
@@ -34,8 +34,8 @@ public class UIInputName : MonoBehaviour
 
     public void ConfirmName()
     {
-        name = InputNameText.text;
-        OutpuNameText.text = name;
+        Title = InputNameText.text;
+        OutpuNameText.text = Title;
     }
 
     public void InputRandomName()

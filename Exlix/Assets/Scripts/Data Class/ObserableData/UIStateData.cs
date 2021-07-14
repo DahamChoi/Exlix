@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIStateData : MonoBehaviour
-{
+public class UIStateData {
     public CardDTO SelectedCard = new CardDTO();
 }

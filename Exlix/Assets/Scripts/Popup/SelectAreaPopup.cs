@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class SelectAreaPopup : MonoBehaviour {
-    [SerializeField] Text StageDescrible;
-    [SerializeField] Text StageName;
-    [SerializeField] Image AreaImage;
+    [SerializeField] Text StageDescrible = null;
+    [SerializeField] Text StageName = null;
+    [SerializeField] Image AreaImage = null;
 
-    [SerializeField] Button EnterStageButton;
-    [SerializeField] Button ClosePopupButton;
+    [SerializeField] Button EnterStageButton = null;
+    [SerializeField] Button ClosePopupButton = null;
 
     public void Init(AreaDTO areaDTO) {
         StageDescrible.text = areaDTO.Explain;

@@ -3,20 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SceneManager : MonoBehaviour, IObserver<SceneStateInfo>
+public class SceneManager : Singleton<SceneManager>, IObserver<SceneStateInfo>
 {
-    [SerializeField] GameObject MainMenuLayer;
-    [SerializeField] GameObject CharacterGenerate_CharacterInfo_Layer;
-    [SerializeField] GameObject CharacterGenerate_Portrait_Layer;
-    [SerializeField] GameObject CharacterGenerate_Deck_Layer;
-    [SerializeField] GameObject CharacterGenerate_Deck_Info_Layer;
-    [SerializeField] GameObject SelectAreaLayer;
-    [SerializeField] GameObject InsideAreaLayer;
-    [SerializeField] GameObject BattleLayer;
-    [SerializeField] GameObject CharacterMaintenance_Card_Layer;
-    [SerializeField] GameObject CharacterMaintenance_Main_Layer;
-    [SerializeField] GameObject CharacterMaintenance_Skill_Layer;
-    [SerializeField] GameObject CharacterMaintenance_Equipment_Layer;
+    [SerializeField] GameObject MainMenuLayer = null;
+    [SerializeField] GameObject CharacterGenerate_CharacterInfo_Layer = null;
+    [SerializeField] GameObject CharacterGenerate_Portrait_Layer = null;
+    [SerializeField] GameObject CharacterGenerate_Deck_Layer = null;
+    [SerializeField] GameObject CharacterGenerate_Deck_Info_Layer = null;
+    [SerializeField] GameObject SelectAreaLayer = null;
+    [SerializeField] GameObject InsideAreaLayer = null;
+    [SerializeField] GameObject BattleLayer = null;
+    [SerializeField] GameObject CharacterMaintenance_Card_Layer = null;
+    [SerializeField] GameObject CharacterMaintenance_Main_Layer = null;
+    [SerializeField] GameObject CharacterMaintenance_Skill_Layer = null;
+    [SerializeField] GameObject CharacterMaintenance_Equipment_Layer = null;
 
     public void OnCompleted()
     {

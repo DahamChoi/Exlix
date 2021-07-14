@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class TestCardText : MonoBehaviour {
 
-	[SerializeField] Text property;
-	[SerializeField] Text cost;
-	[SerializeField] Text title;
-	[SerializeField] Text explain;
+	[SerializeField] Text property = null;
+	[SerializeField] Text cost = null;
+	[SerializeField] Text title = null;
+	[SerializeField] Text explain = null;
 
 	public void ReadText(CardDataTemplate cardData) {
 		property.text = cardData.GetCardData("Property");

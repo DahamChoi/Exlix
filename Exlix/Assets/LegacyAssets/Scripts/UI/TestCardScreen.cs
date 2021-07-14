@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TestCardScreen : MonoBehaviour {
-	[SerializeField] GameObject ExampleCard;
-	[SerializeField] GameObject Pannel;
+	[SerializeField] GameObject ExampleCard = null;
+	[SerializeField] GameObject Pannel = null;
 	// Start is called before the first frame update
 	void Start() {
 		GameObject gameManager = GameObject.Find("GameManager");
