@@ -12370,7 +12370,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &646930189
 RectTransform:
   m_ObjectHideFlags: 0
@@ -33186,7 +33186,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1726337837}
   - component: {fileID: 1726337839}
-  - component: {fileID: 1726337838}
+  - component: {fileID: 1726337840}
   m_Layer: 0
   m_Name: InsideAreaLayer
   m_TagString: Untagged
@@ -33210,18 +33210,6 @@ Transform:
   m_Father: {fileID: 378123867}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1726337838
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1726337836}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33758fedbca68d44fb5b468f727e6d04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1726337839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33236,6 +33224,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterInfo: {fileID: 646930188}
   Arrow: {fileID: 7741363723746746061}
+--- !u!114 &1726337840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1726337836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33758fedbca68d44fb5b468f727e6d04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectionContainer: {fileID: 686336158}
+  sentencePannel: {fileID: 7741363723922333321}
+  pannelScroll: {fileID: 7741363723920829405}
 --- !u!1 &1728813563
 GameObject:
   m_ObjectHideFlags: 0
@@ -53054,8 +53057,8 @@ RectTransform:
   m_Father: {fileID: 7741363723698935813}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0.12614495}
+  m_AnchorMax: {x: 1, y: 0.87385505}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -2, y: -2}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -53675,8 +53678,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7741363723563929843}
   m_HandleRect: {fileID: 7741363723563929842}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 0.5
+  m_Size: 0.7477101
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -54073,7 +54076,6 @@ GameObject:
   - component: {fileID: 7741363725458940595}
   - component: {fileID: 7741363725458940593}
   - component: {fileID: 7741363725458940592}
-  - component: {fileID: 7741363725458940596}
   m_Layer: 5
   m_Name: Sentence
   m_TagString: Untagged
@@ -54102,21 +54104,6 @@ RectTransform:
   m_AnchoredPosition: {x: -563.1, y: 0}
   m_SizeDelta: {x: -1126.3, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7741363725458940596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7741363725458940594}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75f48a140830b194c869991faf5280d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectionContainer: {fileID: 686336158}
-  sentencePannel: {fileID: 7741363723922333321}
-  pannelScroll: {fileID: 7741363723920829405}
 --- !u!222 &7741363725630451434
 CanvasRenderer:
   m_ObjectHideFlags: 0

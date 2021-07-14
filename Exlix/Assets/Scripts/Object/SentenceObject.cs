@@ -6,12 +6,12 @@ using UnityEngine.UI;
 public class SentenceObject : MonoBehaviour {
 
     [SerializeField] Text sentenceText;
-    StageController stageController;
+    InsideAreaLayerController insideAreaLayerController;
     SentenceDTO sentenceData;
 
-    public void Init(SentenceDTO _sentenceData, StageController _stageController) {
+    public void Init(SentenceDTO _sentenceData, InsideAreaLayerController _insideAreaLayerController) {
         sentenceData = _sentenceData;
-        stageController = _stageController;
+        insideAreaLayerController = _insideAreaLayerController;
         sentenceText.text = sentenceData.Text;
 
         GameObject sentenceImage = new GameObject();
@@ -20,7 +20,7 @@ public class SentenceObject : MonoBehaviour {
 
         if (sentenceData.SelectionList != null) {
             foreach (var selection in sentenceData.SelectionList){
-                FactoryManager.GetInstance().CreateSelectionObject(selection, stageController, stageController.selectionContainer);
+                FactoryManager.GetInstance().CreateSelectionObject(selection, insideAreaLayerController.selectionContainer);
             }
         }
 

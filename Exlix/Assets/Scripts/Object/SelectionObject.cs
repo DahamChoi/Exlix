@@ -1,27 +1,40 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SelectionObject : MonoBehaviour {
+public class SelectionObject : MonoBehaviour, IObserver<AreaStateInfo> {
     SelectionDTO selectionData;
     [SerializeField] Text selectionText;
     [SerializeField] Button selectionButton;
-    StageController stageController;
+    [SerializeField] AreaState areaState;
 
     void Start() {
+        areaState._AreaStateInfoHandler.Subscribe(this);
+        areaState._AreaStateInfoHandler.CreateSelection();
+
         selectionButton.onClick.AddListener(() => {
-            FactoryManager.GetInstance().CreateSelectionTextObject(selectionData.Text, stageController.sentencePannel);
-            if (selectionData.Action != 0) FactoryManager.GetInstance().CreateSentenceObject(selectionData.Action, stageController, stageController.sentencePannel);
-            LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)stageController.sentencePannel);
-            stageController.pannelScroll.verticalNormalizedPosition = 0;
-            //Data
+            areaState._AreaStateInfoHandler.SelectSelection(selectionData);
         });
     }
 
-    public void Init(SelectionDTO _selectionData, StageController _stageController) {
+    public void Init(SelectionDTO _selectionData) {
         selectionData = _selectionData;
-        stageController = _stageController;
         selectionText.text = selectionData.Text;
+    }
+
+    public void OnCompleted() {
+        throw new NotImplementedException();
+    }
+
+    public void OnError(Exception error) {
+        throw new NotImplementedException();
+    }
+
+    public void OnNext(AreaStateInfo value) {
+        if (value.isSelected) {
+            Destroy(this.gameObject);
+        }
     }
 }

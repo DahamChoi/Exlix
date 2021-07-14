@@ -5,5 +5,4 @@ using UnityEngine;
 public class UIStateData : MonoBehaviour
 {
     public CardDTO SelectedCard = new CardDTO();
-
 }

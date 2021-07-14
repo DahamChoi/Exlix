@@ -22,7 +22,7 @@ public class StageController : MonoBehaviour
     }
 
     public void CreateSentence(int sentenceId) {
-        FactoryManager.GetInstance().CreateSentenceObject(sentenceId, this, sentencePannel);
+        //FactoryManager.GetInstance().CreateSentenceObject(sentenceId, this, sentencePannel);
         LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)sentencePannel);
         pannelScroll.verticalNormalizedPosition = 0;
     }

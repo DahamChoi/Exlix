@@ -9,6 +9,7 @@ public class UIStateInfo
     public void ProcessEvent() {
 
     }
+
     public void UpdateSelectedCard(CardDTO cardData) {
         _UIStateData.SelectedCard = cardData;
     }
