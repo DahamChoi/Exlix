@@ -5,7 +5,7 @@ using UnityEngine;
 public class SentenceDAO {
     private static readonly string SentenceTableName = "sentence";
 
-    public static SentenceDTO SelectSentence(int number) {
+    public static SentenceDTO GetSelectedSentenceInfo(int number) {
         string query =
             $"SELECT * FROM {SentenceTableName} WHERE number = {number};";
         ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);

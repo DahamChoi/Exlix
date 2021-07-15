@@ -25,9 +25,9 @@ public class UIBarInfoController : MonoBehaviour {
     private void Init() {
         CharacterInfoDTO characterInfo = CharacterInfoDAO.GetCharacterInfo();
         PlayerNameText.text = characterInfo.Name;
-        PlayerLevelText.text = $"{CommonDefine.LevelString} {characterInfo.Level}";
-        PlayerHpText.text = $"{CommonDefine.HpString} {characterInfo.Hp}";
-        PlayerMpText.text = $"{CommonDefine.MpString} {characterInfo.Mp}";
+        PlayerLevelText.text = $"{CommonDefineKR.LevelString} {characterInfo.Level}";
+        PlayerHpText.text = $"{CommonDefineKR.HpString} {characterInfo.Hp}";
+        PlayerMpText.text = $"{CommonDefineKR.MpString} {characterInfo.Mp}";
 
         AreaDTO area = AreaDAO.SelectArea(characterInfo.CurrentArea);
         if (null != area) {
@@ -37,7 +37,7 @@ public class UIBarInfoController : MonoBehaviour {
         PortraitDTO portrait = PortraitDAO.SelectPortrait(characterInfo.Portrait);
         PlayerIconImage.sprite = Resources.Load(portrait.ImagePath, typeof(Sprite)) as Sprite;
 
-        ContainSkillPointText.text = $"{CommonDefine.ContainSkillPointKR} {characterInfo.SkillPoint}";
+        ContainSkillPointText.text = $"{CommonDefineKR.ContainSkillPointString} {characterInfo.SkillPoint}";
 
         CoinText.text = characterInfo.Gold.ToString();
     }

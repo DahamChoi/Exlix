@@ -20,7 +20,7 @@ public class CharacterInfoDTO {
     public int CurrentEquipmentUpperBody;
     public int CurrentEquipmentUnderBody;
     public int CurrentEquipmentWeapon;
-    public int CurrentEquipmentAccessories;
+    public int CurrentEquipmentAccessory;
     public int CurrentEquipmentPocket;
     public int Level;
     public int Hp;

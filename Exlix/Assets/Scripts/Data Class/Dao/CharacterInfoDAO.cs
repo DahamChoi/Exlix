@@ -40,8 +40,8 @@ public class CharacterInfoDAO {
         characterInfo.CurrentEquipmentUpperBody = it.GetSafeValue<int>(14);
         characterInfo.CurrentEquipmentUnderBody = it.GetSafeValue<int>(15);
         characterInfo.CurrentEquipmentWeapon = it.GetSafeValue<int>(16);
-        characterInfo.CurrentEquipmentAccessories = it.GetSafeValue<int>(17);
-        characterInfo.CurrentEquipmentAccessories = it.GetSafeValue<int>(18);
+        characterInfo.CurrentEquipmentAccessory = it.GetSafeValue<int>(17);
+        characterInfo.CurrentEquipmentPocket = it.GetSafeValue<int>(18);
         characterInfo.Level = it.GetSafeValue<int>(19);
         characterInfo.Hp = it.GetSafeValue<int>(20);
         characterInfo.Mp = it.GetSafeValue<int>(21);

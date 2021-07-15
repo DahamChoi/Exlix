@@ -23,8 +23,8 @@ public class CharacterGenerate_Deck_InfoController : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         LoadStartDeckData();
-        deckInfoButtonText.text = $"{CommonDefine.deckInfo}";
-        characterGenerateButtonText.text = $"{CommonDefine.characterGenerate}";
+        deckInfoButtonText.text = $"{CommonDefineKR.DeckInfoString}";
+        characterGenerateButtonText.text = $"{CommonDefineKR.CharacterGenerateString}";
         UpdateInfo();
     }
 
@@ -49,7 +49,7 @@ public class CharacterGenerate_Deck_InfoController : MonoBehaviour {
     }
 
     void UpdateText() {
-        title.text = $"{CommonDefine.CurrentSelectedDeck}";
+        title.text = $"{CommonDefineKR.CurrentSelectedDeckString}";
         deckName.text = $"{deckList[currentDeckNumber].Name}";
         deckExplain.text = $"{deckList[currentDeckNumber].Explain}";
         deckIndex.text = $"{currentDeckNumber + 1}/{deckList.Count}";

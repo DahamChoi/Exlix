@@ -39,7 +39,7 @@ public class FactoryManager : Singleton<FactoryManager> {
     public GameObject CreateSentenceObject(int sentenceId, InsideAreaLayerController insideAreaLayerController, Transform parent) {
         GameObject sentenceObjectPrefab = Resources.Load("Prefabs/SentenceText") as GameObject;
         GameObject sentenceObject = Instantiate<GameObject>(sentenceObjectPrefab, parent);
-        SentenceDTO sentenceData = SentenceDAO.SelectSentence(sentenceId);
+        SentenceDTO sentenceData = SentenceDAO.GetSelectedSentenceInfo(sentenceId);
         sentenceObject.GetComponent<SentenceObject>().Init(sentenceData, insideAreaLayerController);
         return sentenceObject;
     }
@@ -54,7 +54,7 @@ public class FactoryManager : Singleton<FactoryManager> {
     public GameObject CreateSelectionObject(int selectionId, Transform parent) {
         GameObject selectionObjectPrefab = Resources.Load("Prefabs/SelectionButton") as GameObject;
         GameObject selectionObject = Instantiate<GameObject>(selectionObjectPrefab, parent);
-        SelectionDTO selectionData = SelectionDAO.SelectSelection(selectionId);
+        SelectionDTO selectionData = SelectionDAO.GetSelectedSelectionInfo(selectionId);
         selectionObject.GetComponent<SelectionObject>().Init(selectionData);
         return selectionObject;
     }

@@ -5,9 +5,9 @@ using UnityEngine.UI;
 using UnityEngine;
 
 public class InsideAreaLayerController : MonoBehaviour, IObserver<AreaStateInfo> {
-    [SerializeField] public Transform selectionContainer;
-    [SerializeField] public Transform sentencePannel;
-    [SerializeField] public ScrollRect pannelScroll;
+    [SerializeField] Transform selectionContainer;
+    [SerializeField] Transform sentencePannel;
+    [SerializeField] ScrollRect pannelScroll;
     [SerializeField] AreaState areaState = null;
     // Start is called before the first frame update
     void Start() {
@@ -26,6 +26,10 @@ public class InsideAreaLayerController : MonoBehaviour, IObserver<AreaStateInfo>
         pannelScroll.verticalNormalizedPosition = 1;
     }
 
+    public Transform GetSelectionContainer() {
+        return selectionContainer;
+    }
+    
     public void OnCompleted() {
         throw new NotImplementedException();
     }

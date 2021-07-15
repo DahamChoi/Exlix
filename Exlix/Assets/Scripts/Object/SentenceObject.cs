@@ -20,7 +20,7 @@ public class SentenceObject : MonoBehaviour {
 
         if (sentenceData.SelectionList != null) {
             foreach (var selection in sentenceData.SelectionList){
-                FactoryManager.GetInstance().CreateSelectionObject(selection, insideAreaLayerController.selectionContainer);
+                FactoryManager.GetInstance().CreateSelectionObject(selection, insideAreaLayerController.GetSelectionContainer());
             }
         }
 
