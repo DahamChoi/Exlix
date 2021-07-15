@@ -6,9 +6,9 @@ using System;
 
 public class SkillNode : MonoBehaviour, IObserver<PlayerStateInfo> {
     [SerializeField] public SkillNode pSkill; //선행 스킬
-    [SerializeField] Image nodeImage;
-    [SerializeField] SkillInfoPopup skillPopup; //스킬정보 팝업
-    [SerializeField] PlayerState _PlayerState;
+    [SerializeField] Image nodeImage = null;
+    [SerializeField] SkillInfoPopup skillPopup = null; //스킬정보 팝업
+    [SerializeField] PlayerState _PlayerState = null;
 
     public int skillId;
     public bool isActivated; //스킬 활성화 여부

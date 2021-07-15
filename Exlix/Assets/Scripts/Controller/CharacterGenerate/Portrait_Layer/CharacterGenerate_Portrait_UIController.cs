@@ -4,39 +4,38 @@ using UnityEngine;
 using UnityEngine.UI;
 public class CharacterGenerate_Portrait_UIController : MonoBehaviour {
 
-    [SerializeField] GameObject InputNameScreen;
-    [SerializeField] GameObject InputNameCloser;
-    [SerializeField] GameObject PortraitPopup;
-    [SerializeField] GameObject PortraitPopupCloser;
+    [SerializeField] GameObject InputNameScreen = null;
+    [SerializeField] GameObject InputNameCloser = null;
+    [SerializeField] GameObject PortraitPopup = null;
+    [SerializeField] GameObject PortraitPopupCloser = null;
+    [SerializeField] Button NameInputPopupButton = null;
+    [SerializeField] Button DiceButton = null;
+    [SerializeField] Button NameComfirmButton = null;
+    [SerializeField] Button NextButton = null;
+    [SerializeField] Button PortraitPopupButton = null;
+    [SerializeField] Button PortraitPopupCloseButton = null;
+    [SerializeField] Button PortraitPopupCommitButton = null;
+    [SerializeField] Button HpAddButton = null;
+    [SerializeField] Button HpSubButton = null;
+    [SerializeField] Button StrAddButton = null;
+    [SerializeField] Button StrSubButton = null;
+    [SerializeField] Button DexAddButton = null;
+    [SerializeField] Button DexSubButton = null;
+    [SerializeField] Button IntAddButton = null;
+    [SerializeField] Button IntSubButton = null;
 
-    [SerializeField] Button NameInputPopupButton;
-    [SerializeField] Button DiceButton;
-    [SerializeField] Button NameComfirmButton;
-    [SerializeField] Button NextButton;
-    [SerializeField] Button PortraitPopupButton;
-    [SerializeField] Button PortraitPopupCloseButton;
-    [SerializeField] Button PortraitPopupCommitButton;
-    [SerializeField] Button HpAddButton;
-    [SerializeField] Button HpSubButton;
-    [SerializeField] Button StrAddButton;
-    [SerializeField] Button StrSubButton;
-    [SerializeField] Button DexAddButton;
-    [SerializeField] Button DexSubButton;
-    [SerializeField] Button IntAddButton;
-    [SerializeField] Button IntSubButton;
+    [SerializeField] Text HP = null;
+    [SerializeField] Text DEX = null;
+    [SerializeField] Text STR = null;
+    [SerializeField] Text INT = null;
+    [SerializeField] Text StatusPoint = null;
+    [SerializeField] Text InputNameText = null;
+    [SerializeField] Text OutputNameText = null;
 
-    [SerializeField] Text HP;
-    [SerializeField] Text DEX;
-    [SerializeField] Text STR;
-    [SerializeField] Text INT;
-    [SerializeField] Text StatusPoint;
-    [SerializeField] Text InputNameText;
-    [SerializeField] Text OutputNameText;
+    [SerializeField] PlayerState _PlayerState = null;
 
-    [SerializeField] PlayerState _PlayerState;
-
-    [SerializeField] Image PortraitImg;
-    [SerializeField] List<string> RandomNames;
+    [SerializeField] Image PortraitImg = null;
+    [SerializeField] List<string> RandomNames = null;
 
     private PortraitDTO portrait;
 

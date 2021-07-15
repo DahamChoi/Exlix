@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterGenerate_Portrait_Layer : MonoBehaviour {
-    [SerializeField] PlayerState _PlayerState;
-    [SerializeField] GameObject popup;
+    [SerializeField] PlayerState _PlayerState = null;
+    [SerializeField] GameObject popup = null;
     public void Start() {
         Init();
     }

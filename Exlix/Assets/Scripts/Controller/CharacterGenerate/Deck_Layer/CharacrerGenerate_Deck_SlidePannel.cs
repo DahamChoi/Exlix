@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class CharacrerGenerate_Deck_SlidePannel : MonoBehaviour, IBeginDragHandler, IDragHandler {
-    [SerializeField] CharacterGenerate_Deck_InfoController deckInfoController;
+    [SerializeField] CharacterGenerate_Deck_InfoController deckInfoController = null;
     Vector2 startPos;
     Vector2 movedPos;
     bool is_moved;

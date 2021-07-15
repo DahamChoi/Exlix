@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SentenceObject : MonoBehaviour {
 
-    [SerializeField] Text sentenceText;
+    [SerializeField] Text sentenceText = null;
     InsideAreaLayerController insideAreaLayerController;
     SentenceDTO sentenceData;
 

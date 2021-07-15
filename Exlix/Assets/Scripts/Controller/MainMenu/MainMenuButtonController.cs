@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class MainMenuButtonController : MonoBehaviour
 {
-    [SerializeField] Button LoadGameButton;
-    [SerializeField] Button NewGameButton;
+    [SerializeField] Button LoadGameButton = null;
+    [SerializeField] Button NewGameButton = null;
 
     void Start() {
         LoadGameButton.onClick.AddListener(() => {

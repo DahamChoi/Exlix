@@ -6,14 +6,14 @@ using System;
 
 public class SkillInfoPopup : MonoBehaviour
 {
-    [SerializeField] GameObject unEquipButton;
-    [SerializeField] GameObject equipButton;
-    [SerializeField] GameObject unlockButton;
-    [SerializeField] GameObject disabledButton;
-    [SerializeField] Text title;
-    [SerializeField] Text explain;
-    [SerializeField] GameState _GameState;
-    [SerializeField] PlayerState _PlayerState;
+    [SerializeField] GameObject unEquipButton = null;
+    [SerializeField] GameObject equipButton = null;
+    [SerializeField] GameObject unlockButton = null;
+    [SerializeField] GameObject disabledButton = null;
+    [SerializeField] Text title = null;
+    [SerializeField] Text explain = null;
+    [SerializeField] GameState _GameState = null;
+    [SerializeField] PlayerState _PlayerState = null;
     
     SkillDataTemplate skillData;
     SkillNode skillNode;

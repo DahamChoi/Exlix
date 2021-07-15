@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class CharacterGenerate_Deck_Info_Layer : MonoBehaviour
 {
-    [SerializeField] PlayerState _PlayerState;
-    [SerializeField] GameObject DeckListArea;
-    [SerializeField] Button testButton;
+    [SerializeField] PlayerState _PlayerState = null;
+    [SerializeField] GameObject DeckListArea = null;
+    [SerializeField] Button testButton = null;
 
     private void Start() {
 

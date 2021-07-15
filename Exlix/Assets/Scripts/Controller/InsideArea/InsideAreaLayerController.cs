@@ -8,7 +8,7 @@ public class InsideAreaLayerController : MonoBehaviour, IObserver<AreaStateInfo>
     [SerializeField] public Transform selectionContainer;
     [SerializeField] public Transform sentencePannel;
     [SerializeField] public ScrollRect pannelScroll;
-    [SerializeField] AreaState areaState;
+    [SerializeField] AreaState areaState = null;
     // Start is called before the first frame update
     void Start() {
         areaState._AreaStateInfoHandler.Subscribe(this);
@@ -23,7 +23,7 @@ public class InsideAreaLayerController : MonoBehaviour, IObserver<AreaStateInfo>
     public void CreateSentence(int sentenceId) {
         FactoryManager.GetInstance().CreateSentenceObject(sentenceId, this, sentencePannel);
         LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)sentencePannel);
-        pannelScroll.verticalNormalizedPosition = 0;
+        pannelScroll.verticalNormalizedPosition = 1;
     }
 
     public void OnCompleted() {

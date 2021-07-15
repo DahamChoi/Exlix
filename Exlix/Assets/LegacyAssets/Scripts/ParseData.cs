@@ -5,7 +5,7 @@ using System;
 
 public class ParseData : MonoBehaviour, IObserver<GameStateInfo>
 {
-    [SerializeField] GameState _GameState;
+    [SerializeField] GameState _GameState = null;
 
     public CSVCardParser cardParser = new CSVCardParser("Assets/Resources/CardDB2.csv");
     public CSVSkillParser skillParser = new CSVSkillParser("Assets/Resources/SkillDB2.csv");

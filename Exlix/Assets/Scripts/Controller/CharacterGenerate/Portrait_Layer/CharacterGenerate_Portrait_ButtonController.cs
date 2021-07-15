@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class CharacterGenerate_Portrait_ButtonController : MonoBehaviour
 {
-    [SerializeField] Button BackButton;
-    [SerializeField] Button NextButton;
-    [SerializeField] Button MainMenuButton;
+    [SerializeField] Button BackButton = null;
+    [SerializeField] Button NextButton = null;
+    [SerializeField] Button MainMenuButton = null;
 
     void Start()
     {

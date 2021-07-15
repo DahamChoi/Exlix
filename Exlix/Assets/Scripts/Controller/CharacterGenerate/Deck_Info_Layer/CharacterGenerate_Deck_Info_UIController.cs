@@ -5,12 +5,12 @@ using System.Collections;
 using System.Collections.Generic;
 public class CharacterGenerate_Deck_Info_UIController : MonoBehaviour, IPointerClickHandler {
 
-    [SerializeField] Text CardExplain;
-    [SerializeField] Text CardCost;
-    [SerializeField] Text CardTitle;
-    [SerializeField] Text CardFaction;
-    [SerializeField] UIState _UIState;
-    [SerializeField] Canvas m_canvas;
+    [SerializeField] Text CardExplain = null;
+    [SerializeField] Text CardCost = null;
+    [SerializeField] Text CardTitle = null;
+    [SerializeField] Text CardFaction = null;
+    [SerializeField] UIState _UIState = null;
+    [SerializeField] Canvas m_canvas = null;
     GraphicRaycaster m_gr;
     PointerEventData m_ped;
 

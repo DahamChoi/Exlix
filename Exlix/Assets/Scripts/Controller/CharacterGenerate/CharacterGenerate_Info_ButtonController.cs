@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class CharacterGenerate_Info_ButtonController : MonoBehaviour
 {
-    [SerializeField] Button BackButton;
-    [SerializeField] Button NextButton;
+    [SerializeField] Button BackButton = null;
+    [SerializeField] Button NextButton = null;
 
     void Start()
     {

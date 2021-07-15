@@ -4,13 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class CharacterMaintenanceButtonController : MonoBehaviour {
-    [SerializeField] Button EquipmentButton;
-    [SerializeField] Button SkillButton;
-    [SerializeField] Button CardButton;
-    [SerializeField] Button NowEquipment;
-    [SerializeField] Button NowSkill;
-    [SerializeField] Button DeckButton;
-    [SerializeField] Button StartButton;
+    [SerializeField] Button EquipmentButton = null;
+    [SerializeField] Button SkillButton = null;
+    [SerializeField] Button CardButton = null;
+    [SerializeField] Button NowEquipment = null;
+    [SerializeField] Button NowSkill = null;
+    [SerializeField] Button DeckButton = null;
+    [SerializeField] Button StartButton = null;
 
     void Start()
     {

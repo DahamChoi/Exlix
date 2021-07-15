@@ -11,7 +11,7 @@ public class BattlePlayerHPbar : MonoBehaviour {
     //공격을 받았을때 뒤쪽 HP바가 줄어들도록 하기위한 불 값
     public bool backHpHit = false;
 
-    [SerializeField] GameObject Player;
+    [SerializeField] GameObject Player = null;
 
     // Start is called before the first frame update
     void Start() {

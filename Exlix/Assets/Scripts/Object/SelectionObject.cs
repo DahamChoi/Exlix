@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class SelectionObject : MonoBehaviour, IObserver<AreaStateInfo> {
     SelectionDTO selectionData;
-    [SerializeField] Text selectionText;
-    [SerializeField] Button selectionButton;
+    [SerializeField] Text selectionText = null;
+    [SerializeField] Button selectionButton = null;
     AreaState areaState;
 
     void Start() {

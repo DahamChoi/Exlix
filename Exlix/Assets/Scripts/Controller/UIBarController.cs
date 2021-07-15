@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class UIBarController : MonoBehaviour {
-    [SerializeField] GameObject OptionPopupScreen;
-    [SerializeField] GameObject OptionPopupCloser;
+    [SerializeField] GameObject OptionPopupScreen = null;
+    [SerializeField] GameObject OptionPopupCloser = null;
 
-    [SerializeField] Button OptionButton;
-    [SerializeField] Button OptionCloseButton;
-    [SerializeField] Button BackButton;
+    [SerializeField] Button OptionButton = null;
+    [SerializeField] Button OptionCloseButton = null;
+    [SerializeField] Button BackButton = null;
 
     void Start() {
         OptionButton.onClick.AddListener(() => {

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SelectionTextObject : MonoBehaviour
 {
-    [SerializeField] Text selectionText;
+    [SerializeField] Text selectionText = null;
 
     public void Init(string _selectionText) {
         selectionText.text = _selectionText;

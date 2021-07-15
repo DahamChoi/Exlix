@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class CharacterGenerate_Deck_Controller : MonoBehaviour {
-    [SerializeField] Button MainMenuButton;
-    [SerializeField] Button CharacterGenerateButton;
-    [SerializeField] Button DeckInfoButton;
-    [SerializeField] Button NextDeckButton;
-    [SerializeField] Button PreviousDeckButton;
+    [SerializeField] Button MainMenuButton = null;
+    [SerializeField] Button CharacterGenerateButton = null;
+    [SerializeField] Button DeckInfoButton = null;
+    [SerializeField] Button NextDeckButton = null;
+    [SerializeField] Button PreviousDeckButton = null;
     CharacterGenerate_Deck_InfoController deckInfoController;
 
     // Start is called before the first frame update

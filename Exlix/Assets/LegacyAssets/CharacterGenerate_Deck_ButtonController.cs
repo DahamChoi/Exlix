@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class CharacterGenerate_Deck_ButtonController : MonoBehaviour
 {
-    [SerializeField] Button MainMenuButton;
-    [SerializeField] Button CharacterGenerateButton;
-    [SerializeField] Button DeckInfoButton;
+    [SerializeField] Button MainMenuButton = null;
+    [SerializeField] Button CharacterGenerateButton = null;
+    [SerializeField] Button DeckInfoButton = null;
 
     void Start()
     {

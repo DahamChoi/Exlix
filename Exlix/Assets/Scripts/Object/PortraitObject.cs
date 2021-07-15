@@ -3,8 +3,8 @@ using UnityEngine;
 using UnityEngine.UI;
 public class PortraitObject : MonoBehaviour {
     public PortraitDTO PortraitData;
-    [SerializeField] Image Portrait;
-    [SerializeField] Button PortraitButton;
+    [SerializeField] Image Portrait = null;
+    [SerializeField] Button PortraitButton = null;
 
     string ImagePath;
     PlayerState _PlayerState;

@@ -5,18 +5,18 @@ using UnityEngine.UI;
 
 public class UIBarInfoController : MonoBehaviour {
     // Area
-    [SerializeField] Text PlayerNameText;
-    [SerializeField] Text PlayerLevelText;
-    [SerializeField] Text PlayerHpText;
-    [SerializeField] Text PlayerMpText;
-    [SerializeField] Text StageNameText;
-    [SerializeField] Image PlayerIconImage;
+    [SerializeField] Text PlayerNameText = null;
+    [SerializeField] Text PlayerLevelText = null;
+    [SerializeField] Text PlayerHpText = null;
+    [SerializeField] Text PlayerMpText = null;
+    [SerializeField] Text StageNameText = null;
+    [SerializeField] Image PlayerIconImage = null;
 
     // Skill
-    [SerializeField] Text ContainSkillPointText;
+    [SerializeField] Text ContainSkillPointText = null;
 
     // Gold
-    [SerializeField] Text CoinText;
+    [SerializeField] Text CoinText = null;
 
     void Start() {
         Init();
