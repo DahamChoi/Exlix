@@ -9,5 +9,5 @@ public class SkillDTO {
     public string Name;
     public string Explain;
     public int Parent;
-    public CardDTO SkillCard;
+    public int SkillCard;
 }
