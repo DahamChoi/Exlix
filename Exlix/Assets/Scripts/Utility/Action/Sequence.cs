@@ -6,15 +6,15 @@ public class Sequence : Action {
     private List<Action> ActionList;
     private int ActionListIndex;
 
-    private Sequence(GameObject controlledGameObject, List<Action> actionList, ActionEndCallBack actionEndCallBack) 
-    : base(controlledGameObject, actionEndCallBack) {
+    private Sequence(List<Action> actionList, ActionEndCallBack actionEndCallBack) 
+    : base(null, actionEndCallBack) {
         ActionList = actionList;
         ActionListIndex = 0;
         IsRun = false;
     }
 
-    public static Sequence Create(GameObject controlledGameObject, List<Action> actionList, ActionEndCallBack actionEndCallBack = null) {
-        Sequence sequence = new Sequence(controlledGameObject, actionList, actionEndCallBack);
+    public static Sequence Create(List<Action> actionList, ActionEndCallBack actionEndCallBack = null) {
+        Sequence sequence = new Sequence(actionList, actionEndCallBack);
         return sequence;
     }
 
@@ -29,14 +29,13 @@ public class Sequence : Action {
                 if(false == ActionList[ActionListIndex].IsRun){
                     ActionList[ActionListIndex].Run();
                 }
-            
+                
                 if(true == ActionList[ActionListIndex].IsEnd){
                     ++ActionListIndex;
                 }
             }   
             else {
-                IsRun = false;
-                EndCallBack();
+                EndAction();
             }         
         }
     }

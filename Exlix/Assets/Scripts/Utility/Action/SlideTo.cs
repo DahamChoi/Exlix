@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveTo : Action {
+public class SlideTo : Action {
     Vector3 SourceVector;
     Vector3 TargetVector;
     Vector3 AdjustVector;
@@ -10,17 +10,17 @@ public class MoveTo : Action {
     float TargetTime;
     float CurTime;
 
-    private MoveTo(GameObject controlledGameObject, Vector3 target, float time, ActionEndCallBack actionEndCallBack)
+    private SlideTo(GameObject controlledGameObject, Vector3 distance, float time, ActionEndCallBack actionEndCallBack)
     : base(controlledGameObject, actionEndCallBack) {
         SourceVector = controlledGameObject.transform.localPosition;
-        AdjustVector = (target - SourceVector) / time;
-        TargetVector = target;
+        AdjustVector = distance / time;
+        TargetVector = SourceVector + distance;
         TargetTime = time;
         CurTime = 0.0f;
     }
 
-    public static MoveTo Create(GameObject controlledGameObject, Vector3 target, float time, ActionEndCallBack actionEndCallBack = null) {
-        MoveTo moveTo = new MoveTo(controlledGameObject, target, time, actionEndCallBack);
+    public static SlideTo Create(GameObject controlledGameObject, Vector3 distance, float time, ActionEndCallBack actionEndCallBack = null) {
+        SlideTo moveTo = new SlideTo(controlledGameObject, distance, time, actionEndCallBack);
         return moveTo;
     }
 

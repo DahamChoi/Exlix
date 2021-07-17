@@ -9,18 +9,13 @@ public class InsideAreaCharacterInfoController : MonoBehaviour {
     [SerializeField] Button characterInfoButton = null;
     bool IsOpened = false;
 
-    // Start is called before the first frame update
     void Start() {
         characterInfoButton.onClick.AddListener(() => {
-            if (IsOpened) {
-                characterInfoRect.anchoredPosition = new Vector2(-69.5f, -59.75f); //나중에 애니메이션으로 부드럽게 만들 예정
-                arrowRect.rotation = new Quaternion(0, 0, 0, 0);
-                IsOpened = false;
-            } else {
-                characterInfoRect.anchoredPosition = new Vector2(-1056.8f, -59.75f); //나중에 애니메이션으로 부드럽게 만들 예정
-                arrowRect.rotation = new Quaternion(0, 0, 180, 0);
-                IsOpened = true;
-            }
+            Vector3 movePosition = IsOpened ? new Vector3(1000.0f, 0.0f) : new Vector3(-1000.0f, 0.0f);
+            SlideTo moveAction = SlideTo.Create(characterInfoRect.gameObject, movePosition, 0.5f);
+            ActionManager.GetInstance().RunAction(moveAction);
+            arrowRect.rotation = IsOpened ? new Quaternion(0, 0, 0, 0) : new Quaternion(0, 0, 180, 0);
+            IsOpened = !IsOpened;
         });
     }
 
