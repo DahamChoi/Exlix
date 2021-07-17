@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EventDTO {
     public int Number;
-    public SentenceDTO StartSentece;
+    public int StartSentece;
     public string Kind;
     public int Level;
     public string Region;
