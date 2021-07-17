@@ -1,0 +1,28 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ActionManager : Singleton<ActionManager> {
+    private List<Action> ActionList = new List<Action>();
+
+    public void RunAction(Action action) {
+        ActionList.Add(action);
+        action.Run();
+    }
+
+    private void Update() {
+        if(0 < ActionList.Count) {
+            List<Action> doneAction = new List<Action>();
+            foreach(var it in ActionList){
+                it.Update(Time.deltaTime);
+                if(true == it.IsEnd){
+                    doneAction.Add(it);
+                }
+            }
+
+            foreach(var it in doneAction){
+                ActionList.Remove(it);
+            }
+        }
+    }
+}

@@ -18,12 +18,7 @@ public class BattleLayer : MonoBehaviour, IObserver<Information> {
     }
 
     private void Init() {
-        // Using MonsterNameList
-        // Make Monster Using GameState(CSV DATA)
-        FactoryManager.GetInstance().CreateCardObject(1, transform);
-        FactoryManager.GetInstance().CreateCardObject(2, transform);
-        FactoryManager.GetInstance().CreateCardObject(3, transform);
-        FactoryManager.GetInstance().CreateCardObject(4, transform);
+        
     }
 
     public void OnCompleted() {
