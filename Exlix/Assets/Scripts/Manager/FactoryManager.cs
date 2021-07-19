@@ -59,10 +59,17 @@ public class FactoryManager : Singleton<FactoryManager> {
         return selectionObject;
     }
 
-        public GameObject CreateSelectionTextObject(string selectionText, Transform parent) {
+    public GameObject CreateSelectionTextObject(string selectionText, Transform parent) {
         GameObject selectionTextObjectPrefab = Resources.Load("Prefabs/SelectionText") as GameObject;
         GameObject selectionTextObject = Instantiate<GameObject>(selectionTextObjectPrefab, parent);
         selectionTextObject.GetComponent<SelectionTextObject>().Init(selectionText);
         return selectionTextObject;
+    }
+
+    public GameObject CreateCardDescriptionPopup(CardDTO card, Transform parent) {
+        GameObject CardDescriptionPopupPrefab = Resources.Load("Prefabs/CardDescribe_Popup") as GameObject;
+        GameObject CardDescriptionPopup = Instantiate<GameObject>(CardDescriptionPopupPrefab, parent);
+        CardDescriptionPopup.GetComponent<UICardDescription>().Init(card);
+        return CardDescriptionPopup;
     }
 }

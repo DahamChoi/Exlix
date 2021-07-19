@@ -8,6 +8,11 @@ public class UIStateHandler : ObserableHandler<UIStateInfo>
         Information = new UIStateInfo();
     }
 
+    public void UpdateDestroyCard(CardDTO cardData) {
+        Information.UpdateDestroyCard(cardData);
+        base.NotifyObservers();
+    }
+
     public void UpdateSelectedCard(CardDTO cardData) {
         Information.UpdateSelectedCard(cardData);
         base.NotifyObservers();

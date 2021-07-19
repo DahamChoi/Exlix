@@ -4,4 +4,5 @@ using UnityEngine;
 
 public class UIStateData {
     public CardDTO SelectedCard = new CardDTO();
+    public CardDTO DestroyCard = new CardDTO();
 }

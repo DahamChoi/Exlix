@@ -10,6 +10,9 @@ public class UIStateInfo
 
     }
 
+    public void UpdateDestroyCard(CardDTO cardData) {
+        _UIStateData.DestroyCard = cardData;
+    }
     public void UpdateSelectedCard(CardDTO cardData) {
         _UIStateData.SelectedCard = cardData;
     }
