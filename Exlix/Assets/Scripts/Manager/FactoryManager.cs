@@ -19,9 +19,9 @@ public class FactoryManager : Singleton<FactoryManager> {
         GameObject portraitPrefab = Resources.Load("Prefabs/Portrait") as GameObject;
 
         for (int i = 0; i < portraitData.Count; i++) {
-            Debug.Log(portraitData[i].Number);
+
             GameObject portraitObject = Instantiate<GameObject>(portraitPrefab, parent);
-            portraitObject.transform.parent = parent;
+            portraitObject.transform.SetParent(parent);
             portraitObject.GetComponent<PortraitObject>().init(portraitData[i]);
 
             //portraitObjectList.Add(portraitObject);
