@@ -676,7 +676,6 @@ MonoBehaviour:
   AreaImage: {fileID: 2952150968308072566}
   EnterStageButton: {fileID: 8555143000970588049}
   ClosePopupButton: {fileID: 8007276512509468397}
-  _SceneState: {fileID: 0}
 --- !u!1 &5437210000734874264
 GameObject:
   m_ObjectHideFlags: 0

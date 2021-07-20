@@ -72,4 +72,11 @@ public class FactoryManager : Singleton<FactoryManager> {
         CardDescriptionPopup.GetComponent<UICardDescription>().Init(card);
         return CardDescriptionPopup;
     }
+
+    public GameObject CreateSelectedSkillPopup(SkillDTO skillData, Transform parent) {
+        GameObject skillPopupPrefab = Resources.Load("Prefabs/SkillPopup") as GameObject;
+        GameObject skillPopupObject = Instantiate<GameObject>(skillPopupPrefab, parent);
+        skillPopupObject.GetComponent<SkillPopupObject>().Init(skillData);
+        return skillPopupObject;
+    }
 }

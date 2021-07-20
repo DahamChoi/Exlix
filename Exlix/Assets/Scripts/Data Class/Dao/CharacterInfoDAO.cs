@@ -13,6 +13,13 @@ public class CharacterInfoDAO {
         SQLiteManager.GetInstance().InsertQuery(query);
     }
 
+    public static void UpsertPlayerSkill(string unlockedSkill, int currentSkill, int skillPoint) {
+        string query = 
+            $"INSERT OR REPLACE INTO {CharacterInfoTableName}(number, unlocked_skill_list, current_skill_number, skill_point)" +
+            $"VALUES({unlockedSkill}, {currentSkill}, {skillPoint});";
+        SQLiteManager.GetInstance().InsertQuery(query);
+    }
+
     public static CharacterInfoDTO GetCharacterInfo() {
         string query =
             $"SELECT * FROM {CharacterInfoTableName} WHERE number = 1;";

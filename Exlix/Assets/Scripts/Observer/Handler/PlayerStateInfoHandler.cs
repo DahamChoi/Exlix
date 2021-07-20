@@ -101,25 +101,22 @@ public class PlayerStateInfoHandler : ObserableHandler<PlayerStateInfo> {
     public StartDeckDTO GetCurrentStartDeck() {
         return Information.currentStartDeck;
     }
-    public void SetCurrentSkill(SkillDataTemplate skillData) {
-        Information.equipedSkill = skillData;
-        base.NotifyObservers();
-    }
-    public SkillDataTemplate GetCurrentSkill() {
-        return Information.equipedSkill;
-    }
-
     public int GetSkillPoint() {
         return Information.skillPoint;
     }
-
-    public bool GetCurrentSkillUnlocked(int key) {
-        return Information.unlockedSkill[key];
+    public SkillDTO GetCurrentSkill() {
+        return Information.currentSkill;
     }
-
-    public void UnlockSkill(int key, int skillPoint) {
-        Information.unlockedSkill[key] = true;
-        Information.skillPoint -= skillPoint;
+    public List<int> GetUnlockedSkill() {
+        return Information.unlockedSkill;
+    }
+    public void EquipSkill(SkillDTO _skillData) {
+        Information.currentSkill = _skillData;
+        base.NotifyObservers();
+    }
+    public void UnlockSkill(List<int> _unlockedSkill) {
+        Information.unlockedSkill = _unlockedSkill;
+        Information.skillPoint--;
         base.NotifyObservers();
     }
 }
