@@ -43,24 +43,24 @@ public class SkillPopupObject : MonoBehaviour {
         skillActivationButton.onClick.RemoveAllListeners();
 
         if (characterData.CurrentSkill == selectedSkillData.Number) {
-            skillActivationButton.image.sprite = Resources.Load("alreadyEquipedSkillButtonImageUIPath...", typeof(Sprite)) as Sprite;
+            //skillActivationButton.image.sprite = Resources.Load("alreadyEquipedSkillButtonImageUIPath...", typeof(Sprite)) as Sprite;
             skillActivationButton.interactable = false;
         } else if (characterData.UnLockedSkill.Contains(selectedSkillData.Number)) {
-            skillActivationButton.image.sprite = Resources.Load("EquipSkillButtonImageUIPath...", typeof(Sprite)) as Sprite;
+            //skillActivationButton.image.sprite = Resources.Load("EquipSkillButtonImageUIPath...", typeof(Sprite)) as Sprite;
             skillActivationButton.interactable = true;
             skillActivationButton.onClick.AddListener(() => {
                 characterData.CurrentSkill = selectedSkillData.Number;
                 //...
             });
         } else if (characterData.UnLockedSkill.Contains(selectedSkillData.Parent)) {
-            skillActivationButton.image.sprite = Resources.Load("UnlockSkillButtonImageUIPath...", typeof(Sprite)) as Sprite;
+            //skillActivationButton.image.sprite = Resources.Load("UnlockSkillButtonImageUIPath...", typeof(Sprite)) as Sprite;
             skillActivationButton.interactable = true;
             skillActivationButton.onClick.AddListener(() => {
                 characterData.UnLockedSkill.Add(selectedSkillData.Number);
                 //...
             });
         } else {
-            skillActivationButton.image.sprite = Resources.Load("CantUnlockSkillButtonImageUIPath...", typeof(Sprite)) as Sprite;
+            //skillActivationButton.image.sprite = Resources.Load("CantUnlockSkillButtonImageUIPath...", typeof(Sprite)) as Sprite;
             skillActivationButton.interactable = false;
         }
     }
