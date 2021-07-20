@@ -10,12 +10,5 @@ public class InformationHandler : ObserableHandler<Information> {
     public void InsertData<T>(string key, T value) {
         Information.InsertData<T>(key, value);
     }
-
-    public T GetData<T>(string key) {
-        return Information.GetData<T>(key);
-    }
-
-    public void Notify() {
-        base.NotifyObservers();
-    }
+    
 }

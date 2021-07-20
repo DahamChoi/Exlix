@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-public class SkillObject : MonoBehaviour, IObserver<SceneState> {
+public class SkillObject : MonoBehaviour, IObserver<Information> {
     [SerializeField] int skillID;
     [SerializeField] Image skillImage;
     [SerializeField] Button skillButton;
@@ -37,7 +37,7 @@ public class SkillObject : MonoBehaviour, IObserver<SceneState> {
         throw new NotImplementedException();
     }
 
-    public void OnNext(SceneState value) {
+    public void OnNext(Information value) {
         Init();
     }
 }

@@ -75,6 +75,6 @@ public class CharacterGenerate_Deck_InfoController : MonoBehaviour {
     }
 
     public void UpsertInfo() {
-        SceneState.GetInstance()._InformationHandler.InsertData<int>(InformationKeyDefine.CURRENT_AREA_NUMBER_KEY, currentDeckNumber);
+        SceneState.GetInstance()._InformationHandler.InsertData<StartDeckDTO>(InformationKeyDefine.CURRENT_AREA_NUMBER_KEY, deckList[currentDeckNumber]);
     }
 }
