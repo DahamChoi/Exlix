@@ -4,22 +4,22 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 public class CharacterMaintenance_Card_Layer : MonoBehaviour, IPointerClickHandler, IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerUpHandler {
-    [SerializeField] PlayerState _PlayerState;
-    [SerializeField] UIState _UIState;
-    [SerializeField] GameObject DeckListArea;
-    [SerializeField] Button testButton;
-    [SerializeField] GameObject DiscardArea;//해당 영역에 카드가 들어오고 enddrag실행되면 해당 충돌 오브젝트 삭제.
-    [SerializeField] Transform popupTransform;
-    List<int> myDeck;
+    [SerializeField] PlayerState _PlayerState = null;
+    [SerializeField] UIState _UIState = null;
+    [SerializeField] GameObject DeckListArea = null;
+    [SerializeField] Button testButton = null;
+    [SerializeField] GameObject DiscardArea = null;//해당 영역에 카드가 들어오고 enddrag실행되면 해당 충돌 오브젝트 삭제.
+    [SerializeField] Transform popupTransform = null;
+    List<int> myDeck = null;
 
-    [SerializeField] Camera targetCamera;
-    [SerializeField] Canvas m_canvas;
+    [SerializeField] Camera targetCamera = null;
+    [SerializeField] Canvas m_canvas = null;
 
-    GameObject CurrentPopup;
-    GraphicRaycaster m_gr;
-    PointerEventData m_ped;
-    CardDTO cardDataOnSelect;
-    GameObject cardObjectOnSelect;
+    GameObject CurrentPopup = null;
+    GraphicRaycaster m_gr = null;
+    PointerEventData m_ped = null;
+    CardDTO cardDataOnSelect = null;
+    GameObject cardObjectOnSelect = null;
     private void Start() {
         Init();
     }
@@ -108,7 +108,7 @@ public class CharacterMaintenance_Card_Layer : MonoBehaviour, IPointerClickHandl
             Destroy(CurrentPopup);
             CurrentPopup = null;
         }
-        CurrentPopup = FactoryManager.GetInstance().CreateCardDescriptionPopup(card,popupTransform);
+        CurrentPopup = FactoryManager.GetInstance().CreateCardDescriptionPopup(card, popupTransform);
     }
     void DiscardCardFromDeck() {
         Destroy(cardObjectOnSelect);
