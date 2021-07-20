@@ -5,7 +5,7 @@ using Mono.Data.Sqlite;
 
 public class CharacterInfoDAO {
     private static readonly string CharacterInfoTableName = "character_info";
-
+    
     public static void UpsertPlayerStat(int hp, int str, int Intellect, int dex) {
         string query = 
             $"INSERT OR REPLACE INTO {CharacterInfoTableName}(number, stat_hp, stat_str, stat_int, stat_dex)" +
@@ -15,8 +15,15 @@ public class CharacterInfoDAO {
 
     public static void UpsertPlayerSkill(string unlockedSkill, int currentSkill, int skillPoint) {
         string query = 
-            $"INSERT OR REPLACE INTO {CharacterInfoTableName}(number, unlocked_skill_list, current_skill_number, skill_point)" +
+            $"INSERT OR REPLACE INTO {CharacterInfoTableName}(number, 'unlocked_skill_list', current_skill_number, skill_point)" +
             $"VALUES({unlockedSkill}, {currentSkill}, {skillPoint});";
+        SQLiteManager.GetInstance().InsertQuery(query);
+    }
+
+    public static void UpsertPlayerStartPack(int _startPack) {
+        string query = 
+            $"INSERT OR REPLACE INTO {CharacterInfoTableName}(number, start_pack_number)" +
+            $"VALUES(1, {_startPack});";
         SQLiteManager.GetInstance().InsertQuery(query);
     }
 

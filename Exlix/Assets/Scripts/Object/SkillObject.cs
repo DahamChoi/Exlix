@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
-public class SkillObject : MonoBehaviour {
+public class SkillObject : MonoBehaviour, IObserver<SceneState> {
     [SerializeField] int skillID;
     [SerializeField] Image skillImage;
     [SerializeField] Button skillButton;
@@ -21,10 +22,22 @@ public class SkillObject : MonoBehaviour {
 
         skillButton.onClick.AddListener(() => { 
             FactoryManager.GetInstance().CreateSelectedSkillPopup(skillData, PopupContainer);
-         });
+        });
 
         if (CharacterInfoDAO.GetCharacterInfo().CurrentSkill == skillID) skillImage.color = new Color(1f, 0f, 0f, 1f);
-        else if (CharacterInfoDAO.GetCharacterInfo().UnLockedSkill != null ? false : CharacterInfoDAO.GetCharacterInfo().UnLockedSkill.Contains(skillData.Parent)) 
+        else if (CharacterInfoDAO.GetCharacterInfo().UnLockedSkill == null ? false : CharacterInfoDAO.GetCharacterInfo().UnLockedSkill.Contains(skillData.Parent)) 
                 skillImage.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+    }
+
+    public void OnCompleted() {
+        throw new NotImplementedException();
+    }
+
+    public void OnError(Exception error) {
+        throw new NotImplementedException();
+    }
+
+    public void OnNext(SceneState value) {
+        Init();
     }
 }

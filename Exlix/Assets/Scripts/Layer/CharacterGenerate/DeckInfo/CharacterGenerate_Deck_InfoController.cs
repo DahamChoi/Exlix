@@ -70,8 +70,11 @@ public class CharacterGenerate_Deck_InfoController : MonoBehaviour {
     }
 
     void UpdateInfo() {
-        _PlayerState._PlayerStateInfoHandler.SetCurrentStartDeck(deckList[currentDeckNumber]);
         UpdateText();
         UpdateImage();
+    }
+
+    public void UpsertInfo() {
+        SceneState.GetInstance()._InformationHandler.InsertData<int>(InformationKeyDefine.CURRENT_AREA_NUMBER_KEY, currentDeckNumber);
     }
 }

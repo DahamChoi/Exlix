@@ -100,7 +100,7 @@ public class CharacterMaintenance_Card_Layer : MonoBehaviour, IPointerClickHandl
         }
         StartDeckDTO tempDeck = _PlayerState._PlayerStateInfoHandler.GetCurrentStartDeck();//테스트중. 저장된 플레이덱으로 해야함.
         for (int i = 0; i < tempDeck.CardList.Count; i++)
-            FactoryManager.GetInstance().CreateCardObject(tempDeck.CardList[i].Number, DeckListArea.transform);
+            FactoryManager.GetInstance().CreateCardObject(tempDeck.CardList[i], DeckListArea.transform);
     }
 
     void UpdateCardDescription(CardDTO card) {

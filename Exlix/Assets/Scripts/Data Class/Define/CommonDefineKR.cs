@@ -25,4 +25,9 @@ public class CommonDefineKR {
     public static string CurrentSelectedDeckString = "선택한 덱";
     public static string CharacterGenerateString = "캐릭터 생성";
     public static string DeckInfoString = "덱 보기";
+    public static string AlreadyEquipedSkillString = "활성화된 스킬";
+    public static string EquipSkillString = "스킬 장착";
+    public static string UnlockSkillString = "스킬 해금";
+    public static string LockedSkillString = "상위 스킬 해금 필요";
+    public static string LeftSkillPointString = "잔여 스킬 포인트";
 }

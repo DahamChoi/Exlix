@@ -23,6 +23,7 @@ public class CharacterGenerate_Deck_Controller : MonoBehaviour {
         });
 
         DeckInfoButton.onClick.AddListener(() => {
+            deckInfoController.UpsertInfo();
             SceneState.GetInstance()._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.DECK_TO_DECK_INFO);
         });
 

@@ -28,8 +28,8 @@ public class CharacterGenerate_Deck_Info_Layer : MonoBehaviour
             }
         }
         
-        StartDeckDTO startDeck = _PlayerState._PlayerStateInfoHandler.GetCurrentStartDeck();
+        StartDeckDTO startDeck =  StartDeckDAO.SelectedStartDeck(SceneState.GetInstance()._InformationHandler.GetData<int>(InformationKeyDefine.CURRENT_START_DECK_NUMBER_KEY));
         for(int i=0; i<startDeck.CardList.Count;i++)
-        FactoryManager.GetInstance().CreateCardObject(startDeck.CardList[i].Number,DeckListArea.transform);
+        FactoryManager.GetInstance().CreateCardObject(startDeck.CardList[i],DeckListArea.transform);
     }
 }

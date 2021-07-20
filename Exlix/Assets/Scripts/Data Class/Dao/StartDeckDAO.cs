@@ -14,10 +14,9 @@ public class StartDeckDAO {
             StartDeckDTO startDeckData = new StartDeckDTO();
             startDeckData.Number = it.GetSafeValue<int>(0);
             string[] cardListString = it.GetSafeValue<string>(1).Split(',');
-            List<CardDTO> cardList = new List<CardDTO>();
+            List<int> cardList = new List<int>();
             foreach (var number in cardListString) {
-                var card = CardDAO.SelectCard(int.Parse(number));
-                cardList.Add(card);
+                cardList.Add(int.Parse(number));
             }
             startDeckData.CardList = cardList;
             startDeckData.Name = it.GetSafeValue<string>(2);
@@ -27,5 +26,27 @@ public class StartDeckDAO {
         }
 
         return startDeckDataList;
+    }
+
+    public static StartDeckDTO SelectedStartDeck(int startDeckNumber) {
+        string query = $"SELECT * FROM {StartDeckTableName} WHERE number = {startDeckNumber};";
+        ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
+
+        StartDeckDTO startDeckData = new StartDeckDTO();
+        if (false == it.Read())
+            return default;
+
+        startDeckData.Number = it.GetSafeValue<int>(0);
+        string[] cardListString = it.GetSafeValue<string>(1).Split(',');
+        List<int> cardList = new List<int>();
+        foreach (var number in cardListString) {
+            cardList.Add(int.Parse(number));
+        }
+        startDeckData.CardList = cardList;
+        startDeckData.Name = it.GetSafeValue<string>(2);
+        startDeckData.Explain = it.GetSafeValue<string>(3);
+        startDeckData.ImagePath = it.GetSafeValue<string>(4);
+
+        return startDeckData;
     }
 }

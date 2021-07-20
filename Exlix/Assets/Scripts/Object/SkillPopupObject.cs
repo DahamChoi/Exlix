@@ -44,23 +44,29 @@ public class SkillPopupObject : MonoBehaviour {
 
         if (characterData.CurrentSkill == selectedSkillData.Number) {
             //skillActivationButton.image.sprite = Resources.Load("alreadyEquipedSkillButtonImageUIPath...", typeof(Sprite)) as Sprite;
+            skillButtonText.text = $"{CommonDefineKR.AlreadyEquipedSkillString}";
             skillActivationButton.interactable = false;
         } else if (characterData.UnLockedSkill.Contains(selectedSkillData.Number)) {
             //skillActivationButton.image.sprite = Resources.Load("EquipSkillButtonImageUIPath...", typeof(Sprite)) as Sprite;
+            skillButtonText.text = $"{CommonDefineKR.EquipSkillString}";
             skillActivationButton.interactable = true;
             skillActivationButton.onClick.AddListener(() => {
                 characterData.CurrentSkill = selectedSkillData.Number;
                 //...
+                SetButton();
             });
         } else if (characterData.UnLockedSkill.Contains(selectedSkillData.Parent)) {
             //skillActivationButton.image.sprite = Resources.Load("UnlockSkillButtonImageUIPath...", typeof(Sprite)) as Sprite;
+            skillButtonText.text = $"{CommonDefineKR.UnlockSkillString}";
             skillActivationButton.interactable = true;
             skillActivationButton.onClick.AddListener(() => {
                 characterData.UnLockedSkill.Add(selectedSkillData.Number);
                 //...
+                SetButton();
             });
         } else {
-            //skillActivationButton.image.sprite = Resources.Load("CantUnlockSkillButtonImageUIPath...", typeof(Sprite)) as Sprite;
+            //skillActivationButton.image.sprite = Resources.Load("LockedSkillButtonImageUIPath...", typeof(Sprite)) as Sprite;
+            skillButtonText.text = $"{CommonDefineKR.LockedSkillString}";
             skillActivationButton.interactable = false;
         }
     }

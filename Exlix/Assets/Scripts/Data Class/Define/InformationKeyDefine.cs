@@ -4,4 +4,5 @@ using UnityEngine;
 
 public class InformationKeyDefine {
     public static string CURRENT_AREA_NUMBER_KEY = "CurrentAreaNumberKey";
+    public static string CURRENT_START_DECK_NUMBER_KEY = "CurrentStartDeckNumberKey";
 }
