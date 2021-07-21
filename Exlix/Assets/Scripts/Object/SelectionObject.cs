@@ -8,16 +8,15 @@ public class SelectionObject : MonoBehaviour, IObserver<Information> {
     SelectionDTO selectionData;
     [SerializeField] Text selectionText = null;
     [SerializeField] Button selectionButton = null;
-    //AreaState areaState;
+
 
     void Start() {
-        // areaState = GameObject.Find("AreaState").GetComponent<AreaState>();
-        // areaState._AreaStateInfoHandler.Subscribe(this);
-        // areaState._AreaStateInfoHandler.CreateSelection();
         SceneState.GetInstance()._InformationHandler.Subscribe(this);
+        SceneState.GetInstance()._InformationHandler.InsertData<bool>(InformationKeyDefine.IS_SELECTION_SELECTED, false);
         selectionButton.onClick.AddListener(() => {
-            //areaState._AreaStateInfoHandler.SelectSelection(selectionData);
             SceneState.GetInstance()._InformationHandler.InsertData<SelectionDTO>(InformationKeyDefine.CURRENT_SELECTION_DATA, selectionData);
+            SceneState.GetInstance()._InformationHandler.InsertData<bool>(InformationKeyDefine.IS_SELECTION_SELECTED, true);
+            SceneState.GetInstance()._InformationHandler.NotifyObservers();
         });
     }
 
@@ -34,10 +33,9 @@ public class SelectionObject : MonoBehaviour, IObserver<Information> {
         throw new NotImplementedException();
     }
 
-    public void OnNext(Information value) {
-        Debug.Log("Data in");
-        // if (value.isSelected) {
-        //     Destroy(this.gameObject);
-        // }
+    public void OnNext(Information information) {
+        if (information.GetData<bool>(InformationKeyDefine.IS_SELECTION_SELECTED)) {
+            Destroy(this.gameObject);
+        }
     }
 }

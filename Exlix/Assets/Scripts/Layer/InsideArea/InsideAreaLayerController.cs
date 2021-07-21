@@ -4,22 +4,20 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class InsideAreaLayerController : MonoBehaviour, IObserver<AreaStateInfo>, IObserver<Information> {
+public class InsideAreaLayerController : MonoBehaviour, IObserver<Information> {
     [SerializeField] Transform selectionContainer = null;
     [SerializeField] Transform sentencePannel = null;
     [SerializeField] ScrollRect pannelScroll = null;
-    [SerializeField] AreaState areaState = null;
-
     private AreaDTO AreaInfo;
     private EventDTO CurrentEvent = null;
+    bool isInit = true;
 
     private void Awake() {
-        areaState._AreaStateInfoHandler.Subscribe(this);
         SceneState.GetInstance()._InformationHandler.Subscribe(this);
     }
 
     private void OnEnable() {
-        if(null == CurrentEvent) {
+        if (null == CurrentEvent) {
             InitEvent();
         }
     }
@@ -43,7 +41,7 @@ public class InsideAreaLayerController : MonoBehaviour, IObserver<AreaStateInfo>
     public Transform GetSelectionContainer() {
         return selectionContainer;
     }
-    
+
     public void OnCompleted() {
         throw new NotImplementedException();
     }
@@ -54,14 +52,13 @@ public class InsideAreaLayerController : MonoBehaviour, IObserver<AreaStateInfo>
 
     public void OnNext(Information information) {
         AreaInfo = information.GetData<AreaDTO>(InformationKeyDefine.CURRENT_AREA_NUMBER_KEY);
+        if (information.GetData<bool>(InformationKeyDefine.IS_SELECTION_SELECTED)) {
+            FactoryManager.GetInstance().CreateSelectionTextObject(information.GetData<SelectionDTO>(InformationKeyDefine.CURRENT_SELECTION_DATA).Text, sentencePannel);
+            if (information.GetData<SelectionDTO>(InformationKeyDefine.CURRENT_SELECTION_DATA).Action != 0) 
+                FactoryManager.GetInstance().CreateSentenceObject(information.GetData<SelectionDTO>(InformationKeyDefine.CURRENT_SELECTION_DATA).Action, this, sentencePannel);
+            LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)sentencePannel);
+            pannelScroll.verticalNormalizedPosition = 0;
+        }
 
-        //Debug.Log(information.GetData<SelectionDTO>(InformationKeyDefine.CURRENT_SELECTION_DATA).Number);
-    }
-
-    public void OnNext(AreaStateInfo value) {
-        // FactoryManager.GetInstance().CreateSelectionTextObject(value.selectionData.Text, sentencePannel);
-        // if (value.selectionData.Action != 0) FactoryManager.GetInstance().CreateSentenceObject(value.selectionData.Action, this, sentencePannel);
-        // LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)sentencePannel);
-        // pannelScroll.verticalNormalizedPosition = 0;
     }
 }
