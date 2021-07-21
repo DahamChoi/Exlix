@@ -4,11 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-public class CharacterGenerate_Deck_Info_Layer : MonoBehaviour, IObserver<Information> {
+public class CharacterGenerate_Deck_Info_Layer : MonoBehaviour {
     [SerializeField] PlayerState _PlayerState = null;
     [SerializeField] GameObject DeckListArea = null;
     [SerializeField] Button testButton = null;
-    StartDeckDTO startDeck;
 
     private void Start() {
         testButton.onClick.AddListener(() => {
@@ -21,6 +20,7 @@ public class CharacterGenerate_Deck_Info_Layer : MonoBehaviour, IObserver<Inform
     }
 
     void UpdateDeckList() {
+    StartDeckDTO startDeck = SceneState.GetInstance()._InformationHandler.GetData<StartDeckDTO>(InformationKeyDefine.CURRENT_START_DECK_DATA);
         Transform[] childList = DeckListArea.GetComponentsInChildren<Transform>(true);
         if (childList != null) {
             for (int i = 1; i < childList.Length; i++) {
@@ -30,17 +30,5 @@ public class CharacterGenerate_Deck_Info_Layer : MonoBehaviour, IObserver<Inform
 
         for (int i = 0; i < startDeck.CardList.Count; i++)
             FactoryManager.GetInstance().CreateCardObject(startDeck.CardList[i], DeckListArea.transform);
-    }
-    
-    public void OnCompleted() {
-        throw new NotImplementedException();
-    }
-
-    public void OnError(Exception error) {
-        throw new NotImplementedException();
-    }
-
-    public void OnNext(Information value) {
-        value.GetData<StartDeckDTO>(InformationKeyDefine.CURRENT_START_DECK_NUMBER_KEY);
     }
 }

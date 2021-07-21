@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class CharacterMaintenance_Skill_UIBar_Controller : MonoBehaviour {
-    [SerializeField] Button backToMainButton;
-    [SerializeField] Button settingButton;
+    [SerializeField] Button backToMainButton = null;
+    [SerializeField] Button settingButton = null;
 
     // Start is called before the first frame update
     void Start() {

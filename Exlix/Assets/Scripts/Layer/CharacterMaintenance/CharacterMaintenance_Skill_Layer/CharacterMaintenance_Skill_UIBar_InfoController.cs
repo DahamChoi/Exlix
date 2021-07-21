@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-public class CharacterMaintenance_Skill_UIBar_InfoController : MonoBehaviour, IObserver<SceneState> {
-    [SerializeField] Text SkillPointText;
-    [SerializeField] Text SkillUIBarText;
+public class CharacterMaintenance_Skill_UIBar_InfoController : MonoBehaviour, IObserver<Information> {
+    [SerializeField] Text SkillPointText = null;
+    [SerializeField] Text SkillUIBarText = null;
 
     public void OnCompleted() {
         throw new NotImplementedException();
@@ -16,7 +16,7 @@ public class CharacterMaintenance_Skill_UIBar_InfoController : MonoBehaviour, IO
         throw new NotImplementedException();
     }
 
-    public void OnNext(SceneState value) {
+    public void OnNext(Information value) {
         Init();
     }
 

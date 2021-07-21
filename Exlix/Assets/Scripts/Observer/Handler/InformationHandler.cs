@@ -8,7 +8,11 @@ public class InformationHandler : ObserableHandler<Information> {
     }
 
     public void InsertData<T>(string key, T value) {
-        Information.InsertData<T>(key, value);
+        Information.UpsertData<T>(key, value);
+        base.NotifyObservers();
     }
     
+    public T GetData<T>(string key) {
+        return Information.GetData<T>(key);
+    }
 }

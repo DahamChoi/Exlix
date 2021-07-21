@@ -54,12 +54,14 @@ public class InsideAreaLayerController : MonoBehaviour, IObserver<AreaStateInfo>
 
     public void OnNext(Information information) {
         AreaInfo = information.GetData<AreaDTO>(InformationKeyDefine.CURRENT_AREA_NUMBER_KEY);
+
+        //Debug.Log(information.GetData<SelectionDTO>(InformationKeyDefine.CURRENT_SELECTION_DATA).Number);
     }
 
     public void OnNext(AreaStateInfo value) {
-        FactoryManager.GetInstance().CreateSelectionTextObject(value.selectionData.Text, sentencePannel);
-        if (value.selectionData.Action != 0) FactoryManager.GetInstance().CreateSentenceObject(value.selectionData.Action, this, sentencePannel);
-        LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)sentencePannel);
-        pannelScroll.verticalNormalizedPosition = 0;
+        // FactoryManager.GetInstance().CreateSelectionTextObject(value.selectionData.Text, sentencePannel);
+        // if (value.selectionData.Action != 0) FactoryManager.GetInstance().CreateSentenceObject(value.selectionData.Action, this, sentencePannel);
+        // LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)sentencePannel);
+        // pannelScroll.verticalNormalizedPosition = 0;
     }
 }
