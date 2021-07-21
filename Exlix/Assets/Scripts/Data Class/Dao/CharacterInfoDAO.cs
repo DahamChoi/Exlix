@@ -5,7 +5,48 @@ using Mono.Data.Sqlite;
 
 public class CharacterInfoDAO {
     private static readonly string CharacterInfoTableName = "character_info";
-    
+    private static readonly int CharacterInfoIndex = 1;
+    public static void UpdatePlayerStat(int hp, int str, int intellect, int dex) {
+        string query =
+            $"UPDATE {CharacterInfoTableName} SET stat_hp = {hp}, stat_str = {str}, stat_int = {intellect}, stat_dex = {dex} WHERE number = {CharacterInfoIndex}";
+        SQLiteManager.GetInstance().InsertQuery(query);
+    }
+
+    public static void UpdatePlayerInfo(CharacterInfoDTO info) {
+        string[] cardlist = { DataConvert<int>.ListToString(info.CardList) };
+       string query = $"UPDATE {CharacterInfoTableName} SET " +
+            $"start_pack_number = {info.StartPack}, " +
+            $"portrait_number = {info.Portrait}, " +
+            $"name = '{info.Name}', " +
+            $"card_fk_list = '{DataConvert<int>.ListToString(info.CardList)}', " +
+            $"stat_hp = {info.StatHp}, " +
+            $"stat_str = {info.StatStr}, " +
+            $"stat_int = {info.StatInt}, " +
+            $"stat_dex = {info.StatDex}, " +
+            $"gold = {info.Gold}, " +
+            $"unlocked_skill_fk_list = '{DataConvert<int>.ListToString(info.UnLockedSkill)}', " +
+            $"current_skill_number = {info.CurrentSkill}, " +
+            $"unlocked_equipment_fk_list = '{DataConvert<int>.ListToString(info.HaveEquipmentList)}', " +
+            $"current_equipment_head = {info.CurrentEquipmentHead}, " +
+            $"current_equipment_upper_body = {info.CurrentEquipmentUpperBody}, " +
+            $"current_equipment_under_body = {info.CurrentEquipmentUnderBody}, " +
+            $"current_equipment_weapon = {info.CurrentEquipmentWeapon}, " +
+            $"current_equipment_accessories = {info.CurrentEquipmentAccessory}, " +
+            $"current_equipment_pocket = {info.CurrentEquipmentPocket}, " +
+            $"level = {info.Level}, " +
+            $"exp = {info.Exp}, " +
+            $"hp = {info.Hp}, " +
+            $"current_hp = {info.CurrentHp}, " +
+            $"mp = {info.Mp}, " +
+            $"current_area = {info.CurrentArea}, " +
+            $"skill_point = {info.SkillPoint}, " +
+            $"status_point = {info.StatPoint}, " +
+            $"unlock_area_list = '{DataConvert<int>.ListToString(info.UnLockedAreaList)}' " +
+            $"WHERE number = {CharacterInfoIndex}";
+        Debug.Log(query);
+        SQLiteManager.GetInstance().InsertQuery(query);
+    }
+
     public static void UpsertPlayerStat(int hp, int str, int Intellect, int dex) {
         string query = 
             $"INSERT OR REPLACE INTO {CharacterInfoTableName}(number, stat_hp, stat_str, stat_int, stat_dex)" +
@@ -57,12 +98,15 @@ public class CharacterInfoDAO {
         characterInfo.CurrentEquipmentAccessory = it.GetSafeValue<int>(17);
         characterInfo.CurrentEquipmentPocket = it.GetSafeValue<int>(18);
         characterInfo.Level = it.GetSafeValue<int>(19);
-        characterInfo.Hp = it.GetSafeValue<int>(20);
-        characterInfo.Mp = it.GetSafeValue<int>(21);
-        characterInfo.CurrentArea = it.GetSafeValue<int>(22);
-        characterInfo.SkillPoint = it.GetSafeValue<int>(23);
-        characterInfo.UnLockedAreaList = it.GetTextValueToList(24);
-
+        characterInfo.Exp = it.GetSafeValue<int>(20);
+        characterInfo.Hp = it.GetSafeValue<int>(21);
+        characterInfo.CurrentHp = it.GetSafeValue<int>(22);
+        characterInfo.Mp = it.GetSafeValue<int>(23);
+        characterInfo.CurrentArea = it.GetSafeValue<int>(24);
+        characterInfo.SkillPoint = it.GetSafeValue<int>(25);
+        characterInfo.StatPoint = it.GetSafeValue<int>(26);
+        characterInfo.UnLockedAreaList = it.GetTextValueToList(27);
+        
         return characterInfo;
     }
 }
