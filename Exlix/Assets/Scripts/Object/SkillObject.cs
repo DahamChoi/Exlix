@@ -6,9 +6,9 @@ using System;
 
 public class SkillObject : MonoBehaviour, IObserver<Information> {
     [SerializeField] int skillID;
-    [SerializeField] Image skillImage;
-    [SerializeField] Button skillButton;
-    [SerializeField] Transform PopupContainer;
+    [SerializeField] Image skillImage = null;
+    [SerializeField] Button skillButton = null;
+    [SerializeField] Transform PopupContainer = null;
     SkillDTO skillData;
 
     // Start is called before the first frame update
@@ -38,6 +38,8 @@ public class SkillObject : MonoBehaviour, IObserver<Information> {
     }
 
     public void OnNext(Information value) {
-        Init();
+        if (CharacterInfoDAO.GetCharacterInfo().CurrentSkill == skillID) skillImage.color = new Color(1f, 0f, 0f, 1f);
+        else if (CharacterInfoDAO.GetCharacterInfo().UnLockedSkill == null ? false : CharacterInfoDAO.GetCharacterInfo().UnLockedSkill.Contains(skillData.Parent)) 
+                skillImage.color = new Color(0.5f, 0.5f, 0.5f, 1f);
     }
 }
