@@ -37,9 +37,24 @@ public class CharacterGenerate_Portrait_UIController : MonoBehaviour {
     [SerializeField] Image PortraitImg = null;
     [SerializeField] List<string> RandomNames = null;
 
-    private PortraitDTO portrait;
+    private PortraitDTO portrait = null;
 
+    CharacterInfoDTO characterInfo = null;
+    CharacterInfoDTO characterInfoOriginal = null;
     void Start() {
+        Init();
+    }
+
+    private void Init() {
+        characterInfo = CharacterInfoDTO.clone();
+        characterInfoOriginal = CharacterInfoDTO.clone();
+
+        HP.text = $"{characterInfo.StatHp}";
+        DEX.text = $"{characterInfo.StatDex}";
+        STR.text = $"{characterInfo.StatStr}";
+        INT.text = $"{characterInfo.StatInt}";
+        StatusPoint.text = $"{"잔여 포인트 :"} {characterInfo.StatPoint}";
+
         NextButton.onClick.AddListener(() => {
             SceneState.GetInstance()._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.PORTRAIT_TO_DECK);
         });
@@ -91,7 +106,7 @@ public class CharacterGenerate_Portrait_UIController : MonoBehaviour {
         NameInputPopupButton.onClick.AddListener(() => {
             OpenInputNameScreen();
         });
-        
+
         InputNameCloser.GetComponent<Button>().onClick.AddListener(() => {
             CloseInputNameScreen();
         });
@@ -104,19 +119,77 @@ public class CharacterGenerate_Portrait_UIController : MonoBehaviour {
         });
     }
 
+
     public void AddStat(string statType, Text statText) {
-        if (_PlayerState._PlayerStateInfoHandler.GetStatusExtraPoint() > 0) {
-            _PlayerState._PlayerStateInfoHandler.AddStatus(statType);
-            statText.text = (_PlayerState._PlayerStateInfoHandler.GetStatus(statType) + _PlayerState._PlayerStateInfoHandler.GetExtraStatus(statType)).ToString();
-            StatusPoint.text = "잔여 포인트 : " + _PlayerState._PlayerStateInfoHandler.GetStatusExtraPoint().ToString();
+        if (characterInfo.StatPoint > 0) {
+            switch (statType) {
+                case "HP"://HP
+                    characterInfo.StatHp++;
+                    characterInfo.StatPoint--;
+                    characterInfo.Hp = characterInfo.StatHp * 10;
+                    characterInfo.CurrentHp = characterInfo.StatHp *10;
+                    statText.text = $"{characterInfo.StatHp}";
+                    break;
+                case "STR"://STR
+                    characterInfo.StatStr++;
+                    characterInfo.StatPoint--;
+                    statText.text = $"{characterInfo.StatStr}";
+                    break;
+                case "INT"://INT
+                    characterInfo.StatInt++;
+                    characterInfo.StatPoint--;
+                    statText.text = $"{characterInfo.StatInt}";
+                    break;
+                case "DEX"://DEX
+                    characterInfo.StatDex++;
+                    characterInfo.StatPoint--;
+                    statText.text = $"{characterInfo.StatDex}";
+                    break;
+                default:
+                    break;
+            }
+            
+            StatusPoint.text = $"{"잔여 포인트 :"} {characterInfo.StatPoint}";
         }
     }
-
+    
     public void SubStat(string statType, Text statText) {
-        if (_PlayerState._PlayerStateInfoHandler.GetExtraStatus(statType) > 0) {
-            _PlayerState._PlayerStateInfoHandler.SubtractStatus(statType);
-            statText.text = (_PlayerState._PlayerStateInfoHandler.GetStatus(statType) + _PlayerState._PlayerStateInfoHandler.GetExtraStatus(statType)).ToString();
-            StatusPoint.text = "잔여 포인트 : " + _PlayerState._PlayerStateInfoHandler.GetStatusExtraPoint().ToString();
+        if (characterInfo.StatPoint <characterInfoOriginal.StatPoint) {
+            switch (statType) {
+                case "HP"://HP
+                    if (characterInfo.StatHp > characterInfoOriginal.StatHp) {
+                        characterInfo.StatHp--;
+                        characterInfo.StatPoint++;
+                        characterInfo.Hp = characterInfo.StatHp * 10;
+                        characterInfo.CurrentHp = characterInfo.StatHp * 10;
+                        statText.text = $"{characterInfo.StatHp}";
+                    }
+                    break;
+                case "STR"://STR
+                    if (characterInfo.StatStr > characterInfoOriginal.StatStr) {
+                        characterInfo.StatStr--;
+                        characterInfo.StatPoint++;
+                        statText.text = $"{characterInfo.StatStr}";
+                    }
+                    break;
+                case "INT"://INT
+                    if (characterInfo.StatInt > characterInfoOriginal.StatInt) {
+                        characterInfo.StatInt--;
+                        characterInfo.StatPoint++;
+                        statText.text = $"{characterInfo.StatInt}";
+                    }
+                    break;
+                case "DEX"://DEX
+                    if (characterInfo.StatDex > characterInfoOriginal.StatDex) {
+                        characterInfo.StatDex--;
+                        characterInfo.StatPoint++;
+                        statText.text = $"{characterInfo.StatDex}";
+                    }
+                    break;
+                default:
+                    break;
+            }
+            StatusPoint.text = $"{"잔여 포인트 :"} {characterInfo.StatPoint}";
         }
     }
 
@@ -143,10 +216,6 @@ public class CharacterGenerate_Portrait_UIController : MonoBehaviour {
         PortraitImg.sprite = Resources.Load(portrait.ImagePath, typeof(Sprite)) as Sprite;
     }
 
-    public void SelectPortrait() {
-
-    }
-
     public void OpenInputNameScreen() {
         if (InputNameScreen.activeSelf == true) {
             InputNameScreen.SetActive(false);
@@ -157,6 +226,7 @@ public class CharacterGenerate_Portrait_UIController : MonoBehaviour {
             InputNameCloser.SetActive(true);
         }
     }
+
     public void CloseInputNameScreen() {
         InputNameScreen.SetActive(false);
         InputNameCloser.SetActive(false);
@@ -173,5 +243,6 @@ public class CharacterGenerate_Portrait_UIController : MonoBehaviour {
         _PlayerState._PlayerStateInfoHandler.UpdatePlayerName(randomName);
         OutputNameText.text = randomName;
     }
+
 }
 

@@ -9,16 +9,10 @@ public class CharacterGenerate_Deck_Info_Layer : MonoBehaviour {
     [SerializeField] GameObject DeckListArea = null;
     [SerializeField] Button testButton = null;
 
-    private void Start() {
-        testButton.onClick.AddListener(() => {
-            UpdateDeckList();
-        });
-    }
-    
-    void Update() {
 
+    private void OnEnable() {
+        UpdateDeckList();
     }
-
     void UpdateDeckList() {
     StartDeckDTO startDeck = SceneState.GetInstance()._InformationHandler.GetData<StartDeckDTO>(InformationKeyDefine.CURRENT_START_DECK_DATA);
         Transform[] childList = DeckListArea.GetComponentsInChildren<Transform>(true);

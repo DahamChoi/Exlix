@@ -20,17 +20,14 @@ public class CharacterMaintenance_Card_Layer : MonoBehaviour, IPointerClickHandl
     PointerEventData m_ped = null;
     CardDTO cardDataOnSelect = null;
     GameObject cardObjectOnSelect = null;
-    private void Start() {
+    private void OnEnable() {
         Init();
+        UpdateDeckList();
     }
 
     void Init() {
         m_gr = m_canvas.GetComponent<GraphicRaycaster>();
         m_ped = new PointerEventData(null);
-
-        testButton.onClick.AddListener(() => {//추후 레이어를 불러올때 호출하게 만들예정
-            UpdateDeckList();
-        });
     }
 
     public void OnPointerDown(PointerEventData eventData) {
@@ -98,9 +95,10 @@ public class CharacterMaintenance_Card_Layer : MonoBehaviour, IPointerClickHandl
                 if (childList[i] != transform) Destroy(childList[i].gameObject);
             }
         }
-        StartDeckDTO tempDeck = _PlayerState._PlayerStateInfoHandler.GetCurrentStartDeck();//테스트중. 저장된 플레이덱으로 해야함.
-        for (int i = 0; i < tempDeck.CardList.Count; i++)
-            FactoryManager.GetInstance().CreateCardObject(tempDeck.CardList[i], DeckListArea.transform);
+        CharacterInfoDTO characterInfo = CharacterInfoDAO.GetCharacterInfo();
+  
+        for (int i = 0; i < characterInfo.CardList.Count; i++)
+            FactoryManager.GetInstance().CreateCardObject(characterInfo.CardList[i], DeckListArea.transform);
     }
 
     void UpdateCardDescription(CardDTO card) {
