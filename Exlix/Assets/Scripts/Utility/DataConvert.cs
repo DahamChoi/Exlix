@@ -11,7 +11,7 @@ public class DataConvert<T> {
             dataString += data;
             dataString += ',';
         }
-        dataString.Remove(dataString.LastIndexOf(','));
+        dataString.Remove(dataString.Length-1);
         return dataString;
     }
 }
