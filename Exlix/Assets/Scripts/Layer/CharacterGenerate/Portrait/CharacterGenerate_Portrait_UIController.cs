@@ -249,7 +249,7 @@ public class CharacterGenerate_Portrait_UIController : MonoBehaviour {
         List<PortraitDTO> portraitList = PortraitDAO.SelectAllPortrait();
         int PortraitNum = Random.Range(0,portraitList.Count-1);
         portrait = portraitList[PortraitNum];
-        GameState.GetInstance()._InformationHandler.InsertData<PortraitDTO>(InformationKeyDefine.CURRENT_SELECTED_PORTRAIT,portrait);
+        GameState.GetInstance()._InformationHandler.InsertData<PortraitDTO>(InformationKeyDefine.CURRENT_SELECTED_PORTRAIT,por);
         //_UIState._UIStateHandler.UpdateSelectedPortrait(portrait);
         PortraitImg.sprite = Resources.Load(portrait.ImagePath, typeof(Sprite)) as Sprite;
     }
