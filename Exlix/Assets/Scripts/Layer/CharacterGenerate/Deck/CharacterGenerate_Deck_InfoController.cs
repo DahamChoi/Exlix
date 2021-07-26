@@ -27,11 +27,6 @@ public class CharacterGenerate_Deck_InfoController : MonoBehaviour {
         UpdateInfo();
     }
 
-    // Update is called once per frame
-    void Update() {
-
-    }
-
     void LoadStartDeckData() {
         deckList = StartDeckDAO.SelectAllStartDeck();
         deckLength = deckList.Count - 1;

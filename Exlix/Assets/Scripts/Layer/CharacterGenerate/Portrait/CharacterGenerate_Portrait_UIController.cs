@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class CharacterGenerate_Portrait_UIController :CharacterGenerate_Portrait_Layer {
+public class CharacterGenerate_Portrait_UIController : MonoBehaviour {
 
     [SerializeField] GameObject InputNameScreen = null;
     [SerializeField] GameObject InputNameCloser = null;
@@ -209,7 +209,8 @@ public class CharacterGenerate_Portrait_UIController :CharacterGenerate_Portrait
     }
 
     public void ConfirmPortrait() {
-        portrait = _UIState._UIStateHandler.GetSelectedPortrait();
+        //portrait = _UIState._UIStateHandler.GetSelectedPortrait();
+        portrait = GameState.GetInstance()._InformationHandler.GetData<PortraitDTO>(InformationKeyDefine.CURRENT_SELECTED_PORTRAIT);
         characterInfo.Portrait = portrait.Number;
         PortraitPopup.SetActive(false);
         PortraitPopupCloser.SetActive(false);
@@ -248,7 +249,8 @@ public class CharacterGenerate_Portrait_UIController :CharacterGenerate_Portrait
         List<PortraitDTO> portraitList = PortraitDAO.SelectAllPortrait();
         int PortraitNum = Random.Range(0,portraitList.Count-1);
         portrait = portraitList[PortraitNum];
-        _UIState._UIStateHandler.UpdateSelectedPortrait(portrait);
+        GameState.GetInstance()._InformationHandler.InsertData<PortraitDTO>(InformationKeyDefine.CURRENT_SELECTED_PORTRAIT,portrait);
+        //_UIState._UIStateHandler.UpdateSelectedPortrait(portrait);
         PortraitImg.sprite = Resources.Load(portrait.ImagePath, typeof(Sprite)) as Sprite;
     }
 }
