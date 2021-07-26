@@ -8,12 +8,16 @@ public class CharacterGenerate_Deck_Info_UIController : MonoBehaviour, IPointerC
     [SerializeField] UIState _UIState = null;
     [SerializeField] Canvas m_canvas = null;
     [SerializeField] Transform PopupTransform = null;
+    [SerializeField] Button BackButton = null;
     GraphicRaycaster m_gr;
     PointerEventData m_ped;
     GameObject currentDescriptionPopup;
     void Start() {
         m_gr = m_canvas.GetComponent<GraphicRaycaster>();
         m_ped = new PointerEventData(null);
+        BackButton.onClick.AddListener(() => {
+            SceneState.GetInstance()._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.DECK_INFO_TO_DECK);
+        });
     }
 
     public void CardDescriptionPopup(CardDTO card) {

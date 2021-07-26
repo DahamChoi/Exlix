@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterGenerate_Portrait_Layer : MonoBehaviour {
-    [SerializeField] PlayerState _PlayerState = null;
     [SerializeField] GameObject popup = null;
+    List<PortraitObject> PortraitList = null;
     public void Start() {
         Init();
     }
     private void Init() {
-       FactoryManager.GetInstance().CreatePortraitObject(popup.transform);
+       PortraitList = FactoryManager.GetInstance().CreatePortraitObject(popup.transform);
     }
 }

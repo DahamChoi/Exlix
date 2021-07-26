@@ -9,6 +9,7 @@ public class CharacterGenerate_Deck_Controller : MonoBehaviour {
     [SerializeField] Button DeckInfoButton = null;
     [SerializeField] Button NextDeckButton = null;
     [SerializeField] Button PreviousDeckButton = null;
+    [SerializeField] Button ShowCharacterButton = null;
     CharacterGenerate_Deck_InfoController deckInfoController;
 
     // Start is called before the first frame update
@@ -27,6 +28,10 @@ public class CharacterGenerate_Deck_Controller : MonoBehaviour {
             SceneState.GetInstance()._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.DECK_TO_DECK_INFO);
         });
 
+        ShowCharacterButton.onClick.AddListener(() => {
+            SceneState.GetInstance()._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.DECK_TO_PORTRAIT);
+        });
+
         NextDeckButton.onClick.AddListener(() => {
             deckInfoController.NextDeck();
         });
@@ -34,7 +39,6 @@ public class CharacterGenerate_Deck_Controller : MonoBehaviour {
         PreviousDeckButton.onClick.AddListener(() => {
             deckInfoController.PreviousDeck();
         });
-
     }
 
     // Update is called once per frame

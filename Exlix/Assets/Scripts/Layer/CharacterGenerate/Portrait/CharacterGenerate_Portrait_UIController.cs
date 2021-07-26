@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class CharacterGenerate_Portrait_UIController : MonoBehaviour {
+public class CharacterGenerate_Portrait_UIController :CharacterGenerate_Portrait_Layer {
 
     [SerializeField] GameObject InputNameScreen = null;
     [SerializeField] GameObject InputNameCloser = null;
@@ -31,18 +31,18 @@ public class CharacterGenerate_Portrait_UIController : MonoBehaviour {
     [SerializeField] Text StatusPoint = null;
     [SerializeField] Text InputNameText = null;
     [SerializeField] Text OutputNameText = null;
-
-    [SerializeField] PlayerState _PlayerState = null;
-
+    [SerializeField] UIState _UIState;
     [SerializeField] Image PortraitImg = null;
     [SerializeField] List<string> RandomNames = null;
 
-    private PortraitDTO portrait = null;
+    PortraitDTO portrait = null;
 
     CharacterInfoDTO characterInfo = null;
     CharacterInfoDTO characterInfoOriginal = null;
     void Start() {
         Init();
+        InputRandomName();
+        InputRandomPortrait();
     }
 
     private void Init() {
@@ -210,7 +210,8 @@ public class CharacterGenerate_Portrait_UIController : MonoBehaviour {
     }
 
     public void ConfirmPortrait() {
-        portrait = _PlayerState._PlayerStateInfoHandler.GetCurrentPortrait();
+        portrait = _UIState._UIStateHandler.GetSelectedPortrait();
+        characterInfo.Portrait = portrait.Number;
         PortraitPopup.SetActive(false);
         PortraitPopupCloser.SetActive(false);
         PortraitImg.sprite = Resources.Load(portrait.ImagePath, typeof(Sprite)) as Sprite;
@@ -233,16 +234,23 @@ public class CharacterGenerate_Portrait_UIController : MonoBehaviour {
     }
 
     public void ConfirmName() {
-        _PlayerState._PlayerStateInfoHandler.UpdatePlayerName(InputNameText.text);
+        characterInfo.Name = InputNameText.text;
         OutputNameText.text = InputNameText.text;
     }
 
     public void InputRandomName() {
         int nameNum = Random.Range(0, RandomNames.Count);
         string randomName = RandomNames[nameNum];
-        _PlayerState._PlayerStateInfoHandler.UpdatePlayerName(randomName);
+        characterInfo.Name = randomName;
         OutputNameText.text = randomName;
     }
 
+    public void InputRandomPortrait() {
+        List<PortraitDTO> portraitList = PortraitDAO.SelectAllPortrait();
+        int PortraitNum = Random.Range(0,portraitList.Count-1);
+        portrait = portraitList[PortraitNum];
+        _UIState._UIStateHandler.UpdateSelectedPortrait(portrait);
+        PortraitImg.sprite = Resources.Load(portrait.ImagePath, typeof(Sprite)) as Sprite;
+    }
 }
 

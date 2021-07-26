@@ -11591,7 +11591,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &648076568
 Transform:
   m_ObjectHideFlags: 0
@@ -11652,7 +11652,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 023915b319ee70741861586de946c46f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _PlayerState: {fileID: 509318745}
   title: {fileID: 1781546510}
   deckName: {fileID: 37160770}
   deckExplain: {fileID: 1709062844}
@@ -22392,7 +22391,7 @@ MonoBehaviour:
   StatusPoint: {fileID: 7576544927859531193}
   InputNameText: {fileID: 1866834420}
   OutputNameText: {fileID: 7576544928397731444}
-  _PlayerState: {fileID: 509318745}
+  _UIState: {fileID: 243671502}
   PortraitImg: {fileID: 7576544927576949989}
   RandomNames:
   - "\uC7A5\uC900\uC5FD"
@@ -22415,7 +22414,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b2b003f13bf1dd40b838edcb9ffbc8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _PlayerState: {fileID: 509318745}
   popup: {fileID: 602259012}
 --- !u!1 &1222931096
 GameObject:
@@ -29514,7 +29512,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38f709533dee232498b17844ded23b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _PlayerState: {fileID: 509318745}
   DeckListArea: {fileID: 1121162334}
   testButton: {fileID: 0}
 --- !u!114 &1708186901
@@ -35424,7 +35421,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2006291488
 Transform:
   m_ObjectHideFlags: 0

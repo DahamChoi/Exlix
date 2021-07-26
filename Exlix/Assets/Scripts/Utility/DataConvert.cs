@@ -7,11 +7,12 @@ public class DataConvert<T> {
         if (_list == null) return null;
         string dataString = null;
         _list.Sort();
+        int count = 0;
         foreach (var data in _list) {
+            count++;
             dataString += data;
-            dataString += ',';
+            if (!(count == _list.Count)) dataString += ',';
         }
-        dataString.Remove(dataString.Length-1);
         return dataString;
     }
 }

@@ -7,14 +7,12 @@ public class PortraitObject : MonoBehaviour {
     [SerializeField] Button PortraitButton = null;
 
     string ImagePath;
-    PlayerState _PlayerState;
-
+    UIState _UIState;
+    CharacterInfoDTO characterInfo;
     private void Start() {
-        _PlayerState = GameObject.Find("PlayerState").GetComponent<PlayerState>();
-
+        _UIState = GameObject.Find("UIState").GetComponent<UIState>();
         PortraitButton.onClick.AddListener(() => {
-            _PlayerState._PlayerStateInfoHandler.SetCurrentPortrait(PortraitData);
-            Debug.Log(PortraitData.Number);
+            _UIState._UIStateHandler.UpdateSelectedPortrait(PortraitData);
         });
     }
     public void init(PortraitDTO portraitData) {

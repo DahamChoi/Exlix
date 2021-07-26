@@ -9,7 +9,9 @@ public class UIStateInfo
     public void ProcessEvent() {
 
     }
-
+    public void UpdateSelectedPortrait(PortraitDTO portraitData) {
+        _UIStateData.SelectedPortrait = portraitData;
+    }
     public void UpdateDestroyCard(CardDTO cardData) {
         _UIStateData.DestroyCard = cardData;
     }
@@ -18,5 +20,8 @@ public class UIStateInfo
     }
     public CardDTO GetSelectedCard() {
         return _UIStateData.SelectedCard;
+    }
+    public PortraitDTO GetSelectedPortrait() {
+        return _UIStateData.SelectedPortrait;
     }
 }

@@ -5,10 +5,7 @@ using UnityEngine.UI;
 using System;
 
 public class CharacterGenerate_Deck_Info_Layer : MonoBehaviour {
-    [SerializeField] PlayerState _PlayerState = null;
     [SerializeField] GameObject DeckListArea = null;
-    [SerializeField] Button testButton = null;
-
 
     private void OnEnable() {
         UpdateDeckList();
@@ -21,8 +18,9 @@ public class CharacterGenerate_Deck_Info_Layer : MonoBehaviour {
                 if (childList[i] != transform) Destroy(childList[i].gameObject);
             }
         }
-
-        for (int i = 0; i < startDeck.CardList.Count; i++)
-            FactoryManager.GetInstance().CreateCardObject(startDeck.CardList[i], DeckListArea.transform);
+        if (startDeck != null) {
+            for (int i = 0; i < startDeck.CardList.Count; i++)
+                FactoryManager.GetInstance().CreateCardObject(startDeck.CardList[i], DeckListArea.transform);
+        }
     }
 }

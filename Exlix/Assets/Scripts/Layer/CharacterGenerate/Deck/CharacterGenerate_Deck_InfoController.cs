@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class CharacterGenerate_Deck_InfoController : MonoBehaviour {
-    [SerializeField] PlayerState _PlayerState = null;
     [SerializeField] Text title = null;
     [SerializeField] Text deckName = null;
     [SerializeField] Text deckExplain = null;

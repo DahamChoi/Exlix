@@ -17,7 +17,13 @@ public class UIStateHandler : ObserableHandler<UIStateInfo>
         Information.UpdateSelectedCard(cardData);
         base.NotifyObservers();
     }
-        
+    public void UpdateSelectedPortrait(PortraitDTO portraitData) {
+        Information.UpdateSelectedPortrait(portraitData);
+        base.NotifyObservers();
+    }
+    public PortraitDTO GetSelectedPortrait() {
+        return Information.GetSelectedPortrait();
+    }
     public CardDTO GetSelectedCard() {
         return Information.GetSelectedCard();
     }
