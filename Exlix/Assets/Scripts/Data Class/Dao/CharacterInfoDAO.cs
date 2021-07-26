@@ -13,7 +13,7 @@ public class CharacterInfoDAO {
     }
 
     public static void UpdatePlayerInfo(CharacterInfoDTO info) {
-        
+
        string query = $"UPDATE {CharacterInfoTableName} SET " +
             $"start_pack_number = {info.StartPack}, " +
             $"portrait_number = {info.Portrait}, " +

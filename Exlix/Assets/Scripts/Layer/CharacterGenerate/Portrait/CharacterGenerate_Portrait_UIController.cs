@@ -40,13 +40,18 @@ public class CharacterGenerate_Portrait_UIController : MonoBehaviour {
     CharacterInfoDTO characterInfo = null;
     CharacterInfoDTO characterInfoOriginal = null;
     void Start() {
-        Init();
+        ButtonInit();
         InputRandomName();
         InputRandomPortrait();
     }
 
+    private void OnEnable() {
+        Init();
+    }
+
+
     private void Init() {
-        characterInfo = CharacterInfoDTO.clone();
+        characterInfo = CharacterInfoDAO.GetCharacterInfo();
         characterInfoOriginal = CharacterInfoDTO.clone();
 
         HP.text = $"{characterInfo.StatHp}";
@@ -54,8 +59,11 @@ public class CharacterGenerate_Portrait_UIController : MonoBehaviour {
         STR.text = $"{characterInfo.StatStr}";
         INT.text = $"{characterInfo.StatInt}";
         StatusPoint.text = $"{"잔여 포인트 :"} {characterInfo.StatPoint}";
+    }
 
+    public void ButtonInit() {
         NextButton.onClick.AddListener(() => {
+            CharacterInfoDAO.UpdatePlayerInfo(characterInfo);
             SceneState.GetInstance()._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.PORTRAIT_TO_DECK);
         });
 
