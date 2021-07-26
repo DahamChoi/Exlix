@@ -119,7 +119,6 @@ public class CharacterGenerate_Portrait_UIController :CharacterGenerate_Portrait
         });
     }
 
-
     public void AddStat(string statType, Text statText) {
         if (characterInfo.StatPoint > 0) {
             switch (statType) {
