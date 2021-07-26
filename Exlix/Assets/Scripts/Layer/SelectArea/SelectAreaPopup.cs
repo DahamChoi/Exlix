@@ -22,7 +22,7 @@ public class SelectAreaPopup : MonoBehaviour {
 
     private void Start() {
         EnterStageButton.onClick.AddListener(() => {
-            SceneState.GetInstance()._InformationHandler.InsertData<AreaDTO>(InformationKeyDefine.CURRENT_AREA_NUMBER_KEY, AreaInfo);
+            GameState.GetInstance()._InformationHandler.InsertData<AreaDTO>(InformationKeyDefine.CURRENT_AREA_NUMBER_KEY, AreaInfo);
             SceneState.GetInstance()._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.ENTER_AREA);
         });
 

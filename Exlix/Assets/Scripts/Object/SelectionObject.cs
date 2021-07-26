@@ -11,12 +11,12 @@ public class SelectionObject : MonoBehaviour, IObserver<Information> {
 
 
     void Start() {
-        SceneState.GetInstance()._InformationHandler.Subscribe(this);
-        SceneState.GetInstance()._InformationHandler.InsertData<bool>(InformationKeyDefine.IS_SELECTION_SELECTED, false);
+        GameState.GetInstance()._InformationHandler.Subscribe(this);
+        GameState.GetInstance()._InformationHandler.InsertData<bool>(InformationKeyDefine.IS_SELECTION_SELECTED, false);
         selectionButton.onClick.AddListener(() => {
-            SceneState.GetInstance()._InformationHandler.InsertData<SelectionDTO>(InformationKeyDefine.CURRENT_SELECTION_DATA, selectionData);
-            SceneState.GetInstance()._InformationHandler.InsertData<bool>(InformationKeyDefine.IS_SELECTION_SELECTED, true);
-            SceneState.GetInstance()._InformationHandler.NotifyObservers();
+            GameState.GetInstance()._InformationHandler.InsertData<SelectionDTO>(InformationKeyDefine.CURRENT_SELECTION_DATA, selectionData);
+            GameState.GetInstance()._InformationHandler.InsertData<bool>(InformationKeyDefine.IS_SELECTION_SELECTED, true);
+            GameState.GetInstance()._InformationHandler.NotifyObservers();
         });
     }
 

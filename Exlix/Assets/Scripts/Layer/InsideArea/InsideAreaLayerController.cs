@@ -13,7 +13,7 @@ public class InsideAreaLayerController : MonoBehaviour, IObserver<Information> {
     bool isInit = true;
 
     private void Awake() {
-        SceneState.GetInstance()._InformationHandler.Subscribe(this);
+        GameState.GetInstance()._InformationHandler.Subscribe(this);
     }
 
     private void OnEnable() {
