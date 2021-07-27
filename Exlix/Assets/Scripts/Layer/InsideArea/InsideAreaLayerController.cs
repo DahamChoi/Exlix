@@ -14,6 +14,7 @@ public class InsideAreaLayerController : MonoBehaviour, IObserver<Information> {
 
     private void Awake() {
         GameState.GetInstance()._InformationHandler.Subscribe(this);
+        //InitEvent();
     }
 
     private void OnEnable() {
@@ -21,6 +22,7 @@ public class InsideAreaLayerController : MonoBehaviour, IObserver<Information> {
             InitEvent();
         }
     }
+
 
     private void InitEvent() {
         int percent = UnityEngine.Random.Range(0, 100);

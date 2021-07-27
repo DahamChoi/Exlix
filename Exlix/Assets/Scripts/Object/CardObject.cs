@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class CardObject : MonoBehaviour {
     public CardDTO CardData;
 
-    [SerializeField] Text ExplainText = null;
+    [SerializeField] Text TitleText = null;
     [SerializeField] Text CostText = null;
 
-    public void init(CardDTO cardData) {
+    public void Init(CardDTO cardData) {
         CardData = cardData;
 
-        ExplainText.text = CardData.Title;
+        TitleText.text = CardData.Title;
         CostText.text = CardData.Cost.ToString();
     }
 }

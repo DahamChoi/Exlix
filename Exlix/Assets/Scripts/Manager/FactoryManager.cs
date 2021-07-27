@@ -8,7 +8,7 @@ public class FactoryManager : Singleton<FactoryManager> {
         GameObject cardObjectPrefab = Resources.Load("Prefabs/CardPrefab") as GameObject;
         GameObject cardObject = Instantiate<GameObject>(cardObjectPrefab, parent);
         CardDTO cardData = CardDAO.SelectCard(cardId);
-        cardObject.GetComponent<CardObject>().init(cardData);
+        cardObject.GetComponent<CardObject>().Init(cardData);
         return cardObject;
     }
 
@@ -51,6 +51,13 @@ public class FactoryManager : Singleton<FactoryManager> {
         return sentenceImageObject;
     }
 
+    public GameObject CreateSentenceSmallImageObject(string sentenceString, string imagePath, Transform parent) {
+        GameObject sentenceSmallImageObjectPrefab = Resources.Load("Prefabs/SentenceSmallImage") as GameObject;
+        GameObject sentenceSmallImageObject = Instantiate<GameObject>(sentenceSmallImageObjectPrefab, parent);
+        sentenceSmallImageObject.GetComponent<SentenceSmallImageObject>().Init(sentenceString, imagePath);
+        return sentenceSmallImageObject;
+    }
+
     public GameObject CreateSelectionObject(int selectionId, Transform parent) {
         GameObject selectionObjectPrefab = Resources.Load("Prefabs/SelectionButton") as GameObject;
         GameObject selectionObject = Instantiate<GameObject>(selectionObjectPrefab, parent);
@@ -79,4 +86,20 @@ public class FactoryManager : Singleton<FactoryManager> {
         skillPopupObject.GetComponent<SkillPopupObject>().Init(skillData);
         return skillPopupObject;
     }
+
+    public GameObject CreateInsideAreaInfoCardObject(int cardId, Transform parent) {
+        GameObject cardObjectPrefab = Resources.Load("Prefabs/InsideAreaInfoCardPrefab") as GameObject;
+        GameObject cardObject = Instantiate<GameObject>(cardObjectPrefab, parent);
+        CardDTO cardData = CardDAO.SelectCard(cardId);
+        cardObject.GetComponent<InsideAreaInfoCardObject>().Init(cardData);
+        return cardObject;
+    }
+
+    public GameObject CreateInsideAreaInfoCardDescriptionPopup(CardDTO card, Transform parent) {
+        GameObject CardDescriptionPopupPrefab = Resources.Load("Prefabs/InsideAreaCardInfoPopup") as GameObject;
+        GameObject CardDescriptionPopup = Instantiate<GameObject>(CardDescriptionPopupPrefab, parent);
+        CardDescriptionPopup.GetComponent<InsideAreaInfoCardPopupObject>().Init(card);
+        return CardDescriptionPopup;
+    }
+
 }

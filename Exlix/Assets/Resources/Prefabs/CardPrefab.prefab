@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d74d91f2c349b445a3396c38231d0a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ExplainText: {fileID: 6847879006913893608}
+  TitleText: {fileID: 6847879006913893608}
   CostText: {fileID: 3794444630939966700}
 --- !u!61 &6679583599658252327
 BoxCollider2D:
@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 949926953244551827}
   - component: {fileID: 6847879006913893608}
   m_Layer: 5
-  m_Name: CardExplain
+  m_Name: CardTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
