@@ -22409,43 +22409,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aebcea53a25af1409722c1d55d3857c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InputNameScreen: {fileID: 533580279}
-  InputNameCloser: {fileID: 510635910}
-  PortraitPopup: {fileID: 673939004}
-  PortraitPopupCloser: {fileID: 1790744146}
-  NameInputPopupButton: {fileID: 7576544928758383847}
-  DiceButton: {fileID: 7576544927607615345}
-  NameComfirmButton: {fileID: 1337407198}
-  NextButton: {fileID: 7576544927045415867}
-  PortraitPopupButton: {fileID: 7576544927489849244}
-  PortraitPopupCloseButton: {fileID: 1790744148}
-  PortraitPopupCommitButton: {fileID: 2144585067}
-  HpAddButton: {fileID: 7576544928162318744}
-  HpSubButton: {fileID: 7576544928727535176}
-  StrAddButton: {fileID: 7576544927000857798}
-  StrSubButton: {fileID: 7576544927823827999}
-  DexAddButton: {fileID: 7576544927867535745}
-  DexSubButton: {fileID: 7576544927650366531}
-  IntAddButton: {fileID: 7576544928136455026}
-  IntSubButton: {fileID: 7576544926910373801}
-  HP: {fileID: 7576544928418120418}
-  DEX: {fileID: 7576544927860316548}
-  STR: {fileID: 7576544928751506506}
-  INT: {fileID: 7576544928545411512}
-  StatusPoint: {fileID: 7576544927859531193}
-  InputNameText: {fileID: 1866834420}
-  OutputNameText: {fileID: 7576544928397731444}
-  _UIState: {fileID: 243671502}
-  PortraitImg: {fileID: 7576544927576949989}
-  RandomNames:
-  - "\uC7A5\uC900\uC5FD"
-  - "\uC8C4\uB2E4\uD568"
-  - "\uC591\uC9C0\uC6B4"
-  - "\uC591\uD6C4\uD604"
-  - "\uAE40\uB3D9\uAD6C"
-  - "\uCD5C\uADDC\uBE54"
-  - "\uC774\uC81C\uBD04"
-  - "\uC774\uB984\uBB58\uB85C\uD558\uC9C0"
+  inputNameScreen: {fileID: 533580279}
+  inputNameCloser: {fileID: 510635910}
+  portraitPopup: {fileID: 673939004}
+  portraitPopupCloser: {fileID: 1790744146}
+  nameInputPopupButton: {fileID: 7576544928758383847}
+  diceButton: {fileID: 7576544927607615345}
+  nameComfirmButton: {fileID: 1337407198}
+  nextButton: {fileID: 7576544927045415867}
+  portraitPopupButton: {fileID: 7576544927489849244}
+  portraitPopupCloseButton: {fileID: 1790744148}
+  portraitPopupCommitButton: {fileID: 2144585067}
+  hpAddButton: {fileID: 7576544928162318744}
+  hpSubButton: {fileID: 7576544928727535176}
+  strAddButton: {fileID: 7576544927000857798}
+  strSubButton: {fileID: 7576544927823827999}
+  dexAddButton: {fileID: 7576544927867535745}
+  dexSubButton: {fileID: 7576544927650366531}
+  intAddButton: {fileID: 7576544928136455026}
+  intSubButton: {fileID: 7576544926910373801}
+  hpStat: {fileID: 7576544928418120418}
+  dexStat: {fileID: 7576544927860316548}
+  strStat: {fileID: 7576544928751506506}
+  intStat: {fileID: 7576544928545411512}
+  statusPoint: {fileID: 7576544927859531193}
+  inputNameText: {fileID: 1866834420}
+  outputNameText: {fileID: 7576544928397731444}
+  portraitImg: {fileID: 7576544927576949989}
+  randomNames:
+  - "\uC774\uB9841"
+  - "\uC774\uB9842"
+  - "\uC774\uB9843"
+  - "\uC774\uB9844"
+  - "\uC774\uB9845"
+  - "\uC774\uB9846"
+  - "\uC774\uB9847"
+  - "\uC774\uB9848"
 --- !u!114 &1219226466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43174,9 +43173,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _PlayerState: {fileID: 509318745}
   _UIState: {fileID: 243671502}
-  DeckListArea: {fileID: 3440973106157778065}
+  deckListArea: {fileID: 0}
   testButton: {fileID: 0}
-  DiscardArea: {fileID: 3440973105948496903}
+  discardArea: {fileID: 0}
   popupTransform: {fileID: 7993549}
   targetCamera: {fileID: 160759351}
   m_canvas: {fileID: 3440973107467509713}

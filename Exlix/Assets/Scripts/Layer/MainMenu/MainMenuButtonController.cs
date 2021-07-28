@@ -14,8 +14,8 @@ public class MainMenuButtonController : MonoBehaviour
         });
 
         NewGameButton.onClick.AddListener(() => {
-           SceneState.GetInstance()._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.NEW_GAME);
-           CharacterInfoDAO.UpdatePlayerInfo(CharacterInfoDTO.clone());
+            CharacterInfoDAO.UpdatePlayerInfo(CharacterInfoDTO.clone());
+            SceneState.GetInstance()._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.NEW_GAME);
         });
     }
 }

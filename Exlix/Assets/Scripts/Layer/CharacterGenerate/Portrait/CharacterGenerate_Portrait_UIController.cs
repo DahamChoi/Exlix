@@ -1,39 +1,37 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 public class CharacterGenerate_Portrait_UIController : MonoBehaviour {
 
-    [SerializeField] GameObject InputNameScreen = null;
-    [SerializeField] GameObject InputNameCloser = null;
-    [SerializeField] GameObject PortraitPopup = null;
-    [SerializeField] GameObject PortraitPopupCloser = null;
-    [SerializeField] Button NameInputPopupButton = null;
-    [SerializeField] Button DiceButton = null;
-    [SerializeField] Button NameComfirmButton = null;
-    [SerializeField] Button NextButton = null;
-    [SerializeField] Button PortraitPopupButton = null;
-    [SerializeField] Button PortraitPopupCloseButton = null;
-    [SerializeField] Button PortraitPopupCommitButton = null;
-    [SerializeField] Button HpAddButton = null;
-    [SerializeField] Button HpSubButton = null;
-    [SerializeField] Button StrAddButton = null;
-    [SerializeField] Button StrSubButton = null;
-    [SerializeField] Button DexAddButton = null;
-    [SerializeField] Button DexSubButton = null;
-    [SerializeField] Button IntAddButton = null;
-    [SerializeField] Button IntSubButton = null;
+    [SerializeField] GameObject inputNameScreen = null;
+    [SerializeField] GameObject inputNameCloser = null;
+    [SerializeField] GameObject portraitPopup = null;
+    [SerializeField] GameObject portraitPopupCloser = null;
+    [SerializeField] Button nameInputPopupButton = null;
+    [SerializeField] Button diceButton = null;
+    [SerializeField] Button nameComfirmButton = null;
+    [SerializeField] Button nextButton = null;
+    [SerializeField] Button portraitPopupButton = null;
+    [SerializeField] Button portraitPopupCloseButton = null;
+    [SerializeField] Button portraitPopupCommitButton = null;
+    [SerializeField] Button hpAddButton = null;
+    [SerializeField] Button hpSubButton = null;
+    [SerializeField] Button strAddButton = null;
+    [SerializeField] Button strSubButton = null;
+    [SerializeField] Button dexAddButton = null;
+    [SerializeField] Button dexSubButton = null;
+    [SerializeField] Button intAddButton = null;
+    [SerializeField] Button intSubButton = null;
 
-    [SerializeField] Text HP = null;
-    [SerializeField] Text DEX = null;
-    [SerializeField] Text STR = null;
-    [SerializeField] Text INT = null;
-    [SerializeField] Text StatusPoint = null;
-    [SerializeField] Text InputNameText = null;
-    [SerializeField] Text OutputNameText = null;
-    [SerializeField] UIState _UIState;
-    [SerializeField] Image PortraitImg = null;
-    [SerializeField] List<string> RandomNames = null;
+    [SerializeField] Text hpStat = null;
+    [SerializeField] Text dexStat = null;
+    [SerializeField] Text strStat = null;
+    [SerializeField] Text intStat = null;
+    [SerializeField] Text statusPoint = null;
+    [SerializeField] Text inputNameText = null;
+    [SerializeField] Text outputNameText = null;
+    [SerializeField] Image portraitImg = null;
+    [SerializeField] List<string> randomNames = null;
 
     PortraitDTO portrait = null;
 
@@ -49,79 +47,88 @@ public class CharacterGenerate_Portrait_UIController : MonoBehaviour {
         Init();
     }
 
+    private void OnDisable() {
+        CharacterInfoDAO.UpdatePlayerInfo(characterInfo);
+    }
 
     private void Init() {
         characterInfo = CharacterInfoDAO.GetCharacterInfo();
         characterInfoOriginal = CharacterInfoDTO.clone();
+        hpStat.text = $"{characterInfo.StatHp}";
+        dexStat.text = $"{characterInfo.StatDex}";
+        strStat.text = $"{characterInfo.StatStr}";
+        intStat.text = $"{characterInfo.StatInt}";
+        statusPoint.text = $"{"잔여 포인트 :"} {characterInfo.StatPoint}";
+    }
 
-        HP.text = $"{characterInfo.StatHp}";
-        DEX.text = $"{characterInfo.StatDex}";
-        STR.text = $"{characterInfo.StatStr}";
-        INT.text = $"{characterInfo.StatInt}";
-        StatusPoint.text = $"{"잔여 포인트 :"} {characterInfo.StatPoint}";
+    public void DrawUI() {
+        hpStat.text = $"{characterInfo.StatHp}";
+        dexStat.text = $"{characterInfo.StatDex}";
+        strStat.text = $"{characterInfo.StatStr}";
+        intStat.text = $"{characterInfo.StatInt}";
+        statusPoint.text = $"{"잔여 포인트 :"} {characterInfo.StatPoint}";
     }
 
     public void ButtonInit() {
-        NextButton.onClick.AddListener(() => {
-            CharacterInfoDAO.UpdatePlayerInfo(characterInfo);
+        nextButton.onClick.AddListener(() => {
             SceneState.GetInstance()._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.PORTRAIT_TO_DECK);
         });
 
-        PortraitPopupButton.onClick.AddListener(() => {
+        portraitPopupButton.onClick.AddListener(() => {
             OpenPortraitScreen();
         });
 
-        PortraitPopupCloseButton.onClick.AddListener(() => {
+        portraitPopupCloseButton.onClick.AddListener(() => {
             ClosePortraitScreen();
         });
 
-        PortraitPopupCommitButton.onClick.AddListener(() => {
+        portraitPopupCommitButton.onClick.AddListener(() => {
             ConfirmPortrait();
         });
 
-        HpAddButton.onClick.AddListener(() => {
-            AddStat("HP", HP);
+        hpAddButton.onClick.AddListener(() => {
+            AddStat("HP", hpStat);
         });
 
-        HpSubButton.onClick.AddListener(() => {
-            SubStat("HP", HP);
+        hpSubButton.onClick.AddListener(() => {
+            SubStat("HP", hpStat);
         });
 
-        StrAddButton.onClick.AddListener(() => {
-            AddStat("STR", STR);
+        strAddButton.onClick.AddListener(() => {
+            AddStat("STR", strStat);
         });
 
-        StrSubButton.onClick.AddListener(() => {
-            SubStat("STR", STR);
+        strSubButton.onClick.AddListener(() => {
+            SubStat("STR", strStat);
         });
 
-        DexAddButton.onClick.AddListener(() => {
-            AddStat("DEX", DEX);
+        dexAddButton.onClick.AddListener(() => {
+            AddStat("DEX", dexStat);
         });
 
-        DexSubButton.onClick.AddListener(() => {
-            SubStat("DEX", DEX);
+        dexSubButton.onClick.AddListener(() => {
+            SubStat("DEX", dexStat);
         });
 
-        IntAddButton.onClick.AddListener(() => {
-            AddStat("INT", INT);
+        intAddButton.onClick.AddListener(() => {
+            AddStat("INT", intStat);
         });
 
-        IntSubButton.onClick.AddListener(() => {
-            SubStat("INT", INT);
+        intSubButton.onClick.AddListener(() => {
+            SubStat("INT", intStat);
         });
 
-        NameInputPopupButton.onClick.AddListener(() => {
+        nameInputPopupButton.onClick.AddListener(() => {
             OpenInputNameScreen();
         });
 
-        InputNameCloser.GetComponent<Button>().onClick.AddListener(() => {
+        inputNameCloser.GetComponent<Button>().onClick.AddListener(() => {
             CloseInputNameScreen();
         });
-        DiceButton.onClick.AddListener(() => {
+        diceButton.onClick.AddListener(() => {
             InputRandomName();
         });
-        NameComfirmButton.onClick.AddListener(() => {
+        nameComfirmButton.onClick.AddListener(() => {
             ConfirmName();
             CloseInputNameScreen();
         });
@@ -156,7 +163,7 @@ public class CharacterGenerate_Portrait_UIController : MonoBehaviour {
                     break;
             }
             
-            StatusPoint.text = $"{"잔여 포인트 :"} {characterInfo.StatPoint}";
+            statusPoint.text = $"{"잔여 포인트 :"} {characterInfo.StatPoint}";
         }
     }
     
@@ -196,70 +203,73 @@ public class CharacterGenerate_Portrait_UIController : MonoBehaviour {
                 default:
                     break;
             }
-            StatusPoint.text = $"{"잔여 포인트 :"} {characterInfo.StatPoint}";
+            statusPoint.text = $"{"잔여 포인트 :"} {characterInfo.StatPoint}";
         }
     }
 
     public void OpenPortraitScreen() {
-        if (PortraitPopup.activeSelf == true) {
-            PortraitPopup.SetActive(false);
-            PortraitPopupCloser.SetActive(false);
+        if (portraitPopup.activeSelf == true) {
+            portraitPopup.SetActive(false);
+            portraitPopupCloser.SetActive(false);
         }
         else {
-            PortraitPopup.SetActive(true);
-            PortraitPopupCloser.SetActive(true);
+            portraitPopup.SetActive(true);
+            portraitPopupCloser.SetActive(true);
         }
     }
 
     public void ClosePortraitScreen() {
-        PortraitPopup.SetActive(false);
-        PortraitPopupCloser.SetActive(false);
+        portraitPopup.SetActive(false);
+        portraitPopupCloser.SetActive(false);
     }
 
     public void ConfirmPortrait() {
+
         //portrait = _UIState._UIStateHandler.GetSelectedPortrait();
         portrait = GameState.GetInstance().information.GetData<PortraitDTO>(InformationKeyDefine.CURRENT_SELECTED_PORTRAIT);
         characterInfo.Portrait = portrait.Number;
-        PortraitPopup.SetActive(false);
-        PortraitPopupCloser.SetActive(false);
-        PortraitImg.sprite = Resources.Load(portrait.ImagePath, typeof(Sprite)) as Sprite;
-    }
-
-    public void OpenInputNameScreen() {
-        if (InputNameScreen.activeSelf == true) {
-            InputNameScreen.SetActive(false);
-            InputNameCloser.SetActive(false);
-        }
-        else {
-            InputNameScreen.SetActive(true);
-            InputNameCloser.SetActive(true);
-        }
-    }
-
-    public void CloseInputNameScreen() {
-        InputNameScreen.SetActive(false);
-        InputNameCloser.SetActive(false);
+        portraitPopup.SetActive(false);
+        portraitPopupCloser.SetActive(false);
+        portraitImg.sprite = Resources.Load(portrait.ImagePath, typeof(Sprite)) as Sprite;
     }
 
     public void ConfirmName() {
-        characterInfo.Name = InputNameText.text;
-        OutputNameText.text = InputNameText.text;
+        characterInfo.Name = inputNameText.text;
+        outputNameText.text = inputNameText.text;
     }
 
     public void InputRandomName() {
-        int nameNum = Random.Range(0, RandomNames.Count);
-        string randomName = RandomNames[nameNum];
+        int nameNum = Random.Range(0, randomNames.Count);
+        string randomName = randomNames[nameNum];
         characterInfo.Name = randomName;
-        OutputNameText.text = randomName;
+        outputNameText.text = randomName;
     }
 
     public void InputRandomPortrait() {
         List<PortraitDTO> portraitList = PortraitDAO.SelectAllPortrait();
         int PortraitNum = Random.Range(0,portraitList.Count-1);
         portrait = portraitList[PortraitNum];
+
         GameState.GetInstance().information.UpsertData<PortraitDTO>(InformationKeyDefine.CURRENT_SELECTED_PORTRAIT,portrait);
-        //_UIState._UIStateHandler.UpdateSelectedPortrait(portrait);
-        PortraitImg.sprite = Resources.Load(portrait.ImagePath, typeof(Sprite)) as Sprite;
+
+        portraitImg.sprite = Resources.Load(portrait.ImagePath, typeof(Sprite)) as Sprite;
+
+    }
+
+    public void OpenInputNameScreen() {
+        if (inputNameScreen.activeSelf == true) {
+            inputNameScreen.SetActive(false);
+            inputNameCloser.SetActive(false);
+        }
+        else {
+            inputNameScreen.SetActive(true);
+            inputNameCloser.SetActive(true);
+        }
+    }
+
+    public void CloseInputNameScreen() {
+        inputNameScreen.SetActive(false);
+        inputNameCloser.SetActive(false);
     }
 }
 
