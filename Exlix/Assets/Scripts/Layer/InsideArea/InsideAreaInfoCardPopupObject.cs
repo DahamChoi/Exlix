@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class InsideAreaInfoCardPopupObject : MonoBehaviour {
-    [SerializeField] Text title;
-    [SerializeField] Text cost;
-    [SerializeField] Text property;
-    [SerializeField] Text explain;
+    [SerializeField] Text title = null;
+    [SerializeField] Text cost = null;
+    [SerializeField] Text property = null;
+    [SerializeField] Text explain = null;
     CardDTO cardData;
     public void Init(CardDTO _cardData){
         cardData = _cardData;

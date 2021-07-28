@@ -61,6 +61,7 @@ public class InsideAreaCharacterInfoDataController : MonoBehaviour {
     [SerializeField] Text equipmentOddmentsDescriptionText = null;
     #endregion
 
+    [SerializeField] Text cardText = null;
 
     // Start is called before the first frame update
     void Start() {
@@ -138,5 +139,7 @@ public class InsideAreaCharacterInfoDataController : MonoBehaviour {
         equipmentOddmentsPartsText.text = $"{CommonDefineKR.OddmentsString}";
         equipmentOddmentsTitleText.text = $"{oddmentsEquipmentInfo.Name}";
         equipmentOddmentsDescriptionText.text = $"{oddmentsEquipmentInfo.Explain}";
+
+        cardText.text = $"{CommonDefineKR.CardString}";
     }
 }

@@ -30,4 +30,5 @@ public class CommonDefineKR {
     public static string UnlockSkillString = "스킬 해금";
     public static string LockedSkillString = "상위 스킬 해금 필요";
     public static string LeftSkillPointString = "잔여 스킬 포인트";
+    public static string CardString = "카드";
 }

@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class UICardDescription : MonoBehaviour
 {
-    [SerializeField] Text Cost;
-    [SerializeField] Text Title;
-    [SerializeField] Text Describe;
-    [SerializeField] Text Property;
+    [SerializeField] Text Cost = null;
+    [SerializeField] Text Title = null;
+    [SerializeField] Text Describe = null;
+    [SerializeField] Text Property = null;
     public void Init(CardDTO card) {
         Cost.text = card.Cost.ToString();
         Title.text = card.Title;
