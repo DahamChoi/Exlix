@@ -12,7 +12,7 @@ public class CharacterGenerate_Deck_Info_Layer : MonoBehaviour {
     }
     
     void UpdateDeckList() {
-    StartDeckDTO startDeck = GameState.GetInstance().information.GetData<StartDeckDTO>(InformationKeyDefine.CURRENT_START_DECK_DATA);
+    StartDeckDTO startDeck = GameState.GetInstance().GetData<StartDeckDTO>(InformationKeyDefine.CURRENT_START_DECK_DATA);
         Transform[] childList = DeckListArea.GetComponentsInChildren<Transform>(true);
         if (childList != null) {
             for (int i = 1; i < childList.Length; i++) {

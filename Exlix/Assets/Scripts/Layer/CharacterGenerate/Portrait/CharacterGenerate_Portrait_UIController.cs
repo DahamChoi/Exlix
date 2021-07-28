@@ -226,7 +226,7 @@ public class CharacterGenerate_Portrait_UIController : MonoBehaviour {
     public void ConfirmPortrait() {
 
         //portrait = _UIState._UIStateHandler.GetSelectedPortrait();
-        portrait = GameState.GetInstance().information.GetData<PortraitDTO>(InformationKeyDefine.CURRENT_SELECTED_PORTRAIT);
+        portrait = GameState.GetInstance().GetData<PortraitDTO>(InformationKeyDefine.CURRENT_SELECTED_PORTRAIT);
         characterInfo.Portrait = portrait.Number;
         portraitPopup.SetActive(false);
         portraitPopupCloser.SetActive(false);
@@ -250,7 +250,7 @@ public class CharacterGenerate_Portrait_UIController : MonoBehaviour {
         int PortraitNum = Random.Range(0,portraitList.Count-1);
         portrait = portraitList[PortraitNum];
 
-        GameState.GetInstance().information.UpsertData<PortraitDTO>(InformationKeyDefine.CURRENT_SELECTED_PORTRAIT,portrait);
+        GameState.GetInstance().UpsertData<PortraitDTO>(InformationKeyDefine.CURRENT_SELECTED_PORTRAIT,portrait);
 
         portraitImg.sprite = Resources.Load(portrait.ImagePath, typeof(Sprite)) as Sprite;
 

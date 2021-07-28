@@ -13,7 +13,7 @@ public class InsideAreaLayerController : MonoBehaviour {
     bool isInit = true;
 
     void Start() {
-        AreaInfo = GameState.GetInstance().information.GetData<AreaDTO>(InformationKeyDefine.CURRENT_AREA_NUMBER_KEY);
+        AreaInfo = GameState.GetInstance().GetData<AreaDTO>(InformationKeyDefine.CURRENT_AREA_NUMBER_KEY);
     }
 
     private void OnEnable() {
