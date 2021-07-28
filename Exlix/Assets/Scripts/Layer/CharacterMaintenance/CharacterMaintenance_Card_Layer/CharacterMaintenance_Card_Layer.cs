@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 public class CharacterMaintenance_Card_Layer : MonoBehaviour, IPointerClickHandler, IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerUpHandler {
-    [SerializeField] PlayerState _PlayerState = null;
     [SerializeField] UIState _UIState = null;
     [SerializeField] GameObject DeckListArea = null;
     [SerializeField] Button testButton = null;

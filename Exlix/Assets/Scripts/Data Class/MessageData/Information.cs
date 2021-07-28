@@ -7,7 +7,7 @@ public class Information {
     private Dictionary<string, object> DataValue = new Dictionary<string, object>();
 
     public void UpsertData<T>(string key, T value) {
-        if (DataValue.ContainsKey(key)) DataValue[key] = value;
+    if (DataValue.ContainsKey(key)) DataValue[key] = value;
         else DataValue.Add(key, value);
     }
 

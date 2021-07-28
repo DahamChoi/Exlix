@@ -13,7 +13,7 @@ public class PortraitObject : MonoBehaviour {
         //_UIState = GameObject.Find("UIState").GetComponent<UIState>();
         PortraitButton.onClick.AddListener(() => {
             //_UIState._UIStateHandler.UpdateSelectedPortrait(PortraitData);
-            GameState.GetInstance()._InformationHandler.InsertData<PortraitDTO>(InformationKeyDefine.CURRENT_SELECTED_PORTRAIT, PortraitData);
+            GameState.GetInstance().information.UpsertData<PortraitDTO>(InformationKeyDefine.CURRENT_SELECTED_PORTRAIT, PortraitData);
             Selected.SetActive(true);
         });
     }
@@ -27,7 +27,7 @@ public class PortraitObject : MonoBehaviour {
         Portrait.sprite = Resources.Load(ImagePath, typeof(Sprite)) as Sprite;
     }
     public void updateSelection() {
-        PortraitDTO CurrentSelectedPortrait = GameState.GetInstance()._InformationHandler.GetData<PortraitDTO>(InformationKeyDefine.CURRENT_SELECTED_PORTRAIT);
+        PortraitDTO CurrentSelectedPortrait = GameState.GetInstance().information.GetData<PortraitDTO>(InformationKeyDefine.CURRENT_SELECTED_PORTRAIT);
         if (CurrentSelectedPortrait.Number == PortraitData.Number) {
             Selected.SetActive(true);
         }

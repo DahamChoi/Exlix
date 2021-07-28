@@ -3,5 +3,5 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameState : Singleton<GameState> {
-    public InformationHandler _InformationHandler = new InformationHandler();
+    public Information information = new Information();
 }

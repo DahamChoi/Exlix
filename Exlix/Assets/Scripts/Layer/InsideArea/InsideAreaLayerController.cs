@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class InsideAreaLayerController : MonoBehaviour, IObserver<Information> {
+public class InsideAreaLayerController : MonoBehaviour {
     [SerializeField] Transform selectionContainer = null;
     [SerializeField] Transform sentencePannel = null;
     [SerializeField] ScrollRect pannelScroll = null;
@@ -12,9 +12,8 @@ public class InsideAreaLayerController : MonoBehaviour, IObserver<Information> {
     private EventDTO CurrentEvent = null;
     bool isInit = true;
 
-    private void Awake() {
-        GameState.GetInstance()._InformationHandler.Subscribe(this);
-        //InitEvent();
+    void Start() {
+        AreaInfo = GameState.GetInstance().information.GetData<AreaDTO>(InformationKeyDefine.CURRENT_AREA_NUMBER_KEY);
     }
 
     private void OnEnable() {
@@ -44,23 +43,16 @@ public class InsideAreaLayerController : MonoBehaviour, IObserver<Information> {
         return selectionContainer;
     }
 
-    public void OnCompleted() {
-        throw new NotImplementedException();
-    }
-
-    public void OnError(Exception error) {
-        throw new NotImplementedException();
-    }
-
-    public void OnNext(Information information) {
-        AreaInfo = information.GetData<AreaDTO>(InformationKeyDefine.CURRENT_AREA_NUMBER_KEY);
-        if (information.GetData<bool>(InformationKeyDefine.IS_SELECTION_SELECTED)) {
-            FactoryManager.GetInstance().CreateSelectionTextObject(information.GetData<SelectionDTO>(InformationKeyDefine.CURRENT_SELECTION_DATA).Text, sentencePannel);
-            if (information.GetData<SelectionDTO>(InformationKeyDefine.CURRENT_SELECTION_DATA).Action != 0) 
-                FactoryManager.GetInstance().CreateSentenceObject(information.GetData<SelectionDTO>(InformationKeyDefine.CURRENT_SELECTION_DATA).Action, this, sentencePannel);
-            LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)sentencePannel);
-            pannelScroll.verticalNormalizedPosition = 0;
+    public void SelectSelection(SelectionDTO selectionData) {
+        FactoryManager.GetInstance().CreateSelectionTextObject(selectionData.Text, sentencePannel);
+        
+        //선택지가 또 다른 Sentence를 갖고있는가
+        if (selectionData.Action != 0) {
+            FactoryManager.GetInstance().CreateSentenceObject(selectionData.Action, this, sentencePannel);
         }
 
+        //UI새로고침
+        LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)sentencePannel);
+        pannelScroll.verticalNormalizedPosition = 0;
     }
 }
