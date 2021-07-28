@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UIStageSelect : MonoBehaviour
 {
-    public GameObject PopupScreen;
+    [HideInInspector] public GameObject PopupScreen;
     public void OpenStagePopup() {
         PopupScreen.SetActive(true);
     }
