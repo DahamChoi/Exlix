@@ -4,4 +4,5 @@ using UnityEngine;
 
 public class SceneState : Singleton<SceneState> {
     public SceneStateHandler _SceneStateHandler = new SceneStateHandler();
+    public UIStateHandler _UIStateHandler = new UIStateHandler();
 }
