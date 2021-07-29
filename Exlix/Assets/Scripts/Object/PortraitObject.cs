@@ -7,12 +7,9 @@ public class PortraitObject : MonoBehaviour {
     [SerializeField] Button PortraitButton = null;
     [SerializeField] GameObject Selected = null;
     string ImagePath;
-    UIState _UIState;
     CharacterInfoDTO characterInfo;
     private void Start() {
-        //_UIState = GameObject.Find("UIState").GetComponent<UIState>();
         PortraitButton.onClick.AddListener(() => {
-            //_UIState._UIStateHandler.UpdateSelectedPortrait(PortraitData);
             GameState.GetInstance().UpsertData<PortraitDTO>(InformationKeyDefine.CURRENT_SELECTED_PORTRAIT, PortraitData);
             Selected.SetActive(true);
         });

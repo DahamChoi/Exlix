@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 public class CharacterMaintenance_Card_Layer : MonoBehaviour, IPointerClickHandler, IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerUpHandler {
-    [SerializeField] UIState _UIState = null;
+    //[SerializeField] UIState _UIState = null;
     [SerializeField] GameObject DeckListArea = null;
     [SerializeField] Button testButton = null;
     [SerializeField] GameObject DiscardArea = null;//해당 영역에 카드가 들어오고 enddrag실행되면 해당 충돌 오브젝트 삭제.
@@ -37,8 +37,8 @@ public class CharacterMaintenance_Card_Layer : MonoBehaviour, IPointerClickHandl
         m_gr.Raycast(m_ped, results);
         if (results.Count > 0) {
             if (results[0].gameObject.transform.GetComponent<CardObject>()) {
-                _UIState._UIStateHandler.UpdateSelectedCard(results[0].gameObject.transform.GetComponent<CardObject>().CardData);
-                cardDataOnSelect = _UIState._UIStateHandler.GetSelectedCard();
+                GameState.GetInstance().UpsertData<CardDTO>(InformationKeyDefine.CURRENT_SELECTED_CARD, results[0].gameObject.transform.GetComponent<CardObject>().CardData);
+                cardDataOnSelect = results[0].gameObject.transform.GetComponent<CardObject>().CardData;
                 cardObjectOnSelect = results[0].gameObject;
 
                 UpdateCardDescription(cardDataOnSelect);
@@ -61,14 +61,15 @@ public class CharacterMaintenance_Card_Layer : MonoBehaviour, IPointerClickHandl
             }
         }
     }
+
     public void OnPointerClick(PointerEventData eventData) {
         m_ped.position = eventData.position;
         List<RaycastResult> results = new List<RaycastResult>();
         m_gr.Raycast(m_ped, results);
         if (results.Count > 0) {
             if (results[0].gameObject.transform.GetComponent<CardObject>()) {
-                _UIState._UIStateHandler.UpdateSelectedCard(results[0].gameObject.transform.GetComponent<CardObject>().CardData);
-                cardDataOnSelect = _UIState._UIStateHandler.GetSelectedCard();
+                GameState.GetInstance().UpsertData<CardDTO>(InformationKeyDefine.CURRENT_SELECTED_CARD, results[0].gameObject.transform.GetComponent<CardObject>().CardData);
+                cardDataOnSelect = results[0].gameObject.transform.GetComponent<CardObject>().CardData;
                 cardObjectOnSelect = results[0].gameObject;
 
                 UpdateCardDescription(cardDataOnSelect);
@@ -107,9 +108,10 @@ public class CharacterMaintenance_Card_Layer : MonoBehaviour, IPointerClickHandl
         }
         CurrentPopup = FactoryManager.GetInstance().CreateCardDescriptionPopup(card, popupTransform);
     }
+
     void DiscardCardFromDeck() {
         Destroy(cardObjectOnSelect);
-        _UIState._UIStateHandler.UpdateDestroyCard(cardDataOnSelect);
+        GameState.GetInstance().UpsertData<CardDTO>(InformationKeyDefine.CURRENT_DESTROY_CARD, cardDataOnSelect);
         cardDataOnSelect = null;
         cardObjectOnSelect = null;
         if (CurrentPopup) {
@@ -117,6 +119,7 @@ public class CharacterMaintenance_Card_Layer : MonoBehaviour, IPointerClickHandl
             CurrentPopup = null;
         }
     }
+
     public void UpdateCardPosition(PointerEventData eventData) {
         cardObjectOnSelect.transform.SetParent(m_canvas.transform);
         cardObjectOnSelect.transform.position = new Vector3(targetCamera.ScreenToWorldPoint(eventData.position).x, targetCamera.ScreenToWorldPoint(eventData.position).y, 0.0f);

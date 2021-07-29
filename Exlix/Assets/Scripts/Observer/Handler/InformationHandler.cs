@@ -10,8 +10,4 @@ public class InformationHandler : ObserableHandler<Information> {
     public void UpsertData<T>(string key, T value) {
         Information.UpsertData<T>(key, value);
     }
-    
-    public T GetData<T>(string key) {
-        return Information.GetData<T>(key);
-    }
 }

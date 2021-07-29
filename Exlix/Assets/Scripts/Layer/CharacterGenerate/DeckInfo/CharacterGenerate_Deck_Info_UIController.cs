@@ -1,11 +1,10 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
 public class CharacterGenerate_Deck_Info_UIController : MonoBehaviour, IPointerClickHandler {
   
-    [SerializeField] UIState _UIState = null;
     [SerializeField] Canvas m_canvas = null;
     [SerializeField] Transform PopupTransform = null;
     [SerializeField] Button BackButton = null;
@@ -33,8 +32,8 @@ public class CharacterGenerate_Deck_Info_UIController : MonoBehaviour, IPointerC
         m_gr.Raycast(m_ped, results);
         if(results.Count > 0) {
             if (results[0].gameObject.transform.GetComponent<CardObject>()) {
-                _UIState._UIStateHandler.UpdateSelectedCard(results[0].gameObject.transform.GetComponent<CardObject>().CardData);
-                CardDTO card = _UIState._UIStateHandler.GetSelectedCard();
+                GameState.GetInstance().UpsertData<CardDTO>(InformationKeyDefine.CURRENT_SELECTED_CARD, results[0].gameObject.transform.GetComponent<CardObject>().CardData);
+                CardDTO card = results[0].gameObject.transform.GetComponent<CardObject>().CardData;
                 CardDescriptionPopup(card);
             }
         }
