@@ -3,44 +3,45 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CharacterMaintenance_Main_Layer : MonoBehaviour
-{
-    [SerializeField] Text PlayerNameText = null;
-    [SerializeField] Text PlayerLevelText = null;
-    [SerializeField] Text PlayerHpText = null;
-    [SerializeField] Text PlayerMpText = null;
+public class CharacterMaintenance_Main_Layer : MonoBehaviour {
+    [SerializeField] Text playerNameText = null;
+    [SerializeField] Text playerLevelText = null;
+    [SerializeField] Text playerHpText = null;
+    [SerializeField] Text playerMpText = null;
 
-    [SerializeField] Text PlayerStatHpText = null;
-    [SerializeField] Text PlayerStatStrText = null;
-    [SerializeField] Text PlayerStatDexText = null;
-    [SerializeField] Text PlayerStatIntText = null;
+    [SerializeField] Text playerStatHpText = null;
+    [SerializeField] Text playerStatStrText = null;
+    [SerializeField] Text playerStatDexText = null;
+    [SerializeField] Text playerStatIntText = null;
 
-    [SerializeField] Image PlayerIconImage = null;
+    [SerializeField] Image playerIconImage = null;
 
-    [SerializeField] Text ContainStatPointText = null;
+    [SerializeField] Text containStatPointText = null;
 
-    [SerializeField] Text CurrentSkillNameText = null;
-    [SerializeField] Text CurrentSkillDescribeText = null;
-    [SerializeField] Image CurrentSkillIconImage = null;
-    [SerializeField] Text CurrentSkillChargeText = null;
+    [SerializeField] Text currentSkillNameText = null;
+    [SerializeField] Text currentSkillDescribeText = null;
+    [SerializeField] Image currentSkillIconImage = null;
+    [SerializeField] Text currentSkillChargeText = null;
 
-    [SerializeField] Image CurrentEquipmentHeadIconImage = null;
-    [SerializeField] Image CurrentEquipmentUpperBodyIconImage = null;
-    [SerializeField] Image CurrentEquipmentUnderBodyImage = null;
-    [SerializeField] Image CurrentEquipmentWeaponIconImage = null;
-    [SerializeField] Image CurrentEquipmentAccessoryIconImage = null;
-    [SerializeField] Image CurrentEquipmentPocketIconImage = null;
+    [SerializeField] Image currentEquipmentHeadIconImage = null;
+    [SerializeField] Image currentEquipmentUpperBodyIconImage = null;
+    [SerializeField] Image currentEquipmentUnderBodyImage = null;
+    [SerializeField] Image currentEquipmentWeaponIconImage = null;
+    [SerializeField] Image currentEquipmentAccessoryIconImage = null;
+    [SerializeField] Image currentEquipmentPocketIconImage = null;
 
-    [SerializeField] Button HpAddButton = null;
-    [SerializeField] Button HpSubButton = null;
-    [SerializeField] Button StrAddButton = null;
-    [SerializeField] Button StrSubButton = null;
-    [SerializeField] Button DexAddButton = null;
-    [SerializeField] Button DexSubButton = null;
-    [SerializeField] Button IntAddButton = null;
-    [SerializeField] Button IntSubButton = null;
-    [SerializeField] Button StartButton = null;
+    [SerializeField] GameObject skillNotice = null;
+    [SerializeField] GameObject equipNotice = null;
 
+    [SerializeField] Button hpAddButton = null;
+    [SerializeField] Button hpSubButton = null;
+    [SerializeField] Button strAddButton = null;
+    [SerializeField] Button strSubButton = null;
+    [SerializeField] Button dexAddButton = null;
+    [SerializeField] Button dexSubButton = null;
+    [SerializeField] Button intAddButton = null;
+    [SerializeField] Button intSubButton = null;
+    [SerializeField] Button startButton = null;
 
     CharacterInfoDTO characterInfo;
     CharacterInfoDTO characterInfo_Original;
@@ -54,96 +55,110 @@ public class CharacterMaintenance_Main_Layer : MonoBehaviour
     EquipmentDTO equipPocket;
 
     private void Start() {
-        StartButton.onClick.AddListener(() => {
-            CharacterInfoDAO.UpdatePlayerInfo(characterInfo);
-        });
-
-        HpAddButton.onClick.AddListener(() => {
-            AddStat("HP", PlayerStatHpText);
-            DrawUI();
-        });
-
-        HpSubButton.onClick.AddListener(() => {
-            SubStat("HP", PlayerStatHpText);
-            DrawUI();
-        });
-
-        StrAddButton.onClick.AddListener(() => {
-            AddStat("STR", PlayerStatStrText);
-            DrawUI();
-        });
-
-        StrSubButton.onClick.AddListener(() => {
-            SubStat("STR", PlayerStatStrText);
-            DrawUI();
-        });
-
-        DexAddButton.onClick.AddListener(() => {
-            AddStat("DEX", PlayerStatDexText);
-            DrawUI();
-        });
-
-        DexSubButton.onClick.AddListener(() => {
-            SubStat("DEX", PlayerStatDexText);
-            DrawUI();
-        });
-
-        IntAddButton.onClick.AddListener(() => {
-            AddStat("INT", PlayerStatIntText);
-            DrawUI();
-        });
-
-        IntSubButton.onClick.AddListener(() => {
-            SubStat("INT", PlayerStatIntText);
-            DrawUI();
-        });
+        InitButton();
     }
     private void OnEnable() {
         Init();
         DrawUI();
     }
 
-    public void Init() {
+    void InitButton() {
+        startButton.onClick.AddListener(() => {
+            CharacterInfoDAO.UpdatePlayerInfo(characterInfo);
+        });
+
+        hpAddButton.onClick.AddListener(() => {
+            AddStat("HP", playerStatHpText);
+            DrawUI();
+        });
+
+        hpSubButton.onClick.AddListener(() => {
+            SubStat("HP", playerStatHpText);
+            DrawUI();
+        });
+
+        strAddButton.onClick.AddListener(() => {
+            AddStat("STR", playerStatStrText);
+            DrawUI();
+        });
+
+        strSubButton.onClick.AddListener(() => {
+            SubStat("STR", playerStatStrText);
+            DrawUI();
+        });
+
+        dexAddButton.onClick.AddListener(() => {
+            AddStat("DEX", playerStatDexText);
+            DrawUI();
+        });
+
+        dexSubButton.onClick.AddListener(() => {
+            SubStat("DEX", playerStatDexText);
+            DrawUI();
+        });
+
+        intAddButton.onClick.AddListener(() => {
+            AddStat("INT", playerStatIntText);
+            DrawUI();
+        });
+
+        intSubButton.onClick.AddListener(() => {
+            SubStat("INT", playerStatIntText);
+            DrawUI();
+        });
+    }
+
+    public void Init() {//캐릭터 데이터 초기화
         characterInfo = CharacterInfoDAO.GetCharacterInfo();
         characterInfo_Original = CharacterInfoDAO.GetCharacterInfo();
+
         portrait = PortraitDAO.SelectPortrait(characterInfo.Portrait);
         skill = SkillDAO.GetSelectedSkillInfo(characterInfo.CurrentSkill);
+
         equipHead = EquipmentDAO.GetSelectedEquipmentInfo(characterInfo.CurrentEquipmentHead);
         equipUpperBody = EquipmentDAO.GetSelectedEquipmentInfo(characterInfo.CurrentEquipmentUpperBody);
         equipUnderBody = EquipmentDAO.GetSelectedEquipmentInfo(characterInfo.CurrentEquipmentUnderBody);
         equipWeapon = EquipmentDAO.GetSelectedEquipmentInfo(characterInfo.CurrentEquipmentWeapon);
         equipAccessory = EquipmentDAO.GetSelectedEquipmentInfo(characterInfo.CurrentEquipmentAccessory);
-        equipPocket = EquipmentDAO.GetSelectedEquipmentInfo(characterInfo.CurrentEquipmentPocket); 
+        equipPocket = EquipmentDAO.GetSelectedEquipmentInfo(characterInfo.CurrentEquipmentPocket);
     }
 
-    public void DrawUI() {
-        PlayerNameText.text = characterInfo.Name;
-        PlayerLevelText.text = $"{CommonDefineKR.LevelString} : {characterInfo.Level}";
-        PlayerHpText.text = $"{CommonDefineKR.HpString} : {characterInfo.CurrentHp} / {characterInfo.Hp}";
-        PlayerMpText.text = $"{CommonDefineKR.MpString} : {characterInfo.Mp}";
+    public void DrawUI() {//화면에 그려지는 UI의 text와 image를 새로운 정보로 갱신 
+        playerNameText.text = characterInfo.Name;
+        playerLevelText.text = $"{CommonDefineKR.LevelString} : {characterInfo.Level}";
+        playerHpText.text = $"{CommonDefineKR.HpString} : {characterInfo.CurrentHp} / {characterInfo.Hp}";
+        playerMpText.text = $"{CommonDefineKR.MpString} : {characterInfo.Mp}";
 
-        PlayerStatHpText.text = $"{characterInfo.StatHp}";
-        PlayerStatStrText.text = $"{characterInfo.StatStr}";
-        PlayerStatDexText.text = $"{characterInfo.StatDex}";
-        PlayerStatIntText.text = $"{characterInfo.StatInt}";
+        playerStatHpText.text = $"{characterInfo.StatHp}";
+        playerStatStrText.text = $"{characterInfo.StatStr}";
+        playerStatDexText.text = $"{characterInfo.StatDex}";
+        playerStatIntText.text = $"{characterInfo.StatInt}";
 
-        PlayerIconImage.sprite = Resources.Load(portrait.ImagePath, typeof(Sprite)) as Sprite;
-        ContainStatPointText.text = $"{CommonDefineKR.ContainSkillPointString} {characterInfo.StatPoint}";
+        playerIconImage.sprite = Resources.Load(portrait.ImagePath, typeof(Sprite)) as Sprite;
+        containStatPointText.text = $"{CommonDefineKR.ContainSkillPointString} {characterInfo.StatPoint}";
 
-        CurrentSkillNameText.text = skill.Name;
-        CurrentSkillDescribeText.text = skill.Explain;
-        CurrentSkillIconImage.sprite = Resources.Load(skill.ImagePath, typeof(Sprite)) as Sprite;
-        CurrentSkillChargeText.text = $"{CommonDefineKR.SkillCooltimeString} : {skill.CoolTime} {CommonDefineKR.TurnString}";
+        currentSkillNameText.text = skill.Name;
+        currentSkillDescribeText.text = skill.Explain;
+        currentSkillIconImage.sprite = Resources.Load(skill.ImagePath, typeof(Sprite)) as Sprite;
+        currentSkillChargeText.text = $"{CommonDefineKR.SkillCooltimeString} : {skill.CoolTime} {CommonDefineKR.TurnString}";
 
-        CurrentEquipmentHeadIconImage.sprite = Resources.Load(equipHead.ImagePath, typeof(Sprite)) as Sprite;
-        CurrentEquipmentUpperBodyIconImage.sprite = Resources.Load(equipUpperBody.ImagePath, typeof(Sprite)) as Sprite;
-        CurrentEquipmentUnderBodyImage.sprite = Resources.Load(equipUnderBody.ImagePath, typeof(Sprite)) as Sprite;
-        CurrentEquipmentWeaponIconImage.sprite = Resources.Load(equipWeapon.ImagePath, typeof(Sprite)) as Sprite;
-        CurrentEquipmentAccessoryIconImage.sprite = Resources.Load(equipAccessory.ImagePath, typeof(Sprite)) as Sprite;
-        CurrentEquipmentPocketIconImage.sprite = Resources.Load(equipPocket.ImagePath, typeof(Sprite)) as Sprite;
+        currentEquipmentHeadIconImage.sprite = Resources.Load(equipHead.ImagePath, typeof(Sprite)) as Sprite;
+        currentEquipmentUpperBodyIconImage.sprite = Resources.Load(equipUpperBody.ImagePath, typeof(Sprite)) as Sprite;
+        currentEquipmentUnderBodyImage.sprite = Resources.Load(equipUnderBody.ImagePath, typeof(Sprite)) as Sprite;
+        currentEquipmentWeaponIconImage.sprite = Resources.Load(equipWeapon.ImagePath, typeof(Sprite)) as Sprite;
+        currentEquipmentAccessoryIconImage.sprite = Resources.Load(equipAccessory.ImagePath, typeof(Sprite)) as Sprite;
+        currentEquipmentPocketIconImage.sprite = Resources.Load(equipPocket.ImagePath, typeof(Sprite)) as Sprite;
+
+        if (characterInfo.SkillPoint >0) {
+            skillNotice.SetActive(true);
+        }
+        else {
+            skillNotice.SetActive(false);
+        }
+
     }
 
-    public void AddStat(string statType, Text statText) {
+    public void AddStat(string statType, Text statText) {//스테이터스 버튼 기능(스탯 추가)
         if (characterInfo.StatPoint > 0) {
             switch (statType) {
                 case "HP"://HP
@@ -170,11 +185,11 @@ public class CharacterMaintenance_Main_Layer : MonoBehaviour
                 default:
                     break;
             }
-            ContainStatPointText.text = $"{"잔여 포인트 :"} {characterInfo.StatPoint}";
+            containStatPointText.text = $"{"잔여 포인트 :"} {characterInfo.StatPoint}";
         }
     }
 
-    public void SubStat(string statType, Text statText) {
+    public void SubStat(string statType, Text statText) {//스테이터스 버튼 기능(스탯 감소)
         if (characterInfo.StatPoint < characterInfo_Original.StatPoint) {
             switch (statType) {
                 case "HP"://HP
@@ -210,7 +225,7 @@ public class CharacterMaintenance_Main_Layer : MonoBehaviour
                 default:
                     break;
             }
-            ContainStatPointText.text = $"{"잔여 포인트 :"} {characterInfo.StatPoint}";
+            containStatPointText.text = $"{"잔여 포인트 :"} {characterInfo.StatPoint}";
         }
     }
 

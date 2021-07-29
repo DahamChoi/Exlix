@@ -22,4 +22,25 @@ public class SkillDAO {
 
         return skillData;
     }
+
+    public static List<SkillDTO> GetSkillList() {
+        List<SkillDTO> skillList = new List<SkillDTO>();
+        string query = $"SELECT * FROM {SkillTableName}";
+        ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
+        while(true == it.Read()) {
+            SkillDTO skillData = new SkillDTO();
+            skillData.Number = it.GetSafeValue<int>(0);
+            skillData.ImagePath = it.GetSafeValue<string>(1);
+            skillData.CoolTime = it.GetSafeValue<int>(2);
+            skillData.Name = it.GetSafeValue<string>(3);
+            skillData.Explain = it.GetSafeValue<string>(4);
+            skillData.Parent = it.GetSafeValue<int>(5);
+            skillData.SkillCard = it.GetSafeValue<int>(6);
+
+            skillList.Add(skillData);
+        }
+
+        
+        return skillList;
+    }
 }

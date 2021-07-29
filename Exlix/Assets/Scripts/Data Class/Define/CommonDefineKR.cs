@@ -27,7 +27,8 @@ public class CommonDefineKR {
     public static string DeckInfoString = "덱 보기";
     public static string AlreadyEquipedSkillString = "활성화된 스킬";
     public static string EquipSkillString = "스킬 장착";
-    public static string UnlockSkillString = "스킬 해금";
+    public static string UnequipSkillString = "장착 해제";
+    public static string UnlockSkillString = "잠금 해제";
     public static string LockedSkillString = "상위 스킬 해금 필요";
     public static string LeftSkillPointString = "잔여 스킬 포인트";
     public static string CardString = "카드";

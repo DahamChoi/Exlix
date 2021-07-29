@@ -134,3 +134,4 @@ MonoBehaviour:
   skillImage: {fileID: 2707077278169283876}
   skillButton: {fileID: 2707077278169283875}
   PopupContainer: {fileID: 0}
+  Parent: {fileID: 0}
