@@ -13,7 +13,6 @@ public class CharacterMaintenance_Skill_Layer : MonoBehaviour {
     }
     public void UpdateUI() {
         for (int i = 0; i<skillNode.Count; i++) {
-            Debug.Log(i);
             skillNode[i].GetComponent<SkillObject>().UpdateIcon();
         }
     }

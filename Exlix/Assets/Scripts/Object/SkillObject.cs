@@ -16,7 +16,7 @@ public class SkillObject : MonoBehaviour, IObserver<UIStateInfo> {
 
     void Start() {
         InitObject();
-        FactoryManager.GetInstance().CreateLineObject(this.gameObject.transform.position, parent.transform.position, this.gameObject.transform);
+        FactoryManager.GetInstance().CreateLineObject(this.gameObject.transform.position, parent.transform.position, this.gameObject.transform.parent);
         SceneState.GetInstance()._UIStateHandler.Subscribe(this);
         SceneState.GetInstance()._UIStateHandler.NotifyObservers();
     }
