@@ -8,4 +8,7 @@ public class InformationKeyDefine {
     public static string CURRENT_SELECTED_CARD = "CurrentSelectedCard";
     public static string CURRENT_DESTROY_CARD = "CurrentDestroyCard";
     public static string CURRENT_SELECTED_PORTRAIT = "CurrentSelectedPortrait";
+    public static string CURRENT_SELECTED_EQUIPED_EQUIPMENT = "CurrentSelectedEquipedEquipment";
+    public static string CURRENT_SELECTED_TREE = "CurrentSelectedTree";
+
 }

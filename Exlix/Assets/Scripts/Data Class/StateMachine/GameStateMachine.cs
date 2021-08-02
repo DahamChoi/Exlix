@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameStateMachine
-{
-    public enum STATE
-    {
+public class GameStateMachine {
+    public enum STATE {
         READY,
         MAIN_MENU,
         CHARACTER_GENERATE_CHARACTER_INFO,
@@ -18,12 +16,13 @@ public class GameStateMachine
         ACHEIVE_CARD,
         CHARACTER_MAINTENANCE_MAIN,
         CHARACTER_MAINTENANCE_SKILL,
-        CHARACTER_MAINTENANCE_EQUIPMENT, 
-        CHARACTER_MAINTENANCE_CARD
+        CHARACTER_MAINTENANCE_EQUIPMENT,
+        CHARACTER_MAINTENANCE_CARD,
+        CHARACTER_MAINTENANCE_EQUIPMENT_TREE
+
     };
 
-    public enum TRIGGER
-    {
+    public enum TRIGGER {
         GAME_START,
         NEW_GAME,
         LOAD_GAME,
@@ -42,14 +41,16 @@ public class GameStateMachine
         ENTER_AREA,
         ENTER_BATTLE,
         END_BATTLE,
-        END_AREA_EVENT, 
+        END_AREA_EVENT,
         END_MAINTENANCE,
         END_ACHEIVE_CARD,
         MAIN_TO_SKILL,
         SKILLT_TO_MAIN,
         MAIN_TO_EQUIPMENT,
-        EQUIPMENT_TO_MAIN, 
-        MAIN_TO_CARD, 
+        EQUIPMENT_TO_MAIN,
+        EQUIPMENT_TO_TREE,
+        TREE_TO_EQUIPMENT,
+        MAIN_TO_CARD,
         CARD_TO_MAIN,
         BACK
     };
@@ -59,8 +60,7 @@ public class GameStateMachine
 
     public STATE CurrentState { get; set; }
 
-    public GameStateMachine()
-    {
+    public GameStateMachine() {
         // INITAL STATE
         CurrentState = STATE.READY;
 
@@ -128,7 +128,7 @@ public class GameStateMachine
         Rules[STATE.BATTLE].Add(
             new KeyValuePair<TRIGGER, STATE>(TRIGGER.END_BATTLE, STATE.INSIDE_AREA));
 
-        // 캐릭터 덱 정비
+        // 캐릭터 카드 획득
         Rules[STATE.ACHEIVE_CARD] = new List<KeyValuePair<TRIGGER, STATE>>();
         Rules[STATE.ACHEIVE_CARD].Add(
             new KeyValuePair<TRIGGER, STATE>(TRIGGER.END_ACHEIVE_CARD, STATE.CHARACTER_MAINTENANCE_MAIN));
@@ -153,6 +153,13 @@ public class GameStateMachine
         Rules[STATE.CHARACTER_MAINTENANCE_EQUIPMENT] = new List<KeyValuePair<TRIGGER, STATE>>();
         Rules[STATE.CHARACTER_MAINTENANCE_EQUIPMENT].Add(
             new KeyValuePair<TRIGGER, STATE>(TRIGGER.EQUIPMENT_TO_MAIN, STATE.CHARACTER_MAINTENANCE_MAIN));
+        Rules[STATE.CHARACTER_MAINTENANCE_EQUIPMENT].Add(
+            new KeyValuePair<TRIGGER, STATE>(TRIGGER.EQUIPMENT_TO_TREE, STATE.CHARACTER_MAINTENANCE_EQUIPMENT_TREE));
+
+        // 캐릭터 장비 트리
+        Rules[STATE.CHARACTER_MAINTENANCE_EQUIPMENT_TREE] = new List<KeyValuePair<TRIGGER, STATE>>();
+        Rules[STATE.CHARACTER_MAINTENANCE_EQUIPMENT_TREE].Add(
+            new KeyValuePair<TRIGGER, STATE>(TRIGGER.TREE_TO_EQUIPMENT, STATE.CHARACTER_MAINTENANCE_EQUIPMENT));
 
         // 캐릭터 덱 정비
         Rules[STATE.CHARACTER_MAINTENANCE_CARD] = new List<KeyValuePair<TRIGGER, STATE>>();
@@ -161,19 +168,19 @@ public class GameStateMachine
     }
 
     public void ProcessEvent(TRIGGER trigger) {
-        if(TRIGGER.BACK == trigger) {
-            if(STATE.CHARACTER_GENERATE_CHARACTER_INFO == CurrentState ||
+        if (TRIGGER.BACK == trigger) {
+            if (STATE.CHARACTER_GENERATE_CHARACTER_INFO == CurrentState ||
                 STATE.CHARACTER_GENERATE_PORTRAIT == CurrentState ||
                 STATE.CHARACTER_GENERATE_DECK == CurrentState) {
                 CurrentState = STATE.MAIN_MENU;
-            }
-            else if(STATE.CHARACTER_GENERATE_DECK_INFO == CurrentState) {
+            } else if (STATE.CHARACTER_GENERATE_DECK_INFO == CurrentState) {
                 CurrentState = STATE.CHARACTER_GENERATE_DECK;
-            }
-            else if (STATE.CHARACTER_MAINTENANCE_SKILL == CurrentState ||
-                STATE.CHARACTER_MAINTENANCE_EQUIPMENT == CurrentState ||
-                STATE.CHARACTER_MAINTENANCE_CARD == CurrentState) {
+            } else if (STATE.CHARACTER_MAINTENANCE_SKILL == CurrentState ||
+                  STATE.CHARACTER_MAINTENANCE_EQUIPMENT == CurrentState ||
+                  STATE.CHARACTER_MAINTENANCE_CARD == CurrentState) {
                 CurrentState = STATE.CHARACTER_MAINTENANCE_MAIN;
+            } else if (STATE.CHARACTER_MAINTENANCE_EQUIPMENT_TREE == CurrentState) {
+                CurrentState = STATE.CHARACTER_MAINTENANCE_EQUIPMENT;
             }
 
             return;

@@ -108,4 +108,11 @@ public class FactoryManager : Singleton<FactoryManager> {
         Line.GetComponent<RenderBridge>().Init(start, end);
         return Line;
     }
+
+    public GameObject CreateEquipmentPopupObject(EquipmentDTO equipmentData, Transform parent) {
+        GameObject equipmentPopupPrefab = Resources.Load("Prefabs/EquipmentPopup") as GameObject;
+        GameObject equipmentPopup = Instantiate<GameObject>(equipmentPopupPrefab, parent);
+        equipmentPopup.GetComponent<EquipmentPopupObject>().Init(equipmentData);
+        return equipmentPopup;
+    }
 }
