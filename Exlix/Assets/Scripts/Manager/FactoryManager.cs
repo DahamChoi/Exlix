@@ -102,10 +102,10 @@ public class FactoryManager : Singleton<FactoryManager> {
         return CardDescriptionPopup;
     }
 
-    public GameObject CreateLineObject(Vector3 start, Vector3 end, Transform parent) {
+    public GameObject CreateLineObject<T>(Vector3 start, Vector3 end, T data,Transform parent) {
         GameObject LinePrefab = Resources.Load("Prefabs/LineRenderer") as GameObject;
-        GameObject Line = Instantiate<GameObject>(LinePrefab, parent);
-        Line.GetComponent<RenderBridge>().Init(start, end);
+        GameObject Line = Instantiate<GameObject>(LinePrefab,parent);
+        Line.GetComponent<RenderBridge>().Init(start, end, data);
         return Line;
     }
 
