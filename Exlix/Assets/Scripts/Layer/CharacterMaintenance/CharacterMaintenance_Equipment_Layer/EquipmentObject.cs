@@ -13,22 +13,7 @@ public class EquipmentObject : ObserverContainer<UIStateInfo> {
     public override void OnNext(UIStateInfo value) {
         CharacterInfoDTO characterInfo = CharacterInfoDAO.GetCharacterInfo();
 
-        int currentEquiped = 0;
-        if (equipmentData.Part == "head") {
-            currentEquiped = characterInfo.CurrentEquipmentHead;
-        } else if (equipmentData.Part == "upper") {
-            currentEquiped = characterInfo.CurrentEquipmentUpperBody;
-        } else if (equipmentData.Part == "under") {
-            currentEquiped = characterInfo.CurrentEquipmentUnderBody;
-        } else if (equipmentData.Part == "weapon") {
-            currentEquiped = characterInfo.CurrentEquipmentWeapon;
-        } else if (equipmentData.Part == "accessory") {
-            currentEquiped = characterInfo.CurrentEquipmentAccessory;
-        } else if (equipmentData.Part == "pocket") {
-            currentEquiped = characterInfo.CurrentEquipmentPocket;
-        }
-
-        if (currentEquiped == euqipmentId) {
+        if (EquipmentType.GetSameEquipmentPartNumber(euqipmentId) == euqipmentId) {
             //...현재 장착중인 장비버튼
             //브릿지 변경
         } else if (CharacterInfoDAO.GetCharacterInfo().HaveEquipmentList.Contains(euqipmentId)) {

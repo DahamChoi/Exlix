@@ -15,31 +15,31 @@ public class EquipmentSelectUIController : MonoBehaviour {
     void Start() {
         CharacterInfoDTO characterInfo = CharacterInfoDAO.GetCharacterInfo();
         headEquipmentSlotButton.onClick.AddListener(() => {
-            GameState.GetInstance().UpsertData<int>(InformationKeyDefine.CURRENT_SELECTED_EQUIPED_EQUIPMENT, characterInfo.CurrentEquipmentHead);
+            GameState.GetInstance().UpsertData<string>(InformationKeyDefine.CURRENT_SELECTED_EQUIPED_EQUIPMENT, "head");
             SceneState.GetInstance()._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.EQUIPMENT_TO_TREE);
         });
         upperEquipmentSlotButton.onClick.AddListener(() => {
-            GameState.GetInstance().UpsertData<int>(InformationKeyDefine.CURRENT_SELECTED_EQUIPED_EQUIPMENT, characterInfo.CurrentEquipmentUpperBody);
+            GameState.GetInstance().UpsertData<string>(InformationKeyDefine.CURRENT_SELECTED_EQUIPED_EQUIPMENT, "upper");
             SceneState.GetInstance()._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.EQUIPMENT_TO_TREE);
 
         });
         underEquipmentSlotButton.onClick.AddListener(() => {
-            GameState.GetInstance().UpsertData<int>(InformationKeyDefine.CURRENT_SELECTED_EQUIPED_EQUIPMENT, characterInfo.CurrentEquipmentUnderBody);
+            GameState.GetInstance().UpsertData<string>(InformationKeyDefine.CURRENT_SELECTED_EQUIPED_EQUIPMENT, "under");
             SceneState.GetInstance()._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.EQUIPMENT_TO_TREE);
 
         });
         weaponEquipmentSlotButton.onClick.AddListener(() => {
-            GameState.GetInstance().UpsertData<int>(InformationKeyDefine.CURRENT_SELECTED_EQUIPED_EQUIPMENT, characterInfo.CurrentEquipmentWeapon);
+            GameState.GetInstance().UpsertData<string>(InformationKeyDefine.CURRENT_SELECTED_EQUIPED_EQUIPMENT, "weapon");
             SceneState.GetInstance()._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.EQUIPMENT_TO_TREE);
 
         });
         accessoryEquipmentSlotButton.onClick.AddListener(() => {
-            GameState.GetInstance().UpsertData<int>(InformationKeyDefine.CURRENT_SELECTED_EQUIPED_EQUIPMENT, characterInfo.CurrentEquipmentAccessory);
+            GameState.GetInstance().UpsertData<string>(InformationKeyDefine.CURRENT_SELECTED_EQUIPED_EQUIPMENT, "accessory");
             SceneState.GetInstance()._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.EQUIPMENT_TO_TREE);
 
         });
         oddmentEquipmentSlotButton.onClick.AddListener(() => {
-            GameState.GetInstance().UpsertData<int>(InformationKeyDefine.CURRENT_SELECTED_EQUIPED_EQUIPMENT, characterInfo.CurrentEquipmentPocket);
+            GameState.GetInstance().UpsertData<string>(InformationKeyDefine.CURRENT_SELECTED_EQUIPED_EQUIPMENT, "pocket");
             SceneState.GetInstance()._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.EQUIPMENT_TO_TREE);
 
         });
