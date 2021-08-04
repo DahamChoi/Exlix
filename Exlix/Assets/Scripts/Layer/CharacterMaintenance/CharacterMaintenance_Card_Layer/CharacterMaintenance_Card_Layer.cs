@@ -3,132 +3,119 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-public class CharacterMaintenance_Card_Layer : MonoBehaviour, IPointerClickHandler, IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerUpHandler {
-    //[SerializeField] UIState _UIState = null;
-    [SerializeField] GameObject DeckListArea = null;
-    [SerializeField] Button testButton = null;
-    [SerializeField] GameObject DiscardArea = null;//해당 영역에 카드가 들어오고 enddrag실행되면 해당 충돌 오브젝트 삭제.
-    [SerializeField] Transform popupTransform = null;
-    List<int> myDeck = null;
+public class CharacterMaintenance_Card_Layer : MonoBehaviour, IPointerClickHandler {
 
-    [SerializeField] Camera targetCamera = null;
-    [SerializeField] Canvas m_canvas = null;
+    [SerializeField] GameObject deckListArea = null;
+    [SerializeField] Canvas targetCanvas = null;
 
-    GameObject CurrentPopup = null;
-    GraphicRaycaster m_gr = null;
-    PointerEventData m_ped = null;
+    //버튼
+    [SerializeField] Button discardButton = null;
+
+    //카드 설명창
+    [SerializeField] Text cardTitle = null;
+    [SerializeField] Text cardMana = null;
+    [SerializeField] Text cardDescribe = null;
+    [SerializeField] Text cardProperty = null;
+    [SerializeField] GameObject cardManaIcon = null;
+
+    //raycast 변수
+    GraphicRaycaster raycast = null;
+    PointerEventData pointer = null;
+
     CardDTO cardDataOnSelect = null;
     GameObject cardObjectOnSelect = null;
+    CharacterInfoDTO characterInfo = null;
+
+
+    void Start() {
+        ButtonInit();
+    }
     private void OnEnable() {
         Init();
         UpdateDeckList();
     }
 
     void Init() {
-        m_gr = m_canvas.GetComponent<GraphicRaycaster>();
-        m_ped = new PointerEventData(null);
+        raycast = targetCanvas.GetComponent<GraphicRaycaster>();
+        pointer = new PointerEventData(null);
+        characterInfo = CharacterInfoDAO.GetCharacterInfo();
     }
 
-    public void OnPointerDown(PointerEventData eventData) {
-        cardDataOnSelect = null;
-        cardObjectOnSelect = null;
-        m_ped.position = eventData.position;
-        List<RaycastResult> results = new List<RaycastResult>();
-        m_gr.Raycast(m_ped, results);
-        if (results.Count > 0) {
-            if (results[0].gameObject.transform.GetComponent<CardObject>()) {
-                GameState.GetInstance().UpsertData<CardDTO>(InformationKeyDefine.CURRENT_SELECTED_CARD, results[0].gameObject.transform.GetComponent<CardObject>().CardData);
-                cardDataOnSelect = results[0].gameObject.transform.GetComponent<CardObject>().CardData;
-                cardObjectOnSelect = results[0].gameObject;
-
-                UpdateCardDescription(cardDataOnSelect);
-                UpdateCardPosition(eventData);
-            }
-        }
-    }
-
-    public void OnPointerUp(PointerEventData eventData) {
-        PlaceBackToDeck(cardObjectOnSelect, DeckListArea.transform);
-    }
-
-    public void OnDrag(PointerEventData eventData) {
-        m_ped.position = eventData.position;
-        List<RaycastResult> results = new List<RaycastResult>();
-        m_gr.Raycast(m_ped, results);
-        if (results.Count > 0) {
-            if (results[0].gameObject.transform.GetComponent<CardObject>()) {
-                UpdateCardPosition(eventData);
-            }
-        }
+    void ButtonInit() {
+        discardButton.onClick.AddListener(() => {
+            DiscardCardFromDeck();
+        });
     }
 
     public void OnPointerClick(PointerEventData eventData) {
-        m_ped.position = eventData.position;
-        List<RaycastResult> results = new List<RaycastResult>();
-        m_gr.Raycast(m_ped, results);
-        if (results.Count > 0) {
-            if (results[0].gameObject.transform.GetComponent<CardObject>()) {
-                GameState.GetInstance().UpsertData<CardDTO>(InformationKeyDefine.CURRENT_SELECTED_CARD, results[0].gameObject.transform.GetComponent<CardObject>().CardData);
-                cardDataOnSelect = results[0].gameObject.transform.GetComponent<CardObject>().CardData;
-                cardObjectOnSelect = results[0].gameObject;
-
-                UpdateCardDescription(cardDataOnSelect);
-            }
-        }
-    }
-
-    public void OnEndDrag(PointerEventData eventData) {
-        if (DiscardArea.GetComponent<DiscardArea>().onDeleteArea) {
-            DiscardCardFromDeck();
-        }
-        else {
-            PlaceBackToDeck(cardObjectOnSelect, DeckListArea.transform);
-        }
-        cardDataOnSelect = null;
-        cardObjectOnSelect = null;
+        pointer.position = eventData.position;
+        SelectObjectByRaycast();
     }
 
     void UpdateDeckList() {
-        Transform[] childList = DeckListArea.GetComponentsInChildren<Transform>(true);
+        Transform[] childList = deckListArea.GetComponentsInChildren<Transform>(true);//기존 레이어에 존재하던 자식들 삭제
         if (childList != null) {
             for (int i = 1; i < childList.Length; i++) {
                 if (childList[i] != transform) Destroy(childList[i].gameObject);
             }
         }
-        CharacterInfoDTO characterInfo = CharacterInfoDAO.GetCharacterInfo();
-  
-        for (int i = 0; i < characterInfo.CardList.Count; i++)
-            FactoryManager.GetInstance().CreateCardObject(characterInfo.CardList[i], DeckListArea.transform);
+
+        for (int i = 0; i < characterInfo.CardList.Count; i++) {
+            GameObject obj = FactoryManager.GetInstance().CreateCardObject(characterInfo.CardList[i], deckListArea.transform);
+            obj.name = $"card_{i}";
+        }
+    }
+    void SelectObjectByRaycast() {//레이캐스트로 카드 선택
+        List<RaycastResult> hitObject = new List<RaycastResult>();
+        raycast.Raycast(pointer, hitObject);
+        if (hitObject.Count > 0) {
+            if (hitObject[0].gameObject.transform.GetComponent<CardObject>()) {
+                if (cardObjectOnSelect != null) {
+                    cardObjectOnSelect.GetComponent<CardObject>().glowEffect.SetActive(false);
+                }
+
+                cardDataOnSelect = hitObject[0].gameObject.transform.GetComponent<CardObject>().CardData;
+                cardObjectOnSelect = hitObject[0].gameObject;
+
+                cardObjectOnSelect.GetComponent<CardObject>().glowEffect.SetActive(true);
+
+                UpdateCardDescription(cardDataOnSelect);
+            }
+        }
+    }
+    void UpdateCardDescription(CardDTO card) {
+        cardTitle.text = card.Title;
+        cardMana.text = card.Mana.ToString();
+        cardDescribe.text = card.Explanation;
+        cardProperty.text = card.Property;
+        cardManaIcon.SetActive(true);
     }
 
-    void UpdateCardDescription(CardDTO card) {
-        if (CurrentPopup) {
-            Destroy(CurrentPopup);
-            CurrentPopup = null;
-        }
-        CurrentPopup = FactoryManager.GetInstance().CreateCardDescriptionPopup(card, popupTransform);
+    void DeleteCardDescription() {
+        cardTitle.text = "";
+        cardMana.text = "";
+        cardDescribe.text = "";
+        cardProperty.text = "";
+        cardManaIcon.SetActive(false);
     }
 
     void DiscardCardFromDeck() {
-        Destroy(cardObjectOnSelect);
-        GameState.GetInstance().UpsertData<CardDTO>(InformationKeyDefine.CURRENT_DESTROY_CARD, cardDataOnSelect);
-        cardDataOnSelect = null;
-        cardObjectOnSelect = null;
-        if (CurrentPopup) {
-            Destroy(CurrentPopup);
-            CurrentPopup = null;
-        }
-    }
+        if(characterInfo.Gold >= 80) {
+            if (cardObjectOnSelect != null) {
+                characterInfo.CardList.Remove(cardDataOnSelect.Number);
+                Destroy(cardObjectOnSelect);
 
-    public void UpdateCardPosition(PointerEventData eventData) {
-        cardObjectOnSelect.transform.SetParent(m_canvas.transform);
-        cardObjectOnSelect.transform.position = new Vector3(targetCamera.ScreenToWorldPoint(eventData.position).x, targetCamera.ScreenToWorldPoint(eventData.position).y, 0.0f);
-        cardObjectOnSelect.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-    }
-    void PlaceBackToDeck(GameObject card, Transform area) {
-        if (card) {
-            card.transform.SetParent(area);
-            card.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                cardDataOnSelect = null;
+                cardObjectOnSelect = null;
+            }
+            DeleteCardDescription();
+            characterInfo.Gold -= 80;
+            CharacterInfoDAO.UpdatePlayerInfo(characterInfo);
         }
+        else {
+            Debug.Log("골드가 부족합니다.");
+        }
+        SceneState.GetInstance()._UIStateHandler.NotifyObservers();
     }
 }
+

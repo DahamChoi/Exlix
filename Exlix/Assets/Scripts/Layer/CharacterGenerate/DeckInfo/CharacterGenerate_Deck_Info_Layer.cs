@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System;
 
 public class CharacterGenerate_Deck_Info_Layer : MonoBehaviour {
+    //덱 리스트 출력
     [SerializeField] GameObject DeckListArea = null;
 
     private void OnEnable() {

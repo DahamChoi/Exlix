@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
-public class CardObject : MonoBehaviour {
+public class CardObject : MonoBehaviour{
     public CardDTO CardData;
 
     [SerializeField] Text TitleText = null;
     [SerializeField] Text CostText = null;
-
+    [SerializeField] public GameObject glowEffect = null;
     public void Init(CardDTO cardData) {
         CardData = cardData;
 

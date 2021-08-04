@@ -15,16 +15,6 @@ public class SkillPopupObject : CharacterMaintenance_Skill_Layer {
     [SerializeField] Text skillButtonText = null;
     SkillDTO selectedSkillData;
 
-    // Start is called before the first frame update
-    void Start() {
-
-    }
-
-    // Update is called once per frame
-    void Update() {
-
-    }
-
     public void Init(SkillDTO _skillData) {
         skillPopupBackgroundButton.onClick.AddListener(() => {
             Destroy(this.gameObject);
@@ -77,6 +67,7 @@ public class SkillPopupObject : CharacterMaintenance_Skill_Layer {
             skillActivationButton.onClick.AddListener(() => {
                 characterData.UnLockedSkill.Add(selectedSkillData.Number);
                 //...
+                characterData.SkillPoint -= 1;
                 CharacterInfoDAO.UpdatePlayerInfo(characterData);
                 SceneState.GetInstance()._UIStateHandler.NotifyObservers();
                 SetButton();
