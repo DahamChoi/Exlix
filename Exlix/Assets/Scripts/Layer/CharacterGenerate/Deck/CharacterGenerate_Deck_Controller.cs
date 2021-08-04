@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class CharacterGenerate_Deck_Controller : MonoBehaviour {
-    [SerializeField] Button MainMenuButton = null;
     [SerializeField] Button CharacterGenerateButton = null;
     [SerializeField] Button DeckInfoButton = null;
     [SerializeField] Button NextDeckButton = null;
@@ -15,9 +14,6 @@ public class CharacterGenerate_Deck_Controller : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         deckInfoController = GetComponent<CharacterGenerate_Deck_InfoController>();
-        MainMenuButton.onClick.AddListener(() => {
-            SceneState.GetInstance()._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.DECK_TO_MAIN_MENU);
-        });
 
         CharacterGenerateButton.onClick.AddListener(() => {
             SceneState.GetInstance()._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.DECK_TO_GAME);
