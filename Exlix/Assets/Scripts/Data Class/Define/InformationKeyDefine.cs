@@ -8,7 +8,12 @@ public class InformationKeyDefine {
     public static string CURRENT_SELECTED_CARD = "CurrentSelectedCard";
     public static string CURRENT_DESTROY_CARD = "CurrentDestroyCard";
     public static string CURRENT_SELECTED_PORTRAIT = "CurrentSelectedPortrait";
-    public static string CURRENT_SELECTED_EQUIPED_EQUIPMENT = "CurrentSelectedEquipedEquipment";
+    public static string CURRENT_SELECTED_EQUIPMENT_PART = "CurrentSelectedEquipmentPart";
     public static string CURRENT_SELECTED_TREE = "CurrentSelectedTree";
-
+    public static string HEAD_PART = "head";
+    public static string UPPER_PART = "shirts";
+    public static string UNDER_PART = "pants";
+    public static string WEAPON_PART = "weapon";
+    public static string ACCESSORY_PART = "accessory";
+    public static string ODDMENT_PART = "pocket";
 }

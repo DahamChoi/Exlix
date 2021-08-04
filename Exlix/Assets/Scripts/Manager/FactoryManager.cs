@@ -102,17 +102,41 @@ public class FactoryManager : Singleton<FactoryManager> {
         return CardDescriptionPopup;
     }
 
-    public GameObject CreateLineObject<T>(Vector3 start, Vector3 end, T data,Transform parent) {
+    public GameObject CreateLineObject<T>(Vector3 start, Vector3 end, T data, Transform parent) {
         GameObject LinePrefab = Resources.Load("Prefabs/LineRenderer") as GameObject;
-        GameObject Line = Instantiate<GameObject>(LinePrefab,parent);
+        GameObject Line = Instantiate<GameObject>(LinePrefab, parent);
         Line.GetComponent<RenderBridge>().Init(start, end, data);
         return Line;
     }
 
-    public GameObject CreateEquipmentPopupObject(EquipmentDTO equipmentData, Transform parent) {
+    public GameObject CreateEquipmentPopup(EquipmentDTO equipmentData, Transform parent) {
         GameObject equipmentPopupPrefab = Resources.Load("Prefabs/EquipmentPopup") as GameObject;
         GameObject equipmentPopup = Instantiate<GameObject>(equipmentPopupPrefab, parent);
         equipmentPopup.GetComponent<EquipmentPopupObject>().Init(equipmentData);
         return equipmentPopup;
+    }
+
+    public GameObject CreateEquipmentTree(Transform parent) {
+        GameObject equipmentTreePrefab = new GameObject();
+        if (GameState.GetInstance().GetData<string>(InformationKeyDefine.CURRENT_SELECTED_EQUIPMENT_PART) == InformationKeyDefine.HEAD_PART) {
+            equipmentTreePrefab = Resources.Load("Prefabs/HeadTree") as GameObject;
+        }
+        else if (GameState.GetInstance().GetData<string>(InformationKeyDefine.CURRENT_SELECTED_EQUIPMENT_PART) == InformationKeyDefine.UPPER_PART) {
+            equipmentTreePrefab = Resources.Load("Prefabs/UpperTree") as GameObject;
+        }
+        else if (GameState.GetInstance().GetData<string>(InformationKeyDefine.CURRENT_SELECTED_EQUIPMENT_PART) == InformationKeyDefine.UNDER_PART) {
+            equipmentTreePrefab = Resources.Load("Prefabs/UnderTree") as GameObject;
+        }
+        else if (GameState.GetInstance().GetData<string>(InformationKeyDefine.CURRENT_SELECTED_EQUIPMENT_PART) == InformationKeyDefine.WEAPON_PART) {
+            equipmentTreePrefab = Resources.Load("Prefabs/WeaponTree") as GameObject;
+        }
+        else if (GameState.GetInstance().GetData<string>(InformationKeyDefine.CURRENT_SELECTED_EQUIPMENT_PART) == InformationKeyDefine.ACCESSORY_PART) {
+            equipmentTreePrefab = Resources.Load("Prefabs/AccessoryTree") as GameObject;
+        }
+        else if (GameState.GetInstance().GetData<string>(InformationKeyDefine.CURRENT_SELECTED_EQUIPMENT_PART) == InformationKeyDefine.ODDMENT_PART) {
+            equipmentTreePrefab = Resources.Load("Prefabs/OddmentTree") as GameObject;
+        }
+        GameObject equipmentTree = Instantiate<GameObject>(equipmentTreePrefab, parent);
+        return equipmentTree;
     }
 }

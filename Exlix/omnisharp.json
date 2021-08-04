@@ -10,7 +10,7 @@
 		"NewLinesForBracesInObjectCollectionArrayInitializers": false,
 		"NewLinesForBracesInLambdaExpressionBody": false,
 
-		"NewLineForElse": false,
+		"NewLineForElse": true,
 		"NewLineForCatch": false,
 		"NewLineForFinally": false,
 		"NewLineForMembersInObjectInit": false,

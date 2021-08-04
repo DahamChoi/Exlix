@@ -61,7 +61,7 @@ public class EquipmentPopupObject : MonoBehaviour {
         else if (characterInfo.HaveEquipmentList.Contains(equipmentData.Number)) {
             //버튼이미지 변경...
             //equipButtonImage.sprite = Resources.Load(ImagePath..., typeof(Sprite)) as Sprite;
-            equipButtonText.text = $"{CommonDefineKR.EquipSkillString}";
+            equipButtonText.text = $"{CommonDefineKR.EquipEquipmentString}";
             equipButton.interactable = true;
 
             equipButton.onClick.AddListener(() => {

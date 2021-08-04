@@ -32,7 +32,7 @@ public class CommonDefineKR {
     public static string LockedSkillString = "상위 스킬 해금 필요";
     public static string LeftSkillPointString = "잔여 스킬 포인트";
     public static string CardString = "카드";
-    public static string EquipEquipment = "장비 장착";
+    public static string EquipEquipmentString = "장비 장착";
     public static string UnequipEquipmentString = "장비 장착 해제";
     public static string UnlockEquipmentString = "장비 잠금 해제";
     public static string LockedEquipmentString = "상위 장비 해금 필요";
