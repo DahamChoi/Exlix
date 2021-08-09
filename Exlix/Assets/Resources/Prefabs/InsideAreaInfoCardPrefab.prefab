@@ -85,11 +85,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4276579262017199645}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92e5983eed52a9d45adba311cb058358, type: 3}
+  m_Script: {fileID: 11500000, guid: 697258ed0b03c404699f88aa48ec8935, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   TitleText: {fileID: 8488970860698411749}
   CostText: {fileID: 4224508652064546623}
+  glowEffect: {fileID: 0}
 --- !u!1 &4748301009670847738
 GameObject:
   m_ObjectHideFlags: 0

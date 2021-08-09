@@ -2,55 +2,43 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
-public class UIBarInfoController : MonoBehaviour, IObserver<UIStateInfo> {
+
+public class UIBarInfoController : MonoBehaviour {
     // Area
-    [SerializeField] Text playerNameText = null;
-    [SerializeField] Text playerLevelText = null;
-    [SerializeField] Text playerHpText = null;
-    [SerializeField] Text playerMpText = null;
-    [SerializeField] Text stageNameText = null;
-    [SerializeField] Image playerIconImage = null;
+    [SerializeField] Text PlayerNameText = null;
+    [SerializeField] Text PlayerLevelText = null;
+    [SerializeField] Text PlayerHpText = null;
+    [SerializeField] Text PlayerMpText = null;
+    [SerializeField] Text StageNameText = null;
+    [SerializeField] Image PlayerIconImage = null;
 
     // Skill
-    [SerializeField] Text containSkillPointText = null;
+    [SerializeField] Text ContainSkillPointText = null;
 
     // Gold
-    [SerializeField] Text coinText = null;
+    [SerializeField] Text CoinText = null;
 
     void Start() {
         Init();
-        SceneState.GetInstance()._UIStateHandler.Subscribe(this);
-        SceneState.GetInstance()._UIStateHandler.NotifyObservers();
     }
 
     private void Init() {
         CharacterInfoDTO characterInfo = CharacterInfoDAO.GetCharacterInfo();
-        playerNameText.text = characterInfo.Name;
-        playerLevelText.text = $"{CommonDefineKR.LevelString} {characterInfo.Level}";
-        playerHpText.text = $"{CommonDefineKR.HpString} {characterInfo.Hp}";
-        playerMpText.text = $"{CommonDefineKR.MpString} {characterInfo.Mp}";
+        PlayerNameText.text = characterInfo.Name;
+        PlayerLevelText.text = $"{CommonDefineKR.LevelString} {characterInfo.Level}";
+        PlayerHpText.text = $"{CommonDefineKR.HpString} {characterInfo.Hp}";
+        PlayerMpText.text = $"{CommonDefineKR.MpString} {characterInfo.Mp}";
 
         AreaDTO area = AreaDAO.SelectArea(characterInfo.CurrentArea);
         if (null != area) {
-            stageNameText.text = area.Name;
+            StageNameText.text = area.Name;
         }
 
         PortraitDTO portrait = PortraitDAO.SelectPortrait(characterInfo.Portrait);
-        playerIconImage.sprite = Resources.Load(portrait.ImagePath, typeof(Sprite)) as Sprite;
+        PlayerIconImage.sprite = Resources.Load(portrait.ImagePath, typeof(Sprite)) as Sprite;
 
-        containSkillPointText.text = $"{CommonDefineKR.ContainSkillPointString} {characterInfo.SkillPoint}";
+        ContainSkillPointText.text = $"{CommonDefineKR.ContainSkillPointString} {characterInfo.SkillPoint}";
 
-        coinText.text = characterInfo.Gold.ToString();
-    }
-    public void OnNext(UIStateInfo value) {
-        Init();
-    }
-    public void OnCompleted() {
-        throw new NotImplementedException();
-    }
-
-    public void OnError(Exception error) {
-        throw new NotImplementedException();
+        CoinText.text = characterInfo.Gold.ToString();
     }
 }
