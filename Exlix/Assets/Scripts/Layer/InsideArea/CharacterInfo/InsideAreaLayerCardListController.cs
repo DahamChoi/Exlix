@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InsideAreaCharacterInfoCardListController : MonoBehaviour {
+public class InsideAreaLayerCardListController : MonoBehaviour {
     List<GameObject> cardObjectList = new List<GameObject>();
 
     void Start() {
