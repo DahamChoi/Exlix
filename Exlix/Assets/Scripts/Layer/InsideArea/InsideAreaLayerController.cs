@@ -6,11 +6,9 @@ using UnityEngine;
 
 public class InsideAreaLayerController : MonoBehaviour {
     
-    [SerializeField] InsideAreaHandler insideAreaHandler;
-
     private void Start() {
         // Get To Information
 
-        insideAreaHandler.AddSentence(1);
+        SceneState.GetInstance()._InsideAreaHandler.AddSentence(1);
     }
 }

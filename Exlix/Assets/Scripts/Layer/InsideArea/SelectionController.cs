@@ -5,8 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class SelectionController : MonoBehaviour, IObserver<InsideAreaState> {
-    [SerializeField] InsideAreaHandler insideAreaHandler;
-
     [SerializeField] SelectionButton selectionButton1;
     [SerializeField] SelectionButton selectionButton2;
     [SerializeField] SelectionButton selectionButton3;
@@ -16,7 +14,7 @@ public class SelectionController : MonoBehaviour, IObserver<InsideAreaState> {
     private List<SelectionDTO> selectionList;
 
     void Awake() {
-        insideAreaHandler.Subscribe(this);
+        SceneState.GetInstance()._InsideAreaHandler.Subscribe(this);
     }
 
     void Start() {
@@ -53,8 +51,8 @@ public class SelectionController : MonoBehaviour, IObserver<InsideAreaState> {
                     sb.buttonText.text = value.selectionList[i].Text;
                     sb.button.onClick.RemoveAllListeners();
                     sb.button.onClick.AddListener(() => {
-                        insideAreaHandler.AddSentence(value.selectionList[i].Action);
-                        insideAreaHandler.ClearSelection();
+                        SceneState.GetInstance()._InsideAreaHandler.AddSentence(value.selectionList[i].Action);
+                        SceneState.GetInstance()._InsideAreaHandler.ClearSelection();
                     });
                 }
             }
