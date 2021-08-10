@@ -5,10 +5,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class SentenceController : MonoBehaviour, IObserver<InsideAreaState> {
-    [SerializeField] Transform sentencePanel;
-    [SerializeField] Vector2 padding;
-    [SerializeField] float width;
-    [SerializeField] float textDeltaTime;
+    [SerializeField] SentenceRectPointerController sentenceRectPointerController = null;
+    [SerializeField] Transform sentencePanel = null;
+    [SerializeField] Vector2 padding = new Vector2(0, 0);
+    [SerializeField] float width = 0.0f;
+    [SerializeField] float textDeltaTime = 0.0f;
 
     private int currentSentenceNumber = 0; //문장 Id값
 
@@ -31,32 +32,48 @@ public class SentenceController : MonoBehaviour, IObserver<InsideAreaState> {
         currentTime += Time.deltaTime;
         if (currentTime - lastTextProcessTime > textDeltaTime) {
             lastTextProcessTime = currentTime;
+            TextDevider();
+            if (sentenceRectPointerController.isSkiped) {
+                SkipTextAnimation();
+            }
+        }
+    }
 
-            //화면에 출력해야할 문장이 남아있다면
-            if (processStringIndex <= currentString.Length) {
-                string prev = processString;
+    public void SkipTextAnimation() {
+        while (processStringIndex <= currentString.Length) {
+            TextDevider();
+        }
+        sentenceRectPointerController.isSkiped = false;
+    }
 
-                //화면에 띄워질 문장에 전체문장중 한글자를 추가함
-                processString = currentString.Substring(0, processStringIndex++);
-                focusibleTextList[focusibleTextIndex].text = processString;
-                
-                //text 내부 글자들의 사이즈가 preferredHeight + 패딩값을 넘어가면 bottomText로 남은 텍스트를 넘김 <??
-                if (focusibleTextList[focusibleTextIndex].preferredHeight >= focusibleTextList[focusibleTextIndex].rectTransform.rect.height) {
-                    if (focusibleTextIndex == 0) {
-                        focusibleTextList[focusibleTextIndex++].text = prev;
-                        processStringIndex -= 2;
-                        currentString = currentString.Substring(processStringIndex, currentString.Length - processStringIndex);
-                        processString = "";
-                        processStringIndex = 0;
-                    }
-                    else {
-                        focusibleTextList[focusibleTextIndex].rectTransform.sizeDelta =
-                            new Vector2(focusibleTextList[focusibleTextIndex].rectTransform.rect.width, focusibleTextList[focusibleTextIndex].preferredHeight);
-                        //두번째 텍스트 박스의 시작위치(음수) + 자신의 높이(양수) = 전체 텍스트 박스 사이즈
-                        lastY = focusibleTextList[focusibleTextIndex].rectTransform.anchoredPosition.y - focusibleTextList[focusibleTextIndex].rectTransform.rect.height - padding.y;
-                        ((RectTransform)sentencePanel).sizeDelta = new Vector2(width, Math.Abs(lastY));
-                        LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)sentencePanel);
-                    }
+    void TextDevider() {
+        //화면에 출력해야할 문장이 남아있다면
+        if (processStringIndex <= currentString.Length) {
+            string prev = processString;
+
+            //화면에 띄워질 문장에 전체문장중 한글자씩 추가함
+            processString = currentString.Substring(0, processStringIndex++);
+
+
+            focusibleTextList[focusibleTextIndex].text = processString;
+
+            //text 내부 글자들의 사이즈가 preferredHeight + 패딩값을 넘어가면 bottomText로 남은 텍스트를 넘김 <??
+            if (focusibleTextList[focusibleTextIndex].preferredHeight >= focusibleTextList[focusibleTextIndex].rectTransform.rect.height) {
+                if (focusibleTextIndex == 0) {
+                    focusibleTextList[focusibleTextIndex++].text = prev;
+                    processStringIndex -= 2;
+                    currentString = currentString.Substring(processStringIndex, currentString.Length - processStringIndex);
+                    processString = "";
+                    processStringIndex = 0;
+                }
+                else {
+                    sentenceRectPointerController.UpdateScroll();
+                    focusibleTextList[focusibleTextIndex].rectTransform.sizeDelta =
+                        new Vector2(focusibleTextList[focusibleTextIndex].rectTransform.rect.width, focusibleTextList[focusibleTextIndex].preferredHeight);
+                    //두번째 텍스트 박스의 시작위치(음수) + 자신의 높이(양수) = 전체 텍스트 박스 사이즈
+                    lastY = focusibleTextList[focusibleTextIndex].rectTransform.anchoredPosition.y - focusibleTextList[focusibleTextIndex].rectTransform.rect.height - padding.y;
+                    ((RectTransform)sentencePanel).sizeDelta = new Vector2(width, Math.Abs(lastY));
+                    LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)sentencePanel);
                 }
             }
         }
@@ -82,12 +99,13 @@ public class SentenceController : MonoBehaviour, IObserver<InsideAreaState> {
                 GameObject text = FactoryManager.GetInstance().CreateText(sentencePanel);
                 RectTransform txtRct = text.GetComponent<RectTransform>();
                 txtRct.pivot = new Vector2(0.0f, 1.0f);
-                txtRct.anchoredPosition = new Vector3(imageSprite.rect.width + padding.x * 2, - padding.y * 1.5f, 0.0f);
+                txtRct.anchoredPosition = new Vector3(imageSprite.rect.width + padding.x * 2, -padding.y * 1.5f, 0.0f);
                 txtRct.sizeDelta = new Vector2(width - imageSprite.rect.width - padding.x * 3, imageSprite.rect.height);
                 focusibleTextList.Add(text.GetComponent<Text>());
             }
             lastY = lastY - (imageSprite.rect.height + padding.y);
         }
+        
         //이미지 아래 글씨 위치 및 사이즈
         GameObject bottomText = FactoryManager.GetInstance().CreateText(sentencePanel);
         RectTransform bottomTxtRct = bottomText.GetComponent<RectTransform>();
