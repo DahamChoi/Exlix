@@ -116,11 +116,11 @@ public class CharacterMaintenance_Main_Layer : MonoBehaviour {
         skill = SkillDAO.GetSelectedSkillInfo(characterInfo.CurrentSkill);
 
         equipHead = EquipmentDAO.GetSelectedEquipmentInfo(characterInfo.CurrentEquipmentHead);
-        equipUpperBody = EquipmentDAO.GetSelectedEquipmentInfo(characterInfo.CurrentEquipmentUpperBody);
-        equipUnderBody = EquipmentDAO.GetSelectedEquipmentInfo(characterInfo.CurrentEquipmentUnderBody);
+        equipUpperBody = EquipmentDAO.GetSelectedEquipmentInfo(characterInfo.CurrentEquipmentShirt);
+        equipUnderBody = EquipmentDAO.GetSelectedEquipmentInfo(characterInfo.CurrentEquipmentPants);
         equipWeapon = EquipmentDAO.GetSelectedEquipmentInfo(characterInfo.CurrentEquipmentWeapon);
-        equipAccessory = EquipmentDAO.GetSelectedEquipmentInfo(characterInfo.CurrentEquipmentAccessory);
-        equipPocket = EquipmentDAO.GetSelectedEquipmentInfo(characterInfo.CurrentEquipmentPocket);
+        equipAccessory = EquipmentDAO.GetSelectedEquipmentInfo(characterInfo.CurrentEquipmentTrinket);
+        equipPocket = EquipmentDAO.GetSelectedEquipmentInfo(characterInfo.CurrentEquipmentEtc);
     }
 
     public void DrawUI() {//화면에 그려지는 UI의 text와 image를 새로운 정보로 갱신 
@@ -155,7 +155,6 @@ public class CharacterMaintenance_Main_Layer : MonoBehaviour {
         else {
             skillNotice.SetActive(false);
         }
-
     }
 
     public void AddStat(string statType, Text statText) {//스테이터스 버튼 기능(스탯 추가)

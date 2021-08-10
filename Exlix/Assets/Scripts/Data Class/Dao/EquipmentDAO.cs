@@ -21,6 +21,10 @@ public class EquipmentDAO {
         equipmentData.Speical = it.GetSafeValue<int>(5);
         equipmentData.Gold = it.GetSafeValue<int>(6);
         equipmentData.Parent = it.GetSafeValue<int>(7);
+        equipmentData.Stat_hp = it.GetSafeValue<int>(8);
+        equipmentData.Stat_str = it.GetSafeValue<int>(9);
+        equipmentData.Stat_dex = it.GetSafeValue<int>(10);
+        equipmentData.Stat_int = it.GetSafeValue<int>(11);
 
         return equipmentData;
     }

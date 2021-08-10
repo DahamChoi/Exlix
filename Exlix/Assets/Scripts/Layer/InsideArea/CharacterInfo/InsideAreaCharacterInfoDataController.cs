@@ -78,11 +78,11 @@ public class InsideAreaCharacterInfoDataController : MonoBehaviour {
         PortraitDTO portrait = PortraitDAO.SelectPortrait(characterInfo.Portrait);
         SkillDTO skillInfo = SkillDAO.GetSelectedSkillInfo(characterInfo.CurrentSkill);
         EquipmentDTO headEquipmentInfo = EquipmentDAO.GetSelectedEquipmentInfo(characterInfo.CurrentEquipmentHead);
-        EquipmentDTO upperEquipmentInfo = EquipmentDAO.GetSelectedEquipmentInfo(characterInfo.CurrentEquipmentUpperBody);
-        EquipmentDTO underEquipmentInfo = EquipmentDAO.GetSelectedEquipmentInfo(characterInfo.CurrentEquipmentUnderBody);
+        EquipmentDTO upperEquipmentInfo = EquipmentDAO.GetSelectedEquipmentInfo(characterInfo.CurrentEquipmentShirt);
+        EquipmentDTO underEquipmentInfo = EquipmentDAO.GetSelectedEquipmentInfo(characterInfo.CurrentEquipmentPants);
         EquipmentDTO weaponEquipmentInfo = EquipmentDAO.GetSelectedEquipmentInfo(characterInfo.CurrentEquipmentWeapon);
-        EquipmentDTO accessoryEquipmentInfo = EquipmentDAO.GetSelectedEquipmentInfo(characterInfo.CurrentEquipmentAccessory);
-        EquipmentDTO oddmentsEquipmentInfo = EquipmentDAO.GetSelectedEquipmentInfo(characterInfo.CurrentEquipmentPocket);
+        EquipmentDTO accessoryEquipmentInfo = EquipmentDAO.GetSelectedEquipmentInfo(characterInfo.CurrentEquipmentTrinket);
+        EquipmentDTO oddmentsEquipmentInfo = EquipmentDAO.GetSelectedEquipmentInfo(characterInfo.CurrentEquipmentEtc);
         
         characterPortraitImage.sprite = Resources.Load(portrait.ImagePath, typeof(Sprite)) as Sprite;
         characterNameText.text = $"{characterInfo.Name}";

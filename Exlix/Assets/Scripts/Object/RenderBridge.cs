@@ -47,13 +47,10 @@ public class RenderBridge : MonoBehaviour, IObserver<UIStateInfo> {
         type = typeof(T);
         if(type == typeof(SkillDTO)) {
             skill = (SkillDTO)Convert.ChangeType(data, type);
-            Debug.Log("skill");
-            Debug.Log(skill.Number);
         }
         else {
             //equip = data;
             equip = (EquipmentDTO)Convert.ChangeType(data, type);
-            Debug.Log("Equip");
         }
         parentPosition = this.gameObject.transform.parent.position;
         parentPosition_2 = this.gameObject.transform.parent.position;
@@ -85,9 +82,14 @@ public class RenderBridge : MonoBehaviour, IObserver<UIStateInfo> {
 
 
         if (isChildUnlocked) {//선 활성화상태 (밝은채도의 선) 
-            //부모(활성화) & 자식(활성화)
-            this.gameObject.GetComponent<LineRenderer>().startColor = activatedColor;
-            this.gameObject.GetComponent<LineRenderer>().endColor = activatedColor;
+            if (isParentUnlocked) {//부모(활성화) & 자식(활성화)
+                this.gameObject.GetComponent<LineRenderer>().startColor = activatedColor;
+                this.gameObject.GetComponent<LineRenderer>().endColor = activatedColor;
+            }
+            else {//부모(비활성화) &자식(활성화)
+                this.gameObject.GetComponent<LineRenderer>().startColor = inActivatedColor;
+                this.gameObject.GetComponent<LineRenderer>().endColor = inActivatedColor;
+            }
         }
         else {//자식이 비활성화인경우
             if (isParentUnlocked) {//밝은채도의 선, 글로우 효과

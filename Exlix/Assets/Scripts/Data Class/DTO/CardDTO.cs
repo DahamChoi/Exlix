@@ -25,12 +25,14 @@ public class CardDTO {
     public int Bleeding;
     public string BurnTarget;
     public int Burn;
-    public string DemurenessTarget;
-    public int Demureness;
+    public string BlackoutTarget;
+    public int Blackout;
     public string WeakTarget;
     public int Weak;
     public string PoisonTarget;
     public int Poison;
     public string CorrosionTarget;
     public int Corrosion;
+    public int ArmorPenetration;
+    public int Special;
 }

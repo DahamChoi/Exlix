@@ -35,15 +35,16 @@ public class CardDAO {
         cardData.Bleeding       = it.GetSafeValue<int>(19);
         cardData.BurnTarget     = it.GetSafeValue<string>(20);
         cardData.Burn           = it.GetSafeValue<int>(21);
-        cardData.DemurenessTarget = it.GetSafeValue<string>(22);
-        cardData.Demureness     = it.GetSafeValue<int>(23);
+        cardData.BlackoutTarget = it.GetSafeValue<string>(22);
+        cardData.Blackout     = it.GetSafeValue<int>(23);
         cardData.WeakTarget     = it.GetSafeValue<string>(24);
         cardData.Weak           = it.GetSafeValue<int>(25);
         cardData.PoisonTarget  = it.GetSafeValue<string>(26);
         cardData.Poison        = it.GetSafeValue<int>(27);
         cardData.CorrosionTarget = it.GetSafeValue<string>(28);
         cardData.Corrosion      = it.GetSafeValue<int>(29);
-
+        cardData.ArmorPenetration = it.GetSafeValue<int>(30);
+        cardData.Special = it.GetSafeValue<int>(31);
         return cardData;
     }
 }

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObserableHandler<T> : MonoBehaviour, IObservable<T>
+public class ObserableHandler<T> :  IObservable<T>
 {
     protected List<IObserver<T>> Observers;
     protected T Information;

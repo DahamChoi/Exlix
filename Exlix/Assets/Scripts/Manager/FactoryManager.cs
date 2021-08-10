@@ -96,19 +96,19 @@ public class FactoryManager : Singleton<FactoryManager> {
         if (GameState.GetInstance().GetData<string>(InformationKeyDefine.CURRENT_SELECTED_EQUIPMENT_PART) == InformationKeyDefine.HEAD_PART) {
             equipmentTreePrefab = Resources.Load("Prefabs/HeadTree") as GameObject;
         }
-        else if (GameState.GetInstance().GetData<string>(InformationKeyDefine.CURRENT_SELECTED_EQUIPMENT_PART) == InformationKeyDefine.UPPER_PART) {
+        else if (GameState.GetInstance().GetData<string>(InformationKeyDefine.CURRENT_SELECTED_EQUIPMENT_PART) == InformationKeyDefine.SHIRT_PART) {
             equipmentTreePrefab = Resources.Load("Prefabs/UpperTree") as GameObject;
         }
-        else if (GameState.GetInstance().GetData<string>(InformationKeyDefine.CURRENT_SELECTED_EQUIPMENT_PART) == InformationKeyDefine.UNDER_PART) {
+        else if (GameState.GetInstance().GetData<string>(InformationKeyDefine.CURRENT_SELECTED_EQUIPMENT_PART) == InformationKeyDefine.PANTS_PART) {
             equipmentTreePrefab = Resources.Load("Prefabs/UnderTree") as GameObject;
         }
         else if (GameState.GetInstance().GetData<string>(InformationKeyDefine.CURRENT_SELECTED_EQUIPMENT_PART) == InformationKeyDefine.WEAPON_PART) {
             equipmentTreePrefab = Resources.Load("Prefabs/WeaponTree") as GameObject;
         }
-        else if (GameState.GetInstance().GetData<string>(InformationKeyDefine.CURRENT_SELECTED_EQUIPMENT_PART) == InformationKeyDefine.ACCESSORY_PART) {
+        else if (GameState.GetInstance().GetData<string>(InformationKeyDefine.CURRENT_SELECTED_EQUIPMENT_PART) == InformationKeyDefine.TRINKET_PART) {
             equipmentTreePrefab = Resources.Load("Prefabs/AccessoryTree") as GameObject;
         }
-        else if (GameState.GetInstance().GetData<string>(InformationKeyDefine.CURRENT_SELECTED_EQUIPMENT_PART) == InformationKeyDefine.ODDMENT_PART) {
+        else if (GameState.GetInstance().GetData<string>(InformationKeyDefine.CURRENT_SELECTED_EQUIPMENT_PART) == InformationKeyDefine.ETC_PART) {
             equipmentTreePrefab = Resources.Load("Prefabs/OddmentTree") as GameObject;
         }
         GameObject equipmentTree = Instantiate<GameObject>(equipmentTreePrefab, parent);

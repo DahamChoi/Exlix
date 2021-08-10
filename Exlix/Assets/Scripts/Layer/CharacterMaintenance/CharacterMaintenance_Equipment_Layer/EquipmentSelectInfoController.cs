@@ -5,35 +5,35 @@ using UnityEngine.UI;
 
 public class EquipmentSelectInfoController : MonoBehaviour {
     [SerializeField] Image headEquipmentSlotImage = null;
-    [SerializeField] Image upperEquipmentSlotImage = null;
-    [SerializeField] Image underEquipmentSlotImage = null;
+    [SerializeField] Image shirtEquipmentSlotImage = null;
+    [SerializeField] Image pantsEquipmentSlotImage = null;
     [SerializeField] Image weaponEquipmentSlotImage = null;
-    [SerializeField] Image accessoryEquipmentSlotImage = null;
-    [SerializeField] Image oddmentEquipmentSlotImage = null;
+    [SerializeField] Image trinketEquipmentSlotImage = null;
+    [SerializeField] Image etcEquipmentSlotImage = null;
     [SerializeField] Image headEquipmentListImage = null;
-    [SerializeField] Image upperEquipmentListImage = null;
-    [SerializeField] Image underEquipmentListImage = null;
+    [SerializeField] Image shirtEquipmentListImage = null;
+    [SerializeField] Image pantsEquipmentListImage = null;
     [SerializeField] Image weaponEquipmentListImage = null;
-    [SerializeField] Image accessoryEquipmentListImage = null;
-    [SerializeField] Image oddmentEquipmentListImage = null;
+    [SerializeField] Image trinketEquipmentListImage = null;
+    [SerializeField] Image etcEquipmentListImage = null;
     [SerializeField] Text headEquipmentPart = null;
     [SerializeField] Text headEquipmentTitle = null;
     [SerializeField] Text headEquipmentDescription = null;
-    [SerializeField] Text upperEquipmentPart = null;
-    [SerializeField] Text upperEquipmentTitle = null;
-    [SerializeField] Text upperEquipmentDescription = null;
-    [SerializeField] Text underEquipmentPart = null;
-    [SerializeField] Text underEquipmentTitle = null;
-    [SerializeField] Text underEquipmentDescription = null;
+    [SerializeField] Text shirtEquipmentPart = null;
+    [SerializeField] Text shirtEquipmentTitle = null;
+    [SerializeField] Text shirtEquipmentDescription = null;
+    [SerializeField] Text pantsEquipmentPart = null;
+    [SerializeField] Text pantsEquipmentTitle = null;
+    [SerializeField] Text pantsEquipmentDescription = null;
     [SerializeField] Text weaponEquipmentPart = null;
     [SerializeField] Text weaponEquipmentTitle = null;
     [SerializeField] Text weaponEquipmentDescription = null;
-    [SerializeField] Text accessoryEquipmentPart = null;
-    [SerializeField] Text accessoryEquipmentTitle = null;
-    [SerializeField] Text accessoryEquipmentDescription = null;
-    [SerializeField] Text oddmentEquipmentPart = null;
-    [SerializeField] Text oddmentEquipmentTitle = null;
-    [SerializeField] Text oddmentEquipmentDescription = null;
+    [SerializeField] Text trinketEquipmentPart = null;
+    [SerializeField] Text trinketEquipmentTitle = null;
+    [SerializeField] Text trinketEquipmentDescription = null;
+    [SerializeField] Text etcEquipmentPart = null;
+    [SerializeField] Text etcEquipmentTitle = null;
+    [SerializeField] Text etcEquipmentDescription = null;
 
     // Start is called before the first frame update
     void Start() {
@@ -43,47 +43,47 @@ public class EquipmentSelectInfoController : MonoBehaviour {
     void Init() {
         CharacterInfoDTO characterInfo = CharacterInfoDAO.GetCharacterInfo();
         EquipmentDTO headEquipmentInfo = EquipmentDAO.GetSelectedEquipmentInfo(characterInfo.CurrentEquipmentHead);
-        EquipmentDTO upperEquipmentInfo = EquipmentDAO.GetSelectedEquipmentInfo(characterInfo.CurrentEquipmentUpperBody);
-        EquipmentDTO underEquipmentInfo = EquipmentDAO.GetSelectedEquipmentInfo(characterInfo.CurrentEquipmentUnderBody);
+        EquipmentDTO upperEquipmentInfo = EquipmentDAO.GetSelectedEquipmentInfo(characterInfo.CurrentEquipmentShirt);
+        EquipmentDTO underEquipmentInfo = EquipmentDAO.GetSelectedEquipmentInfo(characterInfo.CurrentEquipmentPants);
         EquipmentDTO weaponEquipmentInfo = EquipmentDAO.GetSelectedEquipmentInfo(characterInfo.CurrentEquipmentWeapon);
-        EquipmentDTO accessoryEquipmentInfo = EquipmentDAO.GetSelectedEquipmentInfo(characterInfo.CurrentEquipmentAccessory);
-        EquipmentDTO oddmentsEquipmentInfo = EquipmentDAO.GetSelectedEquipmentInfo(characterInfo.CurrentEquipmentPocket);
+        EquipmentDTO accessoryEquipmentInfo = EquipmentDAO.GetSelectedEquipmentInfo(characterInfo.CurrentEquipmentTrinket);
+        EquipmentDTO oddmentsEquipmentInfo = EquipmentDAO.GetSelectedEquipmentInfo(characterInfo.CurrentEquipmentEtc);
 
         headEquipmentSlotImage.sprite = Resources.Load(headEquipmentInfo.ImagePath, typeof(Sprite)) as Sprite;
-        upperEquipmentSlotImage.sprite = Resources.Load(upperEquipmentInfo.ImagePath, typeof(Sprite)) as Sprite;
-        underEquipmentSlotImage.sprite = Resources.Load(underEquipmentInfo.ImagePath, typeof(Sprite)) as Sprite;
+        shirtEquipmentSlotImage.sprite = Resources.Load(upperEquipmentInfo.ImagePath, typeof(Sprite)) as Sprite;
+        pantsEquipmentSlotImage.sprite = Resources.Load(underEquipmentInfo.ImagePath, typeof(Sprite)) as Sprite;
         weaponEquipmentSlotImage.sprite = Resources.Load(weaponEquipmentInfo.ImagePath, typeof(Sprite)) as Sprite;
-        accessoryEquipmentSlotImage.sprite = Resources.Load(accessoryEquipmentInfo.ImagePath, typeof(Sprite)) as Sprite;
-        oddmentEquipmentSlotImage.sprite = Resources.Load(oddmentsEquipmentInfo.ImagePath, typeof(Sprite)) as Sprite;
+        trinketEquipmentSlotImage.sprite = Resources.Load(accessoryEquipmentInfo.ImagePath, typeof(Sprite)) as Sprite;
+        etcEquipmentSlotImage.sprite = Resources.Load(oddmentsEquipmentInfo.ImagePath, typeof(Sprite)) as Sprite;
 
         headEquipmentListImage.sprite = Resources.Load(headEquipmentInfo.ImagePath, typeof(Sprite)) as Sprite;
         headEquipmentPart.text = $"{CommonDefineKR.HeadString}";
         headEquipmentTitle.text = $"{headEquipmentInfo.Name}";
         headEquipmentDescription.text = $"{headEquipmentInfo.Explain}";
 
-        upperEquipmentListImage.sprite = Resources.Load(upperEquipmentInfo.ImagePath, typeof(Sprite)) as Sprite;
-        upperEquipmentPart.text = $"{CommonDefineKR.UpperString}";
-        upperEquipmentTitle.text = $"{upperEquipmentInfo.Name}";
-        upperEquipmentDescription.text = $"{upperEquipmentInfo.Explain}";
+        shirtEquipmentListImage.sprite = Resources.Load(upperEquipmentInfo.ImagePath, typeof(Sprite)) as Sprite;
+        shirtEquipmentPart.text = $"{CommonDefineKR.UpperString}";
+        shirtEquipmentTitle.text = $"{upperEquipmentInfo.Name}";
+        shirtEquipmentDescription.text = $"{upperEquipmentInfo.Explain}";
 
-        underEquipmentListImage.sprite = Resources.Load(underEquipmentInfo.ImagePath, typeof(Sprite)) as Sprite;
-        underEquipmentPart.text = $"{CommonDefineKR.UnderString}";
-        underEquipmentTitle.text = $"{underEquipmentInfo.Name}";
-        underEquipmentDescription.text = $"{underEquipmentInfo.Explain}";
+        pantsEquipmentListImage.sprite = Resources.Load(underEquipmentInfo.ImagePath, typeof(Sprite)) as Sprite;
+        pantsEquipmentPart.text = $"{CommonDefineKR.UnderString}";
+        pantsEquipmentTitle.text = $"{underEquipmentInfo.Name}";
+        pantsEquipmentDescription.text = $"{underEquipmentInfo.Explain}";
 
         weaponEquipmentListImage.sprite = Resources.Load(weaponEquipmentInfo.ImagePath, typeof(Sprite)) as Sprite;
         weaponEquipmentPart.text = $"{CommonDefineKR.WeaponString}";
         weaponEquipmentTitle.text = $"{weaponEquipmentInfo.Name}";
         weaponEquipmentDescription.text = $"{weaponEquipmentInfo.Explain}";
 
-        accessoryEquipmentListImage.sprite = Resources.Load(accessoryEquipmentInfo.ImagePath, typeof(Sprite)) as Sprite;
-        accessoryEquipmentPart.text = $"{CommonDefineKR.AccessoryString}";
-        accessoryEquipmentTitle.text = $"{accessoryEquipmentInfo.Name}";
-        accessoryEquipmentDescription.text = $"{accessoryEquipmentInfo.Explain}";
+        trinketEquipmentListImage.sprite = Resources.Load(accessoryEquipmentInfo.ImagePath, typeof(Sprite)) as Sprite;
+        trinketEquipmentPart.text = $"{CommonDefineKR.AccessoryString}";
+        trinketEquipmentTitle.text = $"{accessoryEquipmentInfo.Name}";
+        trinketEquipmentDescription.text = $"{accessoryEquipmentInfo.Explain}";
 
-        oddmentEquipmentListImage.sprite = Resources.Load(oddmentsEquipmentInfo.ImagePath, typeof(Sprite)) as Sprite;
-        oddmentEquipmentPart.text = $"{CommonDefineKR.OddmentsString}";
-        oddmentEquipmentTitle.text = $"{oddmentsEquipmentInfo.Name}";
-        oddmentEquipmentDescription.text = $"{oddmentsEquipmentInfo.Explain}";
+        etcEquipmentListImage.sprite = Resources.Load(oddmentsEquipmentInfo.ImagePath, typeof(Sprite)) as Sprite;
+        etcEquipmentPart.text = $"{CommonDefineKR.OddmentsString}";
+        etcEquipmentTitle.text = $"{oddmentsEquipmentInfo.Name}";
+        etcEquipmentDescription.text = $"{oddmentsEquipmentInfo.Explain}";
     }
 }

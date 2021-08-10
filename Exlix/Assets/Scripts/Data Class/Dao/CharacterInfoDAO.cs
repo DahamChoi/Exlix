@@ -28,11 +28,11 @@ public class CharacterInfoDAO {
             $"current_skill_number = {info.CurrentSkill}, " +
             $"unlocked_equipment_fk_list = '{DataConvert<int>.ListToString(info.HaveEquipmentList)}', " +
             $"current_equipment_head = {info.CurrentEquipmentHead}, " +
-            $"current_equipment_upper_body = {info.CurrentEquipmentUpperBody}, " +
-            $"current_equipment_under_body = {info.CurrentEquipmentUnderBody}, " +
+            $"current_equipment_upper_body = {info.CurrentEquipmentShirt}, " +
+            $"current_equipment_under_body = {info.CurrentEquipmentPants}, " +
             $"current_equipment_weapon = {info.CurrentEquipmentWeapon}, " +
-            $"current_equipment_accessories = {info.CurrentEquipmentAccessory}, " +
-            $"current_equipment_pocket = {info.CurrentEquipmentPocket}, " +
+            $"current_equipment_accessories = {info.CurrentEquipmentTrinket}, " +
+            $"current_equipment_pocket = {info.CurrentEquipmentEtc}, " +
             $"level = {info.Level}, " +
             $"exp = {info.Exp}, " +
             $"hp = {info.Hp}, " +
@@ -43,7 +43,7 @@ public class CharacterInfoDAO {
             $"status_point = {info.StatPoint}, " +
             $"unlock_area_list = '{DataConvert<int>.ListToString(info.UnLockedAreaList)}' " +
             $"WHERE number = {CharacterInfoIndex}";
-        Debug.Log(query);
+
         SQLiteManager.GetInstance().InsertQuery(query);
     }
 
@@ -92,11 +92,11 @@ public class CharacterInfoDAO {
         characterInfo.CurrentSkill = it.GetSafeValue<int>(11);
         characterInfo.HaveEquipmentList = it.GetTextValueToList(12);
         characterInfo.CurrentEquipmentHead = it.GetSafeValue<int>(13);
-        characterInfo.CurrentEquipmentUpperBody = it.GetSafeValue<int>(14);
-        characterInfo.CurrentEquipmentUnderBody = it.GetSafeValue<int>(15);
+        characterInfo.CurrentEquipmentShirt = it.GetSafeValue<int>(14);
+        characterInfo.CurrentEquipmentPants = it.GetSafeValue<int>(15);
         characterInfo.CurrentEquipmentWeapon = it.GetSafeValue<int>(16);
-        characterInfo.CurrentEquipmentAccessory = it.GetSafeValue<int>(17);
-        characterInfo.CurrentEquipmentPocket = it.GetSafeValue<int>(18);
+        characterInfo.CurrentEquipmentTrinket = it.GetSafeValue<int>(17);
+        characterInfo.CurrentEquipmentEtc = it.GetSafeValue<int>(18);
         characterInfo.Level = it.GetSafeValue<int>(19);
         characterInfo.Exp = it.GetSafeValue<int>(20);
         characterInfo.Hp = it.GetSafeValue<int>(21);

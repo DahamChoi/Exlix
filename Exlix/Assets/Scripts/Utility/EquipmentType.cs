@@ -9,16 +9,16 @@ public class EquipmentType : MonoBehaviour
         CharacterInfoDTO characterInfo = CharacterInfoDAO.GetCharacterInfo();
         if (equipmentData.Part == InformationKeyDefine.HEAD_PART) {
             return characterInfo.CurrentEquipmentHead;
-        } else if (equipmentData.Part == InformationKeyDefine.UPPER_PART) {
-            return characterInfo.CurrentEquipmentUpperBody;
-        } else if (equipmentData.Part == InformationKeyDefine.UNDER_PART) {
-            return characterInfo.CurrentEquipmentUnderBody;
+        } else if (equipmentData.Part == InformationKeyDefine.SHIRT_PART) {
+            return characterInfo.CurrentEquipmentShirt;
+        } else if (equipmentData.Part == InformationKeyDefine.PANTS_PART) {
+            return characterInfo.CurrentEquipmentPants;
         } else if (equipmentData.Part == InformationKeyDefine.WEAPON_PART) {
             return characterInfo.CurrentEquipmentWeapon;
-        } else if (equipmentData.Part == InformationKeyDefine.ACCESSORY_PART) {
-            return characterInfo.CurrentEquipmentAccessory;
-        } else if (equipmentData.Part == InformationKeyDefine.ODDMENT_PART) {
-            return characterInfo.CurrentEquipmentPocket;
+        } else if (equipmentData.Part == InformationKeyDefine.TRINKET_PART) {
+            return characterInfo.CurrentEquipmentTrinket;
+        } else if (equipmentData.Part == InformationKeyDefine.ETC_PART) {
+            return characterInfo.CurrentEquipmentEtc;
         } else {
             return 0;
         }
@@ -27,18 +27,18 @@ public class EquipmentType : MonoBehaviour
         EquipmentDTO equipmentData = EquipmentDAO.GetSelectedEquipmentInfo(_number);
         if (equipmentData.Part == InformationKeyDefine.HEAD_PART) {
             return ref characterInfo.CurrentEquipmentHead;
-        } else if (equipmentData.Part == InformationKeyDefine.UPPER_PART) {
-            return ref characterInfo.CurrentEquipmentUpperBody;
-        } else if (equipmentData.Part == InformationKeyDefine.UNDER_PART) {
-            return ref characterInfo.CurrentEquipmentUnderBody;
+        } else if (equipmentData.Part == InformationKeyDefine.SHIRT_PART) {
+            return ref characterInfo.CurrentEquipmentShirt;
+        } else if (equipmentData.Part == InformationKeyDefine.PANTS_PART) {
+            return ref characterInfo.CurrentEquipmentPants;
         } else if (equipmentData.Part == InformationKeyDefine.WEAPON_PART) {
             return ref characterInfo.CurrentEquipmentWeapon;
-        } else if (equipmentData.Part == InformationKeyDefine.ACCESSORY_PART) {
-            return ref characterInfo.CurrentEquipmentAccessory;
-        } else if (equipmentData.Part == InformationKeyDefine.ODDMENT_PART) {
-            return ref characterInfo.CurrentEquipmentPocket;
+        } else if (equipmentData.Part == InformationKeyDefine.TRINKET_PART) {
+            return ref characterInfo.CurrentEquipmentTrinket;
+        } else if (equipmentData.Part == InformationKeyDefine.ETC_PART) {
+            return ref characterInfo.CurrentEquipmentEtc;
         }
-        return ref characterInfo.CurrentEquipmentPocket;
+        return ref characterInfo.CurrentEquipmentEtc;
     }
 
 }
