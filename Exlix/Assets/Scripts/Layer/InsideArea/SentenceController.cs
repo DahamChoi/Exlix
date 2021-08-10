@@ -41,7 +41,7 @@ public class SentenceController : MonoBehaviour, IObserver<InsideAreaState> {
                 focusibleTextList[focusibleTextIndex].text = processString;
                 
                 //text 내부 글자들의 사이즈가 preferredHeight + 패딩값을 넘어가면 bottomText로 남은 텍스트를 넘김 <??
-                if (focusibleTextList[focusibleTextIndex].preferredHeight >= focusibleTextList[focusibleTextIndex].rectTransform.rect.height - padding.y * 4) {
+                if (focusibleTextList[focusibleTextIndex].preferredHeight >= focusibleTextList[focusibleTextIndex].rectTransform.rect.height) {
                     if (focusibleTextIndex == 0) {
                         focusibleTextList[focusibleTextIndex++].text = prev;
                         processStringIndex -= 2;
@@ -82,8 +82,8 @@ public class SentenceController : MonoBehaviour, IObserver<InsideAreaState> {
                 GameObject text = FactoryManager.GetInstance().CreateText(sentencePanel);
                 RectTransform txtRct = text.GetComponent<RectTransform>();
                 txtRct.pivot = new Vector2(0.0f, 1.0f);
-                txtRct.anchoredPosition = new Vector3(imageSprite.rect.width + padding.x * 2, -padding.y, 0.0f);
-                txtRct.sizeDelta = new Vector2(width - imageSprite.rect.width - padding.x * 3, imageSprite.rect.height + padding.y * 4);
+                txtRct.anchoredPosition = new Vector3(imageSprite.rect.width + padding.x * 2, - padding.y * 1.5f, 0.0f);
+                txtRct.sizeDelta = new Vector2(width - imageSprite.rect.width - padding.x * 3, imageSprite.rect.height);
                 focusibleTextList.Add(text.GetComponent<Text>());
             }
             lastY = lastY - (imageSprite.rect.height + padding.y);
