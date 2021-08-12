@@ -20,7 +20,7 @@ public class EquipmentType : MonoBehaviour
         } else if (equipmentData.Part == InformationKeyDefine.ETC_PART) {
             return characterInfo.CurrentEquipmentEtc;
         } else {
-            return 0;
+            return -1;
         }
     }
         public static ref int GetSameEquipmentPartRefNumber(ref CharacterInfoDTO characterInfo, int _number) {

@@ -11,11 +11,13 @@ public class EquipmentObject : ObserverContainer<UIStateInfo> {
     [SerializeField] Image equipmentImage = null;
     [SerializeField] Transform popupContainer = null;
     [SerializeField] Transform parent = null;
+
+    [SerializeField] Text cost = null;
+
     EquipmentDTO equipmentData;
 
     public override void OnNext(UIStateInfo value) {
         CharacterInfoDTO characterInfo = CharacterInfoDAO.GetCharacterInfo();
-
         if (EquipmentType.GetSameEquipmentPartNumber(euqipmentId) == euqipmentId) {
             equipmentImage.color = new Color(1f, 0f, 0f, 1f);
             //...현재 장착중인 장비버튼
@@ -42,7 +44,9 @@ public class EquipmentObject : ObserverContainer<UIStateInfo> {
         SceneState.GetInstance()._UIStateHandler.Subscribe(this);
         FactoryManager.GetInstance().CreateLineObject(transform.position, parent.transform.position, equipmentData ,this.gameObject.transform.parent);
         equipmentImage.sprite = Resources.Load(equipmentData.ImagePath, typeof(Sprite)) as Sprite;
-        
+
+        cost.text = equipmentData.Gold.ToString();
+
         equipmentButton.onClick.AddListener(()=>{
             //캐릭터 돈이 충분한가...
             FactoryManager.GetInstance().CreateEquipmentPopup(equipmentData, transform.parent.transform.parent.transform.parent);
