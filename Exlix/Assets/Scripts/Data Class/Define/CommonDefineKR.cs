@@ -36,5 +36,6 @@ public class CommonDefineKR {
     public static string UnequipEquipmentString = "장비 장착 해제";
     public static string UnlockEquipmentString = "장비 잠금 해제";
     public static string LockedEquipmentString = "상위 장비 해금 필요";
-    
+    public static string isString = "이";
+    public static string RequireString = "만큼 필요합니다";
 }

@@ -5,10 +5,14 @@ using UnityEngine;
 public class SelectionDTO {
     public int Number;
     public int Gold;
-    public BattleDTO Battle;
+    public int Battle;
     public int Action;
     public int Exp;
-    public List<CardRewardDTO> CardRewardList;
-    public List<EquipmentRewardDTO> EquipmentRewardList;
+    public List<int> CardRewardList;
+    public List<int> EquipmentRewardList;
     public string Text;
+    public int ReqHP;
+    public int ReqStr;
+    public int ReqDex;
+    public int ReqInt;
 }
