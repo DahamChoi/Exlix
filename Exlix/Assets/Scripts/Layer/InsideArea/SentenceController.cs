@@ -119,9 +119,9 @@ public class SentenceController : MonoBehaviour, IObserver<InsideAreaState> {
         bottomTxtRct.sizeDelta = new Vector2(width - padding.x * 2, 0.0f);
         focusibleTextList.Add(bottomText.GetComponent<Text>());
 
-        // currentString = sentenceData.Text;
-        currentString = "ajksdlfjaslkdfjasdlfjkldskasjdflaksjdlfkajsdlf;jasdklf;jasdlkfjasld;fjasl;dfkjasl;dfjkas;ldkfja;sldkfjaslkdjfalsdlkfjaslkdfjlaskdjflaskdjflasdkjflaskdjflasjdkflasjdflkasjdlfkajsdlfkajsdlfkasdjflasjdf" +
-        "ajksdlfjaslkdfjasdlfjkldskasjdflaksjdlfkajsdlf;jasdklf;jasdlkfjasld;fjasl;dfkjasl;dfjkas;ldkfja;sldkfjaslkdjfalsdlkfjaslkdfjlaskdjflaskdjflasdkjflaskdjflasjdkflasjdflkasjdlfkajsdlfkajsdlfkasdjflasjdf";
+        currentString = sentenceData.Text;
+        //currentString = "ajksdlfjaslkdfjasdlfjkldskasjdflaksjdlfkajsdlf;jasdklf;jasdlkfjasld;fjasl;dfkjasl;dfjkas;ldkfja;sldkfjaslkdjfalsdlkfjaslkdfjlaskdjflaskdjflasdkjflaskdjflasjdkflasjdflkasjdlfkajsdlfkajsdlfkasdjflasjdf" +
+        //"ajksdlfjaslkdfjasdlfjkldskasjdflaksjdlfkajsdlf;jasdklf;jasdlkfjasld;fjasl;dfkjasl;dfjkas;ldkfja;sldkfjaslkdjfalsdlkfjaslkdfjlaskdjflaskdjflasdkjflaskdjflasjdkflasjdflkasjdlfkajsdlfkajsdlfkasdjflasjdf";
         focusibleTextIndex = 0;
 
         ((RectTransform)sentencePanel).sizeDelta = new Vector2(width, Math.Abs(lastY) + Math.Abs(padding.y));

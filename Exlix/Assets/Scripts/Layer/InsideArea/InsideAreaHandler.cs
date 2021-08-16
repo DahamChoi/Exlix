@@ -11,6 +11,7 @@ public class InsideAreaHandler : ObserableHandler<InsideAreaState> {
         Information.currentSentence = sentenceId;
         Information.selectionList.Clear();
         if (SentenceDAO.GetSelectedSentenceInfo(Information.currentSentence).SelectionList != null) {
+            Information.isSelected = false;
             foreach (int Key in SentenceDAO.GetSelectedSentenceInfo(Information.currentSentence).SelectionList) {
                 Information.selectionList.Add(SelectionDAO.GetSelectedSelectionInfo(Key));
             }
@@ -18,12 +19,13 @@ public class InsideAreaHandler : ObserableHandler<InsideAreaState> {
         base.NotifyObservers();
     }
 
-    public void AddSelectionText(string selectionText) {
+    public void UpdateSelectionText(string selectionText) {
         Information.selectedSelectionText = selectionText;
     }
 
     public void ClearSelection() {
         Information.selectionList.Clear();
+        Information.isSelected = true;
         base.NotifyObservers();
     }
 }
