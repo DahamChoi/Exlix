@@ -71,7 +71,7 @@ public class CharacterGenerate_Portrait_UIController : MonoBehaviour {
 
     public void ButtonInit() {
         nextButton.onClick.AddListener(() => {
-            SceneState.GetInstance()._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.PORTRAIT_TO_DECK);
+            SceneState.GetInstance()._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.INFO_TO_DECK);
         });
 
         portraitPopupButton.onClick.AddListener(() => {

@@ -6,7 +6,6 @@ using UnityEngine;
 public class SceneManager : Singleton<SceneManager>, IObserver<SceneStateInfo> {
     [SerializeField] GameObject MainMenuLayer = null;
     [SerializeField] GameObject CharacterGenerate_CharacterInfo_Layer = null;
-    [SerializeField] GameObject CharacterGenerate_Portrait_Layer = null;
     [SerializeField] GameObject CharacterGenerate_Deck_Layer = null;
     [SerializeField] GameObject CharacterGenerate_Deck_Info_Layer = null;
     [SerializeField] GameObject SelectAreaLayer = null;
@@ -35,9 +34,6 @@ public class SceneManager : Singleton<SceneManager>, IObserver<SceneStateInfo> {
                 break;
             case GameStateMachine.STATE.CHARACTER_GENERATE_CHARACTER_INFO:
                 CharacterGenerate_CharacterInfo_Layer.SetActive(true);
-                break;
-            case GameStateMachine.STATE.CHARACTER_GENERATE_PORTRAIT:
-                CharacterGenerate_Portrait_Layer.SetActive(true);
                 break;
             case GameStateMachine.STATE.CHARACTER_GENERATE_DECK:
                 CharacterGenerate_Deck_Layer.SetActive(true);
@@ -83,7 +79,6 @@ public class SceneManager : Singleton<SceneManager>, IObserver<SceneStateInfo> {
     private void TurnOffLayer() {
         MainMenuLayer.SetActive(false);
         CharacterGenerate_CharacterInfo_Layer.SetActive(false);
-        CharacterGenerate_Portrait_Layer.SetActive(false);
         CharacterGenerate_Deck_Layer.SetActive(false);
         CharacterGenerate_Deck_Info_Layer.SetActive(false);
         SelectAreaLayer.SetActive(false);

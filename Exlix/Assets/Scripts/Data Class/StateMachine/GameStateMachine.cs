@@ -7,7 +7,6 @@ public class GameStateMachine {
         READY,
         MAIN_MENU,
         CHARACTER_GENERATE_CHARACTER_INFO,
-        CHARACTER_GENERATE_PORTRAIT,
         CHARACTER_GENERATE_DECK,
         CHARACTER_GENERATE_DECK_INFO,
         SELECT_AREA,
@@ -27,16 +26,13 @@ public class GameStateMachine {
         NEW_GAME,
         LOAD_GAME,
         NEWBUTTON,
-        INFO_TO_PORTRAIT,
         INFO_TO_MAIN_MENU,
-        PORTRAIT_TO_INFO,
-        PORTRAIT_TO_DECK,
-        DECK_TO_PORTRAIT,
+        INFO_TO_DECK,
+        DECK_TO_INFO,
         DECK_TO_GAME,
         DECK_TO_DECK_INFO,
         DECK_INFO_TO_DECK,
         DECK_INFO_TO_MAIN_MENU,
-        PORTRAIT_TO_MAIN_MENU,
         DECK_TO_MAIN_MENU,
         ENTER_AREA,
         ENTER_BATTLE,
@@ -73,7 +69,7 @@ public class GameStateMachine {
         // 메인메뉴
         Rules[STATE.MAIN_MENU] = new List<KeyValuePair<TRIGGER, STATE>>();
         Rules[STATE.MAIN_MENU].Add(
-            new KeyValuePair<TRIGGER, STATE>(TRIGGER.NEW_GAME, STATE.CHARACTER_GENERATE_PORTRAIT));
+            new KeyValuePair<TRIGGER, STATE>(TRIGGER.NEW_GAME, STATE.CHARACTER_GENERATE_CHARACTER_INFO));
         Rules[STATE.MAIN_MENU].Add(
             new KeyValuePair<TRIGGER, STATE>(TRIGGER.LOAD_GAME, STATE.SELECT_AREA));
 
@@ -82,16 +78,7 @@ public class GameStateMachine {
         Rules[STATE.CHARACTER_GENERATE_CHARACTER_INFO].Add(
             new KeyValuePair<TRIGGER, STATE>(TRIGGER.INFO_TO_MAIN_MENU, STATE.MAIN_MENU));
         Rules[STATE.CHARACTER_GENERATE_CHARACTER_INFO].Add(
-            new KeyValuePair<TRIGGER, STATE>(TRIGGER.INFO_TO_PORTRAIT, STATE.CHARACTER_GENERATE_PORTRAIT));
-
-        // 캐릭터 생성화면 초상화 선택
-        Rules[STATE.CHARACTER_GENERATE_PORTRAIT] = new List<KeyValuePair<TRIGGER, STATE>>();
-        Rules[STATE.CHARACTER_GENERATE_PORTRAIT].Add(
-            new KeyValuePair<TRIGGER, STATE>(TRIGGER.PORTRAIT_TO_MAIN_MENU, STATE.MAIN_MENU));
-        Rules[STATE.CHARACTER_GENERATE_PORTRAIT].Add(
-            new KeyValuePair<TRIGGER, STATE>(TRIGGER.PORTRAIT_TO_INFO, STATE.CHARACTER_GENERATE_CHARACTER_INFO));
-        Rules[STATE.CHARACTER_GENERATE_PORTRAIT].Add(
-            new KeyValuePair<TRIGGER, STATE>(TRIGGER.PORTRAIT_TO_DECK, STATE.CHARACTER_GENERATE_DECK));
+            new KeyValuePair<TRIGGER, STATE>(TRIGGER.INFO_TO_DECK, STATE.CHARACTER_GENERATE_DECK));
 
         // 캐릭터 덱 선택
         Rules[STATE.CHARACTER_GENERATE_DECK] = new List<KeyValuePair<TRIGGER, STATE>>();
@@ -100,7 +87,7 @@ public class GameStateMachine {
         Rules[STATE.CHARACTER_GENERATE_DECK].Add(
             new KeyValuePair<TRIGGER, STATE>(TRIGGER.DECK_TO_DECK_INFO, STATE.CHARACTER_GENERATE_DECK_INFO));
         Rules[STATE.CHARACTER_GENERATE_DECK].Add(
-            new KeyValuePair<TRIGGER, STATE>(TRIGGER.DECK_TO_PORTRAIT, STATE.CHARACTER_GENERATE_PORTRAIT));
+            new KeyValuePair<TRIGGER, STATE>(TRIGGER.DECK_TO_INFO, STATE.CHARACTER_GENERATE_CHARACTER_INFO));
         Rules[STATE.CHARACTER_GENERATE_DECK].Add(
             new KeyValuePair<TRIGGER, STATE>(TRIGGER.DECK_TO_MAIN_MENU, STATE.MAIN_MENU));
 
@@ -170,7 +157,6 @@ public class GameStateMachine {
     public void ProcessEvent(TRIGGER trigger) {
         if (TRIGGER.BACK == trigger) {
             if (STATE.CHARACTER_GENERATE_CHARACTER_INFO == CurrentState ||
-                STATE.CHARACTER_GENERATE_PORTRAIT == CurrentState ||
                 STATE.CHARACTER_GENERATE_DECK == CurrentState) {
                 CurrentState = STATE.MAIN_MENU;
             } else if (STATE.CHARACTER_GENERATE_DECK_INFO == CurrentState) {

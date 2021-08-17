@@ -25,7 +25,7 @@ public class CharacterGenerate_Deck_Controller : MonoBehaviour {
         });
 
         ShowCharacterButton.onClick.AddListener(() => {
-            SceneState.GetInstance()._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.DECK_TO_PORTRAIT);
+            SceneState.GetInstance()._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.DECK_TO_INFO);
         });
 
         NextDeckButton.onClick.AddListener(() => {
