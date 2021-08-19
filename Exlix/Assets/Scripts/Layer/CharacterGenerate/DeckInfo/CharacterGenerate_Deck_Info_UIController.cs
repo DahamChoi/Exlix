@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
 public class CharacterGenerate_Deck_Info_UIController : MonoBehaviour, IPointerClickHandler {
-    //Ä«µå ¼±ÅÃ, ¼³¸í ±â´É
+    //Ä«ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 
     [SerializeField] Canvas canvas = null;
 
@@ -24,12 +24,12 @@ public class CharacterGenerate_Deck_Info_UIController : MonoBehaviour, IPointerC
         pointer = new PointerEventData(null);
     }
 
-    public void OnPointerClick(PointerEventData eventData) {//Å¬¸¯½Ã »óÈ£ÀÛ¿ë
+    public void OnPointerClick(PointerEventData eventData) {//Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ï¿½Û¿ï¿½
         pointer.position = eventData.position;
         SelectObjectByRaycast();
     }
 
-    void UpdateCardDescription(CardDTO card) {//Ä«µå ¼³¸íÃ¢ ¾÷µ¥ÀÌÆ®
+    void UpdateCardDescription(CardDTO card) {//Ä«ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
         cardTitle.text = card.Title;
         cardMana.text = card.Mana.ToString();
         cardDescribe.text = card.Explanation;
@@ -37,7 +37,7 @@ public class CharacterGenerate_Deck_Info_UIController : MonoBehaviour, IPointerC
         cardManaIcon.SetActive(true);
     }
 
-    void SelectObjectByRaycast() {//·¹ÀÌÄ³½ºÆ®·Î Ä«µå ¼±ÅÃ
+    void SelectObjectByRaycast() {//ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½Æ®ï¿½ï¿½ Ä«ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         List<RaycastResult> hitObject = new List<RaycastResult>();
         raycast.Raycast(pointer, hitObject);
         if (hitObject.Count > 0) {
@@ -46,7 +46,7 @@ public class CharacterGenerate_Deck_Info_UIController : MonoBehaviour, IPointerC
                     cardObjectOnSelect.GetComponent<CardObject>().glowEffect.SetActive(false);
                 }
 
-                cardDataOnSelect = hitObject[0].gameObject.transform.GetComponent<CardObject>().CardData;
+                cardDataOnSelect = hitObject[0].gameObject.transform.GetComponent<CardObject>().cardData;
                 cardObjectOnSelect = hitObject[0].gameObject;
 
                 cardObjectOnSelect.GetComponent<CardObject>().glowEffect.SetActive(true);

@@ -15,4 +15,11 @@ public class UICardDescription : MonoBehaviour
         Describe.text = card.Explanation;
         Property.text = card.Property;
     }
+
+    public void ClearInfo() {
+        Cost.text = "";
+        Title.text = "";
+        Describe.text = "";
+        Property.text = "";
+    }
 }

@@ -114,4 +114,11 @@ public class FactoryManager : Singleton<FactoryManager> {
         GameObject equipmentTree = Instantiate<GameObject>(equipmentTreePrefab, parent);
         return equipmentTree;
     }
+
+    public GameObject CreateAchieveCard (CardDTO cardData, Transform parent) {
+        GameObject achieveCardPrefab = Resources.Load("Prefabs/AchieveCardObjectPrefab") as GameObject;
+        GameObject achieveCardObject = Instantiate(achieveCardPrefab, parent);
+        achieveCardObject.GetComponent<Achieve_Card_CardObject>().Init(cardData);
+        return achieveCardObject;
+    }
 }

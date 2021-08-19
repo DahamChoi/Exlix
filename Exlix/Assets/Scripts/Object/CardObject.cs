@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 public class CardObject : MonoBehaviour{
-    public CardDTO CardData;
+    public CardDTO cardData;
 
     [SerializeField] Text TitleText = null;
     [SerializeField] Text CostText = null;
     [SerializeField] public GameObject glowEffect = null;
     public void Init(CardDTO cardData) {
-        CardData = cardData;
+        this.cardData = cardData;
 
-        TitleText.text = CardData.Title;
-        CostText.text = CardData.Cost.ToString();
+        TitleText.text = this.cardData.Title;
+        CostText.text = this.cardData.Cost.ToString();
     }
 }

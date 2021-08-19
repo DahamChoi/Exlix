@@ -74,7 +74,7 @@ public class CharacterMaintenance_Card_Layer : MonoBehaviour, IPointerClickHandl
                     cardObjectOnSelect.GetComponent<CardObject>().glowEffect.SetActive(false);
                 }
 
-                cardDataOnSelect = hitObject[0].gameObject.transform.GetComponent<CardObject>().CardData;
+                cardDataOnSelect = hitObject[0].gameObject.transform.GetComponent<CardObject>().cardData;
                 cardObjectOnSelect = hitObject[0].gameObject;
 
                 cardObjectOnSelect.GetComponent<CardObject>().glowEffect.SetActive(true);

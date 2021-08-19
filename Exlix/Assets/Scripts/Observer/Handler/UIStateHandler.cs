@@ -6,5 +6,4 @@ public class UIStateHandler : ObserableHandler<UIStateInfo> {
     public UIStateHandler() {
         Information = new UIStateInfo();
     }
-
 }

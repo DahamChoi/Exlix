@@ -8,7 +8,7 @@ public class InsideAreaInfoCardObject : CardObject, IPointerDownHandler, IPointe
 
     //클릭 시작시 카드 설명 팝업 띄움
     public void OnPointerDown(PointerEventData eventData) {
-        cardPopUp = FactoryManager.GetInstance().CreateInsideAreaInfoCardDescriptionPopup(CardData, transform.parent.transform.parent);
+        cardPopUp = FactoryManager.GetInstance().CreateInsideAreaInfoCardDescriptionPopup(cardData, transform.parent.transform.parent);
         
         //팝업 위치 조정
         float xPos = transform.localPosition.x + 50f;
