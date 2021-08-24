@@ -17,7 +17,8 @@ public class GameStateMachine {
         CHARACTER_MAINTENANCE_SKILL,
         CHARACTER_MAINTENANCE_EQUIPMENT,
         CHARACTER_MAINTENANCE_CARD,
-        CHARACTER_MAINTENANCE_EQUIPMENT_TREE
+        CHARACTER_MAINTENANCE_EQUIPMENT_TREE,
+        BOOK
 
     };
 
@@ -48,7 +49,9 @@ public class GameStateMachine {
         TREE_TO_EQUIPMENT,
         MAIN_TO_CARD,
         CARD_TO_MAIN,
-        BACK
+        BACK,
+        BOOK_TO_MAIN_MENU,
+        MAIN_MENU_TO_BOOK
     };
 
     private Dictionary<STATE, List<KeyValuePair<TRIGGER, STATE>>> Rules =
@@ -72,6 +75,8 @@ public class GameStateMachine {
             new KeyValuePair<TRIGGER, STATE>(TRIGGER.NEW_GAME, STATE.CHARACTER_GENERATE_CHARACTER_INFO));
         Rules[STATE.MAIN_MENU].Add(
             new KeyValuePair<TRIGGER, STATE>(TRIGGER.LOAD_GAME, STATE.SELECT_AREA));
+        Rules[STATE.MAIN_MENU].Add(
+            new KeyValuePair<TRIGGER, STATE>(TRIGGER.MAIN_MENU_TO_BOOK, STATE.BOOK));
 
         // 캐릭터 생성화면 캐릭터 정보
         Rules[STATE.CHARACTER_GENERATE_CHARACTER_INFO] = new List<KeyValuePair<TRIGGER, STATE>>();
@@ -157,7 +162,8 @@ public class GameStateMachine {
     public void ProcessEvent(TRIGGER trigger) {
         if (TRIGGER.BACK == trigger) {
             if (STATE.CHARACTER_GENERATE_CHARACTER_INFO == CurrentState ||
-                STATE.CHARACTER_GENERATE_DECK == CurrentState) {
+                STATE.CHARACTER_GENERATE_DECK == CurrentState ||
+                STATE.BOOK == CurrentState) {
                 CurrentState = STATE.MAIN_MENU;
             } else if (STATE.CHARACTER_GENERATE_DECK_INFO == CurrentState) {
                 CurrentState = STATE.CHARACTER_GENERATE_DECK;

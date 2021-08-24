@@ -17,6 +17,8 @@ public class SceneManager : Singleton<SceneManager>, IObserver<SceneStateInfo> {
     [SerializeField] GameObject CharacterMaintenance_Skill_Layer = null;
     [SerializeField] GameObject CharacterMaintenance_Equipment_Layer = null;
     [SerializeField] GameObject CharacterMaintenance_Equipment_Tree_Layer = null;
+    [SerializeField] GameObject Book_Layer = null;
+
 
     public void OnCompleted() {
         throw new NotImplementedException();
@@ -68,6 +70,9 @@ public class SceneManager : Singleton<SceneManager>, IObserver<SceneStateInfo> {
             case GameStateMachine.STATE.CHARACTER_MAINTENANCE_EQUIPMENT_TREE:
                 CharacterMaintenance_Equipment_Tree_Layer.SetActive(true);
                 break;
+            case GameStateMachine.STATE.BOOK:
+                CharacterMaintenance_Equipment_Tree_Layer.SetActive(true);
+                break;
         }
     }
 
@@ -90,5 +95,6 @@ public class SceneManager : Singleton<SceneManager>, IObserver<SceneStateInfo> {
         CharacterMaintenance_Skill_Layer.SetActive(false);
         CharacterMaintenance_Equipment_Layer.SetActive(false);
         CharacterMaintenance_Equipment_Tree_Layer.SetActive(false);
+        Book_Layer.SetActive(false);
     }
 }

@@ -7,6 +7,7 @@ public class MainMenuButtonController : MonoBehaviour
 {
     [SerializeField] Button LoadGameButton = null;
     [SerializeField] Button NewGameButton = null;
+    [SerializeField] Button BookButton = null;
 
     void Start() {
         LoadGameButton.onClick.AddListener(() => {
@@ -16,6 +17,10 @@ public class MainMenuButtonController : MonoBehaviour
         NewGameButton.onClick.AddListener(() => {
             CharacterInfoDAO.UpdatePlayerInfo(CharacterInfoDTO.clone());
             SceneState.GetInstance()._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.NEW_GAME);
+        });
+
+        BookButton.onClick.AddListener(()=>{
+            SceneState.GetInstance()._SceneStateHandler.ProcessEvent(GameStateMachine.TRIGGER.MAIN_MENU_TO_BOOK);
         });
     }
 }
