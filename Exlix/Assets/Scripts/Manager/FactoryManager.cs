@@ -121,4 +121,15 @@ public class FactoryManager : Singleton<FactoryManager> {
         achieveCardObject.GetComponent<Achieve_Card_CardObject>().Init(cardData);
         return achieveCardObject;
     }
+
+    public GameObject CreateBookEnemy (Transform parent) {
+        GameObject bookEnemyPrefab = Resources.Load(" ") as GameObject;
+        
+        return bookEnemyPrefab;
+    }
+
+    public GameObject CreateBookEnding (Transform parent) {
+        GameObject bookEndingPrefab = new GameObject();
+        return bookEndingPrefab;
+    }
 }
