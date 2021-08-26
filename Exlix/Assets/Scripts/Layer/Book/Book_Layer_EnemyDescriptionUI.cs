@@ -23,7 +23,11 @@ public class Book_Layer_EnemyDescriptionUI : MonoBehaviour, IObserver<UIStateInf
     }
 
     public void OnNext(UIStateInfo value) {
-        if (GameState.GetInstance().GetData<int>(InformationKeyDefine.CURRENT_SELECTED_ENEMY_OBJECT) == 0) return;
+        if (GameState.GetInstance().GetData<int>(InformationKeyDefine.CURRENT_SELECTED_ENEMY_OBJECT) == 0) {
+            ClearInfo();
+            return;
+        }
+        Debug.Log("적 정보");
         //..데이터 가져와서 데이터 입력
     }
 

@@ -122,14 +122,23 @@ public class FactoryManager : Singleton<FactoryManager> {
         return achieveCardObject;
     }
 
+    public GameObject CreateBookCard (Transform parent) {
+        GameObject bookCardPrefab = Resources.Load(" ") as GameObject;
+        return bookCardPrefab;
+    }
+
     public GameObject CreateBookEnemy (Transform parent) {
         GameObject bookEnemyPrefab = Resources.Load(" ") as GameObject;
-        
         return bookEnemyPrefab;
     }
 
     public GameObject CreateBookEnding (Transform parent) {
         GameObject bookEndingPrefab = new GameObject();
         return bookEndingPrefab;
+    }
+
+    public GameObject CreateBookEndingPopup (Transform parent) {
+        GameObject bookEndingPopupPrefab = new GameObject();
+        return bookEndingPopupPrefab;
     }
 }

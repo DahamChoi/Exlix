@@ -18,7 +18,7 @@ public class Book_Layer_CardListController : MonoBehaviour {
         //... 리스트 불러오기
         if (cardCollectionList != null) return;
         foreach(var cardData in cardCollectionList) {
-        //... Add List 팩토리 매니져
+            cardObjectList.Add(FactoryManager.GetInstance().CreateBookCard(cardContainer));
         }
 
     }

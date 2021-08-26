@@ -1,13 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
-public class Achieve_Card_DescriptionUI_Observer_Container : MonoBehaviour, IObserver<UIStateInfo> {
+public class Book_Layer_CardDescriptionUI : MonoBehaviour, IObserver<UIStateInfo> {
+    [SerializeField] Text Cost = null;
+    [SerializeField] Text Title = null;
+    [SerializeField] Text Describe = null;
+    [SerializeField] Text Property = null;
 
-    // Start is called before the first frame update
-    void Start() {
-        SceneState.GetInstance()._UIStateHandler.Subscribe(this);
+    void OnEnable() {
+        ClearInfo();
     }
 
     public void OnCompleted() {
@@ -21,7 +25,14 @@ public class Achieve_Card_DescriptionUI_Observer_Container : MonoBehaviour, IObs
     public void OnNext(UIStateInfo value) {
         if (GameState.GetInstance().GetData<int>(InformationKeyDefine.CURRENT_SELECTED_CARD_OBJECT) == 0) return;
         //카드 정보 불러오기
-        //카드 정보 입력GetComponent<UICardDescription>().Init(cardData);
+        //카드 정보 입력
         Debug.Log("카드정보");
+    }
+
+    public void ClearInfo() {
+        Cost.text = "";
+        Title.text = "";
+        Describe.text = "";
+        Property.text = "";
     }
 }

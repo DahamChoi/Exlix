@@ -19,7 +19,7 @@ public class Book_Layer_EnemyListController : MonoBehaviour
         //... 리스트 불러오기
         if (enemyEntireList != null) return;
         foreach(var enemyData in enemyEntireList) {
-        //... Add List 팩토리 매니져
+            enemyObjectList.Add(FactoryManager.GetInstance().CreateBookEnemy(enemyContainer));
         }
 
     }

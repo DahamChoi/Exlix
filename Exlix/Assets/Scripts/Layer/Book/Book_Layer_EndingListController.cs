@@ -18,7 +18,7 @@ public class Book_Layer_EndingListController : MonoBehaviour {
         //... 리스트 불러오기
         if (endingEntireList != null) return;
         foreach(var endingData in endingEntireList) {
-            FactoryManager.GetInstance();
+            endingObjectList.Add(FactoryManager.GetInstance().CreateBookEnding(endingContainer));
         }
     }
 
