@@ -31,20 +31,25 @@ public class CharacterInfoDao
         characterInfo.setEquipment(ENUM_EQUIPMENT_PART.TRINKET, EquipmentDao.GetEquipment(it.GetSafeValue<int>(7)));
         characterInfo.setEquipment(ENUM_EQUIPMENT_PART.ETC, EquipmentDao.GetEquipment(it.GetSafeValue<int>(8)));
 
-        characterInfo.name = it.GetSafeValue<string>(10);
-        characterInfo.statHp = it.GetSafeValue<int>(11);
-        characterInfo.statStr = it.GetSafeValue<int>(12);
-        characterInfo.statInt = it.GetSafeValue<int>(13);
-        characterInfo.statDex = it.GetSafeValue<int>(14);
-        characterInfo.gold = it.GetSafeValue<int>(15);
-        characterInfo.level = it.GetSafeValue<int>(16);
-        characterInfo.exp = it.GetSafeValue<int>(17);
-        characterInfo.maxHp = it.GetSafeValue<int>(18);
-        characterInfo.currentHp = it.GetSafeValue<int>(19);
-        characterInfo.maxMp = it.GetSafeValue<int>(20);
-        characterInfo.currentMp = it.GetSafeValue<int>(21);
-        characterInfo.skillPoint = it.GetSafeValue<int>(22);
-        characterInfo.statusPoint = it.GetSafeValue<int>(23);
+        //character_status
+        CharacterStatus status = CharacterStatusDao.GetCharacterStatus();
+        characterInfo.name = status.name;
+        characterInfo.gold = status.gold;
+        characterInfo.level = status.level;
+        characterInfo.exp = status.exp;
+        characterInfo.skillPoint = status.skillPoint;
+        characterInfo.statusPoint = status.statusPoint;
+
+        //character_battle_status
+        CharacterBattleStatus battleStatus = CharacterBattleStatusDao.GetCharacterBattleStatus();
+        characterInfo.statHp = battleStatus.stat_hp;
+        characterInfo.statStr = battleStatus.stat_str;
+        characterInfo.statInt = battleStatus.stat_int;
+        characterInfo.statDex = battleStatus.stat_dex;
+        characterInfo.maxHp = battleStatus.hp;
+        characterInfo.currentHp = battleStatus.current_hp;
+        characterInfo.maxMp = battleStatus.mp;
+        characterInfo.currentMp = battleStatus.current_mp;
 
         //area는 추후에 추가
         

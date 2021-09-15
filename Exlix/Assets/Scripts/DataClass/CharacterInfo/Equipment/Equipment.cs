@@ -14,6 +14,7 @@ public enum ENUM_EQUIPMENT_PART
 
 public class Equipment 
 {
+    public int equipmentIndex;
     public string imagePath;
     public EquipmentName equipmentName;
     public EquipmentPart equipmentPart;

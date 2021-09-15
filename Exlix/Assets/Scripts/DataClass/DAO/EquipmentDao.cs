@@ -9,6 +9,7 @@ public class EquipmentDao {
     private static readonly string EquipmentStatTable = "equipment_stat";
     private static readonly string EquipmentDescribeTable = "equipment_describe";
     public static List<Equipment> GetEquipmentList() {
+
         string query =
             $"SELECT" +
             $"{EquipmentTable}.equip_index AS 'equip_index'," +
@@ -92,6 +93,7 @@ public class EquipmentDao {
         }
 
         Equipment equipment = new Equipment();
+        equipment.equipmentIndex = it.GetSafeValue<int>(0);
         equipment.equipmentName.textKr = it.GetSafeValue<string>(1);
         equipment.equipmentPart.textKr = it.GetSafeValue<string>(2);
         equipment.imagePath = it.GetSafeValue<string>(3);
