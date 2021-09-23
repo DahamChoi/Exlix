@@ -24,6 +24,7 @@ public class CharacterInfoDao
 
         CharacterInfo characterInfo = new CharacterInfo();
 
+        //수정 필요
         characterInfo.setEquipment(ENUM_EQUIPMENT_PART.HEAD,EquipmentDao.GetEquipment(it.GetSafeValue<int>(3)));
         characterInfo.setEquipment(ENUM_EQUIPMENT_PART.SHIRT, EquipmentDao.GetEquipment(it.GetSafeValue<int>(4)));
         characterInfo.setEquipment(ENUM_EQUIPMENT_PART.PANTS, EquipmentDao.GetEquipment(it.GetSafeValue<int>(5)));
