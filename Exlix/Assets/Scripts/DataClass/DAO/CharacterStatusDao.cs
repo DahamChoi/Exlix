@@ -8,13 +8,14 @@ public class CharacterStatusDao
     public static CharacterStatus GetCharacterStatus() {
         string query =
         $"SELECT" +
-       $"{StatusTable}.name AS 'name'," +
-       $"{StatusTable}.gold AS 'gold'," +
-       $"{StatusTable}.level AS 'level'," +
-       $"{StatusTable}.exp AS 'exp'," +
-       $"{StatusTable}.skill_point AS 'skill_point'," +
-       $"{StatusTable}.status_point AS 'status_point'" +
-       $"FROM {StatusTable} WHERE {StatusTable}.character_index = 1";
+        $"{StatusTable}.name AS 'name'," +
+        $"{StatusTable}.gold AS 'gold'," +
+        $"{StatusTable}.level AS 'level'," +
+        $"{StatusTable}.exp AS 'exp'," +
+        $"{StatusTable}.skill_point AS 'skill_point'," +
+        $"{StatusTable}.status_point AS 'status_point'" +
+        $"FROM {StatusTable} WHERE {StatusTable}.character_index = 1";
+
         ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
 
         if (false == it.Read()) {

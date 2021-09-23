@@ -2,17 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Card : MonoBehaviour
+public class Card
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int cardIndex;
+    public int cost;
+    public string imagePath;
+    public CardFaction cardFaction;
+    public CardDescribe cardDescribe;
+    public CardName cardName;
+    public CardType cardType;
 }

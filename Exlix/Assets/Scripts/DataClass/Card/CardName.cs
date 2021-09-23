@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AreaName
+public class CardName
 {
     public string textKr;
     public string textEn;

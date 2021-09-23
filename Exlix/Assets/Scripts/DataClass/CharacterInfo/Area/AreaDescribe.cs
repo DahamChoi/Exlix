@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class AreaDescribe
 {
-
+    public string textKr;
+    public string textEn;
 }
