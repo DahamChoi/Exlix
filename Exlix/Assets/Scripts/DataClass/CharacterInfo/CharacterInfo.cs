@@ -36,7 +36,7 @@ public class CharacterInfo
         if(true == dictionaryEquipment.ContainsKey(part))
             return dictionaryEquipment[part];
 
-        return null;
+        return default;
     }
 
     public bool isUnlockedEquiment(Equipment otherEquipment)

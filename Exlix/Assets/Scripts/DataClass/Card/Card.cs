@@ -6,7 +6,7 @@ public class Card
 {
     public int cardIndex;
     public int cost;
-    public string imagePath;
+    public Illustration illustration;
     public CardFaction cardFaction;
     public CardDescribe cardDescribe;
     public CardName cardName;
