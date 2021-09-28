@@ -12,9 +12,10 @@ public class CardRewardDao
             $"{CardRewardTable}.card_reward_index AS 'card_reward_index'," +
             $"{CardRewardTable}.card_number AS 'card_number'," +
             $"{CardRewardProbability}.probability AS 'probability'" +
-            $"FROM {CardRewardTable} WHERE {CardRewardTable}.card_reward_index = {rewardIndex}"+
+            $"FROM {CardRewardTable} "+
             $"LEFT JOIN {CardRewardProbability} "+
-            $"ON {CardRewardTable}.probability_index = {CardRewardProbability}.probability_index";
+            $"ON {CardRewardTable}.probability_index = {CardRewardProbability}.probability_index" +
+            $"WHERE {CardRewardTable}.card_reward_index = {rewardIndex}";
 
 
         ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
