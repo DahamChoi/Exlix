@@ -8,30 +8,33 @@ public class EquipmentDao {
     private static readonly string EquipmentNameTable = "equipment_name";
     private static readonly string EquipmentStatTable = "equipment_stat";
     private static readonly string EquipmentDescribeTable = "equipment_describe";
+    private static readonly string IllustTable = "illust";
     public static List<Equipment> GetEquipmentList() {
 
         string query =
-            $"SELECT" +
-            $"{EquipmentTable}.equip_index AS 'equip_index'," +
-            $"{EquipmentNameTable}.ko_KR AS 'name'," +
-            $"{EquipmentPartTable}.ko_KR AS 'part'," +
-            $"{EquipmentTable}.image_path AS 'image_path'," +
-            $"{EquipmentTable}.equip_effect AS 'equip_effect'," +
-            $"{EquipmentTable}.parent AS 'parent'," +
-            $"{EquipmentStatTable}.stat_hp as 'stat_hp'," +
-            $"{EquipmentStatTable}.stat_str as 'stat_str'," +
-            $"{EquipmentStatTable}.stat_int as 'stat_int'," +
-            $"{EquipmentStatTable}.stat_dex as 'stat_dex'," +
-            $"{EquipmentDescribeTable}.ko_KR as 'describe'" +
-            $"FROM {EquipmentTable}" +
-            $"LEFT JOIN {EquipmentNameTable}" +
-            $"ON {EquipmentTable}.equip_index = {EquipmentNameTable}.equip_index" +
-            $"LEFT JOIN {EquipmentPartTable}" +
-            $"ON {EquipmentTable}.equip_part_index = {EquipmentPartTable}.equip_part_index" +
-            $"LEFT JOIN {EquipmentStatTable}" +
-            $"ON {EquipmentTable}.equip_index = {EquipmentStatTable}.equip_index" +
-            $"LEFT JOIN {EquipmentDescribeTable}" +
-            $"ON {EquipmentTable}.equip_index = {EquipmentDescribeTable}.equip_index";
+           $"SELECT " +
+           $"{EquipmentTable}.equip_index AS 'equip_index', " +
+           $"{EquipmentNameTable}.ko_KR AS 'name', " +
+           $"{EquipmentPartTable}.ko_KR AS 'part', " +
+           $"{IllustTable}.image_path AS 'image_path', " +
+           $"{EquipmentTable}.equip_effect AS 'equip_effect', " +
+           $"{EquipmentTable}.parent AS 'parent', " +
+           $"{EquipmentStatTable}.stat_hp as 'stat_hp', " +
+           $"{EquipmentStatTable}.stat_str as 'stat_str', " +
+           $"{EquipmentStatTable}.stat_int as 'stat_int', " +
+           $"{EquipmentStatTable}.stat_dex as 'stat_dex', " +
+           $"{EquipmentDescribeTable}.ko_KR as 'describe' " +
+           $"FROM {EquipmentTable} " +
+           $"LEFT JOIN {EquipmentNameTable} " +
+           $"ON {EquipmentTable}.equip_index = {EquipmentNameTable}.equip_index " +
+           $"LEFT JOIN {EquipmentPartTable} " +
+           $"ON {EquipmentTable}.equip_part_index = {EquipmentPartTable}.equip_part_index " +
+           $"LEFT JOIN {EquipmentStatTable} " +
+           $"ON {EquipmentTable}.equip_index = {EquipmentStatTable}.equip_index " +
+           $"LEFT JOIN {EquipmentDescribeTable} " +
+           $"ON {EquipmentTable}.equip_index = {EquipmentDescribeTable}.equip_index" +
+		   $"LEFT JOIN {IllustTable}" +
+		   $"ON {EquipmentTable}.illust_index = {IllustTable}.illust_index";
 
         ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
 
@@ -62,27 +65,29 @@ public class EquipmentDao {
 
     public static Equipment GetEquipment(int EquipmentIndex) {
         string query =
-           $"SELECT" +
-           $"{EquipmentTable}.equip_index AS 'equip_index'," +
-           $"{EquipmentNameTable}.ko_KR AS 'name'," +
-           $"{EquipmentPartTable}.ko_KR AS 'part'," +
-           $"{EquipmentTable}.image_path AS 'image_path'," +
-           $"{EquipmentTable}.equip_effect AS 'equip_effect'," +
-           $"{EquipmentTable}.parent AS 'parent'," +
-           $"{EquipmentStatTable}.stat_hp as 'stat_hp'," +
-           $"{EquipmentStatTable}.stat_str as 'stat_str'," +
-           $"{EquipmentStatTable}.stat_int as 'stat_int'," +
-           $"{EquipmentStatTable}.stat_dex as 'stat_dex'," +
-           $"{EquipmentDescribeTable}.ko_KR as 'describe'" +
-           $"FROM {EquipmentTable}" +
-           $"LEFT JOIN {EquipmentNameTable}" +
-           $"ON {EquipmentTable}.equip_index = {EquipmentNameTable}.equip_index" +
-           $"LEFT JOIN {EquipmentPartTable}" +
-           $"ON {EquipmentTable}.equip_part_index = {EquipmentPartTable}.equip_part_index" +
-           $"LEFT JOIN {EquipmentStatTable}" +
-           $"ON {EquipmentTable}.equip_index = {EquipmentStatTable}.equip_index" +
-           $"LEFT JOIN {EquipmentDescribeTable}" +
-           $"ON {EquipmentTable}.equip_index = {EquipmentDescribeTable}.equip_index"+
+           $"SELECT " +
+           $"{EquipmentTable}.equip_index AS 'equip_index', " +
+           $"{EquipmentNameTable}.ko_KR AS 'name', " +
+           $"{EquipmentPartTable}.ko_KR AS 'part', " +
+           $"{IllustTable}.image_path AS 'image_path', " +
+           $"{EquipmentTable}.equip_effect AS 'equip_effect', " +
+           $"{EquipmentTable}.parent AS 'parent', " +
+           $"{EquipmentStatTable}.stat_hp as 'stat_hp', " +
+           $"{EquipmentStatTable}.stat_str as 'stat_str', " +
+           $"{EquipmentStatTable}.stat_int as 'stat_int', " +
+           $"{EquipmentStatTable}.stat_dex as 'stat_dex', " +
+           $"{EquipmentDescribeTable}.ko_KR as 'describe' " +
+           $"FROM {EquipmentTable} " +
+           $"LEFT JOIN {EquipmentNameTable} " +
+           $"ON {EquipmentTable}.equip_index = {EquipmentNameTable}.equip_index " +
+           $"LEFT JOIN {EquipmentPartTable} " +
+           $"ON {EquipmentTable}.equip_part_index = {EquipmentPartTable}.equip_part_index " +
+           $"LEFT JOIN {EquipmentStatTable} " +
+           $"ON {EquipmentTable}.equip_index = {EquipmentStatTable}.equip_index " +
+           $"LEFT JOIN {EquipmentDescribeTable} " +
+           $"ON {EquipmentTable}.equip_index = {EquipmentDescribeTable}.equip_index" +
+		   $"LEFT JOIN {IllustTable}" +
+		   $"ON {EquipmentTable}.illust_index = {IllustTable}.illust_index" +
            $"WHERE {EquipmentTable}.equip_index = {EquipmentIndex}";
 
         ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
