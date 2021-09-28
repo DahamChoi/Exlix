@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Event : MonoBehaviour
+public class Event
 {
     public int eventIndex;
     public Sentence startSentence;

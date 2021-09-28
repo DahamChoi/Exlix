@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Mono.Data.Sqlite;
+
 public class PortraitDao {
     private static readonly string PortraitTable = "portrait";
     private static readonly string PortraitNameTable = "portrait_name";
