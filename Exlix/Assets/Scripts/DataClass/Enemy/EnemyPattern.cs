@@ -2,17 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyPattern : MonoBehaviour
+public class EnemyPattern
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public string patternType;
+    public string patternPath;
 }
