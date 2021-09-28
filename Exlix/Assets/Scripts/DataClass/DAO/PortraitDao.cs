@@ -17,7 +17,7 @@ public class PortraitDao {
         $"LEFT JOIN {PortraitNameTable} "+
         $"ON {PortraitTable}.portrait_index = {PortraitNameTable}.portrait_index "+
         $"LEFT JOIN {IllustTable} " +
-        $"ON {PortraitTable}.illust_number = {IllustTable}.illust_index " +
+        $"ON {PortraitTable}.illust_index = {IllustTable}.illust_index " +
         $"WHERE portrait_index = {portraitIndex}";
 
         ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
@@ -44,7 +44,7 @@ public class PortraitDao {
        $"LEFT JOIN {PortraitNameTable} " +
        $"ON {PortraitTable}.portrait_index = {PortraitNameTable}.portrait_index " +
        $"LEFT JOIN {IllustTable} " +
-       $"ON {PortraitTable}.illust_number = {IllustTable}.illust_index";
+       $"ON {PortraitTable}.illust_index = {IllustTable}.illust_index";
 
         ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
 
