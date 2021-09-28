@@ -13,9 +13,10 @@ public class EquipmentRewardDao
        $"{EquipmentRewardTable}.equipment_reward_index AS 'equipment_reward_index'," +
        $"{EquipmentRewardTable}.equipment_index AS 'equipment_index'," +
        $"{EquipmentRewardProbabilityTable}.probability AS 'probability'" +
-       $"FROM {EquipmentRewardTable} WHERE {EquipmentRewardTable}.equipment_reward_index = {rewardIndex}" +
+       $"FROM {EquipmentRewardTable} " +
        $"LEFT JOIN {EquipmentRewardProbabilityTable}" +
-       $"ON {EquipmentRewardTable}.probability_index = {EquipmentRewardProbabilityTable}.probability_index";
+       $"ON {EquipmentRewardTable}.probability_index = {EquipmentRewardProbabilityTable}.probability_index" +
+       $"WHERE {EquipmentRewardTable}.equipment_reward_index = {rewardIndex}";
 
         ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
 
