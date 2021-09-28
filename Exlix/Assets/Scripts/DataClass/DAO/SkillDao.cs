@@ -21,7 +21,7 @@ public class SkillDao {
               $"LEFT JOIN {SkillNameTable} " +
               $"ON {SkillTable}.skill_index = {SkillNameTable}.skill_index " +
               $"LEFT JOIN {IllustTable}" +
-              $"ON {IllustTable}.illust_index = {IllustTable}.illust_index" +
+              $"ON {SkillTable}.illust_index = {IllustTable}.illust_index" +
               $"LEFT JOIN {SkillDescribeTable} " +
               $"ON {SkillTable}.skill_index = {SkillDescribeTable}.skill_index";
 

@@ -9,4 +9,5 @@ public class EventSelection
     public Sentence nextSentence;
     public StatRequire requirement;
     public SelectionReward reward;
+    public SelectionText text;
 }
