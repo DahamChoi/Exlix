@@ -30,7 +30,7 @@ public class CardRewardDao
 
         //Card cardReward = new Card();
         //int cardIndex = it.GetSafeValue<int>(2);
-        //reward.cardReward = CardDaO.GetCard(cardIndex);
+        //reward.cardReward = CardDao.GetCard(cardIndex);
 
         reward.probability = it.GetSafeValue<int>(3);
 
