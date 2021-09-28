@@ -36,5 +36,4 @@ public class CardRewardDao
 
         return reward;
     }
-
 }

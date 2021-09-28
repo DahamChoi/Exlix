@@ -9,7 +9,7 @@ public class EndingDao
     private static readonly string EndingDescribeTable = "ending_describe";
     private static readonly string IllustTable = "illust";
 
-    public static Ending GetEnding() {
+    public static Ending GetEnding(int endingIndex) {
         string query =
             $"SELECT " +
             $"{EndingTable}.ending_index AS 'ending_index', " +
@@ -22,10 +22,11 @@ public class EndingDao
             $"LEFT JOIN {EndingDescribeTable} " +
             $"ON {EndingTable}.ending_index = {EndingDescribeTable}.ending_index " +
             $"LEFT JOIN {IllustTable} " +
-            $"ON {EndingTable}.illust_index = {IllustTable}.illust_index";
+            $"ON {EndingTable}.illust_index = {IllustTable}.illust_index"+
+            $"WHERE {EndingTable}.ending_index = {endingIndex}";
 
         ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
-        
+
         if (false == it.Read()) {
             return default;
         }
@@ -39,4 +40,5 @@ public class EndingDao
 
         return ending;
     }
+
 }
