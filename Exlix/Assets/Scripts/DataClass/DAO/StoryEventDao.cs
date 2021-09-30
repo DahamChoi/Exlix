@@ -13,15 +13,15 @@ public class StoryEventDao {
             $"SELECT" +
             $"{EventTable}.story_event_index AS 'story_event_index'," +
             $"{EventTable}.start_sentence_index AS 'start_sentence_index'," +
-            $"{EventTypeTable}.ko_KR AS 'story_event_type'" +
-            $"{EventTable}.story_event_level AS 'story_event_level'" +
+            $"{EventTypeTable}.ko_KR AS 'story_event_type'," +
+            $"{EventTable}.story_event_level AS 'story_event_level'," +
             $"{RegionTable}.ko_KR AS 'story_event_region'" +
             $"FROM {EventTable} " +
             $"LEFT JOIN {EventTypeTable}" +
             $"ON {EventTable}.story_event_type_index = {EventTypeTable}.story_event_type_index" +
             $"LEFT JOIN {RegionTable}" +
             $"ON {EventTable}.story_event_region_index = {RegionTable}.story_event_region_index" +
-            $"WHERE {EventTable}.equipment_reward_index = {eventIndex}";
+            $"WHERE {EventTable}.story_event_index = {eventIndex}";
 
         ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
 
