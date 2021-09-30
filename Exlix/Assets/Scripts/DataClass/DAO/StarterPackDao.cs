@@ -33,12 +33,19 @@ public class StarterPackDao
             $"ON {IllustTable}.illust_index = {IllustTable}.illust_index" + 
             $"WHERE {StarterPackTable}.starter_pack_index = {index}";
 
-        StarterPack starterPack = new StarterPack();
         ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
-        
-        //starterPack.cardList = it.GetSafeValue<>
-        //starterPack.name = it.GetSafeValue<string>(3);
 
+        if (false == it.Read()) {
+            return default;
+        }
+
+        StarterPack starterPack = new StarterPack();
+        //starterPack.cardList = it.GetSafeValue<1>
+        starterPack.name.textKr = it.GetSafeValue<string>(2);
+        starterPack.describe.textKr = it.GetSafeValue<string>(3);
+        starterPack.Illust.imagePath = it.GetSafeValue<string>(4);
+        starterPack.requirement.IsUnlocked = it.GetSafeValue<bool>(5);
+        starterPack.describe.textKr = it.GetSafeValue<string>(6);
 
         return starterPack;
     }
