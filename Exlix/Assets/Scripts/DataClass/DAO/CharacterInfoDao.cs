@@ -24,13 +24,20 @@ public class CharacterInfoDao
 
         CharacterInfo characterInfo = new CharacterInfo();
 
-        //수정 필요
-        characterInfo.setEquipment(ENUM_EQUIPMENT_PART.HEAD,EquipmentDao.GetEquipment(it.GetSafeValue<int>(3)));
-        characterInfo.setEquipment(ENUM_EQUIPMENT_PART.SHIRT, EquipmentDao.GetEquipment(it.GetSafeValue<int>(4)));
-        characterInfo.setEquipment(ENUM_EQUIPMENT_PART.PANTS, EquipmentDao.GetEquipment(it.GetSafeValue<int>(5)));
-        characterInfo.setEquipment(ENUM_EQUIPMENT_PART.WEAPON, EquipmentDao.GetEquipment(it.GetSafeValue<int>(6)));
-        characterInfo.setEquipment(ENUM_EQUIPMENT_PART.TRINKET, EquipmentDao.GetEquipment(it.GetSafeValue<int>(7)));
-        characterInfo.setEquipment(ENUM_EQUIPMENT_PART.ETC, EquipmentDao.GetEquipment(it.GetSafeValue<int>(8)));
+        //character_card_list
+        CharacterCardList characterCardList = CharacterCardListDao.GetCharacterCardList(CharacterInfoIndex);
+        characterInfo.cardList = characterCardList.cardList;
+        characterInfo.achieveCardList = characterCardList.achieveCardList;
+
+        //character_equip
+        CharacterEquip characterEquip = CharacterEquipDao.GetCharacterEquip(CharacterInfoIndex);
+
+        characterInfo.setEquipment(ENUM_EQUIPMENT_PART.HEAD,EquipmentDao.GetEquipment(characterEquip.currentEquipmentHead));
+        characterInfo.setEquipment(ENUM_EQUIPMENT_PART.SHIRT, EquipmentDao.GetEquipment(characterEquip.currentEquipmentShirt));
+        characterInfo.setEquipment(ENUM_EQUIPMENT_PART.PANTS, EquipmentDao.GetEquipment(characterEquip.currentEquipmentPants));
+        characterInfo.setEquipment(ENUM_EQUIPMENT_PART.WEAPON, EquipmentDao.GetEquipment(characterEquip.currentEquipmentWeapon));
+        characterInfo.setEquipment(ENUM_EQUIPMENT_PART.TRINKET, EquipmentDao.GetEquipment(characterEquip.currentEquipmentTrinket));
+        characterInfo.setEquipment(ENUM_EQUIPMENT_PART.ETC, EquipmentDao.GetEquipment(characterEquip.currentEquipmentEtc));
 
         //character_status
         CharacterStatus status = CharacterStatusDao.GetCharacterStatus();
@@ -52,30 +59,27 @@ public class CharacterInfoDao
         characterInfo.maxMp = battleStatus.mp;
         characterInfo.currentMp = battleStatus.current_mp;
 
-        //area는 추후에 추가
-        
-        //UnlockedEquipmentList
-        List<int> unlockedEquipmentList = new List<int>();
-
-        unlockedEquipmentList = it.GetTextValueToList(25);
-        for(int i=0; i<unlockedEquipmentList.Count; i++) {
-            Equipment equip = EquipmentDao.GetEquipment(unlockedEquipmentList[i]);
-            characterInfo.unlockedEquipmentList.Add(equip);    
-        }
-
-        //unlockedSkillList
-        List<int> unlockedSkillList = new List<int>();
-        unlockedEquipmentList = it.GetTextValueToList(26);
-        for(int i=0; i<unlockedSkillList.Count; i++) {
-            Skill skill = SkillDao.GetSelectedSkill(unlockedSkillList[i]);
-            characterInfo.unlockedSkillList.Add(skill);
-        }
+        //character_unlockList
+        CharacterUnlockList unlockList = CharacterUnlockListDao.GetCharacterUnlockList(CharacterInfoIndex);
+        characterInfo.unlockedSkillList = unlockList.unlockedSkillList;
+        characterInfo.unlockedEquipmentList = unlockList.unlockedEquipmentList;
+        characterInfo.clearedAreaList = unlockList.clearedAreaList;
 
         //Portrait
-        int PortraitNumber = it.GetSafeValue<int>(9);
-        characterInfo.portrait = PortraitDao.GetSelectedPortrait(PortraitNumber);
+        int PortraitNumber = it.GetSafeValue<int>(4);
+        Portrait portrait = PortraitDao.GetSelectedPortrait(PortraitNumber);
+        characterInfo.portrait = portrait;
 
-        //starterPack 추후 추가
+        //Skill
+        int skillNumber = it.GetSafeValue<int>(2);
+        Skill skill = SkillDao.GetSelectedSkill(skillNumber);
+        characterInfo.characterSkill = skill;
+
+        //starter_pack
+        int starterPackNumber = it.GetSafeValue<int>(3);
+        StarterPack starterPack = StarterPackDao.GetStarterPack(starterPackNumber);
+        characterInfo.starterPack = starterPack;
+
         return characterInfo;   
     }
 }

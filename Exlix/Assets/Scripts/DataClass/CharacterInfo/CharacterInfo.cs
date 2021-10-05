@@ -22,7 +22,9 @@ public class CharacterInfo
     public int currentMp;
     public int skillPoint;
     public int statusPoint;
-    // public List<Area> clearedAreaList;
+    public List<Card> cardList;
+    public List<Card> achieveCardList;
+    public List<Area> clearedAreaList;
     public List<Equipment> unlockedEquipmentList;
     public List<Skill> unlockedSkillList;
 

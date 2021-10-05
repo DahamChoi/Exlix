@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterUnlockList 
 {
-    //List<Area> clearedAreaList;
-    List<Equipment> unlockedEquipmentList;
-    List<Skill> unlockedSkillList;
+   public List<Area> clearedAreaList;
+   public List<Equipment> unlockedEquipmentList;
+   public List<Skill> unlockedSkillList;
 }
