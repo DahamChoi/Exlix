@@ -1,21 +1,26 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mono.Data.Sqlite;
 
 public class CharacterInfoDao
 {
-    private static readonly string CharacterInfoTableName = "character_info";
     private static readonly int CharacterInfoIndex = 1;
 
     public static void UpdatePlayerInfo(CharacterInfo info) {
-       // string query =
-            //$"UPDATE {} SET"
+        string query =
+            $"UPDATE {DataBaseTableDefine.CharacterInfoTableName} SET"
+            ;
+
+        //CharacterInfo
+        CharacterInfo characterInfo = new CharacterInfo();
+        //
+        
     }
 
     public static CharacterInfo GetCharacterInfo() {
         string query =
-            $"SELECT* FROM {CharacterInfoTableName} WHERE character_index = {CharacterInfoIndex}";
+            $"SELECT* FROM {DataBaseTableDefine.CharacterInfoTableName} WHERE character_index = {CharacterInfoIndex}";
         ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
 
         if(false == it.Read()) {

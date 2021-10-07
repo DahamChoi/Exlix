@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class CollectionDao
 {
-    private static readonly string CollectionTable = "collection";
-
     public static Collection GetCollection() {
         string query =
            $"SELECT" +
-           $"{CollectionTable}.collection_card_list AS 'collection_card_list'," +
-           $"{CollectionTable}.collection_ending_list AS 'collection_ending_list'," +
-           $"{CollectionTable}.collection_enemy_list AS 'collection_enemy_list'" +
+           $"{DataBaseTableDefine.CollectionTable}.collection_card_list AS 'collection_card_list'," +
+           $"{DataBaseTableDefine.CollectionTable}.collection_ending_list AS 'collection_ending_list'," +
+           $"{DataBaseTableDefine.CollectionTable}.collection_enemy_list AS 'collection_enemy_list'" +
            $"FROM collection";
 
         ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);

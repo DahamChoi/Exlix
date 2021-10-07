@@ -4,39 +4,32 @@ using UnityEngine;
 
 public class AreaDao
 {
-    private static readonly string AreaTable = "area";
-    private static readonly string AreaEnvironmentTable = "area_environment";
-    private static readonly string AreaDescribeTable = "area_describe";
-    private static readonly string AreaProbabilityTable = "area_probability";
-    private static readonly string AreaNameTable = "area_name";
-    private static readonly string IllustTable = "illust";
-
     public static Area GetArea(int AreaIndex) {
         string query =
             $"SELECT" +
-            $"{AreaTable}.area_index AS 'area_index'," +
-            $"{AreaTable}.level AS 'level'," +
-            $"{AreaTable}.essential_event_list AS 'essential_event_list'," +
-            $"{AreaTable}.parent AS 'parent'," +
-            $"{IllustTable}.image_path AS 'image_path'," +
-            $"{AreaEnvironmentTable}.ko_KR AS 'area_environment'," +
-            $"{AreaDescribeTable}.ko_KR AS 'area_describe'," +
-            $"{AreaProbabilityTable}.main_probability AS 'main_probability'," +
-            $"{AreaProbabilityTable}.area_probability AS 'area_probability'," +
-            $"{AreaProbabilityTable}.sub_probability AS 'sub_probability'," +
-            $"{AreaNameTable}.ko_KR AS 'area_name'" +
-            $"FROM {AreaTable} "+
-            $"LEFT JOIN {AreaEnvironmentTable} "+
-            $"ON {AreaTable}.environment_index = {AreaEnvironmentTable}.environment_index" +
-            $"LEFT JOIN {AreaDescribeTable} "+
-            $"ON {AreaTable}.area_index = {AreaDescribeTable}.area_index" +
-            $"LEFT JOIN {AreaProbabilityTable} "+
-            $"ON {AreaTable}.area_index = {AreaProbabilityTable}.area_index" +
-            $"LEFT JOIN {AreaNameTable} "+
-            $"ON {AreaTable}.area_index = {AreaNameTable}.area_index" +
-            $"LEFT JOIN {IllustTable} "+
-            $"ON {AreaTable}.illust_index = {IllustTable}.illust_index" +
-            $"WHERE {AreaTable}.area_index = {AreaIndex}";
+            $"{DataBaseTableDefine.AreaTable}.area_index AS 'area_index'," +
+            $"{DataBaseTableDefine.AreaTable}.level AS 'level'," +
+            $"{DataBaseTableDefine.AreaTable}.essential_event_list AS 'essential_event_list'," +
+            $"{DataBaseTableDefine.AreaTable}.parent AS 'parent'," +
+            $"{DataBaseTableDefine.IllustTable}.image_path AS 'image_path'," +
+            $"{DataBaseTableDefine.AreaEnvironmentTable}.ko_KR AS 'area_environment'," +
+            $"{DataBaseTableDefine.AreaDescribeTable}.ko_KR AS 'area_describe'," +
+            $"{DataBaseTableDefine.AreaProbabilityTable}.main_probability AS 'main_probability'," +
+            $"{DataBaseTableDefine.AreaProbabilityTable}.area_probability AS 'area_probability'," +
+            $"{DataBaseTableDefine.AreaProbabilityTable}.sub_probability AS 'sub_probability'," +
+            $"{DataBaseTableDefine.AreaNameTable}.ko_KR AS 'area_name'" +
+            $"FROM {DataBaseTableDefine.AreaTable} "+
+            $"LEFT JOIN {DataBaseTableDefine.AreaEnvironmentTable} "+
+            $"ON {DataBaseTableDefine.AreaTable}.environment_index = {DataBaseTableDefine.AreaEnvironmentTable}.environment_index" +
+            $"LEFT JOIN {DataBaseTableDefine.AreaDescribeTable} "+
+            $"ON {DataBaseTableDefine.AreaTable}.area_index = {DataBaseTableDefine.AreaDescribeTable}.area_index" +
+            $"LEFT JOIN {DataBaseTableDefine.AreaProbabilityTable} "+
+            $"ON {DataBaseTableDefine.AreaTable}.area_index = {DataBaseTableDefine.AreaProbabilityTable}.area_index" +
+            $"LEFT JOIN {DataBaseTableDefine.AreaNameTable} "+
+            $"ON {DataBaseTableDefine.AreaTable}.area_index = {DataBaseTableDefine.AreaNameTable}.area_index" +
+            $"LEFT JOIN {DataBaseTableDefine.IllustTable} "+
+            $"ON {DataBaseTableDefine.AreaTable}.illust_index = {DataBaseTableDefine.IllustTable}.illust_index" +
+            $"WHERE {DataBaseTableDefine.AreaTable}.area_index = {AreaIndex}";
 
         ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
 

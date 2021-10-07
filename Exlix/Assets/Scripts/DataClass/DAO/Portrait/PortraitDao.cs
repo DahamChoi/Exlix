@@ -4,21 +4,17 @@ using UnityEngine;
 using Mono.Data.Sqlite;
 
 public class PortraitDao {
-    private static readonly string PortraitTable = "portrait";
-    private static readonly string PortraitNameTable = "portrait_name";
-    private static readonly string IllustTable = "illust";
-
     public static Portrait GetSelectedPortrait(int portraitIndex) {
         string query = $"SELECT " +
-        $"{PortraitTable}.portrait_index AS 'portrait_index', " +
-        $"{PortraitNameTable}.ko_KR AS 'portrait_name', "+
-        $"{IllustTable}.illust_index AS 'illust_index', " +
-        $"{IllustTable}.image_path AS 'image_path' " +
-        $"FROM {PortraitTable} " +
-        $"LEFT JOIN {PortraitNameTable} "+
-        $"ON {PortraitTable}.portrait_index = {PortraitNameTable}.portrait_index "+
-        $"LEFT JOIN {IllustTable} " +
-        $"ON {PortraitTable}.illust_index = {IllustTable}.illust_index " +
+        $"{DataBaseTableDefine.PortraitTable}.portrait_index AS 'portrait_index', " +
+        $"{DataBaseTableDefine.PortraitNameTable}.ko_KR AS 'portrait_name', "+
+        $"{DataBaseTableDefine.IllustTable}.illust_index AS 'illust_index', " +
+        $"{DataBaseTableDefine.IllustTable}.image_path AS 'image_path' " +
+        $"FROM {DataBaseTableDefine.PortraitTable} " +
+        $"LEFT JOIN {DataBaseTableDefine.PortraitNameTable} "+
+        $"ON {DataBaseTableDefine.PortraitTable}.portrait_index = {DataBaseTableDefine.PortraitNameTable}.portrait_index "+
+        $"LEFT JOIN {DataBaseTableDefine.IllustTable} " +
+        $"ON {DataBaseTableDefine.PortraitTable}.illust_index = {DataBaseTableDefine.IllustTable}.illust_index " +
         $"WHERE portrait_index = {portraitIndex}";
 
         ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
@@ -37,15 +33,15 @@ public class PortraitDao {
 
     public static List<Portrait> GetPortraitList() {
         string query = $"SELECT " +
-       $"{PortraitTable}.portrait_index AS 'portrait_index', " +
-       $"{PortraitNameTable}.ko_KR AS 'portrait_name', " +
-       $"{IllustTable}.illust_index AS 'illust_index', " +
-       $"{IllustTable}.image_path AS 'image_path' " +
-       $"FROM {PortraitTable} " +
-       $"LEFT JOIN {PortraitNameTable} " +
-       $"ON {PortraitTable}.portrait_index = {PortraitNameTable}.portrait_index " +
-       $"LEFT JOIN {IllustTable} " +
-       $"ON {PortraitTable}.illust_index = {IllustTable}.illust_index";
+       $"{DataBaseTableDefine.PortraitTable}.portrait_index AS 'portrait_index', " +
+       $"{DataBaseTableDefine.PortraitNameTable}.ko_KR AS 'portrait_name', " +
+       $"{DataBaseTableDefine.IllustTable}.illust_index AS 'illust_index', " +
+       $"{DataBaseTableDefine.IllustTable}.image_path AS 'image_path' " +
+       $"FROM {DataBaseTableDefine.PortraitTable} " +
+       $"LEFT JOIN {DataBaseTableDefine.PortraitNameTable} " +
+       $"ON {DataBaseTableDefine.PortraitTable}.portrait_index = {DataBaseTableDefine.PortraitNameTable}.portrait_index " +
+       $"LEFT JOIN {DataBaseTableDefine.IllustTable} " +
+       $"ON {DataBaseTableDefine.PortraitTable}.illust_index = {DataBaseTableDefine.IllustTable}.illust_index";
 
         ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
 

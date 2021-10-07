@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class CardRewardDao
 {
-    private static readonly string CardRewardTable = "card_reward";
-    private static readonly string CardRewardProbability = "card_reward_probability";
     public static CardReward GetCardReward(int rewardIndex) {
         string query =
             $"SELECT" +
-            $"{CardRewardTable}.card_reward_index AS 'card_reward_index'," +
-            $"{CardRewardTable}.card_number AS 'card_number'," +
-            $"{CardRewardProbability}.probability AS 'probability'" +
-            $"FROM {CardRewardTable} "+
-            $"LEFT JOIN {CardRewardProbability} "+
-            $"ON {CardRewardTable}.probability_index = {CardRewardProbability}.probability_index" +
-            $"WHERE {CardRewardTable}.card_reward_index = {rewardIndex}";
+            $"{DataBaseTableDefine.CardRewardTable}.card_reward_index AS 'card_reward_index'," +
+            $"{DataBaseTableDefine.CardRewardTable}.card_number AS 'card_number'," +
+            $"{DataBaseTableDefine.CardRewardProbability}.probability AS 'probability'" +
+            $"FROM {DataBaseTableDefine.CardRewardTable} "+
+            $"LEFT JOIN {DataBaseTableDefine.CardRewardProbability} "+
+            $"ON {DataBaseTableDefine.CardRewardTable}.probability_index = {DataBaseTableDefine.CardRewardProbability}.probability_index" +
+            $"WHERE {DataBaseTableDefine.CardRewardTable}.card_reward_index = {rewardIndex}";
 
 
         ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);

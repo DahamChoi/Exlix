@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class CharacterStatusDao 
 {
-    private static readonly string StatusTable = "character_status";
     public static CharacterStatus GetCharacterStatus() {
         string query =
         $"SELECT" +
-        $"{StatusTable}.name AS 'name'," +
-        $"{StatusTable}.gold AS 'gold'," +
-        $"{StatusTable}.level AS 'level'," +
-        $"{StatusTable}.exp AS 'exp'," +
-        $"{StatusTable}.skill_point AS 'skill_point'," +
-        $"{StatusTable}.status_point AS 'status_point'" +
-        $"FROM {StatusTable} WHERE {StatusTable}.character_index = 1";
+        $"{DataBaseTableDefine.StatusTable}.name AS 'name'," +
+        $"{DataBaseTableDefine.StatusTable}.gold AS 'gold'," +
+        $"{DataBaseTableDefine.StatusTable}.level AS 'level'," +
+        $"{DataBaseTableDefine.StatusTable}.exp AS 'exp'," +
+        $"{DataBaseTableDefine.StatusTable}.skill_point AS 'skill_point'," +
+        $"{DataBaseTableDefine.StatusTable}.status_point AS 'status_point'" +
+        $"FROM {DataBaseTableDefine.StatusTable} WHERE {DataBaseTableDefine.StatusTable}.character_index = 1";
 
         ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
 

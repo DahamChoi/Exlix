@@ -4,19 +4,16 @@ using UnityEngine;
 
 public class BattleDao
 {
-    private static readonly string BattleTable = "battle";
-    private static readonly string BattleFieldTable = "battlefield";
-
     public static Battle GetBattle(int battleIndex) {
         string query =
             $"SELECT" +
-            $"{BattleTable}.enemy_list AS 'enemy_list'," +
-            $"{BattleFieldTable}.illust_index AS 'illust_index'," +
-            $"{BattleFieldTable}.bgm_path AS 'bgm_path'" +
-            $"FROM {BattleTable}" +
-            $"LEFT JOIN {BattleFieldTable}" +
-            $"ON {BattleTable}.battlefield_index = {BattleFieldTable}.battlefield_index" +
-            $"WHERE {BattleTable}.battle_index = {battleIndex}";
+            $"{DataBaseTableDefine.BattleTable}.enemy_list AS 'enemy_list'," +
+            $"{DataBaseTableDefine.BattleFieldTable}.illust_index AS 'illust_index'," +
+            $"{DataBaseTableDefine.BattleFieldTable}.bgm_path AS 'bgm_path'" +
+            $"FROM {DataBaseTableDefine.BattleTable}" +
+            $"LEFT JOIN {DataBaseTableDefine.BattleFieldTable}" +
+            $"ON {DataBaseTableDefine.BattleTable}.battlefield_index = {DataBaseTableDefine.BattleFieldTable}.battlefield_index" +
+            $"WHERE {DataBaseTableDefine.BattleTable}.battle_index = {battleIndex}";
 
         ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
 

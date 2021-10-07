@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class CharacterUnlockListDao
 {
-    private static readonly string CharacterUnlockListTableName = "character_unlocklist";
-
     public static CharacterUnlockList GetCharacterUnlockList(int characterIndex) {
         string query =
-          $"SELECT * FROM {CharacterUnlockListTableName} WHERE {CharacterUnlockListTableName}.character_index = {characterIndex}";
+          $"SELECT * FROM {DataBaseTableDefine.CharacterUnlockListTableName} WHERE {DataBaseTableDefine.CharacterUnlockListTableName}.character_index = {characterIndex}";
        
         ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
 

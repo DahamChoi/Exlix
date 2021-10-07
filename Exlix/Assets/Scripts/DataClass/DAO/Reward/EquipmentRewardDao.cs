@@ -4,19 +4,16 @@ using UnityEngine;
 
 public class EquipmentRewardDao
 {
-    private static readonly string EquipmentRewardTable = "equipment_reward";
-    private static readonly string EquipmentRewardProbabilityTable = "equipment_reward_probability";
-
     public static EquipmentReward GetEquipmentReward(int rewardIndex) {
         string query =
        $"SELECT" +
-       $"{EquipmentRewardTable}.equipment_reward_index AS 'equipment_reward_index'," +
-       $"{EquipmentRewardTable}.equipment_index AS 'equipment_index'," +
-       $"{EquipmentRewardProbabilityTable}.probability AS 'probability'" +
-       $"FROM {EquipmentRewardTable} " +
-       $"LEFT JOIN {EquipmentRewardProbabilityTable}" +
-       $"ON {EquipmentRewardTable}.probability_index = {EquipmentRewardProbabilityTable}.probability_index" +
-       $"WHERE {EquipmentRewardTable}.equipment_reward_index = {rewardIndex}";
+       $"{DataBaseTableDefine.EquipmentRewardTable}.equipment_reward_index AS 'equipment_reward_index'," +
+       $"{DataBaseTableDefine.EquipmentRewardTable}.equipment_index AS 'equipment_index'," +
+       $"{DataBaseTableDefine.EquipmentRewardProbabilityTable}.probability AS 'probability'" +
+       $"FROM {DataBaseTableDefine.EquipmentRewardTable} " +
+       $"LEFT JOIN {DataBaseTableDefine.EquipmentRewardProbabilityTable}" +
+       $"ON {DataBaseTableDefine.EquipmentRewardTable}.probability_index = {DataBaseTableDefine.EquipmentRewardProbabilityTable}.probability_index" +
+       $"WHERE {DataBaseTableDefine.EquipmentRewardTable}.equipment_reward_index = {rewardIndex}";
 
         ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
 

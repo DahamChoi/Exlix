@@ -4,20 +4,18 @@ using UnityEngine;
 
 public class CharacterBattleStatusDao : MonoBehaviour
 {
-    private static readonly string BattleStatusTable = "character_battle_status";
-
     public static CharacterBattleStatus GetCharacterBattleStatus() {
         string query =
             $"SELECT" +
-            $"{BattleStatusTable}.stat_hp AS 'stat_hp'," +
-            $"{BattleStatusTable}.stat_str AS 'stat_str'," +
-            $"{BattleStatusTable}.stat_int AS 'stat_int'," +
-            $"{BattleStatusTable}.stat_dex AS 'stat_dex'," +
-            $"{BattleStatusTable}.hp AS 'hp'," +
-            $"{BattleStatusTable}.current_hp AS 'current_hp'," +
-            $"{BattleStatusTable}.mp AS 'mp'," +
-            $"{BattleStatusTable}.current_mp AS 'current_mp'" +
-            $"FROM {BattleStatusTable} WHERE {BattleStatusTable}.character_index = 1";
+            $"{DataBaseTableDefine.BattleStatusTable}.stat_hp AS 'stat_hp'," +
+            $"{DataBaseTableDefine.BattleStatusTable}.stat_str AS 'stat_str'," +
+            $"{DataBaseTableDefine.BattleStatusTable}.stat_int AS 'stat_int'," +
+            $"{DataBaseTableDefine.BattleStatusTable}.stat_dex AS 'stat_dex'," +
+            $"{DataBaseTableDefine.BattleStatusTable}.hp AS 'hp'," +
+            $"{DataBaseTableDefine.BattleStatusTable}.current_hp AS 'current_hp'," +
+            $"{DataBaseTableDefine.BattleStatusTable}.mp AS 'mp'," +
+            $"{DataBaseTableDefine.BattleStatusTable}.current_mp AS 'current_mp'" +
+            $"FROM {DataBaseTableDefine.BattleStatusTable} WHERE {DataBaseTableDefine.BattleStatusTable}.character_index = 1";
         ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
         if (false == it.Read()) {
             return default;

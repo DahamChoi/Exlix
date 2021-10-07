@@ -4,20 +4,17 @@ using UnityEngine;
 
 public class EnemyDao
 {
-    private static readonly string EnemyTable = "enemy";
-    private static readonly string EnemyNameTable = "enemy_name";
-
     public static Enemy GetEnemy(int enemyIndex) {
         string query =
             $"SELECT" +
-           $"{EnemyTable}.hp AS 'hp'," +
-           $"{EnemyNameTable} AS 'name'," +
-           $"{EnemyTable}.enemy_pattern_list AS 'enemy_pattern_list'," +
-           $"{EnemyTable}.illust_index AS 'illust_index'" +
-           $"FROM {EnemyTable}" +
-           $"LEFT JOIN {EnemyNameTable}" +
-           $"ON {EnemyTable}.enemy_index ={EnemyNameTable}.enemy_index" +
-           $"WHERE {EnemyTable}.enemy_index = {enemyIndex}";
+           $"{DataBaseTableDefine.EnemyTable}.hp AS 'hp'," +
+           $"{DataBaseTableDefine.EnemyNameTable} AS 'name'," +
+           $"{DataBaseTableDefine.EnemyTable}.enemy_pattern_list AS 'enemy_pattern_list'," +
+           $"{DataBaseTableDefine.EnemyTable}.illust_index AS 'illust_index'" +
+           $"FROM {DataBaseTableDefine.EnemyTable}" +
+           $"LEFT JOIN {DataBaseTableDefine.EnemyNameTable}" +
+           $"ON {DataBaseTableDefine.EnemyTable}.enemy_index ={DataBaseTableDefine.EnemyNameTable}.enemy_index" +
+           $"WHERE {DataBaseTableDefine.EnemyTable}.enemy_index = {enemyIndex}";
 
         ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
 

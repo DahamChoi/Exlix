@@ -5,35 +5,29 @@ using Mono.Data.Sqlite;
 
 public class CardDao
 {
-    private static readonly string CardTable = "card";
-    private static readonly string CardFactionTable = "card_faction";
-    private static readonly string CardTypeTable = "card_type";
-    private static readonly string CardNameTable = "card_name";
-    private static readonly string CardDescribeTable = "card_describe";
-    private static readonly string IllustTable = "illust";
     public static Card GetCard(int CardIndex) {
         string query =
             $"SELECT" +
-            $"{CardTable}.card_index AS 'card_index'," +
-            $"{CardTable}.cost AS 'cost'," +
-            $"{CardTable}.card_effect AS 'card_effect'," +
-            $"{IllustTable}.illust_index AS 'image_path'," +
-            $"{CardFactionTable}.ko_KR AS 'faction'," +
-            $"{CardTypeTable}.ko_KR AS 'type'," +
-            $"{CardNameTable}.ko_KR AS 'name'," +
-            $"{CardDescribeTable}.ko_KR AS 'describe'" +
-            $"FROM {CardTable}" +
-            $"LEFT JOIN {CardFactionTable}" +
-            $"ON {CardTable}.card_faction_index = {CardFactionTable}.card_faction_index" +
-            $"LEFT JOIN {CardTypeTable}" +
-            $"ON {CardTable}.card_type_index = {CardTypeTable}.card_type_index" +
-            $"LEFT JOIN {CardNameTable}" +
-            $"ON {CardTable}.card_index = {CardNameTable}.card_index" +
-            $"LEFT JOIN {CardDescribeTable}" +
-            $"ON {CardTable}.card_index = {CardDescribeTable}.card_index" +
-            $"LEFT JOIN {IllustTable}" +
-            $"ON {CardTable}.illust_index = {IllustTable}.illust_index" +
-            $"WHERE {CardTable}.card_index = {CardIndex}";
+            $"{DataBaseTableDefine.CardTable}.card_index AS 'card_index'," +
+            $"{DataBaseTableDefine.CardTable}.cost AS 'cost'," +
+            $"{DataBaseTableDefine.CardTable}.card_effect AS 'card_effect'," +
+            $"{DataBaseTableDefine.IllustTable}.illust_index AS 'image_path'," +
+            $"{DataBaseTableDefine.CardFactionTable}.ko_KR AS 'faction'," +
+            $"{DataBaseTableDefine.CardTypeTable}.ko_KR AS 'type'," +
+            $"{DataBaseTableDefine.CardNameTable}.ko_KR AS 'name'," +
+            $"{DataBaseTableDefine.CardDescribeTable}.ko_KR AS 'describe'" +
+            $"FROM {DataBaseTableDefine.CardTable}" +
+            $"LEFT JOIN {DataBaseTableDefine.CardFactionTable}" +
+            $"ON {DataBaseTableDefine.CardTable}.card_faction_index = {DataBaseTableDefine.CardFactionTable}.card_faction_index" +
+            $"LEFT JOIN {DataBaseTableDefine.CardTypeTable}" +
+            $"ON {DataBaseTableDefine.CardTable}.card_type_index = {DataBaseTableDefine.CardTypeTable}.card_type_index" +
+            $"LEFT JOIN {DataBaseTableDefine.CardNameTable}" +
+            $"ON {DataBaseTableDefine.CardTable}.card_index = {DataBaseTableDefine.CardNameTable}.card_index" +
+            $"LEFT JOIN {DataBaseTableDefine.CardDescribeTable}" +
+            $"ON {DataBaseTableDefine.CardTable}.card_index = {DataBaseTableDefine.CardDescribeTable}.card_index" +
+            $"LEFT JOIN {DataBaseTableDefine.IllustTable}" +
+            $"ON {DataBaseTableDefine.CardTable}.illust_index = {DataBaseTableDefine.IllustTable}.illust_index" +
+            $"WHERE {DataBaseTableDefine.CardTable}.card_index = {CardIndex}";
 
         ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
 

@@ -4,10 +4,8 @@ using UnityEngine;
 using Mono.Data.Sqlite;
 public class IllustrationDao 
 {
-    private static readonly string IllustrationTable = "illust";
-
     public static Illustration GetIllust(int IllustIndex) {
-        string query = $"SELECT* FROM {IllustrationTable} WHERE illust_index = {IllustIndex}";
+        string query = $"SELECT* FROM {DataBaseTableDefine.IllustTable} WHERE illust_index = {IllustIndex}";
 
         ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
 

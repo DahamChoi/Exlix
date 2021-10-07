@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterEquipDao{
-    private static readonly string CharacterEquipTable = "character_equip";
-
+public class CharacterEquipDao {
     public static CharacterEquip GetCharacterEquip(int characterIndex) {
-        string query = $"SELECT * FROM {CharacterEquipTable} WHERE {CharacterEquipTable}.character_index = {characterIndex}";
+        string query = $"SELECT * FROM {DataBaseTableDefine.CharacterEquipTable} WHERE {DataBaseTableDefine.CharacterEquipTable}.character_index = {characterIndex}";
 
         ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
 

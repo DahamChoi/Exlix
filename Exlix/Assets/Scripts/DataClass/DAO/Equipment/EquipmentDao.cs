@@ -3,38 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mono.Data.Sqlite;
 public class EquipmentDao {
-    private static readonly string EquipmentTable = "equipment";
-    private static readonly string EquipmentPartTable = "equipment_part";
-    private static readonly string EquipmentNameTable = "equipment_name";
-    private static readonly string EquipmentStatTable = "equipment_stat";
-    private static readonly string EquipmentDescribeTable = "equipment_describe";
-    private static readonly string IllustTable = "illust";
     public static List<Equipment> GetEquipmentList() {
 
         string query =
            $"SELECT " +
-           $"{EquipmentTable}.equip_index AS 'equip_index', " +
-           $"{EquipmentNameTable}.ko_KR AS 'name', " +
-           $"{EquipmentPartTable}.ko_KR AS 'part', " +
-           $"{IllustTable}.image_path AS 'image_path', " +
-           $"{EquipmentTable}.equip_effect AS 'equip_effect', " +
-           $"{EquipmentTable}.parent AS 'parent', " +
-           $"{EquipmentStatTable}.stat_hp as 'stat_hp', " +
-           $"{EquipmentStatTable}.stat_str as 'stat_str', " +
-           $"{EquipmentStatTable}.stat_int as 'stat_int', " +
-           $"{EquipmentStatTable}.stat_dex as 'stat_dex', " +
-           $"{EquipmentDescribeTable}.ko_KR as 'describe' " +
-           $"FROM {EquipmentTable} " +
-           $"LEFT JOIN {EquipmentNameTable} " +
-           $"ON {EquipmentTable}.equip_index = {EquipmentNameTable}.equip_index " +
-           $"LEFT JOIN {EquipmentPartTable} " +
-           $"ON {EquipmentTable}.equip_part_index = {EquipmentPartTable}.equip_part_index " +
-           $"LEFT JOIN {EquipmentStatTable} " +
-           $"ON {EquipmentTable}.equip_index = {EquipmentStatTable}.equip_index " +
-           $"LEFT JOIN {EquipmentDescribeTable} " +
-           $"ON {EquipmentTable}.equip_index = {EquipmentDescribeTable}.equip_index" +
-		   $"LEFT JOIN {IllustTable}" +
-		   $"ON {EquipmentTable}.illust_index = {IllustTable}.illust_index";
+           $"{DataBaseTableDefine.EquipmentTable}.equip_index AS 'equip_index', " +
+           $"{DataBaseTableDefine.EquipmentNameTable}.ko_KR AS 'name', " +
+           $"{DataBaseTableDefine.EquipmentPartTable}.ko_KR AS 'part', " +
+           $"{DataBaseTableDefine.IllustTable}.image_path AS 'image_path', " +
+           $"{DataBaseTableDefine.EquipmentTable}.equip_effect AS 'equip_effect', " +
+           $"{DataBaseTableDefine.EquipmentTable}.parent AS 'parent', " +
+           $"{DataBaseTableDefine.EquipmentStatTable}.stat_hp as 'stat_hp', " +
+           $"{DataBaseTableDefine.EquipmentStatTable}.stat_str as 'stat_str', " +
+           $"{DataBaseTableDefine.EquipmentStatTable}.stat_int as 'stat_int', " +
+           $"{DataBaseTableDefine.EquipmentStatTable}.stat_dex as 'stat_dex', " +
+           $"{DataBaseTableDefine.EquipmentDescribeTable}.ko_KR as 'describe' " +
+           $"FROM {DataBaseTableDefine.EquipmentTable} " +
+           $"LEFT JOIN {DataBaseTableDefine.EquipmentNameTable} " +
+           $"ON {DataBaseTableDefine.EquipmentTable}.equip_index = {DataBaseTableDefine.EquipmentNameTable}.equip_index " +
+           $"LEFT JOIN {DataBaseTableDefine.EquipmentPartTable} " +
+           $"ON {DataBaseTableDefine.EquipmentTable}.equip_part_index = {DataBaseTableDefine.EquipmentPartTable}.equip_part_index " +
+           $"LEFT JOIN {DataBaseTableDefine.EquipmentStatTable} " +
+           $"ON {DataBaseTableDefine.EquipmentTable}.equip_index = {DataBaseTableDefine.EquipmentStatTable}.equip_index " +
+           $"LEFT JOIN {DataBaseTableDefine.EquipmentDescribeTable} " +
+           $"ON {DataBaseTableDefine.EquipmentTable}.equip_index = {DataBaseTableDefine.EquipmentDescribeTable}.equip_index" +
+		   $"LEFT JOIN {DataBaseTableDefine.IllustTable}" +
+		   $"ON {DataBaseTableDefine.EquipmentTable}.illust_index = {DataBaseTableDefine.IllustTable}.illust_index";
 
         ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
 
@@ -66,29 +60,29 @@ public class EquipmentDao {
     public static Equipment GetEquipment(int EquipmentIndex) {
         string query =
            $"SELECT " +
-           $"{EquipmentTable}.equip_index AS 'equip_index', " +
-           $"{EquipmentNameTable}.ko_KR AS 'name', " +
-           $"{EquipmentPartTable}.ko_KR AS 'part', " +
-           $"{IllustTable}.image_path AS 'image_path', " +
-           $"{EquipmentTable}.equip_effect AS 'equip_effect', " +
-           $"{EquipmentTable}.parent AS 'parent', " +
-           $"{EquipmentStatTable}.stat_hp as 'stat_hp', " +
-           $"{EquipmentStatTable}.stat_str as 'stat_str', " +
-           $"{EquipmentStatTable}.stat_int as 'stat_int', " +
-           $"{EquipmentStatTable}.stat_dex as 'stat_dex', " +
-           $"{EquipmentDescribeTable}.ko_KR as 'describe' " +
-           $"FROM {EquipmentTable} " +
-           $"LEFT JOIN {EquipmentNameTable} " +
-           $"ON {EquipmentTable}.equip_index = {EquipmentNameTable}.equip_index " +
-           $"LEFT JOIN {EquipmentPartTable} " +
-           $"ON {EquipmentTable}.equip_part_index = {EquipmentPartTable}.equip_part_index " +
-           $"LEFT JOIN {EquipmentStatTable} " +
-           $"ON {EquipmentTable}.equip_index = {EquipmentStatTable}.equip_index " +
-           $"LEFT JOIN {EquipmentDescribeTable} " +
-           $"ON {EquipmentTable}.equip_index = {EquipmentDescribeTable}.equip_index" +
-		   $"LEFT JOIN {IllustTable}" +
-		   $"ON {EquipmentTable}.illust_index = {IllustTable}.illust_index" +
-           $"WHERE {EquipmentTable}.equip_index = {EquipmentIndex}";
+           $"{DataBaseTableDefine.EquipmentTable}.equip_index AS 'equip_index', " +
+           $"{DataBaseTableDefine.EquipmentNameTable}.ko_KR AS 'name', " +
+           $"{DataBaseTableDefine.EquipmentPartTable}.ko_KR AS 'part', " +
+           $"{DataBaseTableDefine.IllustTable}.image_path AS 'image_path', " +
+           $"{DataBaseTableDefine.EquipmentTable}.equip_effect AS 'equip_effect', " +
+           $"{DataBaseTableDefine.EquipmentTable}.parent AS 'parent', " +
+           $"{DataBaseTableDefine.EquipmentStatTable}.stat_hp as 'stat_hp', " +
+           $"{DataBaseTableDefine.EquipmentStatTable}.stat_str as 'stat_str', " +
+           $"{DataBaseTableDefine.EquipmentStatTable}.stat_int as 'stat_int', " +
+           $"{DataBaseTableDefine.EquipmentStatTable}.stat_dex as 'stat_dex', " +
+           $"{DataBaseTableDefine.EquipmentDescribeTable}.ko_KR as 'describe' " +
+           $"FROM {DataBaseTableDefine.EquipmentTable} " +
+           $"LEFT JOIN {DataBaseTableDefine.EquipmentNameTable} " +
+           $"ON {DataBaseTableDefine.EquipmentTable}.equip_index = {DataBaseTableDefine.EquipmentNameTable}.equip_index " +
+           $"LEFT JOIN {DataBaseTableDefine.EquipmentPartTable} " +
+           $"ON {DataBaseTableDefine.EquipmentTable}.equip_part_index = {DataBaseTableDefine.EquipmentPartTable}.equip_part_index " +
+           $"LEFT JOIN {DataBaseTableDefine.EquipmentStatTable} " +
+           $"ON {DataBaseTableDefine.EquipmentTable}.equip_index = {DataBaseTableDefine.EquipmentStatTable}.equip_index " +
+           $"LEFT JOIN {DataBaseTableDefine.EquipmentDescribeTable} " +
+           $"ON {DataBaseTableDefine.EquipmentTable}.equip_index = {DataBaseTableDefine.EquipmentDescribeTable}.equip_index" +
+		   $"LEFT JOIN {DataBaseTableDefine.IllustTable}" +
+		   $"ON {DataBaseTableDefine.EquipmentTable}.illust_index = {DataBaseTableDefine.IllustTable}.illust_index" +
+           $"WHERE {DataBaseTableDefine.EquipmentTable}.equip_index = {EquipmentIndex}";
 
         ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
 

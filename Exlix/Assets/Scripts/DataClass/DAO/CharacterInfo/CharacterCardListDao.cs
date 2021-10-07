@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterCardListDao
-{
-    private static readonly string CharacterCardListTable = "character_card_list";
-    
+{    
     public static CharacterCardList GetCharacterCardList(int characterIndex) {
         string query =
-            $"SELECT * FROM {CharacterCardListTable} WHERE {CharacterCardListTable}.character_index = {characterIndex}";
+            $"SELECT * FROM {DataBaseTableDefine.CharacterCardListTable} WHERE {DataBaseTableDefine.CharacterCardListTable}.character_index = {characterIndex}";
         ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
 
         if (false == it.Read()) {
