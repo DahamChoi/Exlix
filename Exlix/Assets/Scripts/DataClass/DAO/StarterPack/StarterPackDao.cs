@@ -34,6 +34,7 @@ public class StarterPackDao
         }
 
         StarterPack starterPack = new StarterPack();
+        starterPack.starterPackIndex = it.GetSafeValue<int>(0);
         //starterPack.cardList = it.GetSafeValue<1>
         starterPack.name.textKr = it.GetSafeValue<string>(2);
         starterPack.describe.textKr = it.GetSafeValue<string>(3);

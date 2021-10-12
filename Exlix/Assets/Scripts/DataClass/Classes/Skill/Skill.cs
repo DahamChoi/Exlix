@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Skill
 {
+    public int skillIndex;
     public int cooldown;
     public SkillName name;
     public SkillDescribe describe;
     public Illustration illustration;
     public int parent;
-    public string skillPath;
+    //public string skillPath;
     // 여기 스크립트 추가될것.
 }
