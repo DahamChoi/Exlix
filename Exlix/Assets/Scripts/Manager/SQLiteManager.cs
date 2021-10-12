@@ -25,7 +25,7 @@ public class SQLiteManager : Singleton<SQLiteManager> {
 
     public void ConnectionOpen() {
         if (false == IsOpen) {
-            string conn = "Data Source=" + Application.dataPath + "/db/sqlite.db;";
+            string conn = "Data Source=" + Application.dataPath + "/db/shambles_db.db;";
             connection = new SqliteConnection(conn);
             connection.Open();
             IsOpen = true;

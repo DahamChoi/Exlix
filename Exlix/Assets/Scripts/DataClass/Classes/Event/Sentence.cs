@@ -6,6 +6,6 @@ public class Sentence
 {
     public bool aquireIllust;
     public Illustration illust;
-    public SentenceText text;
+    public string text;
     public List<EventSelection> selectionList;  
 }

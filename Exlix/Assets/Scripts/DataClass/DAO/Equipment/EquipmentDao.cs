@@ -40,16 +40,14 @@ public class EquipmentDao {
 
         while (true == it.Read()) {
             Equipment equipment = new Equipment();
-            equipment.equipmentName.textKr = it.GetSafeValue<string>(1);
-            equipment.equipmentPart.textKr = it.GetSafeValue<string>(2);
+            equipment.equipmentIndex = it.GetSafeValue<int>(0);
+            equipment.equipmentName = it.GetSafeValue<string>(1);
+            equipment.equipmentPart = it.GetSafeValue<string>(2);
             equipment.imagePath = it.GetSafeValue<string>(3);
             //equipment.skillPath = it.GetSafeValue<string>(4);//추후 스크립트 경로 추가 필요
             equipment.equipmentParentIndex = it.GetSafeValue<int>(5);
-            equipment.equipmentStat.statHp = it.GetSafeValue<int>(6);
-            equipment.equipmentStat.statStr = it.GetSafeValue<int>(7);
-            equipment.equipmentStat.statInt = it.GetSafeValue<int>(8);
-            equipment.equipmentStat.statDex = it.GetSafeValue<int>(9);
-            equipment.equipmentDescribe.textKr = it.GetSafeValue<string>(10);
+            equipment.equipmentStat = Equipment.SetEquipmnetStat(it.GetSafeValue<int>(6), it.GetSafeValue<int>(7), it.GetSafeValue<int>(8), it.GetSafeValue<int>(9));
+            equipment.equipmentDescribe = it.GetSafeValue<string>(10);
 
             equipmentList.Add(equipment);
         }
@@ -79,9 +77,9 @@ public class EquipmentDao {
            $"LEFT JOIN {DataBaseTableDefine.EquipmentStatTable} " +
            $"ON {DataBaseTableDefine.EquipmentTable}.equip_index = {DataBaseTableDefine.EquipmentStatTable}.equip_index " +
            $"LEFT JOIN {DataBaseTableDefine.EquipmentDescribeTable} " +
-           $"ON {DataBaseTableDefine.EquipmentTable}.equip_index = {DataBaseTableDefine.EquipmentDescribeTable}.equip_index" +
-		   $"LEFT JOIN {DataBaseTableDefine.IllustTable}" +
-		   $"ON {DataBaseTableDefine.EquipmentTable}.illust_index = {DataBaseTableDefine.IllustTable}.illust_index" +
+           $"ON {DataBaseTableDefine.EquipmentTable}.equip_index = {DataBaseTableDefine.EquipmentDescribeTable}.equip_index " +
+		   $"LEFT JOIN {DataBaseTableDefine.IllustTable} " +
+		   $"ON {DataBaseTableDefine.EquipmentTable}.illust_index = {DataBaseTableDefine.IllustTable}.illust_index " +
            $"WHERE {DataBaseTableDefine.EquipmentTable}.equip_index = {EquipmentIndex}";
 
         ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
@@ -93,16 +91,13 @@ public class EquipmentDao {
 
         Equipment equipment = new Equipment();
         equipment.equipmentIndex = it.GetSafeValue<int>(0);
-        equipment.equipmentName.textKr = it.GetSafeValue<string>(1);
-        equipment.equipmentPart.textKr = it.GetSafeValue<string>(2);
+        equipment.equipmentName = it.GetSafeValue<string>(1);
+        equipment.equipmentPart = it.GetSafeValue<string>(2);
         equipment.imagePath = it.GetSafeValue<string>(3);
         //equipment.skillPath = it.GetSafeValue<string>(4);//추후 스크립트 경로 추가 필요
         equipment.equipmentParentIndex = it.GetSafeValue<int>(5);
-        equipment.equipmentStat.statHp = it.GetSafeValue<int>(6);
-        equipment.equipmentStat.statStr = it.GetSafeValue<int>(7);
-        equipment.equipmentStat.statInt = it.GetSafeValue<int>(8);
-        equipment.equipmentStat.statDex = it.GetSafeValue<int>(9);
-        equipment.equipmentDescribe.textKr = it.GetSafeValue<string>(10);
+        equipment.equipmentStat = Equipment.SetEquipmnetStat(it.GetSafeValue<int>(6), it.GetSafeValue<int>(7), it.GetSafeValue<int>(8), it.GetSafeValue<int>(9));
+        equipment.equipmentDescribe = it.GetSafeValue<string>(10);
 
         return equipment;
     }

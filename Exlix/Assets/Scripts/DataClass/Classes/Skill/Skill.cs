@@ -9,6 +9,6 @@ public class Skill
     public SkillDescribe describe;
     public Illustration illustration;
     public int parent;
-    //public string skillPath;
+    public string skillPath;
     // 여기 스크립트 추가될것.
 }

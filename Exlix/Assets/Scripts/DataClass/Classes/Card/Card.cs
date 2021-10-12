@@ -7,8 +7,8 @@ public class Card
     public int cardIndex;
     public int cost;
     public Illustration illustration;
-    public CardFaction cardFaction;
-    public CardDescribe cardDescribe;
-    public CardName cardName;
-    public CardType cardType;
+    public string cardFaction;
+    public string cardDescribe;
+    public string cardName;
+    public string cardType;
 }
