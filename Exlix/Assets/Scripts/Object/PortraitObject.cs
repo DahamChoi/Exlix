@@ -2,15 +2,15 @@
 using UnityEngine;
 using UnityEngine.UI;
 public class PortraitObject : MonoBehaviour {
-    public PortraitDTO PortraitData;
+    public Portrait PortraitData;
     [SerializeField] Image Portrait = null;
     [SerializeField] Button PortraitButton = null;
     [SerializeField] GameObject Selected = null;
     string ImagePath;
-    CharacterInfoDTO characterInfo;
+    
     private void Start() {
         PortraitButton.onClick.AddListener(() => {
-            GameState.GetInstance().UpsertData<PortraitDTO>(InformationKeyDefine.CURRENT_SELECTED_PORTRAIT, PortraitData);
+            GameState.GetInstance().UpsertData<Portrait>(InformationKeyDefine.CURRENT_SELECTED_PORTRAIT, PortraitData);
             Selected.SetActive(true);
         });
     }
@@ -18,14 +18,14 @@ public class PortraitObject : MonoBehaviour {
     private void Update() {
         updateSelection();
     }
-    public void init(PortraitDTO portraitData) {
+    public void init(Portrait portraitData) {
         PortraitData = portraitData;
-        ImagePath = PortraitData.ImagePath;
+        ImagePath = PortraitData.illust.imagePath;
         Portrait.sprite = Resources.Load(ImagePath, typeof(Sprite)) as Sprite;
     }
     public void updateSelection() {
-        PortraitDTO CurrentSelectedPortrait = GameState.GetInstance().GetData<PortraitDTO>(InformationKeyDefine.CURRENT_SELECTED_PORTRAIT);
-        if (CurrentSelectedPortrait.Number == PortraitData.Number) {
+        Portrait CurrentSelectedPortrait = GameState.GetInstance().GetData<Portrait>(InformationKeyDefine.CURRENT_SELECTED_PORTRAIT);
+        if (CurrentSelectedPortrait.portraitIndex == PortraitData.portraitIndex) {
             Selected.SetActive(true);
         }
         else {

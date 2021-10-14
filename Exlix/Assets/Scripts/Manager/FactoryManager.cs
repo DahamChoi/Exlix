@@ -12,22 +12,22 @@ public class FactoryManager : Singleton<FactoryManager> {
         return cardObject;
     }
 
-    public List<PortraitObject> CreatePortraitObject(Transform parent) {
-        List<PortraitObject> portraitObjectList = new List<PortraitObject>();
-        List<PortraitDTO> portraitData = PortraitDAO.SelectAllPortrait();
+    // public List<PortraitObject> CreatePortraitObject(Transform parent) {
+    //     List<PortraitObject> portraitObjectList = new List<PortraitObject>();
+    //     List<PortraitDTO> portraitData = PortraitDAO.SelectAllPortrait();
 
-        GameObject portraitPrefab = Resources.Load("Prefabs/Portrait") as GameObject;
+    //     GameObject portraitPrefab = Resources.Load("Prefabs/Portrait") as GameObject;
 
-        for (int i = 0; i < portraitData.Count; i++) {
+    //     for (int i = 0; i < portraitData.Count; i++) {
 
-            GameObject portraitObject = Instantiate<GameObject>(portraitPrefab, parent);
-            portraitObject.transform.SetParent(parent);
-            portraitObject.GetComponent<PortraitObject>().init(portraitData[i]);
+    //         GameObject portraitObject = Instantiate<GameObject>(portraitPrefab, parent);
+    //         portraitObject.transform.SetParent(parent);
+    //         portraitObject.GetComponent<PortraitObject>().init(portraitData[i]);
 
-            //portraitObjectList.Add(portraitObject);
-        }
-        return portraitObjectList;
-    }
+    //         //portraitObjectList.Add(portraitObject);
+    //     }
+    //     return portraitObjectList;
+    // }
 
     public GameObject CreateSelectAreaPopup(AreaDTO areaDTO, Transform parent) {
         GameObject selectAreaPopupPrefab = Resources.Load("Prefabs/SelectAreaPopup") as GameObject;
