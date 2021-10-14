@@ -25,6 +25,7 @@ public class SkillDao {
 
         while (true == it.Read()) {
             Skill skill = new Skill();
+            skill.skillIndex = it.GetSafeValue<int>(0);
             skill.name.textKr = it.GetSafeValue<string>(1);
             skill.describe.textKr = it.GetSafeValue<string>(2);
             skill.cooldown = it.GetSafeValue<int>(3);

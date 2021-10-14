@@ -22,7 +22,7 @@ public class DataBaseTableDefine
     public static readonly string CharacterCardListTable = "character_card_list";
     public static readonly string CharacterEquipTable = "character_equip";
     public static readonly string StatusTable = "character_status";
-    public static readonly string CharacterUnlockListTableName = "character_unlocklist";
+    public static readonly string CharacterUnlockListTable = "character_unlocklist";
     public static readonly string CollectionTable = "collection";
     public static readonly string EndingTable = "ending";
     public static readonly string EndingTitleTable = "ending_title";

@@ -24,6 +24,7 @@ public class PortraitDao {
         }
 
         Portrait portrait = new Portrait();
+        portrait.portraitIndex = it.GetSafeValue<int>(0);
         portrait.name.textKr = it.GetSafeValue<string>(1);
         portrait.illust.illustNumber = it.GetSafeValue<int>(2);
         portrait.illust.imagePath = it.GetSafeValue<string>(3);

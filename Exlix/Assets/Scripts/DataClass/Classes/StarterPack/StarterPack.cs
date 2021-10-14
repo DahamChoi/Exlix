@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StarterPack
 {
+    public int starterPackIndex;
     public List<Card> cardList;
     public StarterPackName name;
     public StarterPackDescribe describe;

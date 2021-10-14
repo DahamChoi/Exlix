@@ -6,7 +6,7 @@ public class CharacterUnlockListDao
 {
     public static CharacterUnlockList GetCharacterUnlockList(int characterIndex) {
         string query =
-          $"SELECT * FROM {DataBaseTableDefine.CharacterUnlockListTableName} WHERE {DataBaseTableDefine.CharacterUnlockListTableName}.character_index = {characterIndex}";
+          $"SELECT * FROM {DataBaseTableDefine.CharacterUnlockListTable} WHERE {DataBaseTableDefine.CharacterUnlockListTable}.character_index = {characterIndex}";
        
         ExdioDataReader it = SQLiteManager.GetInstance().SelectQuery(query);
 
