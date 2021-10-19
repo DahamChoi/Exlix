@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AnimatorController : MonoBehaviour {
     Animator controlledAnimator;
+    AnimationClip animationClip;
     System.Action beginCallback;
     System.Action midCallback;
     System.Action endCallback;
@@ -18,40 +19,50 @@ public class AnimatorController : MonoBehaviour {
     }
 
     public void OnEndEvent() {
-        Debug.Log("Animaton End Event");
         endCallback?.Invoke();
+
     }
 
-    public static AnimatorController Create(Animator _controlledAnimator, int _clipIndex = 0, System.Action _beginCallback = null, System.Action _endCallback = null) {
+    public static AnimatorController Create(Animator _controlledAnimator, string _clipName = "", System.Action _beginCallback = null, System.Action _endCallback = null) {
         AnimatorController animationController = _controlledAnimator.gameObject.AddComponent<AnimatorController>();
-        animationController.Init(_controlledAnimator, _clipIndex, _beginCallback, _endCallback);
+        animationController.Init(_controlledAnimator, _clipName, _beginCallback, _endCallback);
         return animationController;
     }
 
-    void Init(Animator _controlledAnimator, int _clipIndex = 0, System.Action _beginCallback = null, System.Action _endCallback = null) {
+    void Init(Animator _controlledAnimator, string _clipName = "", System.Action _beginCallback = null, System.Action _endCallback = null) {
         controlledAnimator = _controlledAnimator;
         beginCallback = _beginCallback;
         endCallback = _endCallback;
-        AddCallbackEvents(_clipIndex);
+        AddInitCallbackEvents(_clipName);
     }
 
-    void AddCallbackEvents(int _clipIndex) {
-        AnimationClip animationClip = controlledAnimator.runtimeAnimatorController.animationClips[_clipIndex];
+    void AddInitCallbackEvents(string _clipName) {
+        foreach (var item in controlledAnimator.runtimeAnimatorController.animationClips) {
+            if (_clipName == item.name) {
+                animationClip = item;
+            }
+        }
+
         AnimationEvent _startAnimationEvents = new AnimationEvent();
         AnimationEvent _endAnimationEvents = new AnimationEvent();
-        animationClip.AddEvent(_startAnimationEvents);
-        animationClip.AddEvent(_endAnimationEvents);
+
         _startAnimationEvents.time = 0f;
         _startAnimationEvents.functionName = "OnBeginEvent";
         _endAnimationEvents.time = animationClip.length;
         _endAnimationEvents.functionName = "OnEndEvent";
+
+        animationClip.AddEvent(_startAnimationEvents);
+        animationClip.AddEvent(_endAnimationEvents);
     }
 
-    // public void AddMidCallbackEvent(float _time, System.Action _midCallback) {
-    //     midCallback = _midCallback;
-    //     AnimationEvent _midAnimationEvents = new AnimationEvent();
-    //     controlledAnimation.runtimeAnimatorController.animationClips[0].AddEvent(_midAnimationEvents);
-    //     _midAnimationEvents.time = 0f;
-    //     _midAnimationEvents.functionName = "OnMidEvent";
-    // }
+    public void AddCallbackEvent(string _clipName = "", float _time = 0, System.Action _midCallback = null) {
+
+        midCallback = _midCallback;
+        AnimationEvent _midAnimationEvents = new AnimationEvent();
+
+        _midAnimationEvents.time = _time;
+        _midAnimationEvents.functionName = "OnMidEvent";
+
+        animationClip.AddEvent(_midAnimationEvents);
+    }
 }

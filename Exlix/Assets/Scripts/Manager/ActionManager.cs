@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ActionManager : Singleton<ActionManager> {
     private List<Action> ActionList = new List<Action>();
+    List<Action> doneAction = new List<Action>();
 
     public void RunAction(Action action) {
         ActionList.Add(action);
@@ -12,7 +13,7 @@ public class ActionManager : Singleton<ActionManager> {
 
     private void Update() {
         if(0 < ActionList.Count) {
-            List<Action> doneAction = new List<Action>();
+            doneAction.Clear();
             foreach(var it in ActionList){
                 it.Update(Time.deltaTime);
                 if(true == it.IsEnd){
